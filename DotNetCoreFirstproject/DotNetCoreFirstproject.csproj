@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>3faf203a-2b7a-4397-beff-b57c52f94181</UserSecretsId>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.15.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="DataAccessLayer\MongoDB\Entities\" />
+    <Folder Include="DataAccessLayer\MongoDB\Interfaces\" />
+    <Folder Include="DataAccessLayer\MongoDB\NoSQL\" />
+    <Folder Include="Middleware\" />
+    <Folder Include="Logging\" />
+    <Folder Include="ServiceLayer\Entities\" />
+    <Folder Include="ServiceLayer\Interfaces\" />
+  </ItemGroup>
+
+</Project>
