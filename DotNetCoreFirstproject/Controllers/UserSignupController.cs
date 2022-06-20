@@ -12,7 +12,6 @@ namespace DotNetCoreFirstproject.Controllers
         public IEnumerable<string> UserSignUp()
         {
 
-            HttpClientHelper<> httpClientHelper = new HttpClientHelper();
             //Console.WriteLine(Configuration["ExternalTools:Keycloak:Host"]);
             //Console.WriteLine(Configuration["ExternalTools:Keycloak:Admin:Username"]);
             //Console.WriteLine(Configuration["ExternalTools:Keycloak:Admin:Password"]);

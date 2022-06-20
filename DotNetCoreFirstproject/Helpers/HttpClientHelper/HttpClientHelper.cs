@@ -4,7 +4,7 @@ using System.Text.Json;
 
 namespace DotNetCoreFirstproject.Helpers.HttpClientHelper
 {
-    public class HttpClientHelper<TRequestBody, TResponseBody>
+    public class HttpClientHelper<TResponseBody>
     {
 
         private readonly IHttpClientFactory _httpClientFactory;
@@ -15,7 +15,7 @@ namespace DotNetCoreFirstproject.Helpers.HttpClientHelper
             _configuration = configuration;
         }
 
-        public IEnumerable<TResponseBody> MakeAdminRequest(string WebServiceUrl, string ServiceRoute, TRequestBody JSONRequestBody, HttpMethod HTTPMethod, Dictionary<string, string> RequestHeaders)
+        public IEnumerable<TResponseBody> MakeAdminRequest(string WebServiceUrl, string ServiceRoute, Dictionary<string, string> FormData, HttpMethod HTTPMethod, Dictionary<string, string> RequestHeaders)
         {
 
             IEnumerable<TResponseBody>? responseBody = default;
@@ -29,7 +29,7 @@ namespace DotNetCoreFirstproject.Helpers.HttpClientHelper
                 }
 
                 HttpClient httpClient = _httpClientFactory.CreateClient();
-                var httpResponseMessage = httpClient.Send(httpRequestMessage);
+                var httpResponseMessage = httpClient.Send(httpRequestMessage, new FormUrlEncodedContent(FormData),);
 
                 // httpClient.DefaultRequestHeaders.Add("Content-Type", "application/json");
                 // httpClient.DefaultRequestHeaders.Add(HeaderNames.Accept, "application/vnd.github.v3+json");

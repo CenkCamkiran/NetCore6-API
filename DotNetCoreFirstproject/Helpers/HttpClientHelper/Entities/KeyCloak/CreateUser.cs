@@ -8,7 +8,7 @@ using Newtonsoft.Json.Converters;
 
 namespace DotNetCoreFirstproject.Helpers.HttpClientHelper.Entities.KeyCloak
 {
-    public partial class KeycloakCreateUser
+    public partial class CreateUser
     {
         [JsonProperty("createdTimestamp")]
         public long CreatedTimestamp { get; set; }
