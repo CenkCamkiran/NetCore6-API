@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DotNetCoreFirstproject.Controllers.Entities;
+using DotNetCoreFirstproject.Helpers.HttpClientHelper.Entities.KeyCloak.Token;
+using DotNetCoreFirstproject.ServiceLayer;
+using Microsoft.AspNetCore.Mvc;
 
 namespace DotNetCoreFirstproject.Controllers
 {
@@ -9,18 +12,16 @@ namespace DotNetCoreFirstproject.Controllers
 
         [HttpPost]
         [Route("/company/api/v1/[controller]")]
-        public IEnumerable<string> UserSignUp()
+        public IEnumerable<object> UserSignUp(UsersignupModel requestBody)
         {
 
-            //Console.WriteLine(Configuration["ExternalTools:Keycloak:Host"]);
-            //Console.WriteLine(Configuration["ExternalTools:Keycloak:Admin:Username"]);
-            //Console.WriteLine(Configuration["ExternalTools:Keycloak:Admin:Password"]);
+            
+            KeycloakService keycloakService = new KeycloakService();
 
-            //string cengo1 = Configuration["ExternalTools:Keycloak:Host"];
-            //string cengo2 = Configuration["ExternalTools:Keycloak:Admin:Username"];
-            //string cengo3 = Configuration["ExternalTools:Keycloak:Admin:Password"];
+            //var token = keycloakService.AdminAuth();
 
             return null;
+
         }
     }
 }

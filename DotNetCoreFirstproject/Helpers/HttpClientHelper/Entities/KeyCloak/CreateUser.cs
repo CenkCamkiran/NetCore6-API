@@ -6,7 +6,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
 
-namespace DotNetCoreFirstproject.Helpers.HttpClientHelper.Entities.KeyCloak
+namespace DotNetCoreFirstproject.Helpers.HttpClientHelper.Entities.KeyCloak.CreateUser
 {
     public partial class CreateUser
     {
@@ -70,12 +70,12 @@ namespace DotNetCoreFirstproject.Helpers.HttpClientHelper.Entities.KeyCloak
 
     public partial class Welcome10
     {
-        public static Welcome10 FromJson(string json) => JsonConvert.DeserializeObject<Welcome10>(json, CodeBeautify.Converter.Settings);
+        public static Welcome10 FromJson(string json) => JsonConvert.DeserializeObject<Welcome10>(json, DotNetCoreFirstproject.Helpers.HttpClientHelper.Entities.KeyCloak.CreateUser.Converter.Settings);
     }
 
     public static class Serialize
     {
-        public static string ToJson(this Welcome10 self) => JsonConvert.SerializeObject(self, CodeBeautify.Converter.Settings);
+        public static string ToJson(this Welcome10 self) => JsonConvert.SerializeObject(self, DotNetCoreFirstproject.Helpers.HttpClientHelper.Entities.KeyCloak.CreateUser.Converter.Settings);
     }
 
     internal static class Converter
