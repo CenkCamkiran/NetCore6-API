@@ -36,27 +36,25 @@ namespace DotNetCoreFirstproject.Helpers.HttpClientHelper
                     return true;
                 };
 
-                HttpClient httpClient = new HttpClient(httpClientHandler)
-                {
-                    BaseAddress = new Uri(WebServiceUrl)
-                };
-                var httpResponseMessage = httpClient.Send(httpRequestMessage);
-
-
-                if (httpResponseMessage.IsSuccessStatusCode)
+                using (HttpClient httpClient = new HttpClient(httpClientHandler))
                 {
 
-                    using (var responseStream = httpResponseMessage.Content.ReadAsStream())
+                    httpClient.BaseAddress = new Uri(WebServiceUrl);
+                    var httpResponseMessage = httpClient.SendAsync(httpRequestMessage);
+
+                    if (httpResponseMessage.Result.StatusCode == System.Net.HttpStatusCode.OK)
                     {
-                        responseBody = System.Text.Json.JsonSerializer.Deserialize<IEnumerable<TResponseBody>>(responseStream);
+                        var jsonString = httpResponseMessage.Result.Content.ReadAsStringAsync();
+
+                        var cenk = JsonConvert.DeserializeObject<object>(jsonString.Result);
+                    }
+                    else
+                    {
+                        responseBody = null;
                     }
 
                 }
 
-                else
-                {
-                    responseBody = null;
-                }
             }
             catch (Exception ex)
             {

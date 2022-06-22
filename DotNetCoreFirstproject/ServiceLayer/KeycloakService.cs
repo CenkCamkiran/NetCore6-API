@@ -16,7 +16,7 @@ namespace DotNetCoreFirstproject.ServiceLayer
             configurationBuilder = new ConfigurationBuilder();
         }
 
-        public IEnumerable<Token> AdminAuth()
+        public async Task AdminAuth()
         {
 
             HttpClientHelper<string, Token> httpClientHelper = new HttpClientHelper<string, Token>();
@@ -44,8 +44,6 @@ namespace DotNetCoreFirstproject.ServiceLayer
             httpHeaders.Add(HttpRequestHeader.Accept.ToString(), "application/json");
 
             var result = httpClientHelper.MakeFormRequest(WebServiceUrl, requestForm, HttpMethod.Post, httpHeaders);
-
-            return result;
 
         }
 
