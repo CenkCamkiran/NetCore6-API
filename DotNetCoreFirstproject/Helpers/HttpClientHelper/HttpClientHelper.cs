@@ -9,7 +9,12 @@ namespace DotNetCoreFirstproject.Helpers.HttpClientHelper
     public class HttpClientHelper<TRequestBody, TResponseBody>
     {
 
-        private readonly IHttpClientFactory _httpClientFactory;
+        HttpClientHandler httpClientHandler;
+
+        public HttpClientHelper()
+        {
+            httpClientHandler = new HttpClientHandler();    
+        }
 
         // application/x-www-form-urlencoded
         public IEnumerable<TResponseBody> MakeFormRequest(string WebServiceUrl, Dictionary<string, string> FormData, HttpMethod HTTPMethod, Dictionary<string, string> RequestHeaders)
@@ -26,11 +31,17 @@ namespace DotNetCoreFirstproject.Helpers.HttpClientHelper
                 }
                 httpRequestMessage.Content = new FormUrlEncodedContent(FormData);
 
-                HttpClient httpClient = _httpClientFactory.CreateClient();
+                httpClientHandler.ServerCertificateCustomValidationCallback = (message, cert, chain, sslPolicyErrors) =>
+                {
+                    return true;
+                };
+
+                HttpClient httpClient = new HttpClient(httpClientHandler)
+                {
+                    BaseAddress = new Uri(WebServiceUrl)
+                };
                 var httpResponseMessage = httpClient.Send(httpRequestMessage);
 
-                // httpClient.DefaultRequestHeaders.Add("Content-Type", "application/json");
-                // httpClient.DefaultRequestHeaders.Add(HeaderNames.Accept, "application/vnd.github.v3+json");
 
                 if (httpResponseMessage.IsSuccessStatusCode)
                 {
