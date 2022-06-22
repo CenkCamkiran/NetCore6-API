@@ -24,7 +24,7 @@ namespace DotNetCoreFirstproject.Controllers
         [HttpGet(Name = "GetWeatherForecast")]
         public IEnumerable<WeatherForecast> Get()
         {
-            Console.WriteLine(HttpContext.Response.StatusCode);
+
             //HttpClientHelper<string, string> httpClientHelper = new HttpClientHelper<string, string>();
             //Dictionary<string, string> httpHeaders = new Dictionary<string, string>();
 

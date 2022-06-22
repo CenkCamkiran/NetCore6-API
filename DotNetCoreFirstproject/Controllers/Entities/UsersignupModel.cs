@@ -7,8 +7,8 @@ namespace DotNetCoreFirstproject.Controllers.Entities
         [JsonProperty("username")]
         public string username { get; set; }
 
-        [JsonProperty("password")]
-        public string password { get; set; }
+        //[JsonProperty("password")]
+        //public string password { get; set; }
 
         [JsonProperty("firstName")]
         public string firstName { get; set; }
@@ -17,7 +17,7 @@ namespace DotNetCoreFirstproject.Controllers.Entities
         public string lastName { get; set; }
 
         [JsonProperty("email")]
-        public int email { get; set; }
+        public string email { get; set; }
 
         [JsonProperty("attributes")]
         public Attributes attributes { get; set; }

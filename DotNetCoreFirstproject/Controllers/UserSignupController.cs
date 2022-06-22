@@ -12,13 +12,13 @@ namespace DotNetCoreFirstproject.Controllers
 
         [HttpPost]
         [Route("/company/api/v1/[controller]")]
-        public IEnumerable<object> UserSignUp(UsersignupModel requestBody)
+        public IEnumerable<object> UserSignUp([FromBody] UsersignupModel requestBody)
         {
 
-            
             KeycloakService keycloakService = new KeycloakService();
 
-            //var token = keycloakService.AdminAuth();
+            var token = keycloakService.AdminAuth();
+            Console.WriteLine(token);
 
             return null;
 
