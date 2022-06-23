@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using DotNetCoreFirstproject.Helpers.APIExceptionHelper;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using System.Net;
 using System.Net.Http.Headers;
@@ -31,7 +32,7 @@ namespace DotNetCoreFirstproject.Middleware
 
                 switch(error){
 
-                    case AppException e:
+                    case APIExceptionHelper e:
                         // custom application error
                         response.StatusCode = (int)HttpStatusCode.BadRequest;
                         break;
