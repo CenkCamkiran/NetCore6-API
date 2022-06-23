@@ -1,8 +1,5 @@
 using DotNetCoreFirstproject.Configuration;
 using DotNetCoreFirstproject.Middleware;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Configuration.Json;
-using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,37 +15,16 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    //DEV veya PROD ortamýna göre aþaðýdaki string ifade deðiþecek.
+    //These config changes depending the environment (DEV or PROD etc.)
     //var configuration = new ConfigurationBuilder().AddJsonFile($"appsettings.json", optional: true, reloadOnChange: true);
     app.UseSwagger();
     app.UseSwaggerUI();
 }
 
-// appsettings.{Environment}.json
-//var configurationBuilder = new ConfigurationBuilder();
-//configurationBuilder.AddJsonFile($"appsettings.json", optional: true, reloadOnChange: true);
-//configurationBuilder.AddUserSecrets(typeof(Program).GetTypeInfo().Assembly, optional: false);
-//IConfigurationRoot Configuration = configurationBuilder.Build();
-
 ConfigurationManager configuration = builder.Configuration;
 configuration.GetSection(ApplicationSettings.RootOption).Bind(ApplicationSettings.ExternalTools);
 
-//app.UseErrorHandlerMiddleware();
-
-app.Use(async (context, next) => app
-{
-    // Do work that can write to the Response.
-    //context.Response.StatusCode = 202;
-    
-    // Do logging or other work that doesn't write to the Response.
-});
-
-//var configuration = new ConfigurationBuilder().AddJsonFile($"appsettings.json", optional: true, reloadOnChange: true);
-
-//app.MapWhen(context => context.Request.Path.StartsWithSegments("/WeatherForecast", StringComparison.OrdinalIgnoreCase), appBuilder =>
-//{
-//    appBuilder.UseKeycloakAdminMiddleware();
-//});
+app.UseErrorHandlerMiddleware();
 
 app.UseHttpsRedirection();
 
@@ -58,6 +34,34 @@ app.MapControllers();
 
 app.Run();
 
+/********************************************************
+ * 
+ * 
+ * 
+ * 
+ ********************************************************/
+
+// appsettings.{Environment}.json
+//var configurationBuilder = new ConfigurationBuilder();
+//configurationBuilder.AddJsonFile($"appsettings.json", optional: true, reloadOnChange: true);
+//configurationBuilder.AddUserSecrets(typeof(Program).GetTypeInfo().Assembly, optional: false);
+//IConfigurationRoot Configuration = configurationBuilder.Build();
+
+//app.Use(async (context, next) =>
+//{
+//    // Do work that can write to the Response.
+//    await next();
+//    // Do logging or other work that doesn't write to the Response.
+
+//    //Or both of them?
+//});
+
+//var configuration = new ConfigurationBuilder().AddJsonFile($"appsettings.json", optional: true, reloadOnChange: true);
+
+//app.MapWhen(context => context.Request.Path.StartsWithSegments("/WeatherForecast", StringComparison.OrdinalIgnoreCase), appBuilder =>
+//{
+//    appBuilder.UseKeycloakAdminMiddleware();
+//});
 
 //static void MiddlewareCenk(IApplicationBuilder app)
 //{

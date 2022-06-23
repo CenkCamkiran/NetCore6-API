@@ -1,4 +1,5 @@
 ﻿using DotNetCoreFirstproject.Helpers.APIExceptionHelper;
+using DotNetCoreFirstproject.Helpers.Entities;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using System.Net;
@@ -48,7 +49,7 @@ namespace DotNetCoreFirstproject.Middleware
                         break;
                 }
 
-                var result = JsonSerializer.Serialize(new {message = error?.Message});
+                var result = JsonSerializer.Serialize(new CustomErrorModel{ ErrorMessage = error?.Message, ErrorCode = HttpStatusCode.InternalServerError.ToString() });
                 await response.WriteAsync(result);
 
             }

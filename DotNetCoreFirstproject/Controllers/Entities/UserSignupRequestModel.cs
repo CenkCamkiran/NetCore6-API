@@ -2,7 +2,7 @@
 
 namespace DotNetCoreFirstproject.Controllers.Entities
 {
-    public class UsersignupModel
+    public class UserSignupRequestModel
     {
         [JsonProperty("username")]
         public string username { get; set; }

@@ -1,4 +1,5 @@
 ﻿using DotNetCoreFirstproject.Helpers.Entities;
+using DotNetCoreFirstproject.Helpers.HttpClientHelper.Entities.KeyCloak.Token;
 using Microsoft.Net.Http.Headers;
 using Newtonsoft.Json;
 using System.Net.Http.Headers;
@@ -18,10 +19,10 @@ namespace DotNetCoreFirstproject.Helpers.HttpClientHelper
         }
 
         // application/x-www-form-urlencoded
-        public object MakeFormRequest(string WebServiceUrl, Dictionary<string, string> FormData, HttpMethod HTTPMethod, Dictionary<string, string> RequestHeaders)
+        public TResponseBody MakeFormRequest(string WebServiceUrl, Dictionary<string, string> FormData, HttpMethod HTTPMethod, Dictionary<string, string> RequestHeaders)
         {
 
-            object? responseBody = default;
+            TResponseBody? responseBody = default;
 
             HttpRequestMessage httpRequestMessage = new HttpRequestMessage(HTTPMethod, WebServiceUrl);
             foreach (var requestHeader in RequestHeaders)
@@ -55,47 +56,39 @@ namespace DotNetCoreFirstproject.Helpers.HttpClientHelper
         }
 
         // application/json
-        public IEnumerable<TResponseBody> MakeJSONRequest(string WebServiceUrl, string ServiceRoute, TRequestBody JSONRequestBody, HttpMethod HTTPMethod, Dictionary<string, string> RequestHeaders)
+        public TResponseBody MakeJSONRequest(string WebServiceUrl, TRequestBody JSONBody, HttpMethod HTTPMethod, Dictionary<string, string> RequestHeaders)
         {
 
-            //IEnumerable<TResponseBody>? responseBody = default;
+            TResponseBody? responseBody = default;
 
-            //try
-            //{
-            //    HttpRequestMessage httpRequestMessage = new HttpRequestMessage(HTTPMethod, WebServiceUrl);
-            //    foreach (var requestHeader in RequestHeaders)
-            //    {
-            //        httpRequestMessage.Headers.Add(requestHeader.Key.ToString(), requestHeader.Value);
-            //    }
+            HttpRequestMessage httpRequestMessage = new HttpRequestMessage(HTTPMethod, WebServiceUrl);
+            foreach (var requestHeader in RequestHeaders)
+            {
+                httpRequestMessage.Headers.Add(requestHeader.Key.ToString(), requestHeader.Value);
+            }
+            httpRequestMessage.Content = new StringContent(JSONBody.ToString(), Encoding.UTF8, "application/json");
 
-            //    //var person = new Person("John Doe", "gardener");
+            httpClientHandler.ServerCertificateCustomValidationCallback = (message, cert, chain, sslPolicyErrors) =>
+            {
+                return true;
+            };
 
-            //    //var json = JsonConvert.SerializeObject(person);
-            //    //var data = new StringContent(json, Encoding.UTF8, "application/json");
+            using (HttpClient httpClient = new HttpClient(httpClientHandler))
+            {
 
-            //    HttpClient httpClient = _httpClientFactory.CreateClient();
-            //    var httpResponseMessage = httpClient.Send(httpRequestMessage);
+                httpClient.BaseAddress = new Uri(WebServiceUrl);
+                var httpResponseMessage = httpClient.SendAsync(httpRequestMessage);
 
-            //    // httpClient.DefaultRequestHeaders.Add("Content-Type", "application/json");
-            //    // httpClient.DefaultRequestHeaders.Add(HeaderNames.Accept, "application/vnd.github.v3+json");
+                if (httpResponseMessage.Result.StatusCode == System.Net.HttpStatusCode.Created)
+                {
+                    var jsonString = httpResponseMessage.Result.Content.ReadAsStringAsync();
+                    responseBody = JsonConvert.DeserializeObject<TResponseBody>(jsonString.Result);
 
-            //    if (httpResponseMessage.IsSuccessStatusCode)
-            //    {
+                }
 
-            //        using (var responseStream = httpResponseMessage.Content.ReadAsStream())
-            //        {
-            //            responseBody = JsonSerializer.Deserialize<IEnumerable<TResponseBody>>(responseStream);
-            //        }
+            }
 
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-
-
-            //}
-
-            return null;
+            return responseBody;
         }
 
     }
