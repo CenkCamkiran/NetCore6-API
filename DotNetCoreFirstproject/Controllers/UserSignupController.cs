@@ -2,6 +2,7 @@
 using DotNetCoreFirstproject.Helpers.HttpClientHelper.Entities.KeyCloak.Token;
 using DotNetCoreFirstproject.ServiceLayer;
 using Microsoft.AspNetCore.Mvc;
+using System.Net;
 
 namespace DotNetCoreFirstproject.Controllers
 {
@@ -12,15 +13,16 @@ namespace DotNetCoreFirstproject.Controllers
 
         [HttpPost]
         [Route("/company/api/v1/[controller]")]
-        public IEnumerable<object> UserSignUp([FromBody] UsersignupModel requestBody)
+        public Token UserSignUp([FromBody] UsersignupModel requestBody)
         {
 
             KeycloakService keycloakService = new KeycloakService();
+            var AuthToken = keycloakService.AdminAuth();
 
-            var token = keycloakService.AdminAuth();
-            Console.WriteLine(token);
+            //HttpContext.Response.Headers.Add();
+            HttpContext.Response.StatusCode = (int) HttpStatusCode.OK;
 
-            return null;
+            return AuthToken.Result;
 
         }
     }

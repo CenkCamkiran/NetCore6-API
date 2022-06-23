@@ -31,9 +31,17 @@ if (app.Environment.IsDevelopment())
 //IConfigurationRoot Configuration = configurationBuilder.Build();
 
 ConfigurationManager configuration = builder.Configuration;
-configuration.GetSection(ProjectSettings.RootOption).Bind(ProjectSettings.ExternalTools);
+configuration.GetSection(ApplicationSettings.RootOption).Bind(ApplicationSettings.ExternalTools);
 
+//app.UseErrorHandlerMiddleware();
 
+app.Use(async (context, next) => app
+{
+    // Do work that can write to the Response.
+    //context.Response.StatusCode = 202;
+    
+    // Do logging or other work that doesn't write to the Response.
+});
 
 //var configuration = new ConfigurationBuilder().AddJsonFile($"appsettings.json", optional: true, reloadOnChange: true);
 

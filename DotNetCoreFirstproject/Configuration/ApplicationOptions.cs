@@ -7,11 +7,6 @@ using Newtonsoft.Json.Converters;
 
 namespace DotNetCoreFirstproject.Configuration
 {
-    //public partial class ProjectOptions
-    //{
-    //    [JsonProperty("ExternalTools")]
-    //    public ExternalTools ExternalTools { get; set; }
-    //}
 
     public partial class ExternalTools
     {

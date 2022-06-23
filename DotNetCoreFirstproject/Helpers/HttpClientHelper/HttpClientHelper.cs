@@ -1,4 +1,5 @@
-﻿using Microsoft.Net.Http.Headers;
+﻿using DotNetCoreFirstproject.Helpers.Entities;
+using Microsoft.Net.Http.Headers;
 using Newtonsoft.Json;
 using System.Net.Http.Headers;
 using System.Text;
@@ -9,7 +10,7 @@ namespace DotNetCoreFirstproject.Helpers.HttpClientHelper
     public class HttpClientHelper<TRequestBody, TResponseBody>
     {
 
-        HttpClientHandler httpClientHandler;
+        private HttpClientHandler httpClientHandler;
 
         public HttpClientHelper()
         {
@@ -17,48 +18,36 @@ namespace DotNetCoreFirstproject.Helpers.HttpClientHelper
         }
 
         // application/x-www-form-urlencoded
-        public IEnumerable<TResponseBody> MakeFormRequest(string WebServiceUrl, Dictionary<string, string> FormData, HttpMethod HTTPMethod, Dictionary<string, string> RequestHeaders)
+        public object MakeFormRequest(string WebServiceUrl, Dictionary<string, string> FormData, HttpMethod HTTPMethod, Dictionary<string, string> RequestHeaders)
         {
 
-            IEnumerable<TResponseBody>? responseBody = default;
+            object? responseBody = default;
 
-            try
+            HttpRequestMessage httpRequestMessage = new HttpRequestMessage(HTTPMethod, WebServiceUrl);
+            foreach (var requestHeader in RequestHeaders)
             {
-                HttpRequestMessage httpRequestMessage = new HttpRequestMessage(HTTPMethod, WebServiceUrl);
-                foreach (var requestHeader in RequestHeaders)
-                {
-                    httpRequestMessage.Headers.Add(requestHeader.Key.ToString(), requestHeader.Value);
-                }
-                httpRequestMessage.Content = new FormUrlEncodedContent(FormData);
-
-                httpClientHandler.ServerCertificateCustomValidationCallback = (message, cert, chain, sslPolicyErrors) =>
-                {
-                    return true;
-                };
-
-                using (HttpClient httpClient = new HttpClient(httpClientHandler))
-                {
-
-                    httpClient.BaseAddress = new Uri(WebServiceUrl);
-                    var httpResponseMessage = httpClient.SendAsync(httpRequestMessage);
-
-                    if (httpResponseMessage.Result.StatusCode == System.Net.HttpStatusCode.OK)
-                    {
-                        var jsonString = httpResponseMessage.Result.Content.ReadAsStringAsync();
-
-                        var cenk = JsonConvert.DeserializeObject<object>(jsonString.Result);
-                    }
-                    else
-                    {
-                        responseBody = null;
-                    }
-
-                }
-
+                httpRequestMessage.Headers.Add(requestHeader.Key.ToString(), requestHeader.Value);
             }
-            catch (Exception ex)
+            httpRequestMessage.Content = new FormUrlEncodedContent(FormData);
+
+            httpClientHandler.ServerCertificateCustomValidationCallback = (message, cert, chain, sslPolicyErrors) =>
             {
-                Console.WriteLine(ex.Message.ToString());
+                return true;
+            };
+
+            using (HttpClient httpClient = new HttpClient(httpClientHandler))
+            {
+
+                httpClient.BaseAddress = new Uri(WebServiceUrl);
+                var httpResponseMessage = httpClient.SendAsync(httpRequestMessage);
+
+                if (httpResponseMessage.Result.StatusCode == System.Net.HttpStatusCode.OK)
+                {
+                    var jsonString = httpResponseMessage.Result.Content.ReadAsStringAsync();
+                    responseBody = JsonConvert.DeserializeObject<TResponseBody>(jsonString.Result);
+
+                }
+
             }
 
             return responseBody;

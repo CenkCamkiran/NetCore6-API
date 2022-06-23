@@ -1,6 +1,6 @@
 ﻿namespace DotNetCoreFirstproject.Configuration
 {
-    public class ProjectSettings
+    public class ApplicationSettings
     {
         public const string RootOption = "ExternalTools";
 
