@@ -33,6 +33,9 @@ namespace DotNetCoreFirstproject.Configuration
 
         [JsonProperty("Password")]
         public string Password { get; set; }
+
+        [JsonProperty("AdminID")]
+        public string AdminID { get; set; }
     }
 
     public partial class Keycloak
@@ -78,6 +81,10 @@ namespace DotNetCoreFirstproject.Configuration
 
         [JsonProperty("UsersRoute")]
         public string UsersRoute { get; set; }
+
+        [JsonProperty("SessionRoute")]
+        public string SessionRoute { get; set; }
+        
     }
 
 }

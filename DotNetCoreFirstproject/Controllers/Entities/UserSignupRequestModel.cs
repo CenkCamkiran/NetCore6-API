@@ -21,6 +21,9 @@ namespace DotNetCoreFirstproject.Controllers.Entities
 
         [JsonProperty("attributes")]
         public Attributes attributes { get; set; }
+
+        [JsonProperty("credentials")]
+        public Credentials credentials { get; set; }
     }
 
     public class Attributes
@@ -37,5 +40,10 @@ namespace DotNetCoreFirstproject.Controllers.Entities
         [JsonProperty("age")]
         public string age { get; set; }
 
+    }
+
+    public class Credentials
+    {
+        public string password { get; set; }
     }
 }

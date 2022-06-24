@@ -1,11 +1,7 @@
 ﻿using DotNetCoreFirstproject.Helpers.APIExceptionHelper;
 using DotNetCoreFirstproject.Helpers.Entities;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Http;
 using System.Net;
-using System.Net.Http.Headers;
 using System.Text.Json;
-using System.Threading.Tasks;
 
 namespace DotNetCoreFirstproject.Middleware
 {
@@ -33,7 +29,7 @@ namespace DotNetCoreFirstproject.Middleware
 
                 switch(error){
 
-                    case APIExceptionHelper e:
+                    case AppException e:
                         // custom application error
                         response.StatusCode = (int)HttpStatusCode.BadRequest;
                         break;
@@ -49,7 +45,7 @@ namespace DotNetCoreFirstproject.Middleware
                         break;
                 }
 
-                var result = JsonSerializer.Serialize(new CustomErrorModel{ ErrorMessage = error?.Message, ErrorCode = HttpStatusCode.InternalServerError.ToString() });
+                var result = JsonSerializer.Serialize(new CustomErrorResponseModel{ ErrorMessage = error?.Message, ErrorCode = HttpStatusCode.InternalServerError.ToString() });
                 await response.WriteAsync(result);
 
             }
