@@ -1,5 +1,7 @@
 ﻿using DotNetCoreFirstproject.Helpers.APIExceptionHelper;
+using DotNetCoreFirstproject.Helpers.AppExceptionHelpers;
 using DotNetCoreFirstproject.Helpers.Entities;
+using Newtonsoft.Json;
 using System.Net;
 using System.Text.Json;
 
@@ -29,23 +31,29 @@ namespace DotNetCoreFirstproject.Middleware
 
                 switch(error){
 
-                    case AppException e:
-                        // custom application error
+                    case KeycloakException exception:
+
                         response.StatusCode = (int)HttpStatusCode.BadRequest;
                         break;
 
-                    case KeyNotFoundException e:
-                        // not found error
+                    case KeyNotFoundException exception:
+ 
+                        response.StatusCode = (int)HttpStatusCode.NotFound;
+                        break;
+
+                    case AppException exception:
+
                         response.StatusCode = (int)HttpStatusCode.NotFound;
                         break;
 
                     default:
-                        // unhandled error
+
                         response.StatusCode = (int)HttpStatusCode.InternalServerError;
                         break;
                 }
 
-                var result = JsonSerializer.Serialize(new CustomErrorResponseModel{ ErrorMessage = error?.Message, ErrorCode = HttpStatusCode.InternalServerError.ToString() });
+                var cenk = JsonConvert.DeserializeObject<CustomErrorResponseModel>(error.Message);
+                var result = JsonConvert.SerializeObject(new CustomErrorResponseModel{ ErrorMessage = JsonConvert.DeserializeObject<CustomErrorResponseModel>(error.Message).ErrorMessage, ErrorCode = JsonConvert.DeserializeObject<CustomErrorResponseModel>(error.Message).ErrorCode });
                 await response.WriteAsync(result);
 
             }

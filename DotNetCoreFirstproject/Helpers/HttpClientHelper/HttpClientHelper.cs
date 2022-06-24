@@ -48,8 +48,11 @@ namespace DotNetCoreFirstproject.Helpers.HttpClientHelper
                 }
                 else
                 {
-                    var jsonString = httpResponseMessage.Result.Content.ReadAsStringAsync();
-                    responseBody = JsonConvert.DeserializeObject<TResponseBody>(jsonString.Result);
+                    CustomErrorResponseModel errorResponse = new CustomErrorResponseModel();
+                    errorResponse.ErrorMessage = "HTTP 500 Internal Server Error";
+                    errorResponse.ErrorCode = ((int)System.Net.HttpStatusCode.InternalServerError).ToString();
+
+                    throw new KeycloakException(JsonConvert.SerializeObject(errorResponse));
                 }
 
             }
@@ -69,7 +72,6 @@ namespace DotNetCoreFirstproject.Helpers.HttpClientHelper
             {
                 httpRequestMessage.Headers.Add(requestHeader.Key.ToString(), requestHeader.Value);
             }
-            var cenk = new StringContent(JsonConvert.SerializeObject(JSONBody), Encoding.UTF8, "application/json");
             httpRequestMessage.Content = new StringContent(JsonConvert.SerializeObject(JSONBody), Encoding.UTF8, "application/json");
 
             httpClientHandler.ServerCertificateCustomValidationCallback = (message, cert, chain, sslPolicyErrors) =>
@@ -96,19 +98,17 @@ namespace DotNetCoreFirstproject.Helpers.HttpClientHelper
                     CustomErrorResponseModel errorResponse = new CustomErrorResponseModel();
                     errorResponse.ErrorMessage = createUserErrorResponseModel.errorMessage;
                     errorResponse.ErrorCode = ((int)System.Net.HttpStatusCode.Conflict).ToString();
-                    throw new AppException(errorResponse.ToString());
+
+                    throw new KeycloakException(JsonConvert.SerializeObject(errorResponse));
 
                 }
                 else
                 {
-                    var jsonString = httpResponseMessage.Result.Content.ReadAsStringAsync();
-                    responseBody = JsonConvert.DeserializeObject<TResponseBody>(jsonString.Result);
-                    var createUserErrorResponseModel = JsonConvert.DeserializeObject<CreateUserErrorResponseModel>(jsonString.Result);
-
                     CustomErrorResponseModel errorResponse = new CustomErrorResponseModel();
-                    errorResponse.ErrorMessage = createUserErrorResponseModel.errorMessage;
-                    errorResponse.ErrorCode = ((int)System.Net.HttpStatusCode.Conflict).ToString();
-                    throw new AppException(errorResponse.ToString());
+                    errorResponse.ErrorMessage = "HTTP 500 Internal Server Error";
+                    errorResponse.ErrorCode = ((int)System.Net.HttpStatusCode.InternalServerError).ToString();
+
+                    throw new KeycloakException(JsonConvert.SerializeObject(errorResponse));
 
                 }
 
@@ -146,11 +146,19 @@ namespace DotNetCoreFirstproject.Helpers.HttpClientHelper
 
                 } else if (httpResponseMessage.Result.StatusCode == System.Net.HttpStatusCode.Unauthorized)
                 {
+                    CustomErrorResponseModel errorResponse = new CustomErrorResponseModel();
+                    errorResponse.ErrorMessage = "HTTP 401 Unauthorized";
+                    errorResponse.ErrorCode = ((int)System.Net.HttpStatusCode.Unauthorized).ToString();
 
+                    throw new KeycloakException(JsonConvert.SerializeObject(errorResponse));
                 }
                 else
                 {
+                    CustomErrorResponseModel errorResponse = new CustomErrorResponseModel();
+                    errorResponse.ErrorMessage = "HTTP 500 Internal Server Error";
+                    errorResponse.ErrorCode = ((int)System.Net.HttpStatusCode.InternalServerError).ToString();
 
+                    throw new KeycloakException(JsonConvert.SerializeObject(errorResponse));
                 }
 
             }
@@ -158,7 +166,7 @@ namespace DotNetCoreFirstproject.Helpers.HttpClientHelper
             return responseBody;
         }
 
-        public TResponseBody MakeQueryStringRequest(string WebServiceUrl, TRequestBody JSONBody, HttpMethod HTTPMethod, Dictionary<string, string> RequestHeaders)
+        public TResponseBody MakeQueryParamRequest(string WebServiceUrl, TRequestBody JSONBody, HttpMethod HTTPMethod, Dictionary<string, string> RequestHeaders)
         {
 
             TResponseBody? responseBody = default;
@@ -187,6 +195,15 @@ namespace DotNetCoreFirstproject.Helpers.HttpClientHelper
                     responseBody = JsonConvert.DeserializeObject<TResponseBody>(jsonString.Result);
 
                 }
+                else
+                {
+                    CustomErrorResponseModel errorResponse = new CustomErrorResponseModel();
+                    errorResponse.ErrorMessage = "HTTP 500 Internal Server Error";
+                    errorResponse.ErrorCode = ((int)System.Net.HttpStatusCode.InternalServerError).ToString();
+
+                    throw new KeycloakException(JsonConvert.SerializeObject(errorResponse));
+                }
+
 
             }
 
