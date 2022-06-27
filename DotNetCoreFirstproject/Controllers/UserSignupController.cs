@@ -33,7 +33,7 @@ namespace DotNetCoreFirstproject.Controllers
             createUser.lastName = requestBody.lastName;
             createUser.username = requestBody.username;
             createUser.email = requestBody.email;
-            createUser.createdTimestamp = DateTime.Now.Millisecond;
+            createUser.createdTimestamp = DateTimeOffset.Now.ToUnixTimeMilliseconds();
             createUser.enabled = true;
 
             attributes.gender = requestBody.attributes.gender;
