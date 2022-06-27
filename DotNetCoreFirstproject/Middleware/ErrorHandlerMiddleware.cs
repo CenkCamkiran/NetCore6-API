@@ -46,6 +46,10 @@ namespace DotNetCoreFirstproject.Middleware
                         KeycloakService keycloakService = new KeycloakService();
                         string? AdminTokenModel = error.InnerException.InnerException.Message;
 
+                        CustomErrorResponseModel errorResponse = new CustomErrorResponseModel();
+                        errorResponse.ErrorMessage = error.InnerException.InnerException.Message;
+                        errorResponse.ErrorCode = error.InnerException.InnerException.Message;
+
                         if (!string.IsNullOrEmpty(AdminTokenModel))
                             await keycloakService.RemoveSession(true, JsonConvert.DeserializeObject<TokenResponseModel>(AdminTokenModel));
 
@@ -80,7 +84,6 @@ namespace DotNetCoreFirstproject.Middleware
                         break;
                 }
 
-                CustomErrorResponseModel errorResponse = new CustomErrorResponseModel();
                 await response.WriteAsync(error.Message);
 
             }
