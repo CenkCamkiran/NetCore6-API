@@ -2,11 +2,13 @@
 using DotNetCoreFirstproject.Helpers.APIExceptionHelper;
 using DotNetCoreFirstproject.Helpers.AppExceptionHelpers;
 using DotNetCoreFirstproject.Helpers.Entities;
+using DotNetCoreFirstproject.Helpers.Entities.Keycloak;
 using DotNetCoreFirstproject.Helpers.HttpClientHelper.Entities.KeyCloak.Token;
 using DotNetCoreFirstproject.ServiceLayer;
 using Microsoft.IdentityModel.SecurityTokenService;
 using Newtonsoft.Json;
 using System.Net;
+using System.Net.Mime;
 using System.Text.Json;
 
 namespace DotNetCoreFirstproject.Middleware
@@ -32,26 +34,26 @@ namespace DotNetCoreFirstproject.Middleware
             {
 
                 var response = httpContext.Response;
-                response.ContentType = "application/json"; // HttpResponseHeader.ContentType.ToString();
+                response.ContentType = MediaTypeNames.Application.Json; // HttpResponseHeader.ContentType.ToString();
 
-                var cenk = error is KeycloakException;
-                var cengo = error.InnerException is KeycloakException;
+                //var cenk = error is KeycloakException;
+                //var cengo = error.InnerException is KeycloakException;
+
+                CustomErrorResponseModel errorResponse = new CustomErrorResponseModel();
 
                 switch (error.InnerException)
                 {
                     case KeycloakException:
 
-                        response.StatusCode = (int)HttpStatusCode.BadRequest;
-
                         KeycloakService keycloakService = new KeycloakService();
-                        string? AdminTokenModel = error.InnerException.InnerException.Message;
+                        CustomKeycloakErrorModel AdminTokenModel = JsonConvert.DeserializeObject<CustomKeycloakErrorModel>(error.InnerException.Message);
 
-                        CustomErrorResponseModel errorResponse = new CustomErrorResponseModel();
-                        errorResponse.ErrorMessage = error.InnerException.InnerException.Message;
-                        errorResponse.ErrorCode = error.InnerException.InnerException.Message;
+                        response.StatusCode = Convert.ToInt32(AdminTokenModel.ErrorCode);
 
-                        if (!string.IsNullOrEmpty(AdminTokenModel))
-                            await keycloakService.RemoveSession(true, JsonConvert.DeserializeObject<TokenResponseModel>(AdminTokenModel));
+                        errorResponse.ErrorMessage = AdminTokenModel?.ErrorMessage;
+                        errorResponse.ErrorCode = AdminTokenModel?.ErrorCode;
+
+                        await keycloakService.RemoveSession(true, AdminTokenModel.KeycloakToken);
 
                         break;
 
@@ -59,23 +61,17 @@ namespace DotNetCoreFirstproject.Middleware
 
                         response.StatusCode = (int)HttpStatusCode.BadRequest;
 
-                        await response.WriteAsync(error.Message);
-
                         break;
 
                     case AppException:
 
                         response.StatusCode = (int)HttpStatusCode.NotFound;
 
-                        await response.WriteAsync(error.Message);
-
                         break;
 
                     case KeyNotFoundException:
 
                         response.StatusCode = (int)HttpStatusCode.NotFound;
-
-                        await response.WriteAsync(error.Message);
 
                         break;
 
@@ -84,7 +80,7 @@ namespace DotNetCoreFirstproject.Middleware
                         break;
                 }
 
-                await response.WriteAsync(error.Message);
+                await response.WriteAsync(JsonConvert.SerializeObject(errorResponse));
 
             }
 

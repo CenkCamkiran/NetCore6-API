@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+﻿using DotNetCoreFirstproject.Helpers.HttpClientHelper.Entities.KeyCloak.Token;
 
 namespace DotNetCoreFirstproject.Helpers.Entities.Keycloak
 {
@@ -7,6 +7,6 @@ namespace DotNetCoreFirstproject.Helpers.Entities.Keycloak
     {
         public string? ErrorMessage { get; set; }
         public string? ErrorCode { get; set; }
-        public string KeycloakToken { get; set; }
+        public TokenResponseModel? KeycloakToken { get; set; }
     }
 }

@@ -9,8 +9,9 @@ namespace DotNetCoreFirstproject.Helpers.APIExceptionHelper
         {
         }
 
-        public KeycloakException(string? message, Exception? innerException) : base(message, innerException)
+        public KeycloakException(string? message) : base(message)
         {
         }
+
     }
 }

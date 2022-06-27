@@ -61,7 +61,8 @@ namespace DotNetCoreFirstproject.Helpers.HttpClientHelper
                     }
                     else
                     {
-                        throw new KeycloakException(JsonConvert.SerializeObject(errorModel), new Exception(Token.refresh_token));
+                        errorModel.KeycloakToken = Token;
+                        throw new KeycloakException(JsonConvert.SerializeObject(errorModel));
                     }
                 }
 
@@ -115,7 +116,8 @@ namespace DotNetCoreFirstproject.Helpers.HttpClientHelper
                     }
                     else
                     {
-                        throw new KeycloakException(JsonConvert.SerializeObject(errorModel), new Exception(JsonConvert.SerializeObject(Token)));
+                        errorModel.KeycloakToken = Token;
+                        throw new KeycloakException(JsonConvert.SerializeObject(errorModel));
                     }
 
                 }
@@ -131,7 +133,8 @@ namespace DotNetCoreFirstproject.Helpers.HttpClientHelper
                     }
                     else
                     {
-                        throw new KeycloakException(JsonConvert.SerializeObject(errorModel), new Exception(Token.refresh_token));
+                        errorModel.KeycloakToken = Token;
+                        throw new KeycloakException(JsonConvert.SerializeObject(errorModel));
                     }
 
                 }
@@ -180,7 +183,8 @@ namespace DotNetCoreFirstproject.Helpers.HttpClientHelper
                     }
                     else
                     {
-                        throw new KeycloakException(JsonConvert.SerializeObject(errorModel), new Exception(Token.refresh_token));
+                        errorModel.KeycloakToken = Token;
+                        throw new KeycloakException(JsonConvert.SerializeObject(errorModel));
                     }
 
                 }
@@ -196,7 +200,8 @@ namespace DotNetCoreFirstproject.Helpers.HttpClientHelper
                     }
                     else
                     {
-                        throw new KeycloakException(JsonConvert.SerializeObject(errorModel), new Exception(Token.refresh_token));
+                        errorModel.KeycloakToken = Token;
+                        throw new KeycloakException(JsonConvert.SerializeObject(errorModel));
                     }
 
                 }
@@ -242,7 +247,7 @@ namespace DotNetCoreFirstproject.Helpers.HttpClientHelper
                     errorModel.ErrorMessage = "HTTP 500 Internal Server Error";
                     errorModel.ErrorCode = ((int)HttpStatusCode.InternalServerError).ToString();
 
-                    throw new KeycloakException(JsonConvert.SerializeObject(errorModel), null);
+                    throw new KeycloakException(JsonConvert.SerializeObject(errorModel));
                 }
 
 
