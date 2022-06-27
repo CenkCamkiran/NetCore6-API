@@ -5,6 +5,7 @@ using DotNetCoreFirstproject.Helpers.APIExceptionHelper;
 using DotNetCoreFirstproject.Helpers.Entities;
 using System.Net;
 using DotNetCoreFirstproject.Helpers.HttpClientHelper.Entities.KeyCloak.Token;
+using DotNetCoreFirstproject.Helpers.AppExceptionHelpers;
 
 namespace DotNetCoreFirstproject.Helpers.HttpClientHelper
 {
@@ -50,17 +51,17 @@ namespace DotNetCoreFirstproject.Helpers.HttpClientHelper
                 }
                 else
                 {
-                    CustomErrorResponseModel errorResponse = new CustomErrorResponseModel();
-                    errorResponse.ErrorMessage = "HTTP 500 Internal Server Error";
-                    errorResponse.ErrorCode = ((int)HttpStatusCode.InternalServerError).ToString();
+                    CustomKeycloakErrorModel errorModel = new CustomKeycloakErrorModel();
+                    errorModel.ErrorMessage = "HTTP 500 Internal Server Error";
+                    errorModel.ErrorCode = ((int)HttpStatusCode.InternalServerError).ToString();
 
                     if (Token == null)
                     {
-                        throw new KeycloakException(JsonConvert.SerializeObject(errorResponse));
+                        throw new AppException(JsonConvert.SerializeObject(errorModel));
                     }
                     else
                     {
-                        throw new KeycloakException(JsonConvert.SerializeObject(errorResponse), new KeycloakException(Token.refresh_token));
+                        throw new KeycloakException(JsonConvert.SerializeObject(errorModel), new Exception(Token.refresh_token));
                     }
                 }
 
@@ -104,33 +105,33 @@ namespace DotNetCoreFirstproject.Helpers.HttpClientHelper
                     var jsonString = httpResponseMessage.Result.Content.ReadAsStringAsync();
                     var createUserErrorResponseModel = JsonConvert.DeserializeObject<CreateUserErrorResponseModel>(jsonString.Result);
 
-                    CustomErrorResponseModel errorResponse = new CustomErrorResponseModel();
-                    errorResponse.ErrorMessage = createUserErrorResponseModel.errorMessage;
-                    errorResponse.ErrorCode = ((int)HttpStatusCode.Conflict).ToString();
+                    CustomKeycloakErrorModel errorModel = new CustomKeycloakErrorModel();
+                    errorModel.ErrorMessage = createUserErrorResponseModel.errorMessage;
+                    errorModel.ErrorCode = ((int)HttpStatusCode.Conflict).ToString();
 
                     if (Token == null)
                     {
-                        throw new KeycloakException(JsonConvert.SerializeObject(errorResponse));
+                        throw new AppException(JsonConvert.SerializeObject(errorModel));
                     }
                     else
                     {
-                        throw new KeycloakException(JsonConvert.SerializeObject(errorResponse), new KeycloakException(JsonConvert.SerializeObject(Token)));
+                        throw new KeycloakException(JsonConvert.SerializeObject(errorModel), new Exception(JsonConvert.SerializeObject(Token)));
                     }
 
                 }
                 else
                 {
-                    CustomErrorResponseModel errorResponse = new CustomErrorResponseModel();
-                    errorResponse.ErrorMessage = "HTTP 500 Internal Server Error";
-                    errorResponse.ErrorCode = ((int)HttpStatusCode.InternalServerError).ToString();
+                    CustomKeycloakErrorModel errorModel = new CustomKeycloakErrorModel();
+                    errorModel.ErrorMessage = "HTTP 500 Internal Server Error";
+                    errorModel.ErrorCode = ((int)HttpStatusCode.InternalServerError).ToString();
 
                     if (Token == null)
                     {
-                        throw new KeycloakException(JsonConvert.SerializeObject(errorResponse));
+                        throw new AppException(JsonConvert.SerializeObject(errorModel));
                     }
                     else
                     {
-                        throw new KeycloakException(JsonConvert.SerializeObject(errorResponse), new KeycloakException(Token.refresh_token));
+                        throw new KeycloakException(JsonConvert.SerializeObject(errorModel), new Exception(Token.refresh_token));
                     }
 
                 }
@@ -169,33 +170,33 @@ namespace DotNetCoreFirstproject.Helpers.HttpClientHelper
 
                 } else if (httpResponseMessage.Result.StatusCode == HttpStatusCode.Unauthorized)
                 {
-                    CustomErrorResponseModel errorResponse = new CustomErrorResponseModel();
-                    errorResponse.ErrorMessage = "HTTP 401 Unauthorized";
-                    errorResponse.ErrorCode = ((int)HttpStatusCode.Unauthorized).ToString();
+                    CustomKeycloakErrorModel errorModel = new CustomKeycloakErrorModel();
+                    errorModel.ErrorMessage = "HTTP 401 Unauthorized";
+                    errorModel.ErrorCode = ((int)HttpStatusCode.Unauthorized).ToString();
 
                     if (Token == null)
                     {
-                        throw new KeycloakException(JsonConvert.SerializeObject(errorResponse));
+                        throw new AppException(JsonConvert.SerializeObject(errorModel));
                     }
                     else
                     {
-                        throw new KeycloakException(JsonConvert.SerializeObject(errorResponse), new KeycloakException(Token.refresh_token));
+                        throw new KeycloakException(JsonConvert.SerializeObject(errorModel), new Exception(Token.refresh_token));
                     }
 
                 }
                 else
                 {
-                    CustomErrorResponseModel errorResponse = new CustomErrorResponseModel();
-                    errorResponse.ErrorMessage = "HTTP 500 Internal Server Error";
-                    errorResponse.ErrorCode = ((int)HttpStatusCode.InternalServerError).ToString();
+                    CustomKeycloakErrorModel errorModel = new CustomKeycloakErrorModel();
+                    errorModel.ErrorMessage = "HTTP 500 Internal Server Error";
+                    errorModel.ErrorCode = ((int)HttpStatusCode.InternalServerError).ToString();
 
                     if (Token == null)
                     {
-                        throw new KeycloakException(JsonConvert.SerializeObject(errorResponse));
+                        throw new AppException(JsonConvert.SerializeObject(errorModel));
                     }
                     else
                     {
-                        throw new KeycloakException(JsonConvert.SerializeObject(errorResponse), new KeycloakException(Token.refresh_token));
+                        throw new KeycloakException(JsonConvert.SerializeObject(errorModel), new Exception(Token.refresh_token));
                     }
 
                 }
@@ -205,6 +206,7 @@ namespace DotNetCoreFirstproject.Helpers.HttpClientHelper
             return responseBody;
         }
 
+        //Query string
         public TResponseBody MakeQueryParamRequest(string WebServiceUrl, TRequestBody JSONBody, HttpMethod HTTPMethod, Dictionary<string, string> RequestHeaders)
         {
 
@@ -236,11 +238,11 @@ namespace DotNetCoreFirstproject.Helpers.HttpClientHelper
                 }
                 else
                 {
-                    CustomErrorResponseModel errorResponse = new CustomErrorResponseModel();
-                    errorResponse.ErrorMessage = "HTTP 500 Internal Server Error";
-                    errorResponse.ErrorCode = ((int)HttpStatusCode.InternalServerError).ToString();
+                    CustomKeycloakErrorModel errorModel = new CustomKeycloakErrorModel();
+                    errorModel.ErrorMessage = "HTTP 500 Internal Server Error";
+                    errorModel.ErrorCode = ((int)HttpStatusCode.InternalServerError).ToString();
 
-                    throw new KeycloakException(JsonConvert.SerializeObject(errorResponse));
+                    throw new KeycloakException(JsonConvert.SerializeObject(errorModel), null);
                 }
 
 

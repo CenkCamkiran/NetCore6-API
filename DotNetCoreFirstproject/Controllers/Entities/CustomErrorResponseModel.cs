@@ -1,8 +1,7 @@
 ﻿using Newtonsoft.Json;
 
-namespace DotNetCoreFirstproject.Helpers.Entities
+namespace DotNetCoreFirstproject.Controllers.Entities
 {
-    [Serializable]
     public class CustomErrorResponseModel
     {
         [JsonProperty(PropertyName = "ErrorMessage", Required = Required.AllowNull)]
@@ -10,8 +9,5 @@ namespace DotNetCoreFirstproject.Helpers.Entities
 
         [JsonProperty(PropertyName = "ErrorCode", Required = Required.AllowNull)]
         public string? ErrorCode { get; set; }
-
-        [JsonIgnore]
-        public string KeycloakToken { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Runtime.Serialization;
+﻿using Microsoft.IdentityModel.SecurityTokenService;
+using System.Runtime.Serialization;
 
 namespace DotNetCoreFirstproject.Helpers.APIExceptionHelper
 {
@@ -8,11 +9,7 @@ namespace DotNetCoreFirstproject.Helpers.APIExceptionHelper
         {
         }
 
-        public KeycloakException(string? message) : base(message)
-        {
-        }
-
-        public KeycloakException(string? message, KeycloakException? innerException) : base(message, innerException)
+        public KeycloakException(string? message, Exception? innerException) : base(message, innerException)
         {
         }
     }

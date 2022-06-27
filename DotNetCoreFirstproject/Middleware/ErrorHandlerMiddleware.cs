@@ -1,4 +1,5 @@
-﻿using DotNetCoreFirstproject.Helpers.APIExceptionHelper;
+﻿using DotNetCoreFirstproject.Controllers.Entities;
+using DotNetCoreFirstproject.Helpers.APIExceptionHelper;
 using DotNetCoreFirstproject.Helpers.AppExceptionHelpers;
 using DotNetCoreFirstproject.Helpers.Entities;
 using DotNetCoreFirstproject.Helpers.HttpClientHelper.Entities.KeyCloak.Token;
@@ -27,55 +28,59 @@ namespace DotNetCoreFirstproject.Middleware
             {
                 await _next(httpContext);
             }
-            catch (KeycloakException error)
-            {
-                var response = httpContext.Response;
-                response.ContentType = "application/json"; // HttpResponseHeader.ContentType.ToString();
-                response.StatusCode = (int)HttpStatusCode.BadRequest;
-
-                KeycloakService keycloakService = new KeycloakService();
-                string? AdminTokenModel = error.InnerException.InnerException.Message;
-
-                if (!string.IsNullOrEmpty(AdminTokenModel))
-                    await keycloakService.RemoveSession(true, JsonConvert.DeserializeObject<TokenResponseModel>(AdminTokenModel));
-
-                await response.WriteAsync(error.InnerException.Message);
-
-            }
-            catch (KeyNotFoundException error)
-            {
-                var response = httpContext.Response;
-                response.ContentType = "application/json"; // HttpResponseHeader.ContentType.ToString();
-                response.StatusCode = (int)HttpStatusCode.NotFound;
-
-                await response.WriteAsync(error.Message);
-
-            }
-            catch (AppException error)
-            {
-                var response = httpContext.Response;
-                response.ContentType = "application/json";
-                response.StatusCode = (int)HttpStatusCode.NotFound;
-
-                await response.WriteAsync(error.Message);
-
-            }
-            catch (BadRequestException error)
-            {
-                var response = httpContext.Response;
-                response.ContentType = "application/json";
-                response.StatusCode = (int)HttpStatusCode.BadRequest;
-
-                await response.WriteAsync(error.Message);
-
-            }
             catch (Exception error)
             {
 
                 var response = httpContext.Response;
-                response.ContentType = "application/json";
-                response.StatusCode = (int)HttpStatusCode.InternalServerError;
+                response.ContentType = "application/json"; // HttpResponseHeader.ContentType.ToString();
 
+                var cenk = error is KeycloakException;
+                var cengo = error.InnerException is KeycloakException;
+
+                switch (error.InnerException)
+                {
+                    case KeycloakException:
+
+                        response.StatusCode = (int)HttpStatusCode.BadRequest;
+
+                        KeycloakService keycloakService = new KeycloakService();
+                        string? AdminTokenModel = error.InnerException.InnerException.Message;
+
+                        if (!string.IsNullOrEmpty(AdminTokenModel))
+                            await keycloakService.RemoveSession(true, JsonConvert.DeserializeObject<TokenResponseModel>(AdminTokenModel));
+
+                        break;
+
+                    case BadRequestException:
+
+                        response.StatusCode = (int)HttpStatusCode.BadRequest;
+
+                        await response.WriteAsync(error.Message);
+
+                        break;
+
+                    case AppException:
+
+                        response.StatusCode = (int)HttpStatusCode.NotFound;
+
+                        await response.WriteAsync(error.Message);
+
+                        break;
+
+                    case KeyNotFoundException:
+
+                        response.StatusCode = (int)HttpStatusCode.NotFound;
+
+                        await response.WriteAsync(error.Message);
+
+                        break;
+
+                    default:
+
+                        break;
+                }
+
+                CustomErrorResponseModel errorResponse = new CustomErrorResponseModel();
                 await response.WriteAsync(error.Message);
 
             }

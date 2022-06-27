@@ -1,8 +1,10 @@
 ﻿using DotNetCoreFirstproject.Controllers.Entities;
+using DotNetCoreFirstproject.Helpers.APIExceptionHelper;
 using DotNetCoreFirstproject.Helpers.HttpClientHelper.Entities.KeyCloak.CreateUser;
 using DotNetCoreFirstproject.Helpers.HttpClientHelper.Entities.KeyCloak.Token;
 using DotNetCoreFirstproject.ServiceLayer;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.SecurityTokenService;
 using System.Net;
 using System.Net.Mime;
 
@@ -47,10 +49,10 @@ namespace DotNetCoreFirstproject.Controllers
             createUser.attributes = attributes;
             createUser.credentials = credentialList;
 
-            UserSignupResponseModel userSignUpResponse = keycloakService.CreateUser(createUser, AuthToken).Result;
+            UserSignupResponseModel? userSignUpResponse = keycloakService.CreateUser(createUser, AuthToken).Result;
 
             HttpContext.Response.Headers.Add(HttpResponseHeader.ContentType.ToString(), MediaTypeNames.Application.Json);
-            HttpContext.Response.StatusCode = (int) HttpStatusCode.Created;
+            HttpContext.Response.StatusCode = (int)HttpStatusCode.Created;
 
             UserSignupResponseModel response = new UserSignupResponseModel();
             response.ResponseMessage = "User Created!";
