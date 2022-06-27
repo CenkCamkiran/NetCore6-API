@@ -1,6 +1,9 @@
 ﻿using DotNetCoreFirstproject.Helpers.APIExceptionHelper;
 using DotNetCoreFirstproject.Helpers.AppExceptionHelpers;
 using DotNetCoreFirstproject.Helpers.Entities;
+using DotNetCoreFirstproject.Helpers.HttpClientHelper.Entities.KeyCloak.Token;
+using DotNetCoreFirstproject.ServiceLayer;
+using Microsoft.IdentityModel.SecurityTokenService;
 using Newtonsoft.Json;
 using System.Net;
 using System.Text.Json;
@@ -24,37 +27,56 @@ namespace DotNetCoreFirstproject.Middleware
             {
                 await _next(httpContext);
             }
-            catch (Exception error)
+            catch (KeycloakException error)
             {
                 var response = httpContext.Response;
                 response.ContentType = "application/json"; // HttpResponseHeader.ContentType.ToString();
+                response.StatusCode = (int)HttpStatusCode.BadRequest;
 
-                switch(error){
+                KeycloakService keycloakService = new KeycloakService();
+                string? AdminTokenModel = error.InnerException.InnerException.Message;
 
-                    case KeycloakException exception:
+                if (!string.IsNullOrEmpty(AdminTokenModel))
+                    await keycloakService.RemoveSession(true, JsonConvert.DeserializeObject<TokenResponseModel>(AdminTokenModel));
 
-                        response.StatusCode = (int)HttpStatusCode.BadRequest;
-                        break;
+                await response.WriteAsync(error.InnerException.Message);
 
-                    case KeyNotFoundException exception:
- 
-                        response.StatusCode = (int)HttpStatusCode.NotFound;
-                        break;
+            }
+            catch (KeyNotFoundException error)
+            {
+                var response = httpContext.Response;
+                response.ContentType = "application/json"; // HttpResponseHeader.ContentType.ToString();
+                response.StatusCode = (int)HttpStatusCode.NotFound;
 
-                    case AppException exception:
+                await response.WriteAsync(error.Message);
 
-                        response.StatusCode = (int)HttpStatusCode.NotFound;
-                        break;
+            }
+            catch (AppException error)
+            {
+                var response = httpContext.Response;
+                response.ContentType = "application/json";
+                response.StatusCode = (int)HttpStatusCode.NotFound;
 
-                    default:
+                await response.WriteAsync(error.Message);
 
-                        response.StatusCode = (int)HttpStatusCode.InternalServerError;
-                        break;
-                }
+            }
+            catch (BadRequestException error)
+            {
+                var response = httpContext.Response;
+                response.ContentType = "application/json";
+                response.StatusCode = (int)HttpStatusCode.BadRequest;
 
-                var cenk = JsonConvert.DeserializeObject<CustomErrorResponseModel>(error.Message);
-                var result = JsonConvert.SerializeObject(new CustomErrorResponseModel{ ErrorMessage = JsonConvert.DeserializeObject<CustomErrorResponseModel>(error.Message).ErrorMessage, ErrorCode = JsonConvert.DeserializeObject<CustomErrorResponseModel>(error.Message).ErrorCode });
-                await response.WriteAsync(result);
+                await response.WriteAsync(error.Message);
+
+            }
+            catch (Exception error)
+            {
+
+                var response = httpContext.Response;
+                response.ContentType = "application/json";
+                response.StatusCode = (int)HttpStatusCode.InternalServerError;
+
+                await response.WriteAsync(error.Message);
 
             }
 

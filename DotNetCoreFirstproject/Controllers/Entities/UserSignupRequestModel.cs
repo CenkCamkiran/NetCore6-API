@@ -4,46 +4,44 @@ namespace DotNetCoreFirstproject.Controllers.Entities
 {
     public class UserSignupRequestModel
     {
-        [JsonProperty("username")]
+        [JsonProperty(PropertyName = "username", Required = Required.Always)]
         public string username { get; set; }
 
-        //[JsonProperty("password")]
-        //public string password { get; set; }
-
-        [JsonProperty("firstName")]
+        [JsonProperty(PropertyName = "firstName", Required = Required.Default)]
         public string firstName { get; set; }
 
-        [JsonProperty("lastName")]
+        [JsonProperty(PropertyName = "lastName", Required = Required.Always)]
         public string lastName { get; set; }
 
-        [JsonProperty("email")]
+        [JsonProperty(PropertyName = "email", Required = Required.Always)]
         public string email { get; set; }
 
-        [JsonProperty("attributes")]
+        [JsonProperty(PropertyName = "attributes", Required = Required.Always)]
         public Attributes attributes { get; set; }
 
-        [JsonProperty("credentials")]
+        [JsonProperty(PropertyName = "credentials", Required = Required.Always)]
         public Credentials credentials { get; set; }
     }
 
     public class Attributes
     {
-        [JsonProperty("gender")]
+        [JsonProperty(PropertyName = "gender", Required = Required.Always)]
         public string gender { get; set; }
 
-        [JsonProperty("phoneNumber")]
+        [JsonProperty(PropertyName = "phoneNumber", Required = Required.Always)]
         public string phoneNumber { get; set; }
 
-        [JsonProperty("country")]
+        [JsonProperty(PropertyName = "country", Required = Required.Always)]
         public string country { get; set; }
 
-        [JsonProperty("age")]
+        [JsonProperty(PropertyName = "age", Required = Required.Always)]
         public string age { get; set; }
 
     }
 
     public class Credentials
     {
+        [JsonProperty(PropertyName = "password", Required = Required.Always)]
         public string password { get; set; }
     }
 }

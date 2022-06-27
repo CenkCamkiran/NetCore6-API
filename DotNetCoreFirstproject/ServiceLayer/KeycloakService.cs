@@ -80,7 +80,7 @@ namespace DotNetCoreFirstproject.ServiceLayer
             httpHeaders.Add(HttpRequestHeader.Accept.ToString(), MediaTypeNames.Application.Json);
             httpHeaders.Add(HttpRequestHeader.Authorization.ToString(), string.Format("Bearer {0}", mewSession.access_token));
 
-            var APIResult = httpClientHelper.MakeRequestWithoutBodyQueryParams(WebServiceUrl, HttpMethod.Delete, httpHeaders);
+            var APIResult = httpClientHelper.MakeRequestWithoutBodyQueryParams(WebServiceUrl, HttpMethod.Delete, httpHeaders, token);
 
             return APIResult;
 
@@ -100,7 +100,7 @@ namespace DotNetCoreFirstproject.ServiceLayer
             httpHeaders.Add(HttpRequestHeader.Accept.ToString(), "application/json");
             httpHeaders.Add(HttpRequestHeader.Authorization.ToString(), string.Format("Bearer {0}", token.access_token));
 
-            var APIResult = httpClientHelper.MakeJSONRequest(WebServiceUrl, requestBody, HttpMethod.Post, httpHeaders);
+            var APIResult = httpClientHelper.MakeJSONRequest(WebServiceUrl, requestBody, HttpMethod.Post, httpHeaders, token);
 
             var RemoveSessionResult = await RemoveSession(true, token); //If error comes what to do?
 
