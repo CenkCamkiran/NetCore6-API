@@ -28,19 +28,16 @@ configuration.GetSection(ApplicationSettings.RootOption).Bind(ApplicationSetting
 
 app.UseErrorHandlerMiddleware();
 
-app.UseWhen(context => context.Request.Path.StartsWithSegments("main"), appBuilder =>
+app.UseWhen(context => context.Request.Path.StartsWithSegments("/rest/api/v1/main"), appBuilder =>  // The path must be started with '/'
+{
+    appBuilder.UseTokenControlMiddleware();
+});
+
+app.UseWhen(context => context.Request.Path.StartsWithSegments("/rest/api/v1/main"), appBuilder =>  // The path must be started with '/'
 {
     appBuilder.UseSessionControlMiddleware();
     //appBuilder.UseMiddleware<AuthenticationMiddleware>(); //Same thing
 });
-
-app.UseWhen(context => context.Request.Path.StartsWithSegments("main"), appBuilder =>
-{
-    //appBuilder.UseSess();
-    //appBuilder.UseMiddleware<AuthenticationMiddleware>(); //Same thing
-});
-
-app.UseRouting();
 
 app.UseHttpsRedirection();
 
@@ -56,6 +53,17 @@ app.Run();
  * 
  * 
  ********************************************************/
+
+//Below code does not open browser for some reason? 
+//But app.Run(); can launch the browser
+//if (app.Environment.IsDevelopment())
+//{
+//    app.Run("http://localhost:7080");
+//}
+//else
+//{
+//    app.Run();
+//}
 
 // appsettings.{Environment}.json
 //var configurationBuilder = new ConfigurationBuilder();

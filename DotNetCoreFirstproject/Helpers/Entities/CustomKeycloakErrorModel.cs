@@ -1,6 +1,4 @@
-﻿using DotNetCoreFirstproject.Helpers.HttpClientHelper.Entities.KeyCloak.Token;
-
-namespace DotNetCoreFirstproject.Helpers.Entities.Keycloak
+﻿namespace DotNetCoreFirstproject.Helpers.Entities.Keycloak
 {
     [Serializable]
     public class CustomKeycloakErrorModel

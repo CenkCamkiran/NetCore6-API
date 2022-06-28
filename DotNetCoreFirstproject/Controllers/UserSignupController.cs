@@ -46,7 +46,8 @@ namespace DotNetCoreFirstproject.Controllers
             createUser.attributes = attributes;
             createUser.credentials = credentialList;
 
-            UserSignupResponseModel? userSignUpResponse = keycloakService.CreateUser(createUser, AuthToken).Result;
+            //AggregateException? exception = keycloakService.CreateUser(createUser, AuthToken).Exception;
+            UserSignupResponseModel? result = keycloakService.CreateUser(createUser, AuthToken).Result;
 
             HttpContext.Response.Headers.Add(HttpResponseHeader.ContentType.ToString(), MediaTypeNames.Application.Json);
             HttpContext.Response.StatusCode = (int)HttpStatusCode.Created;

@@ -1,7 +1,4 @@
-﻿using Microsoft.IdentityModel.SecurityTokenService;
-using System.Runtime.Serialization;
-
-namespace DotNetCoreFirstproject.Helpers.APIExceptionHelper
+﻿namespace DotNetCoreFirstproject.Helpers.APIExceptionHelper
 {
     public class KeycloakException : Exception
     {

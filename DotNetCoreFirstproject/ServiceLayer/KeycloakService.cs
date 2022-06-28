@@ -42,13 +42,14 @@ namespace DotNetCoreFirstproject.ServiceLayer
 
         }
 
-        public async Task<TokenResponseModel> RefreshSession(TokenResponseModel token)
+        public async Task<TokenResponseModel> RefreshSession(bool IsAdmin, TokenResponseModel token)
         {
 
             HttpClientHelper<string, TokenResponseModel> httpClientHelper = new HttpClientHelper<string, TokenResponseModel>();
 
             var keycloakConfigs = keycloakConfigHelper.GetKeycloakConfig();
-            string WebServiceUrl = string.Concat(keycloakConfigHelper.Host, string.Format(keycloakConfigs["TokenRoute"], keycloakConfigs["AdminRealmName"]));
+            string WebServiceUrl = IsAdmin ? string.Concat(keycloakConfigHelper.Host, string.Format(keycloakConfigs["TokenRoute"], keycloakConfigs["AdminRealmName"]))
+                : string.Concat(keycloakConfigHelper.Host, string.Format(keycloakConfigs["TokenRoute"], keycloakConfigs["UserRealmName"]));
 
             Dictionary<string, string> requestForm = new Dictionary<string, string>();
             requestForm["client_id"] = keycloakConfigs["ClientID"];
@@ -69,7 +70,7 @@ namespace DotNetCoreFirstproject.ServiceLayer
         public async Task<object> RemoveSession(bool IsAdmin, TokenResponseModel token) //Remove a specific user session: 204 No Content cevabı geliyor.
         {
 
-            TokenResponseModel mewSession = await RefreshSession(token);
+            TokenResponseModel mewSession = await RefreshSession(IsAdmin, token);
             HttpClientHelper<string, object> httpClientHelper = new HttpClientHelper<string, object>();
 
             var keycloakConfigs = keycloakConfigHelper.GetKeycloakConfig();

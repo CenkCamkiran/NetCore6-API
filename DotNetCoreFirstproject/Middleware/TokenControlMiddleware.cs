@@ -29,7 +29,14 @@ namespace DotNetCoreFirstproject.Middleware
 
             if (!IsAccessTokenHeaderExists || !IsRefreshTokenHeaderExists)
             {
+                CustomAppErrorModel errorModel = new CustomAppErrorModel();
+                errorModel.ErrorMessage = "AccessToken or RefreshToken not found in request headers.";
+                errorModel.ErrorCode = ((int)HttpStatusCode.InternalServerError).ToString();
 
+                throw new RequestTokenHeadersException(JsonConvert.SerializeObject(errorModel));
+            }
+            else
+            {
                 if (string.IsNullOrEmpty(AccessToken.ToString()) || string.IsNullOrEmpty(RefreshToken.ToString()))
                 {
                     CustomAppErrorModel errorModel = new CustomAppErrorModel();
@@ -38,7 +45,6 @@ namespace DotNetCoreFirstproject.Middleware
 
                     throw new RequestTokenHeadersException(JsonConvert.SerializeObject(errorModel));
                 }
-
             }
 
             //else, execute the process
