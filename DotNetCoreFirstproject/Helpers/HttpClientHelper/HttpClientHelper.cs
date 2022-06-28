@@ -1,10 +1,10 @@
-﻿using DotNetCoreFirstproject.Helpers.Entities.Keycloak;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System.Text;
 using DotNetCoreFirstproject.Helpers.APIExceptionHelper;
 using System.Net;
-using DotNetCoreFirstproject.Helpers.HttpClientHelper.Entities.KeyCloak.Token;
 using DotNetCoreFirstproject.Helpers.AppExceptionHelpers;
+using DotNetCoreFirstproject.Helpers.Entities;
+using DotNetCoreFirstproject.Helpers.Entities.Keycloak;
 
 namespace DotNetCoreFirstproject.Helpers.HttpClientHelper
 {

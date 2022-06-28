@@ -6,7 +6,7 @@ using System.Net.Http.Headers;
 namespace DotNetCoreFirstproject.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("rest/api/v1/main/[controller]")]
     public class WeatherForecastController : ControllerBase
     {
         private static readonly string[] Summaries = new[]
@@ -21,7 +21,7 @@ namespace DotNetCoreFirstproject.Controllers
             _logger = logger;
         }
 
-        [HttpGet(Name = "GetWeatherForecast")]
+        [HttpGet]
         public IEnumerable<WeatherForecast> Get()
         {
 

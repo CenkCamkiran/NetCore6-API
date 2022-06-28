@@ -5,7 +5,7 @@ using System.Globalization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
-namespace DotNetCoreFirstproject.Helpers.HttpClientHelper.Entities.KeyCloak.Token
+namespace DotNetCoreFirstproject.Helpers.Entities
 {
 
     public class TokenResponseModel

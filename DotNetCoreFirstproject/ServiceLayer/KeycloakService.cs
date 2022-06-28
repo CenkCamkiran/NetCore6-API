@@ -1,8 +1,8 @@
 ﻿using DotNetCoreFirstproject.Controllers.Entities;
 using DotNetCoreFirstproject.Helpers.AppConfigurationHelper;
+using DotNetCoreFirstproject.Helpers.Entities;
 using DotNetCoreFirstproject.Helpers.HttpClientHelper;
 using DotNetCoreFirstproject.Helpers.HttpClientHelper.Entities.KeyCloak.CreateUser;
-using DotNetCoreFirstproject.Helpers.HttpClientHelper.Entities.KeyCloak.Token;
 using System.Net;
 using System.Net.Mime;
 

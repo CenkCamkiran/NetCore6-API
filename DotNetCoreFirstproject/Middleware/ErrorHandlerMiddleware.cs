@@ -1,6 +1,7 @@
 ﻿using DotNetCoreFirstproject.Controllers.Entities;
 using DotNetCoreFirstproject.Helpers.APIExceptionHelper;
 using DotNetCoreFirstproject.Helpers.AppExceptionHelpers;
+using DotNetCoreFirstproject.Helpers.Entities;
 using DotNetCoreFirstproject.Helpers.Entities.Keycloak;
 using DotNetCoreFirstproject.ServiceLayer;
 using Microsoft.IdentityModel.SecurityTokenService;
@@ -55,45 +56,46 @@ namespace DotNetCoreFirstproject.Middleware
 
                     case BadRequestException:
 
-                        var appError = JsonConvert.DeserializeObject<CustomAppErrorModel>(error.InnerException.Message);
+                        response.StatusCode = Convert.ToInt32(JsonConvert.DeserializeObject<CustomAppErrorModel>(error.InnerException.Message).ErrorCode);
 
-                        response.StatusCode = Convert.ToInt32(appError.ErrorCode);
-
-                        errorResponse.ErrorMessage = appError?.ErrorMessage;
-                        errorResponse.ErrorCode = appError?.ErrorCode;
+                        errorResponse.ErrorMessage = JsonConvert.DeserializeObject<CustomAppErrorModel>(error.InnerException.Message)?.ErrorMessage;
+                        errorResponse.ErrorCode = JsonConvert.DeserializeObject<CustomAppErrorModel>(error.InnerException.Message)?.ErrorCode;
 
                         break;
 
                     case AppException:
 
-                        var applicationError = JsonConvert.DeserializeObject<CustomAppErrorModel>(error.InnerException.Message);
+                        response.StatusCode = Convert.ToInt32(JsonConvert.DeserializeObject<CustomAppErrorModel>(error.InnerException.Message).ErrorCode);
 
-                        response.StatusCode = Convert.ToInt32(applicationError.ErrorCode);
-
-                        errorResponse.ErrorMessage = applicationError?.ErrorMessage;
-                        errorResponse.ErrorCode = applicationError?.ErrorCode;
+                        errorResponse.ErrorMessage = JsonConvert.DeserializeObject<CustomAppErrorModel>(error.InnerException.Message)?.ErrorMessage;
+                        errorResponse.ErrorCode = JsonConvert.DeserializeObject<CustomAppErrorModel>(error.InnerException.Message)?.ErrorCode;
 
                         break;
 
                     case KeyNotFoundException:
 
-                        var applicationError_ = JsonConvert.DeserializeObject<CustomAppErrorModel>(error.InnerException.Message);
+                        response.StatusCode = Convert.ToInt32(JsonConvert.DeserializeObject<CustomAppErrorModel>(error.InnerException.Message).ErrorCode);
 
-                        response.StatusCode = Convert.ToInt32(applicationError_.ErrorCode);
+                        errorResponse.ErrorMessage = JsonConvert.DeserializeObject<CustomAppErrorModel>(error.InnerException.Message)?.ErrorMessage;
+                        errorResponse.ErrorCode = JsonConvert.DeserializeObject<CustomAppErrorModel>(error.InnerException.Message)?.ErrorCode;
 
-                        errorResponse.ErrorMessage = applicationError_?.ErrorMessage;
-                        errorResponse.ErrorCode = applicationError_?.ErrorCode;
+                        break;
+
+                    case RequestTokenHeadersException:
+
+                        response.StatusCode = Convert.ToInt32(JsonConvert.DeserializeObject<CustomAppErrorModel>(error.InnerException.Message).ErrorCode);
+
+                        errorResponse.ErrorMessage = JsonConvert.DeserializeObject<CustomAppErrorModel>(error.InnerException.Message)?.ErrorMessage;
+                        errorResponse.ErrorCode = JsonConvert.DeserializeObject<CustomAppErrorModel>(error.InnerException.Message)?.ErrorCode;
 
                         break;
 
                     default:
 
-                        var applicationError__ = JsonConvert.DeserializeObject<CustomAppErrorModel>(error.InnerException.Message);
+                        response.StatusCode = Convert.ToInt32(JsonConvert.DeserializeObject<CustomAppErrorModel>(error.InnerException.Message).ErrorCode);
 
-                        response.StatusCode = Convert.ToInt32(applicationError__.ErrorCode);
-
-                        errorResponse.ErrorMessage = applicationError__?.ErrorMessage;
-                        errorResponse.ErrorCode = applicationError__?.ErrorCode;
+                        errorResponse.ErrorMessage = JsonConvert.DeserializeObject<CustomAppErrorModel>(error.InnerException.Message)?.ErrorMessage;
+                        errorResponse.ErrorCode = JsonConvert.DeserializeObject<CustomAppErrorModel>(error.InnerException.Message)?.ErrorCode;
 
                         break;
                 }

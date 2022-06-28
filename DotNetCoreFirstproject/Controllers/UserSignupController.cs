@@ -1,10 +1,8 @@
 ﻿using DotNetCoreFirstproject.Controllers.Entities;
-using DotNetCoreFirstproject.Helpers.APIExceptionHelper;
+using DotNetCoreFirstproject.Helpers.Entities;
 using DotNetCoreFirstproject.Helpers.HttpClientHelper.Entities.KeyCloak.CreateUser;
-using DotNetCoreFirstproject.Helpers.HttpClientHelper.Entities.KeyCloak.Token;
 using DotNetCoreFirstproject.ServiceLayer;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.IdentityModel.SecurityTokenService;
 using System.Net;
 using System.Net.Mime;
 
@@ -15,8 +13,7 @@ namespace DotNetCoreFirstproject.Controllers
     public class UserSignupController : Controller
     {
 
-        [HttpPost]
-        [Route("/company/api/v1/[controller]")]
+        [Route("rest/api/v1/user/[controller]")]
         [Consumes(MediaTypeNames.Application.Json)]
         public UserSignupResponseModel UserSignUp([FromBody] UserSignupRequestModel requestBody)
         {

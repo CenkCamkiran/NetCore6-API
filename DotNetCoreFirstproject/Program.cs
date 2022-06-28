@@ -24,7 +24,23 @@ if (app.Environment.IsDevelopment())
 ConfigurationManager configuration = builder.Configuration;
 configuration.GetSection(ApplicationSettings.RootOption).Bind(ApplicationSettings.ExternalTools);
 
+//app.UsePathBase(new PathString("/rest/api/v1")); //Value must start with '/' //This is not working
+
 app.UseErrorHandlerMiddleware();
+
+app.UseWhen(context => context.Request.Path.StartsWithSegments("main"), appBuilder =>
+{
+    appBuilder.UseSessionControlMiddleware();
+    //appBuilder.UseMiddleware<AuthenticationMiddleware>(); //Same thing
+});
+
+app.UseWhen(context => context.Request.Path.StartsWithSegments("main"), appBuilder =>
+{
+    //appBuilder.UseSess();
+    //appBuilder.UseMiddleware<AuthenticationMiddleware>(); //Same thing
+});
+
+app.UseRouting();
 
 app.UseHttpsRedirection();
 
