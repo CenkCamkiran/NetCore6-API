@@ -48,8 +48,9 @@ namespace DotNetCoreFirstproject.Middleware
 
                         errorResponse.ErrorMessage = AdminTokenModel?.ErrorMessage;
                         errorResponse.ErrorCode = AdminTokenModel?.ErrorCode;
-
-                        await keycloakService.RemoveSession(true, AdminTokenModel.KeycloakToken);
+                        
+                        if (AdminTokenModel.KeycloakToken != null)
+                            await keycloakService.RemoveSession(true, AdminTokenModel.KeycloakToken);
 
                         break;
 

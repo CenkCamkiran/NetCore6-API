@@ -77,10 +77,10 @@ namespace DotNetCoreFirstproject.ServiceLayer
                 : string.Concat(keycloakConfigHelper.Host, string.Format(keycloakConfigs["TokenRoute"], keycloakConfigs["UserRealmName"]));
 
             Dictionary<string, string> requestForm = new Dictionary<string, string>();
-            requestForm["client_id"] = keycloakConfigs["ClientID"];
+            requestForm["client_id"] = IsAdmin ? keycloakConfigs["AdminClientID"] : keycloakConfigs["UserClientID"];
             requestForm["refresh_token"] = token.refresh_token;
             requestForm["grant_type"] = "refresh_token";
-            requestForm["client_secret"] = keycloakConfigs["ClientSecret"];
+            requestForm["client_secret"] = IsAdmin? keycloakConfigs["AdminClientSecret"] : keycloakConfigs["UserClientSecret"];
 
             Dictionary<string, string> httpHeaders = new Dictionary<string, string>();
             httpHeaders.Add(HttpRequestHeader.ContentType.ToString(), "application/x-www-form-urlencoded"); //MediaTypeNames.Application.???
@@ -95,7 +95,7 @@ namespace DotNetCoreFirstproject.ServiceLayer
         public async Task<object> RemoveSession(bool IsAdmin, TokenResponseModel token) //Remove a specific user session: 204 No Content cevabı geliyor.
         {
 
-            TokenResponseModel mewSession = await RefreshSession(IsAdmin, token);
+            TokenResponseModel newSession = await RefreshSession(IsAdmin, token);
             HttpClientHelper<string, object> httpClientHelper = new HttpClientHelper<string, object>();
 
             var keycloakConfigs = keycloakConfigHelper.GetKeycloakConfig();
@@ -104,7 +104,7 @@ namespace DotNetCoreFirstproject.ServiceLayer
 
             Dictionary<string, string> httpHeaders = new Dictionary<string, string>();
             httpHeaders.Add(HttpRequestHeader.Accept.ToString(), MediaTypeNames.Application.Json);
-            httpHeaders.Add(HttpRequestHeader.Authorization.ToString(), string.Format("Bearer {0}", mewSession.access_token));
+            httpHeaders.Add(HttpRequestHeader.Authorization.ToString(), string.Format("Bearer {0}", newSession.access_token));
 
             var APIResult = httpClientHelper.MakeRequestWithoutBodyQueryParams(WebServiceUrl, HttpMethod.Delete, httpHeaders, token);
 

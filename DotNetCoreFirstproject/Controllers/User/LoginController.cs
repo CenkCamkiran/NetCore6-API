@@ -22,7 +22,9 @@ namespace DotNetCoreFirstproject.Controllers.User
             KeycloakService keycloakService = new KeycloakService();
             Task<TokenResponseModel> token = keycloakService.UserAuth(requestBody);
 
-            return token.Result;
+            TokenResponseModel? tokenResult = token.Result;
+
+            return tokenResult;
         }
     }
 }

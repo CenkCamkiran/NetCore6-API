@@ -19,7 +19,7 @@ namespace DotNetCoreFirstproject.Helpers.HttpClientHelper
         }
 
         // application/x-www-form-urlencoded
-        public TResponseBody MakeFormRequest(string WebServiceUrl, Dictionary<string, string> FormData, HttpMethod HTTPMethod, Dictionary<string, string> RequestHeaders, TokenResponseModel? Token = null)
+        public TResponseBody MakeFormRequest(string WebServiceUrl, Dictionary<string, string> FormData, HttpMethod HTTPMethod, Dictionary<string, string> RequestHeaders)
         {
 
             TResponseBody? responseBody = default;
@@ -52,7 +52,7 @@ namespace DotNetCoreFirstproject.Helpers.HttpClientHelper
                 {
 
                     var jsonString = httpResponseMessage.Result.Content.ReadAsStringAsync();
-                    var errorResponse = JsonConvert.DeserializeObject<InvalidGrantErrorModel>(jsonString.Result);
+                    var errorResponse = JsonConvert.DeserializeObject<KeycloakGeneralErrorModel>(jsonString.Result);
 
                     CustomAppErrorModel customAppErrorModel = new CustomAppErrorModel();
                     customAppErrorModel.ErrorMessage = errorResponse.error_description;
@@ -60,26 +60,27 @@ namespace DotNetCoreFirstproject.Helpers.HttpClientHelper
 
                     throw new KeycloakException(JsonConvert.SerializeObject(customAppErrorModel));
                 }
+                else if (httpResponseMessage.Result.StatusCode == HttpStatusCode.Unauthorized)
+                {
+
+                    var jsonString = httpResponseMessage.Result.Content.ReadAsStringAsync();
+                    var errorResponse = JsonConvert.DeserializeObject<KeycloakGeneralErrorModel>(jsonString.Result);
+
+                    CustomKeycloakErrorModel errorModel = new CustomKeycloakErrorModel();
+                    errorModel.ErrorMessage = errorResponse.error_description;
+                    errorModel.ErrorCode = ((int)httpResponseMessage.Result.StatusCode).ToString();
+                    errorModel.KeycloakToken = null;
+
+                    throw new KeycloakException(JsonConvert.SerializeObject(errorModel));
+                }
                 else
                 {
 
-                    if (Token == null)
-                    {
-                        CustomAppErrorModel customAppErrorModel = new CustomAppErrorModel();
-                        customAppErrorModel.ErrorMessage = "Application Error";
-                        customAppErrorModel.ErrorCode = ((int)httpResponseMessage.Result.StatusCode).ToString();
+                    CustomAppErrorModel customAppErrorModel = new CustomAppErrorModel();
+                    customAppErrorModel.ErrorMessage = "Application Error";
+                    customAppErrorModel.ErrorCode = ((int)httpResponseMessage.Result.StatusCode).ToString();
 
-                        throw new AppException(JsonConvert.SerializeObject(customAppErrorModel));
-                    }
-                    else
-                    {
-                        CustomKeycloakErrorModel errorModel = new CustomKeycloakErrorModel();
-                        errorModel.ErrorMessage = "HTTP 500 Internal Server Error";
-                        errorModel.ErrorCode = ((int)httpResponseMessage.Result.StatusCode).ToString();
-
-                        errorModel.KeycloakToken = Token;
-                        throw new KeycloakException(JsonConvert.SerializeObject(errorModel));
-                    }
+                    throw new AppException(JsonConvert.SerializeObject(customAppErrorModel));
                 }
 
             }
@@ -136,7 +137,6 @@ namespace DotNetCoreFirstproject.Helpers.HttpClientHelper
                         CustomKeycloakErrorModel errorModel = new CustomKeycloakErrorModel();
                         errorModel.ErrorMessage = createUserErrorResponseModel.errorMessage;
                         errorModel.ErrorCode = ((int)httpResponseMessage.Result.StatusCode).ToString();
-
                         errorModel.KeycloakToken = Token;
 
                         throw new KeycloakException(JsonConvert.SerializeObject(errorModel));
@@ -159,7 +159,6 @@ namespace DotNetCoreFirstproject.Helpers.HttpClientHelper
                         CustomKeycloakErrorModel errorModel = new CustomKeycloakErrorModel();
                         errorModel.ErrorMessage = "HTTP 500 Internal Server Error";
                         errorModel.ErrorCode = ((int)httpResponseMessage.Result.StatusCode).ToString();
-
                         errorModel.KeycloakToken = Token;
 
                         throw new KeycloakException(JsonConvert.SerializeObject(errorModel));
@@ -215,8 +214,8 @@ namespace DotNetCoreFirstproject.Helpers.HttpClientHelper
                         CustomKeycloakErrorModel errorModel = new CustomKeycloakErrorModel();
                         errorModel.ErrorMessage = "HTTP 401 Unauthorized";
                         errorModel.ErrorCode = ((int)httpResponseMessage.Result.StatusCode).ToString();
-
                         errorModel.KeycloakToken = Token;
+
                         throw new KeycloakException(JsonConvert.SerializeObject(errorModel));
                     }
 
@@ -237,8 +236,8 @@ namespace DotNetCoreFirstproject.Helpers.HttpClientHelper
                         CustomKeycloakErrorModel errorModel = new CustomKeycloakErrorModel();
                         errorModel.ErrorMessage = "HTTP 500 Internal Server Error";
                         errorModel.ErrorCode = ((int)httpResponseMessage.Result.StatusCode).ToString();
-
                         errorModel.KeycloakToken = Token;
+
                         throw new KeycloakException(JsonConvert.SerializeObject(errorModel));
                     }
 
