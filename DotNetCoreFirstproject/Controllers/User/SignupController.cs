@@ -19,6 +19,7 @@ namespace DotNetCoreFirstproject.Controllers.User
     public class SignupController : Controller
     {
 
+        [HttpPost]
         [Route("rest/api/v1/user/[controller]")]
         public UserSignupResponseModel UserSignUp([FromBody] UserSignupRequestModel requestBody)
         {
