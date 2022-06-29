@@ -26,11 +26,36 @@ namespace DotNetCoreFirstproject.ServiceLayer
             string WebServiceUrl = string.Concat(keycloakConfigHelper.Host, string.Format(keycloakConfigs["TokenRoute"], keycloakConfigs["AdminRealmName"]));
 
             Dictionary<string, string> requestForm = new Dictionary<string, string>();
-            requestForm["client_id"] = keycloakConfigs["ClientID"];
+            requestForm["client_id"] = keycloakConfigs["AdminClientID"];
             requestForm["username"] = keycloakConfigs["AdminUsername"];
             requestForm["password"] = keycloakConfigs["AdminPassword"];
             requestForm["grant_type"] = "password";
-            requestForm["client_secret"] = keycloakConfigs["ClientSecret"];
+            requestForm["client_secret"] = keycloakConfigs["AdminClientSecret"];
+
+            Dictionary<string, string> httpHeaders = new Dictionary<string, string>();
+            httpHeaders.Add(HttpRequestHeader.ContentType.ToString(), "application/x-www-form-urlencoded"); //MediaTypeNames.Application.???
+            httpHeaders.Add(HttpRequestHeader.Accept.ToString(), MediaTypeNames.Application.Json);
+
+            var APIResult = httpClientHelper.MakeFormRequest(WebServiceUrl, requestForm, HttpMethod.Post, httpHeaders);
+
+            return APIResult;
+
+        }
+
+        public async Task<TokenResponseModel> UserAuth(UserLoginRequestModel userCredentials)
+        {
+
+            HttpClientHelper<string, TokenResponseModel> httpClientHelper = new HttpClientHelper<string, TokenResponseModel>();
+
+            var keycloakConfigs = keycloakConfigHelper.GetKeycloakConfig();
+            string WebServiceUrl = string.Concat(keycloakConfigHelper.Host, string.Format(keycloakConfigs["TokenRoute"], keycloakConfigs["UserRealmName"]));
+
+            Dictionary<string, string> requestForm = new Dictionary<string, string>();
+            requestForm["client_id"] = keycloakConfigs["UserClientID"];
+            requestForm["username"] = userCredentials.username;
+            requestForm["password"] = userCredentials.password;
+            requestForm["grant_type"] = "password";
+            requestForm["client_secret"] = keycloakConfigs["UserClientSecret"];
 
             Dictionary<string, string> httpHeaders = new Dictionary<string, string>();
             httpHeaders.Add(HttpRequestHeader.ContentType.ToString(), "application/x-www-form-urlencoded"); //MediaTypeNames.Application.???

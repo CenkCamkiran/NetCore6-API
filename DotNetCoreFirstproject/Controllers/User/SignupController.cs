@@ -2,7 +2,9 @@
 using DotNetCoreFirstproject.Helpers.APIExceptionHelper;
 using DotNetCoreFirstproject.Helpers.AppExceptionHelpers;
 using DotNetCoreFirstproject.Helpers.Entities;
+using DotNetCoreFirstproject.Helpers.Entities.Keycloak;
 using DotNetCoreFirstproject.Helpers.HttpClientHelper.Entities.KeyCloak.CreateUser;
+using DotNetCoreFirstproject.Helpers.ValidationHelpers;
 using DotNetCoreFirstproject.ServiceLayer;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -20,6 +22,16 @@ namespace DotNetCoreFirstproject.Controllers.User
         [Route("rest/api/v1/user/[controller]")]
         public UserSignupResponseModel UserSignUp([FromBody] UserSignupRequestModel requestBody)
         {
+
+            EmailValidation validator = new EmailValidation();
+            if (!validator.IsEmailValid(requestBody.email))
+            {
+                CustomAppErrorModel errorModel = new CustomAppErrorModel();
+                errorModel.ErrorMessage = "Email Format is not correct";
+                errorModel.ErrorCode = ((int)HttpStatusCode.UnprocessableEntity).ToString();
+
+                throw new EmailFormatException(JsonConvert.SerializeObject(errorModel));
+            } 
 
             KeycloakService keycloakService = new KeycloakService();
             TokenResponseModel AuthToken = keycloakService.AdminAuth().Result;

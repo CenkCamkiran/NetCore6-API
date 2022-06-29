@@ -48,6 +48,18 @@ namespace DotNetCoreFirstproject.Helpers.HttpClientHelper
                     responseBody = JsonConvert.DeserializeObject<TResponseBody>(jsonString.Result);
 
                 }
+                else if (httpResponseMessage.Result.StatusCode == HttpStatusCode.BadRequest) 
+                {
+
+                    var jsonString = httpResponseMessage.Result.Content.ReadAsStringAsync();
+                    var errorResponse = JsonConvert.DeserializeObject<InvalidGrantErrorModel>(jsonString.Result);
+
+                    CustomAppErrorModel customAppErrorModel = new CustomAppErrorModel();
+                    customAppErrorModel.ErrorMessage = errorResponse.error_description;
+                    customAppErrorModel.ErrorCode = ((int)httpResponseMessage.Result.StatusCode).ToString();
+
+                    throw new KeycloakException(JsonConvert.SerializeObject(customAppErrorModel));
+                }
                 else
                 {
 

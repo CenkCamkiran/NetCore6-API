@@ -8,9 +8,12 @@ namespace DotNetCoreFirstproject.Helpers.ValidationHelpers
         {
         }
 
-        bool IsEmailValid(string email)
+        public bool IsEmailValid(string email)
         {
             var trimmedEmail = email.Trim();
+
+            MailAddress EmailAddress;
+            bool IsEmailValid = false;
 
             if (trimmedEmail.StartsWith("."))
             {
@@ -18,12 +21,10 @@ namespace DotNetCoreFirstproject.Helpers.ValidationHelpers
             }
             else
             {
-                string EmailAddress = "";
+                IsEmailValid = MailAddress.TryCreate(email, out EmailAddress);
             }
 
-            var addr = new System.Net.Mail.MailAddress(email);
-
-            return addr.Address == trimmedEmail;
+            return IsEmailValid;
 
         }
     }
