@@ -18,9 +18,9 @@ namespace DotNetCoreFirstproject.Helpers.ValidationHelpers
             }
             else
             {
-
+                string EmailAddress = "";
             }
-            MailAddress.TryCreate();
+
             var addr = new System.Net.Mail.MailAddress(email);
 
             return addr.Address == trimmedEmail;
