@@ -143,6 +143,28 @@ namespace DotNetCoreFirstproject.Helpers.HttpClientHelper
                     }
 
                 }
+				else if (httpResponseMessage.Result.StatusCode == HttpStatusCode.BadRequest)
+				{
+
+                    if (Token == null)
+                    {
+                        CustomAppErrorModel customAppErrorModel = new CustomAppErrorModel();
+                        customAppErrorModel.ErrorMessage = "Application Error";
+                        customAppErrorModel.ErrorCode = ((int)httpResponseMessage.Result.StatusCode).ToString();
+
+                        throw new AppException(JsonConvert.SerializeObject(customAppErrorModel));
+                    }
+                    else
+                    {
+                        CustomKeycloakErrorModel errorModel = new CustomKeycloakErrorModel();
+                        errorModel.ErrorMessage = "HTTP 400 Bad Request";
+                        errorModel.ErrorCode = ((int)httpResponseMessage.Result.StatusCode).ToString();
+                        errorModel.KeycloakToken = Token;
+
+                        throw new KeycloakException(JsonConvert.SerializeObject(errorModel));
+                    }
+
+                }
                 else
                 {
 
