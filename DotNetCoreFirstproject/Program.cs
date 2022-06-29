@@ -36,7 +36,7 @@ app.UseWhen(context => context.Request.Path.StartsWithSegments("/rest/api/v1/mai
 app.UseWhen(context => context.Request.Path.StartsWithSegments("/rest/api/v1/main"), appBuilder =>  // The path must be started with '/'
 {
     appBuilder.UseSessionControlMiddleware();
-    //appBuilder.UseMiddleware<AuthenticationMiddleware>(); //Same thing
+    //appBuilder.UseMiddleware<AuthenticationMiddleware>(); //Same thing //
 });
 
 app.UseHttpsRedirection();
