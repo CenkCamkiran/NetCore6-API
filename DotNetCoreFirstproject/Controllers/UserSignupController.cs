@@ -1,8 +1,11 @@
 ﻿using DotNetCoreFirstproject.Controllers.Entities;
+using DotNetCoreFirstproject.Helpers.APIExceptionHelper;
+using DotNetCoreFirstproject.Helpers.AppExceptionHelpers;
 using DotNetCoreFirstproject.Helpers.Entities;
 using DotNetCoreFirstproject.Helpers.HttpClientHelper.Entities.KeyCloak.CreateUser;
 using DotNetCoreFirstproject.ServiceLayer;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System.Net;
 using System.Net.Mime;
 
@@ -46,8 +49,25 @@ namespace DotNetCoreFirstproject.Controllers
             createUser.attributes = attributes;
             createUser.credentials = credentialList;
 
-            //AggregateException? exception = keycloakService.CreateUser(createUser, AuthToken).Exception;
-            UserSignupResponseModel? result = keycloakService.CreateUser(createUser, AuthToken).Result;
+            Task<UserSignupResponseModel> createUserResult = keycloakService.CreateUser(createUser, AuthToken);
+
+            //AggregateException? exception = createUserResult.Exception;
+
+            ////exception.
+            //var cenk = exception.Flatten();
+            //var opt1 = exception is KeycloakException;
+            //var opt2 = exception is Exception;
+            //var opt3 = exception.InnerException is KeycloakException;
+
+            //var cenkkkk = exception.Message;
+            //var json = JsonConvert.DeserializeObject(cenkkkk);
+
+            //cenk.Handle(ex =>
+            //{
+            //    return false;
+            //});
+
+            UserSignupResponseModel? result = createUserResult.Result;
 
             HttpContext.Response.Headers.Add(HttpResponseHeader.ContentType.ToString(), MediaTypeNames.Application.Json);
             HttpContext.Response.StatusCode = (int)HttpStatusCode.Created;

@@ -126,6 +126,7 @@ namespace DotNetCoreFirstproject.Helpers.HttpClientHelper
                         errorModel.ErrorCode = ((int)httpResponseMessage.Result.StatusCode).ToString();
 
                         errorModel.KeycloakToken = Token;
+
                         throw new KeycloakException(JsonConvert.SerializeObject(errorModel));
                     }
 

@@ -27,9 +27,8 @@ namespace DotNetCoreFirstproject.Middleware
             {
                 await _next(httpContext);
             }
-            catch (Exception error)
+            catch(AggregateException error)
             {
-
                 var response = httpContext.Response;
                 response.ContentType = MediaTypeNames.Application.Json; // HttpResponseHeader.ContentType.ToString();
 
@@ -96,6 +95,81 @@ namespace DotNetCoreFirstproject.Middleware
 
                         errorResponse.ErrorMessage = JsonConvert.DeserializeObject<CustomAppErrorModel>(error.InnerException.Message)?.ErrorMessage;
                         errorResponse.ErrorCode = JsonConvert.DeserializeObject<CustomAppErrorModel>(error.InnerException.Message)?.ErrorCode;
+
+                        break;
+                }
+
+                await response.WriteAsync(JsonConvert.SerializeObject(errorResponse));
+            }
+            catch (Exception error)
+            {
+
+                var response = httpContext.Response;
+                response.ContentType = MediaTypeNames.Application.Json; // HttpResponseHeader.ContentType.ToString();
+
+                //var cenk = error is KeycloakException;
+                //var cengo = error.InnerException is KeycloakException;
+
+                CustomErrorResponseModel errorResponse = new CustomErrorResponseModel();
+
+                switch (error)
+                {
+                    case KeycloakException:
+
+                        KeycloakService keycloakService = new KeycloakService();
+                        CustomKeycloakErrorModel AdminTokenModel = JsonConvert.DeserializeObject<CustomKeycloakErrorModel>(error.Message);
+
+                        response.StatusCode = Convert.ToInt32(AdminTokenModel.ErrorCode);
+
+                        errorResponse.ErrorMessage = AdminTokenModel?.ErrorMessage;
+                        errorResponse.ErrorCode = AdminTokenModel?.ErrorCode;
+
+                        await keycloakService.RemoveSession(true, AdminTokenModel.KeycloakToken);
+
+                        break;
+
+                    case BadRequestException:
+
+                        response.StatusCode = Convert.ToInt32(JsonConvert.DeserializeObject<CustomAppErrorModel>(error.Message).ErrorCode);
+
+                        errorResponse.ErrorMessage = JsonConvert.DeserializeObject<CustomAppErrorModel>(error.Message)?.ErrorMessage;
+                        errorResponse.ErrorCode = JsonConvert.DeserializeObject<CustomAppErrorModel>(error.Message)?.ErrorCode;
+
+                        break;
+
+                    case AppException:
+
+                        response.StatusCode = Convert.ToInt32(JsonConvert.DeserializeObject<CustomAppErrorModel>(error.Message).ErrorCode);
+
+                        errorResponse.ErrorMessage = JsonConvert.DeserializeObject<CustomAppErrorModel>(error.Message)?.ErrorMessage;
+                        errorResponse.ErrorCode = JsonConvert.DeserializeObject<CustomAppErrorModel>(error.Message)?.ErrorCode;
+
+                        break;
+
+                    case KeyNotFoundException:
+
+                        response.StatusCode = Convert.ToInt32(JsonConvert.DeserializeObject<CustomAppErrorModel>(error.Message).ErrorCode);
+
+                        errorResponse.ErrorMessage = JsonConvert.DeserializeObject<CustomAppErrorModel>(error.Message)?.ErrorMessage;
+                        errorResponse.ErrorCode = JsonConvert.DeserializeObject<CustomAppErrorModel>(error.Message)?.ErrorCode;
+
+                        break;
+
+                    case RequestTokenHeadersException:
+
+                        response.StatusCode = Convert.ToInt32(JsonConvert.DeserializeObject<CustomAppErrorModel>(error.Message).ErrorCode);
+
+                        errorResponse.ErrorMessage = JsonConvert.DeserializeObject<CustomAppErrorModel>(error.Message)?.ErrorMessage;
+                        errorResponse.ErrorCode = JsonConvert.DeserializeObject<CustomAppErrorModel>(error.Message)?.ErrorCode;
+
+                        break;
+
+                    default:
+
+                        response.StatusCode = Convert.ToInt32(JsonConvert.DeserializeObject<CustomAppErrorModel>(error.Message).ErrorCode);
+
+                        errorResponse.ErrorMessage = JsonConvert.DeserializeObject<CustomAppErrorModel>(error.Message)?.ErrorMessage;
+                        errorResponse.ErrorCode = JsonConvert.DeserializeObject<CustomAppErrorModel>(error.Message)?.ErrorCode;
 
                         break;
                 }
