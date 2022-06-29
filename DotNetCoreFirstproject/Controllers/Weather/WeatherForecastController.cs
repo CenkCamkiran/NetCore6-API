@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Net.Http.Headers;
 using System.Net.Http.Headers;
 
-namespace DotNetCoreFirstproject.Controllers
+namespace DotNetCoreFirstproject.Controllers.Weather
 {
     [ApiController]
     [Route("rest/api/v1/main/[controller]")]

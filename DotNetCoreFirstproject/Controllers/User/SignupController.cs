@@ -9,15 +9,15 @@ using Newtonsoft.Json;
 using System.Net;
 using System.Net.Mime;
 
-namespace DotNetCoreFirstproject.Controllers
+namespace DotNetCoreFirstproject.Controllers.User
 {
 
     [ApiController]
-    public class UserSignupController : Controller
+    [Consumes(MediaTypeNames.Application.Json)]
+    public class SignupController : Controller
     {
 
         [Route("rest/api/v1/user/[controller]")]
-        [Consumes(MediaTypeNames.Application.Json)]
         public UserSignupResponseModel UserSignUp([FromBody] UserSignupRequestModel requestBody)
         {
 

@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace DotNetCoreFirstproject.Controllers
+namespace DotNetCoreFirstproject.Controllers.Health
 {
     public class ApiHealthController : Controller
     {

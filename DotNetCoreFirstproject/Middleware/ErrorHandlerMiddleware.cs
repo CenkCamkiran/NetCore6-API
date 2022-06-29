@@ -164,6 +164,15 @@ namespace DotNetCoreFirstproject.Middleware
 
                         break;
 
+                    case ArgumentException or ArgumentNullException or FormatException:
+
+                        response.StatusCode = Convert.ToInt32(JsonConvert.DeserializeObject<CustomAppErrorModel>(error.Message).ErrorCode);
+
+                        errorResponse.ErrorMessage = JsonConvert.DeserializeObject<CustomAppErrorModel>(error.Message)?.ErrorMessage;
+                        errorResponse.ErrorCode = JsonConvert.DeserializeObject<CustomAppErrorModel>(error.Message)?.ErrorCode;
+
+                        break;
+
                     default:
 
                         response.StatusCode = Convert.ToInt32(JsonConvert.DeserializeObject<CustomAppErrorModel>(error.Message).ErrorCode);
