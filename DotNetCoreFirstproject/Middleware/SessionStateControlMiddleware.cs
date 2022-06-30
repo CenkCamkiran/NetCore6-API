@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 namespace DotNetCoreFirstproject.Middleware
 {
     // You may need to install the Microsoft.AspNetCore.Http.Abstractions package into your project
-    public class SessionControlMiddleware
+    public class SessionStateControlMiddleware
     {
         private readonly RequestDelegate _next;
 
-        public SessionControlMiddleware(RequestDelegate next)
+        public SessionStateControlMiddleware(RequestDelegate next)
         {
             _next = next;
         }
@@ -46,7 +46,7 @@ namespace DotNetCoreFirstproject.Middleware
     {
         public static IApplicationBuilder UseSessionControlMiddleware(this IApplicationBuilder builder)
         {
-            return builder.UseMiddleware<SessionControlMiddleware>();
+            return builder.UseMiddleware<SessionStateControlMiddleware>();
         }
     }
 }

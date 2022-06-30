@@ -94,6 +94,9 @@ namespace DotNetCoreFirstproject.Helpers.HttpClientHelper.Entities.KeyCloak.Crea
     public class Credential
     {
 
+        [JsonProperty(PropertyName = "createdDate", Required = Required.Always)]
+        public long createdDate { get; set; }
+
         [JsonProperty(PropertyName = "type", Required = Required.Always)]
         public string type { get; set; }
 
@@ -102,11 +105,6 @@ namespace DotNetCoreFirstproject.Helpers.HttpClientHelper.Entities.KeyCloak.Crea
 
         [JsonProperty(PropertyName = "value", Required = Required.Always)]
         public string value { get; set; }
-
-        public static implicit operator List<object>(Credential v)
-        {
-            throw new NotImplementedException();
-        }
     }
 
 }

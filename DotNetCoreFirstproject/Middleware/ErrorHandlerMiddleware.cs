@@ -81,7 +81,7 @@ namespace DotNetCoreFirstproject.Middleware
 
                         break;
 
-                    case RequestTokenHeadersException:
+                    case MandatoryRequestTokenHeadersException:
 
                         response.StatusCode = Convert.ToInt32(JsonConvert.DeserializeObject<CustomAppErrorModel>(error.InnerException.Message).ErrorCode);
 
@@ -192,7 +192,7 @@ namespace DotNetCoreFirstproject.Middleware
 
                         break;
 
-                    case RequestTokenHeadersException:
+                    case MandatoryRequestTokenHeadersException:
 
                         response.StatusCode = Convert.ToInt32(JsonConvert.DeserializeObject<CustomAppErrorModel>(error.Message).ErrorCode);
 

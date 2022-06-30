@@ -57,6 +57,7 @@ namespace DotNetCoreFirstproject.Controllers.User
             credential.temporary = false;
             credential.type = "password";
             credential.value = requestBody.credentials.password;
+            credential.createdDate = DateTimeOffset.Now.ToUnixTimeMilliseconds();
             credentialList.Add(credential);
 
             createUser.attributes = attributes;

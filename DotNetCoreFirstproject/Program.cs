@@ -28,6 +28,11 @@ configuration.GetSection(ApplicationSettings.RootOption).Bind(ApplicationSetting
 
 app.UseErrorHandlerMiddleware();
 
+app.UseWhen(context => context.Request.Path.StartsWithSegments("/rest/api/v1/user"), appBuilder =>  // The path must be started with '/'
+{
+	appBuilder.UseRequestParamsValidationMiddleware();
+});
+
 app.UseWhen(context => context.Request.Path.StartsWithSegments("/rest/api/v1/main"), appBuilder =>  // The path must be started with '/'
 {
     appBuilder.UseTokenControlMiddleware();

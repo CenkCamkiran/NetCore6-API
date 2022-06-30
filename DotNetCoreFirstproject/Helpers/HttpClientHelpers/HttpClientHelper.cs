@@ -156,8 +156,12 @@ namespace DotNetCoreFirstproject.Helpers.HttpClientHelper
                     }
                     else
                     {
+
+                        var jsonString = httpResponseMessage.Result.Content.ReadAsStringAsync();
+                        var createUserErrorResponseModel = JsonConvert.DeserializeObject<CreateUserErrorResponseModel>(jsonString.Result);
+
                         CustomKeycloakErrorModel errorModel = new CustomKeycloakErrorModel();
-                        errorModel.ErrorMessage = "HTTP 400 Bad Request";
+                        errorModel.ErrorMessage = createUserErrorResponseModel.errorMessage;
                         errorModel.ErrorCode = ((int)httpResponseMessage.Result.StatusCode).ToString();
                         errorModel.KeycloakToken = Token;
 

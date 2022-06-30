@@ -7,11 +7,11 @@ using System.Net;
 namespace DotNetCoreFirstproject.Middleware
 {
     // You may need to install the Microsoft.AspNetCore.Http.Abstractions package into your project
-    public class TokenControlMiddleware
+    public class TokenHeadersControlMiddleware
     {
         private readonly RequestDelegate _next;
 
-        public TokenControlMiddleware(RequestDelegate next)
+        public TokenHeadersControlMiddleware(RequestDelegate next)
         {
             _next = next;
         }
@@ -33,7 +33,7 @@ namespace DotNetCoreFirstproject.Middleware
                 errorModel.ErrorMessage = "AccessToken or RefreshToken not found in request headers.";
                 errorModel.ErrorCode = ((int)HttpStatusCode.InternalServerError).ToString();
 
-                throw new RequestTokenHeadersException(JsonConvert.SerializeObject(errorModel));
+                throw new MandatoryRequestTokenHeadersException(JsonConvert.SerializeObject(errorModel));
             }
             else
             {
@@ -43,7 +43,7 @@ namespace DotNetCoreFirstproject.Middleware
                     errorModel.ErrorMessage = "AccessToken or RefreshToken not found in request headers.";
                     errorModel.ErrorCode = ((int)HttpStatusCode.InternalServerError).ToString();
 
-                    throw new RequestTokenHeadersException(JsonConvert.SerializeObject(errorModel));
+                    throw new MandatoryRequestTokenHeadersException(JsonConvert.SerializeObject(errorModel));
                 }
             }
 
@@ -58,7 +58,7 @@ namespace DotNetCoreFirstproject.Middleware
     {
         public static IApplicationBuilder UseTokenControlMiddleware(this IApplicationBuilder builder)
         {
-            return builder.UseMiddleware<TokenControlMiddleware>();
+            return builder.UseMiddleware<TokenHeadersControlMiddleware>();
         }
     }
 }
