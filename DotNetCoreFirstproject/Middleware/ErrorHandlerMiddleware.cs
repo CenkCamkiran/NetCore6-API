@@ -6,6 +6,7 @@ using DotNetCoreFirstproject.Helpers.Entities.Keycloak;
 using DotNetCoreFirstproject.ServiceLayer;
 using Microsoft.IdentityModel.SecurityTokenService;
 using Newtonsoft.Json;
+using System.Net;
 using System.Net.Mime;
 
 namespace DotNetCoreFirstproject.Middleware
@@ -239,7 +240,7 @@ namespace DotNetCoreFirstproject.Middleware
 
                     default:
 
-                        response.StatusCode = Convert.ToInt32(JsonConvert.DeserializeObject<CustomAppErrorModel>(error.Message).ErrorCode);
+                        response.StatusCode = (int)HttpStatusCode.InternalServerError;
 
                         errorResponse.ErrorMessage = JsonConvert.DeserializeObject<CustomAppErrorModel>(error.Message)?.ErrorMessage;
                         errorResponse.ErrorCode = JsonConvert.DeserializeObject<CustomAppErrorModel>(error.Message)?.ErrorCode;

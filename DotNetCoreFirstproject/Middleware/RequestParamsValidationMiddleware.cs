@@ -1,6 +1,9 @@
 ﻿using DotNetCoreFirstproject.Controllers.Entities;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 
 namespace DotNetCoreFirstproject.Middleware
@@ -24,9 +27,26 @@ namespace DotNetCoreFirstproject.Middleware
 			{
 				string JSONBody = await reader.ReadToEndAsync();
 
-				var nameProperty = JSONBody.GetType().GetProperty("username");
+				var cenk = JsonConvert.DeserializeObject<object>(JSONBody);
 
-				var name = nameProperty.GetValue(JSONBody, null);
+				var jObject = JObject.Parse(JSONBody);
+
+				var dsa = jObject.Properties();
+
+				var result = (JObject)jObject["username"];
+
+				var cenkkk = result.Properties();
+
+				//var nameOfProperty = "username";
+				//var propertyInfo = cenk.GetType().GetProperty(nameOfProperty);
+				//var value = propertyInfo.GetValue(cenk, null);
+
+				//var type = cenk.GetType();
+
+				//var nameProperty = type.GetProperty("username", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public);
+				//var fieldProperty = type.GetField("username", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public);
+
+				//var name = nameProperty.GetValue(JSONBody, null);
 				//nameProperty.SetValue(user, "ahmeTT", null);
 				//name = nameProperty.GetValue(user, null);
 			}
