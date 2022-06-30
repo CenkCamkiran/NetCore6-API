@@ -18,17 +18,18 @@ namespace DotNetCoreFirstproject.Middleware
 		public async Task Invoke(HttpContext httpContext)
 		{
 
-		//	var request = httpContext.Request;
-		//cenk.oguz != null || 
-		//Signup x =		(signup)cenk
-		//	if (request.Body is UserLoginRequestModel)
-		//	{
-		//		Console.WriteLine("UserLoginRequestModel");
-		//	}
-		//	else if (request is UserSignupResponseModel)
-		//	{
-		//		Console.WriteLine("UserSignupResponseModel");
-		//	}
+			var requestBody = httpContext.Request.Body;
+
+			using (StreamReader reader = new StreamReader(requestBody))
+			{
+				string JSONBody = await reader.ReadToEndAsync();
+
+				var nameProperty = JSONBody.GetType().GetProperty("username");
+
+				var name = nameProperty.GetValue(JSONBody, null);
+				//nameProperty.SetValue(user, "ahmeTT", null);
+				//name = nameProperty.GetValue(user, null);
+			}
 
 			await _next(httpContext);
 		}
