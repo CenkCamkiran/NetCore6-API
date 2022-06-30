@@ -18,17 +18,17 @@ namespace DotNetCoreFirstproject.Middleware
 		public async Task Invoke(HttpContext httpContext)
 		{
 
-			var request = httpContext.Request;
-		cenk.oguz != null || 
-		Signup x =		(signup)cenk
-			if (request.Body is UserLoginRequestModel)
-			{
-				Console.WriteLine("UserLoginRequestModel");
-			}
-			else if (request is UserSignupResponseModel)
-			{
-				Console.WriteLine("UserSignupResponseModel");
-			}
+		//	var request = httpContext.Request;
+		//cenk.oguz != null || 
+		//Signup x =		(signup)cenk
+		//	if (request.Body is UserLoginRequestModel)
+		//	{
+		//		Console.WriteLine("UserLoginRequestModel");
+		//	}
+		//	else if (request is UserSignupResponseModel)
+		//	{
+		//		Console.WriteLine("UserSignupResponseModel");
+		//	}
 
 			await _next(httpContext);
 		}
