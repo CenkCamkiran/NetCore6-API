@@ -1,25 +1,9 @@
 ﻿using DotNetCoreFirstproject.Configuration;
 
-namespace DotNetCoreFirstproject.Helpers.AppConfigurationHelper
+namespace DotNetCoreFirstproject.Helpers.AppConfigurationHelpers
 {
-    public class AppConfigurationHelper
+    public partial class AppConfigurationHelper
     {
-
-        public string Host { get; set; }    
-        public string AdminUsername { get; set; }   
-        public string AdminPassword { get; set; }   
-        public string AdminRealmName { get; set; }  
-        public string AdminClientID { get; set; }    
-        public string AdminClientSecret { get; set; }
-        public string UserUsername { get; set; }
-        public string UserPassword { get; set; }
-        public string UserRealmName { get; set; }
-        public string UserClientID { get; set; }
-        public string UserClientSecret { get; set; }
-        public string TokenRoute { get; set; }
-        public string UsersRoute { get; set; }
-        public string SessionRoute { get; set; }
-        public string AdminID { get; set; }
 
         public Dictionary<string, string> GetKeycloakConfig()
         {
@@ -65,7 +49,18 @@ namespace DotNetCoreFirstproject.Helpers.AppConfigurationHelper
         public Dictionary<string, string> GetElasticSearchConfig()
         {
 
-            return null;
+            ElasticHost = ApplicationSettings.ExternalTools.ElasticSearch.Host.ToString();
+            ElasticRootUsername = ApplicationSettings.ExternalTools.ElasticSearch.Admin.Username;
+            ElasticRootPassword = ApplicationSettings.ExternalTools.ElasticSearch.Admin.Password;
+
+            Dictionary<string, string> ConfigList = new Dictionary<string, string>()
+            {
+                { "ElasticHost", ElasticHost },
+                { "ElasticRootUsername", ElasticRootUsername },
+                { "ElasticRootPassword", ElasticRootPassword }
+            };
+
+            return ConfigList;
 
         }
 

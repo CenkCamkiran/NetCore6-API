@@ -1,10 +1,9 @@
-﻿using DotNetCoreFirstproject.Controllers.Entities;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Http;
+﻿using DotNetCoreFirstproject.Helpers.AppExceptionHelpers;
+using DotNetCoreFirstproject.Helpers.Entities.Keycloak;
+using DotNetCoreFirstproject.Helpers.ValidationHelpers;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using System.Reflection;
-using System.Threading.Tasks;
+using System.Net;
 
 namespace DotNetCoreFirstproject.Middleware
 {
@@ -28,30 +27,42 @@ namespace DotNetCoreFirstproject.Middleware
 				string JSONBody = await reader.ReadToEndAsync();
 
 				var cenk = JsonConvert.DeserializeObject<object>(JSONBody);
-
 				var jObject = JObject.Parse(JSONBody);
 
-				var dsa = jObject.Properties();
+				JToken? token = null;
+				bool isEmailPropertyExists = jObject.TryGetValue("email", out token);
 
-				var result = (JObject)jObject["username"];
+				if (isEmailPropertyExists)
+				{
+					EmailValidation emailValidation = new EmailValidation();
 
-				var cenkkk = result.Properties();
+					string? emailValue = token.ToString();	
 
-				//var nameOfProperty = "username";
-				//var propertyInfo = cenk.GetType().GetProperty(nameOfProperty);
-				//var value = propertyInfo.GetValue(cenk, null);
+					if (!emailValidation.IsEmailValid(emailValue))
+					{
+						CustomAppErrorModel errorResponse = new CustomAppErrorModel();
+						errorResponse.ErrorMessage = "Email is not valid";
+						errorResponse.ErrorCode = ((int)HttpStatusCode.UnprocessableEntity).ToString();
 
-				//var type = cenk.GetType();
+						throw new EmailFormatException(JsonConvert.SerializeObject(errorResponse));
+					}
+					
+				}
 
-				//var nameProperty = type.GetProperty("username", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public);
-				//var fieldProperty = type.GetField("username", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public);
+				//foreach (JProperty property in jObject.Properties())
+				//{
+				//	Console.WriteLine(property.Name + " - " + property.Value.ToString());
+				//}
 
-				//var name = nameProperty.GetValue(JSONBody, null);
-				//nameProperty.SetValue(user, "ahmeTT", null);
-				//name = nameProperty.GetValue(user, null);
+				//foreach (KeyValuePair<string, JToken> item in jObject)
+				//{
+				//	Console.WriteLine(item.Key + " : " + item.Value.ToString());
+				//}
+
 			}
 
 			await _next(httpContext);
+
 		}
 		
 	}

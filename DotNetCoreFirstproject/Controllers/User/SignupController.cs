@@ -24,17 +24,17 @@ namespace DotNetCoreFirstproject.Controllers.User
         public UserSignupResponseModel UserSignUp([FromBody] UserSignupRequestModel requestBody)
         {
 
-            EmailValidation validator = new EmailValidation();
-            if (!validator.IsEmailValid(requestBody.email))
-            {
-                CustomAppErrorModel errorModel = new CustomAppErrorModel();
-                errorModel.ErrorMessage = "Email Format is not correct";
-                errorModel.ErrorCode = ((int)HttpStatusCode.UnprocessableEntity).ToString();
+			EmailValidation validator = new EmailValidation();
+			if (!validator.IsEmailValid(requestBody.email))
+			{
+				CustomAppErrorModel errorModel = new CustomAppErrorModel();
+				errorModel.ErrorMessage = "Email Format is not correct";
+				errorModel.ErrorCode = ((int)HttpStatusCode.UnprocessableEntity).ToString();
 
-                throw new EmailFormatException(JsonConvert.SerializeObject(errorModel));
-            } 
+				throw new EmailFormatException(JsonConvert.SerializeObject(errorModel));
+			}
 
-            KeycloakService keycloakService = new KeycloakService();
+			KeycloakService keycloakService = new KeycloakService();
             TokenResponseModel AuthToken = keycloakService.AdminAuth().Result;
 
             CreateUserRequestModel createUser = new CreateUserRequestModel();
