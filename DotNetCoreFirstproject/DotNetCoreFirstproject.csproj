@@ -16,12 +16,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="DataAccessLayer\ElasticSearch\Entities\" />
+    <Folder Include="DataAccessLayer\ElasticSearch\Elastic\" />
     <Folder Include="DataAccessLayer\MongoDB\Entities\" />
     <Folder Include="DataAccessLayer\MongoDB\Interfaces\" />
     <Folder Include="DataAccessLayer\MongoDB\NoSQL\" />
-    <Folder Include="Logging\" />
     <Folder Include="ServiceLayer\Entities\" />
-    <Folder Include="ServiceLayer\Interfaces\" />
   </ItemGroup>
 
 </Project>

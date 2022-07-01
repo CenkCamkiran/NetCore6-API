@@ -3,6 +3,7 @@ using DotNetCoreFirstproject.Helpers.AppConfigurationHelpers;
 using DotNetCoreFirstproject.Helpers.Entities;
 using DotNetCoreFirstproject.Helpers.HttpClientHelper;
 using DotNetCoreFirstproject.Helpers.HttpClientHelper.Entities.KeyCloak.CreateUser;
+using DotNetCoreFirstproject.ServiceLayer.Interfaces;
 using System.Net;
 using System.Net.Mime;
 
