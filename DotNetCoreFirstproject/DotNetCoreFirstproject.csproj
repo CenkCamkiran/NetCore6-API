@@ -9,15 +9,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Elasticsearch.Net" Version="7.17.4" />
     <PackageReference Include="Microsoft.IdentityModel" Version="7.0.0" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.15.1" />
+    <PackageReference Include="NEST" Version="7.17.4" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="DataAccessLayer\ElasticSearch\Entities\" />
-    <Folder Include="DataAccessLayer\ElasticSearch\Elastic\" />
     <Folder Include="DataAccessLayer\MongoDB\Entities\" />
     <Folder Include="DataAccessLayer\MongoDB\Interfaces\" />
     <Folder Include="DataAccessLayer\MongoDB\NoSQL\" />
