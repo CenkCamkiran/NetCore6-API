@@ -2,7 +2,7 @@
 {
 	public interface IElasticSearchCommand
 	{
-		public void InsertDocument();
+		public void InsertDocument();//
 		public void UpdateDocument();
 		public void DeleteDocument();
 
