@@ -2,7 +2,6 @@
 {
 	public interface IControllerLogRepository
 	{
-		public void InsertControllerRequestLog();
-		public void InsertControllerResponseLog();
+		public void InsertControllerRequestResponseLog(HttpRequest request, HttpResponse response);
 	}
 }

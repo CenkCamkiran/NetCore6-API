@@ -6,16 +6,8 @@ using DotNetCoreFirstproject.Helpers.AppConfigurationHelpers;
 
 namespace DotNetCoreFirstproject.DataAccessLayer.ElasticSearch.Infrastructure
 {
-	public class ElasticSearchConnection
+	public partial class ElasticSearchConnection
 	{
-
-		private AppConfigurationHelper appConfigurationHelper;
-
-		private readonly ConnectionSettings connection;
-		protected ConnectionSettings Connection => connection;
-
-		private readonly ElasticClient client;
-		protected ElasticClient Client => client;
 
 		public ElasticSearchConnection()
 		{
@@ -24,7 +16,7 @@ namespace DotNetCoreFirstproject.DataAccessLayer.ElasticSearch.Infrastructure
 			Dictionary<string, string> elasticConfig = appConfigurationHelper.GetElasticSearchConfig();
 
 			connection = new ConnectionSettings(new Uri(elasticConfig["ElasticHost"])).
-			   DefaultIndex("apilogs").
+			   DefaultIndex("controllerlogs").
 			   ServerCertificateValidationCallback(CertificateValidations.AllowAll).
 			   ThrowExceptions(true).
 			   PrettyJson().

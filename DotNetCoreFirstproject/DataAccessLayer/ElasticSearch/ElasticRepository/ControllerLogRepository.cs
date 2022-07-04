@@ -1,17 +1,24 @@
-﻿using DotNetCoreFirstproject.DataAccessLayer.ElasticSearch.Interfaces;
+﻿using DotNetCoreFirstproject.DataAccessLayer.ElasticSearch.Entities;
+using DotNetCoreFirstproject.DataAccessLayer.ElasticSearch.Infrastructure;
+using DotNetCoreFirstproject.DataAccessLayer.ElasticSearch.Interfaces;
 
 namespace DotNetCoreFirstproject.DataAccessLayer.ElasticSearch.Elastic
 {
 	public class ControllerLogRepository : IControllerLogRepository
 	{
-		public void InsertControllerRequestLog()
+		private ElasticSearchCommand elasticCommand;
+		 
+		public ControllerLogRepository()
 		{
-			
+			elasticCommand = new ElasticSearchCommand();	
 		}
 
-		public void InsertControllerResponseLog()
+		public void InsertControllerRequestResponseLog(HttpRequest request, HttpResponse response)
 		{
-			
+
+			ControllerRequestResponseModel model = new ControllerRequestResponseModel();
+
+			elasticCommand.InsertDocument(model);
 		}
 	}
 }

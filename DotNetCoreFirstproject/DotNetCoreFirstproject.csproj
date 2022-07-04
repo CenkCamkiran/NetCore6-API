@@ -18,7 +18,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="DataAccessLayer\ElasticSearch\Entities\" />
     <Folder Include="DataAccessLayer\MongoDB\Entities\" />
     <Folder Include="DataAccessLayer\MongoDB\Interfaces\" />
     <Folder Include="DataAccessLayer\MongoDB\NoSQL\" />
