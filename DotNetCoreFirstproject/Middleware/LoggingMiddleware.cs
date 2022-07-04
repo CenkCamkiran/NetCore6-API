@@ -14,10 +14,10 @@ namespace DotNetCoreFirstproject.Middleware
             _next = next;
         }
 
-        public Task Invoke(HttpContext httpContext)
+        public async Task Invoke(HttpContext httpContext)
         {
 
-            return _next(httpContext);
+            await _next(httpContext);
         }
     }
 
