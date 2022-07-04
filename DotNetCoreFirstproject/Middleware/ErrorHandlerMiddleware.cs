@@ -24,6 +24,8 @@ namespace DotNetCoreFirstproject.Middleware
         public async Task Invoke(HttpContext httpContext)
         {
 
+            //
+
             try
             {
                 await _next(httpContext);
