@@ -2,8 +2,8 @@
 
 FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
 WORKDIR /app
-EXPOSE 80 #HTTP
-EXPOSE 443 #HTTPS
+EXPOSE 5080 #HTTP
+EXPOSE 5443 #HTTPS
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src

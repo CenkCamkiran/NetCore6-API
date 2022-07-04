@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 
 namespace DotNetCoreFirstproject.Middleware
 {
-    // You may need to install the Microsoft.AspNetCore.Http.Abstractions package into your project
     public class LoggingMiddleware
     {
         private readonly RequestDelegate _next;
@@ -16,8 +15,11 @@ namespace DotNetCoreFirstproject.Middleware
 
         public async Task Invoke(HttpContext httpContext)
         {
-
             await _next(httpContext);
+
+            Console.WriteLine("logging");
+
+
         }
     }
 
