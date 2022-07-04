@@ -22,11 +22,13 @@ namespace DotNetCoreFirstproject.DataAccessLayer.ElasticSearch.Infrastructure
 				Console.WriteLine("Index Name: " + indexResult.Index);
 				Console.WriteLine("Result Code: " + indexResult.Result);
 				Console.WriteLine("Is Valid: " + indexResult.IsValid);
+
 			}
 			catch (Exception ex)
 			{
 				Console.WriteLine(ex.Message.ToString());
 			}
+
 		}
 
 		public void SearchDocument(object document)

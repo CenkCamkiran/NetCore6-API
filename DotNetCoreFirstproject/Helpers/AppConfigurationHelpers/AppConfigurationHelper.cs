@@ -48,7 +48,7 @@ namespace DotNetCoreFirstproject.Helpers.AppConfigurationHelpers
 
         public Dictionary<string, string> GetElasticSearchConfig()
         {
-
+            DefaultIndexName = ApplicationSettings.ExternalTools.ElasticSearch.DefaultIndexName.ToString();
             ElasticHost = ApplicationSettings.ExternalTools.ElasticSearch.Host.ToString();
             ElasticRootUsername = ApplicationSettings.ExternalTools.ElasticSearch.Admin.Username;
             ElasticRootPassword = ApplicationSettings.ExternalTools.ElasticSearch.Admin.Password;
@@ -57,7 +57,8 @@ namespace DotNetCoreFirstproject.Helpers.AppConfigurationHelpers
             {
                 { "ElasticHost", ElasticHost },
                 { "ElasticRootUsername", ElasticRootUsername },
-                { "ElasticRootPassword", ElasticRootPassword }
+                { "ElasticRootPassword", ElasticRootPassword },
+                { "DefaultIndexName", DefaultIndexName }
             };
 
             return ConfigList;

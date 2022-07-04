@@ -5,7 +5,6 @@ namespace DotNetCoreFirstproject.ServiceLayer
 {
 	public class LoggingService : ILoggingService
 	{
-
 		private ControllerLogRepository repository;
 
 		public LoggingService()

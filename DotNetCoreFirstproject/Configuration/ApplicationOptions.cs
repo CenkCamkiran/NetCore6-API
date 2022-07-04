@@ -24,6 +24,10 @@ namespace DotNetCoreFirstproject.Configuration
 
         [JsonProperty("Admin")]
         public Admin Admin { get; set; }
+
+        [JsonProperty("DefaultIndexName")]
+        public string DefaultIndexName { get; set; }
+
     }
 
     public partial class Admin

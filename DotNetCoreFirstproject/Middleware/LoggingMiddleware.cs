@@ -1,10 +1,8 @@
-﻿using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Http;
-using System.Threading.Tasks;
+﻿using DotNetCoreFirstproject.ServiceLayer;
 
 namespace DotNetCoreFirstproject.Middleware
 {
-    public class LoggingMiddleware
+	public class LoggingMiddleware
     {
         private readonly RequestDelegate _next;
 
@@ -17,8 +15,8 @@ namespace DotNetCoreFirstproject.Middleware
         {
             await _next(httpContext);
 
-            Console.WriteLine("logging");
-
+            LoggingService loggingService = new LoggingService();
+            loggingService.InsertControllerRequestResponseLog(httpContext.Request, httpContext.Response);
 
         }
     }

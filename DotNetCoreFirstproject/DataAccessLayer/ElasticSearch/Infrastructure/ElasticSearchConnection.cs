@@ -16,7 +16,7 @@ namespace DotNetCoreFirstproject.DataAccessLayer.ElasticSearch.Infrastructure
 			Dictionary<string, string> elasticConfig = appConfigurationHelper.GetElasticSearchConfig();
 
 			connection = new ConnectionSettings(new Uri(elasticConfig["ElasticHost"])).
-			   DefaultIndex("controllerlogs").
+			   DefaultIndex(elasticConfig["DefaultIndexName"]).
 			   ServerCertificateValidationCallback(CertificateValidations.AllowAll).
 			   ThrowExceptions(true).
 			   PrettyJson().
