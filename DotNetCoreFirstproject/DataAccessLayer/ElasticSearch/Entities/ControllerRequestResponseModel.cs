@@ -7,6 +7,9 @@ namespace DotNetCoreFirstproject.DataAccessLayer.ElasticSearch.Entities
 		[JsonProperty(PropertyName = "requestPath")]
 		public string? RequestPath { get; set; }
 
+		[JsonProperty(PropertyName = "requestHost")]
+		public string? RequestHost { get; set; }
+
 		[JsonProperty(PropertyName = "RequestInfo")]
 		public Request? RequestInfo { get; set; }
 

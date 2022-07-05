@@ -24,8 +24,6 @@ namespace DotNetCoreFirstproject.Middleware
         public async Task Invoke(HttpContext httpContext)
         {
 
-            //
-
             try
             {
                 await _next(httpContext);
@@ -53,7 +51,7 @@ namespace DotNetCoreFirstproject.Middleware
                         errorResponse.ErrorCode = AdminTokenModel?.ErrorCode;
                         
                         if (AdminTokenModel.KeycloakToken != null)
-                            await keycloakService.RemoveSession(true, AdminTokenModel.KeycloakToken);
+                            keycloakService.RemoveSession(true, AdminTokenModel.KeycloakToken);
 
                         break;
 
@@ -164,7 +162,7 @@ namespace DotNetCoreFirstproject.Middleware
                         errorResponse.ErrorMessage = AdminTokenModel?.ErrorMessage;
                         errorResponse.ErrorCode = AdminTokenModel?.ErrorCode;
 
-                        await keycloakService.RemoveSession(true, AdminTokenModel.KeycloakToken);
+                        keycloakService.RemoveSession(true, AdminTokenModel.KeycloakToken);
 
                         break;
 

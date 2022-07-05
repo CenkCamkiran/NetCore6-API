@@ -2,6 +2,6 @@
 {
 	public interface ILoggingService
 	{
-		public void InsertControllerRequestResponseLog(HttpRequest request, HttpResponse response);
+		public Task InsertControllerRequestResponseLog(HttpRequest request, HttpResponse response);
 	}
 }

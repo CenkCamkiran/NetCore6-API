@@ -16,31 +16,32 @@ namespace DotNetCoreFirstproject.DataAccessLayer.ElasticSearch.Elastic
 			elasticCommand = new ElasticSearchCommand();
 		}
 
-		public void InsertControllerRequestResponseLog(HttpRequest request, HttpResponse response)
+		public async Task InsertControllerRequestResponseLog(HttpRequest request, HttpResponse response)
 		{
 
 			try
 			{
 				using (StreamReader requestStream = new StreamReader(request.Body), responseStream = new StreamReader(response.Body))
 				{
-					var JSONRequestBody = requestStream.ReadToEnd();
-					var JSONResponseBody = responseStream.ReadToEnd();
+				    var JSONRequestBody = await requestStream.ReadToEndAsync();
+					var JSONResponseBody = await responseStream.ReadToEndAsync();
 
-					JObject? jsonRequestObject = JObject.Parse(JSONRequestBody);
-					JObject? jsonResponseObject = JObject.Parse(JSONResponseBody);
+					JObject? jsonRequestObject = string.IsNullOrEmpty(JSONRequestBody) == null ? JObject.Parse(JSONRequestBody) : null;
+					JObject? jsonResponseObject = string.IsNullOrEmpty(JSONResponseBody) == null ? JObject.Parse(JSONResponseBody) : null;
 
 					ControllerRequestResponseModel model = new ControllerRequestResponseModel()
 					{
 						RequestPath = request.Path,
+						RequestHost = request.Host.ToString(),
 						RequestInfo = new Request()
 						{
-							RequestDate = DateTime.ParseExact(request.Headers.Date.ToString(), "yyyy-MM-dd hh:mm:ss", CultureInfo.InvariantCulture),
+							RequestDate = DateTime.Now,
 							RequestHeaders = request.Headers,
 							RequestJSONBody = jsonRequestObject
 						},
 						ResponseInfo = new Response()
 						{
-							ResponseDate = DateTime.ParseExact(response.Headers.Date.ToString(), "yyyy-MM-dd hh:mm:ss", CultureInfo.InvariantCulture),
+							ResponseDate = DateTime.Now,
 							ResponseHeaders = response.Headers,
 							ResponseJSONBody = jsonResponseObject
 						}
@@ -49,10 +50,11 @@ namespace DotNetCoreFirstproject.DataAccessLayer.ElasticSearch.Elastic
 					elasticCommand.InsertDocument(model);
 
 				}
+
 			}
-			catch (Exception ex)
+			finally
 			{
-				Console.WriteLine(ex.Message.ToString());
+
 			}
 
 		}

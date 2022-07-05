@@ -35,7 +35,7 @@ namespace DotNetCoreFirstproject.Controllers.User
 			}
 
 			KeycloakService keycloakService = new KeycloakService();
-            TokenResponseModel AuthToken = keycloakService.AdminAuth().Result;
+            TokenResponseModel? AuthToken = keycloakService.AdminAuth();
 
             CreateUserRequestModel createUser = new CreateUserRequestModel();
             Helpers.HttpClientHelper.Entities.KeyCloak.CreateUser.Attributes attributes = new Helpers.HttpClientHelper.Entities.KeyCloak.CreateUser.Attributes();
@@ -63,7 +63,7 @@ namespace DotNetCoreFirstproject.Controllers.User
             createUser.attributes = attributes;
             createUser.credentials = credentialList;
 
-            Task<UserSignupResponseModel> createUserResult = keycloakService.CreateUser(createUser, AuthToken);
+            UserSignupResponseModel? createUserResult = keycloakService.CreateUser(createUser, AuthToken);
 
             //AggregateException? exception = createUserResult.Exception;
 
@@ -81,7 +81,7 @@ namespace DotNetCoreFirstproject.Controllers.User
             //    return false;
             //});
 
-            UserSignupResponseModel? result = createUserResult.Result;
+            UserSignupResponseModel? result = createUserResult;
 
             HttpContext.Response.Headers.Add(HttpResponseHeader.ContentType.ToString(), MediaTypeNames.Application.Json);
             HttpContext.Response.StatusCode = (int)HttpStatusCode.Created;

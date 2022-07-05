@@ -12,9 +12,9 @@ namespace DotNetCoreFirstproject.ServiceLayer
 			repository = new ControllerLogRepository();
 		}
 
-		public void InsertControllerRequestResponseLog(HttpRequest request, HttpResponse response)
+		public async Task InsertControllerRequestResponseLog(HttpRequest request, HttpResponse response)
 		{
-			repository.InsertControllerRequestResponseLog(request, response);
+			await repository.InsertControllerRequestResponseLog(request, response);
 		}
 	}
 }

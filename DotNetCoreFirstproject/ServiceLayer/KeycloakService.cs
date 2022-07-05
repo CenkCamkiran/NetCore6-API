@@ -22,7 +22,7 @@ namespace DotNetCoreFirstproject.ServiceLayer
             keycloakConfigHelper = new AppConfigurationHelper();
         }
 
-        public async Task<TokenResponseModel> AdminAuth()
+        public TokenResponseModel? AdminAuth()
 		{
 
             TokenResponseModel? responseBody = default;
@@ -89,7 +89,7 @@ namespace DotNetCoreFirstproject.ServiceLayer
 
         }
 
-        public async Task<TokenResponseModel> UserAuth(UserLoginRequestModel userCredentials)
+        public TokenResponseModel? UserAuth(UserLoginRequestModel userCredentials)
         {
             TokenResponseModel? responseBody = default;
             HttpClientHelper<string> httpClientHelper = new HttpClientHelper<string>();
@@ -155,7 +155,7 @@ namespace DotNetCoreFirstproject.ServiceLayer
 
         }
 
-        public async Task<TokenResponseModel> RefreshSession(bool IsAdmin, TokenResponseModel token)
+        public TokenResponseModel? RefreshSession(bool IsAdmin, TokenResponseModel token)
         {
             TokenResponseModel? responseBody = default;
             HttpClientHelper<string> httpClientHelper = new HttpClientHelper<string>();
@@ -221,10 +221,10 @@ namespace DotNetCoreFirstproject.ServiceLayer
 
         }
 
-        public async Task<object> RemoveSession(bool IsAdmin, TokenResponseModel token) //Remove a specific user session: 204 No Content cevabı geliyor.
+        public object RemoveSession(bool IsAdmin, TokenResponseModel token) //Remove a specific user session: 204 No Content cevabı geliyor.
         {
 
-            var newSession = await RefreshSession(IsAdmin, token);
+            var newSession = RefreshSession(IsAdmin, token);
             HttpClientHelper<string> httpClientHelper = new HttpClientHelper<string>();
 
             var keycloakConfigs = keycloakConfigHelper.GetKeycloakConfig();
@@ -241,7 +241,7 @@ namespace DotNetCoreFirstproject.ServiceLayer
 
         }
 
-        public async Task<UserSignupResponseModel> CreateUser(CreateUserRequestModel requestBody, TokenResponseModel token)
+        public UserSignupResponseModel? CreateUser(CreateUserRequestModel requestBody, TokenResponseModel token)
         {
 
             UserSignupResponseModel? responseBody = default;
@@ -338,7 +338,7 @@ namespace DotNetCoreFirstproject.ServiceLayer
 
             }
 
-            var RemoveSessionResult = await RemoveSession(true, token); //If error comes what to do?
+            var RemoveSessionResult = RemoveSession(true, token); //If error comes what to do?
 
             return responseBody;
 

@@ -2,6 +2,6 @@
 {
 	public interface IControllerLogRepository
 	{
-		public void InsertControllerRequestResponseLog(HttpRequest request, HttpResponse response);
+		public Task InsertControllerRequestResponseLog(HttpRequest request, HttpResponse response);
 	}
 }

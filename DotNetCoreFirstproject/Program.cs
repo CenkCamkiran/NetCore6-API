@@ -26,9 +26,20 @@ configuration.GetSection(ApplicationSettings.RootOption).Bind(ApplicationSetting
 
 //app.UsePathBase(new PathString("/rest/api/v1")); //Value must start with '/' //This is not working
 
-//app.UseLoggingMiddleware();
+app.Use(async (context, next) =>
+{
+    context.Request.EnableBuffering();
+    //This line of code can be used to seeking or reading stream second or multiple times.
+    //Old C# code is EnableRewind(). This code does the same job of EnableBuffering. EnableBuffering => ASP.NET Core 2.1
+    //Ideally do this early in the middleware before anything needs to read the body
+    await next();
+});
+
+app.UseResponseReadableStreamMiddleware();
 
 app.UseErrorHandlerMiddleware();
+
+app.UseLoggingMiddleware();
 
 //app.UseWhen(context => context.Request.Path.StartsWithSegments("/rest/api/v1/user"), appBuilder =>  // The path must be started with '/'
 //{

@@ -16,7 +16,7 @@ namespace DotNetCoreFirstproject.Middleware
             await _next(httpContext);
 
             LoggingService loggingService = new LoggingService();
-            loggingService.InsertControllerRequestResponseLog(httpContext.Request, httpContext.Response);
+            await loggingService.InsertControllerRequestResponseLog(httpContext.Request, httpContext.Response);
 
         }
     }
