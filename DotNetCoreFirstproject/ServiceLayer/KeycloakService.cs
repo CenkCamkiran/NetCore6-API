@@ -1,15 +1,19 @@
 ﻿using DotNetCoreFirstproject.Controllers.Entities;
+using DotNetCoreFirstproject.Helpers.APIExceptionHelper;
 using DotNetCoreFirstproject.Helpers.AppConfigurationHelpers;
+using DotNetCoreFirstproject.Helpers.AppExceptionHelpers;
 using DotNetCoreFirstproject.Helpers.Entities;
+using DotNetCoreFirstproject.Helpers.Entities.Keycloak;
 using DotNetCoreFirstproject.Helpers.HttpClientHelper;
 using DotNetCoreFirstproject.Helpers.HttpClientHelper.Entities.KeyCloak.CreateUser;
 using DotNetCoreFirstproject.ServiceLayer.Interfaces;
+using Newtonsoft.Json;
 using System.Net;
 using System.Net.Mime;
 
 namespace DotNetCoreFirstproject.ServiceLayer
 {
-    public class KeycloakService: AppConfigurationHelper
+    public class KeycloakService : AppConfigurationHelper
     {
         private AppConfigurationHelper keycloakConfigHelper;
 
@@ -19,9 +23,10 @@ namespace DotNetCoreFirstproject.ServiceLayer
         }
 
         public async Task<TokenResponseModel> AdminAuth()
-        {
+		{
 
-            HttpClientHelper<string, TokenResponseModel> httpClientHelper = new HttpClientHelper<string, TokenResponseModel>();
+            TokenResponseModel? responseBody = default;
+			HttpClientHelper<string> httpClientHelper = new HttpClientHelper<string>();
 
             var keycloakConfigs = keycloakConfigHelper.GetKeycloakConfig();
             string WebServiceUrl = string.Concat(keycloakConfigs["Host"], string.Format(keycloakConfigs["TokenRoute"], keycloakConfigs["AdminRealmName"]));
@@ -37,16 +42,57 @@ namespace DotNetCoreFirstproject.ServiceLayer
             httpHeaders.Add(HttpRequestHeader.ContentType.ToString(), "application/x-www-form-urlencoded"); //MediaTypeNames.Application.???
             httpHeaders.Add(HttpRequestHeader.Accept.ToString(), MediaTypeNames.Application.Json);
 
-            var APIResult = httpClientHelper.MakeFormRequest(WebServiceUrl, requestForm, HttpMethod.Post, httpHeaders);
+            var httpResponseMessage = httpClientHelper.MakeFormRequest(WebServiceUrl, requestForm, HttpMethod.Post, httpHeaders);
 
-            return APIResult;
+            if (httpResponseMessage.StatusCode == HttpStatusCode.OK)
+            {
+                var jsonString = httpResponseMessage.Content.ReadAsStringAsync();
+                responseBody = JsonConvert.DeserializeObject<TokenResponseModel>(jsonString.Result);
+
+            }
+            else if (httpResponseMessage.StatusCode == HttpStatusCode.BadRequest)
+            {
+
+                var jsonString = httpResponseMessage.Content.ReadAsStringAsync();
+                var errorResponse = JsonConvert.DeserializeObject<KeycloakGeneralErrorModel>(jsonString.Result);
+
+                CustomAppErrorModel customAppErrorModel = new CustomAppErrorModel();
+                customAppErrorModel.ErrorMessage = errorResponse.error_description;
+                customAppErrorModel.ErrorCode = ((int)httpResponseMessage.StatusCode).ToString();
+
+                throw new KeycloakException(JsonConvert.SerializeObject(customAppErrorModel));
+            }
+            else if (httpResponseMessage.StatusCode == HttpStatusCode.Unauthorized)
+            {
+
+                var jsonString = httpResponseMessage.Content.ReadAsStringAsync();
+                var errorResponse = JsonConvert.DeserializeObject<KeycloakGeneralErrorModel>(jsonString.Result);
+
+                CustomKeycloakErrorModel errorModel = new CustomKeycloakErrorModel();
+                errorModel.ErrorMessage = errorResponse.error_description;
+                errorModel.ErrorCode = ((int)httpResponseMessage.StatusCode).ToString();
+                errorModel.KeycloakToken = null;
+
+                throw new KeycloakException(JsonConvert.SerializeObject(errorModel));
+            }
+            else
+            {
+
+                CustomAppErrorModel customAppErrorModel = new CustomAppErrorModel();
+                customAppErrorModel.ErrorMessage = "Application Error";
+                customAppErrorModel.ErrorCode = ((int)httpResponseMessage.StatusCode).ToString();
+
+                throw new AppException(JsonConvert.SerializeObject(customAppErrorModel));
+            }
+
+            return responseBody;
 
         }
 
         public async Task<TokenResponseModel> UserAuth(UserLoginRequestModel userCredentials)
         {
-
-            HttpClientHelper<string, TokenResponseModel> httpClientHelper = new HttpClientHelper<string, TokenResponseModel>();
+            TokenResponseModel? responseBody = default;
+            HttpClientHelper<string> httpClientHelper = new HttpClientHelper<string>();
 
             var keycloakConfigs = keycloakConfigHelper.GetKeycloakConfig();
             string WebServiceUrl = string.Concat(keycloakConfigs["Host"], string.Format(keycloakConfigs["TokenRoute"], keycloakConfigs["UserRealmName"]));
@@ -62,16 +108,57 @@ namespace DotNetCoreFirstproject.ServiceLayer
             httpHeaders.Add(HttpRequestHeader.ContentType.ToString(), "application/x-www-form-urlencoded"); //MediaTypeNames.Application.???
             httpHeaders.Add(HttpRequestHeader.Accept.ToString(), MediaTypeNames.Application.Json);
 
-            var APIResult = httpClientHelper.MakeFormRequest(WebServiceUrl, requestForm, HttpMethod.Post, httpHeaders);
+            var httpResponseMessage = httpClientHelper.MakeFormRequest(WebServiceUrl, requestForm, HttpMethod.Post, httpHeaders);
 
-            return APIResult;
+            if (httpResponseMessage.StatusCode == HttpStatusCode.OK)
+            {
+                var jsonString = httpResponseMessage.Content.ReadAsStringAsync();
+                responseBody = JsonConvert.DeserializeObject<TokenResponseModel>(jsonString.Result);
+
+            }
+            else if (httpResponseMessage.StatusCode == HttpStatusCode.BadRequest)
+            {
+
+                var jsonString = httpResponseMessage.Content.ReadAsStringAsync();
+                var errorResponse = JsonConvert.DeserializeObject<KeycloakGeneralErrorModel>(jsonString.Result);
+
+                CustomAppErrorModel customAppErrorModel = new CustomAppErrorModel();
+                customAppErrorModel.ErrorMessage = errorResponse.error_description;
+                customAppErrorModel.ErrorCode = ((int)httpResponseMessage.StatusCode).ToString();
+
+                throw new KeycloakException(JsonConvert.SerializeObject(customAppErrorModel));
+            }
+            else if (httpResponseMessage.StatusCode == HttpStatusCode.Unauthorized)
+            {
+
+                var jsonString = httpResponseMessage.Content.ReadAsStringAsync();
+                var errorResponse = JsonConvert.DeserializeObject<KeycloakGeneralErrorModel>(jsonString.Result);
+
+                CustomKeycloakErrorModel errorModel = new CustomKeycloakErrorModel();
+                errorModel.ErrorMessage = errorResponse.error_description;
+                errorModel.ErrorCode = ((int)httpResponseMessage.StatusCode).ToString();
+                errorModel.KeycloakToken = null;
+
+                throw new KeycloakException(JsonConvert.SerializeObject(errorModel));
+            }
+            else
+            {
+
+                CustomAppErrorModel customAppErrorModel = new CustomAppErrorModel();
+                customAppErrorModel.ErrorMessage = "Application Error";
+                customAppErrorModel.ErrorCode = ((int)httpResponseMessage.StatusCode).ToString();
+
+                throw new AppException(JsonConvert.SerializeObject(customAppErrorModel));
+            }
+
+            return responseBody;
 
         }
 
         public async Task<TokenResponseModel> RefreshSession(bool IsAdmin, TokenResponseModel token)
         {
-
-            HttpClientHelper<string, TokenResponseModel> httpClientHelper = new HttpClientHelper<string, TokenResponseModel>();
+            TokenResponseModel? responseBody = default;
+            HttpClientHelper<string> httpClientHelper = new HttpClientHelper<string>();
 
             var keycloakConfigs = keycloakConfigHelper.GetKeycloakConfig();
             string WebServiceUrl = IsAdmin ? string.Concat(keycloakConfigs["Host"], string.Format(keycloakConfigs["TokenRoute"], keycloakConfigs["AdminRealmName"]))
@@ -87,17 +174,58 @@ namespace DotNetCoreFirstproject.ServiceLayer
             httpHeaders.Add(HttpRequestHeader.ContentType.ToString(), "application/x-www-form-urlencoded"); //MediaTypeNames.Application.???
             httpHeaders.Add(HttpRequestHeader.Accept.ToString(), MediaTypeNames.Application.Json);
 
-            var APIResult = httpClientHelper.MakeFormRequest(WebServiceUrl, requestForm, HttpMethod.Post, httpHeaders);
+            var httpResponseMessage = httpClientHelper.MakeFormRequest(WebServiceUrl, requestForm, HttpMethod.Post, httpHeaders);
 
-            return APIResult;
+            if (httpResponseMessage.StatusCode == HttpStatusCode.OK)
+            {
+                var jsonString = httpResponseMessage.Content.ReadAsStringAsync();
+                responseBody = JsonConvert.DeserializeObject<TokenResponseModel>(jsonString.Result);
+
+            }
+            else if (httpResponseMessage.StatusCode == HttpStatusCode.BadRequest)
+            {
+
+                var jsonString = httpResponseMessage.Content.ReadAsStringAsync();
+                var errorResponse = JsonConvert.DeserializeObject<KeycloakGeneralErrorModel>(jsonString.Result);
+
+                CustomAppErrorModel customAppErrorModel = new CustomAppErrorModel();
+                customAppErrorModel.ErrorMessage = errorResponse.error_description;
+                customAppErrorModel.ErrorCode = ((int)httpResponseMessage.StatusCode).ToString();
+
+                throw new KeycloakException(JsonConvert.SerializeObject(customAppErrorModel));
+            }
+            else if (httpResponseMessage.StatusCode == HttpStatusCode.Unauthorized)
+            {
+
+                var jsonString = httpResponseMessage.Content.ReadAsStringAsync();
+                var errorResponse = JsonConvert.DeserializeObject<KeycloakGeneralErrorModel>(jsonString.Result);
+
+                CustomKeycloakErrorModel errorModel = new CustomKeycloakErrorModel();
+                errorModel.ErrorMessage = errorResponse.error_description;
+                errorModel.ErrorCode = ((int)httpResponseMessage.StatusCode).ToString();
+                errorModel.KeycloakToken = null;
+
+                throw new KeycloakException(JsonConvert.SerializeObject(errorModel));
+            }
+            else
+            {
+
+                CustomAppErrorModel customAppErrorModel = new CustomAppErrorModel();
+                customAppErrorModel.ErrorMessage = "Application Error";
+                customAppErrorModel.ErrorCode = ((int)httpResponseMessage.StatusCode).ToString();
+
+                throw new AppException(JsonConvert.SerializeObject(customAppErrorModel));
+            }
+
+            return responseBody;
 
         }
 
         public async Task<object> RemoveSession(bool IsAdmin, TokenResponseModel token) //Remove a specific user session: 204 No Content cevabı geliyor.
         {
 
-            TokenResponseModel newSession = await RefreshSession(IsAdmin, token);
-            HttpClientHelper<string, object> httpClientHelper = new HttpClientHelper<string, object>();
+            var newSession = await RefreshSession(IsAdmin, token);
+            HttpClientHelper<string> httpClientHelper = new HttpClientHelper<string>();
 
             var keycloakConfigs = keycloakConfigHelper.GetKeycloakConfig();
             string WebServiceUrl = IsAdmin ? string.Concat(keycloakConfigs["Host"], string.Format(keycloakConfigs["SessionRoute"], keycloakConfigs["AdminRealmName"], token.session_state)) 
@@ -116,7 +244,8 @@ namespace DotNetCoreFirstproject.ServiceLayer
         public async Task<UserSignupResponseModel> CreateUser(CreateUserRequestModel requestBody, TokenResponseModel token)
         {
 
-            HttpClientHelper<CreateUserRequestModel, UserSignupResponseModel> httpClientHelper = new HttpClientHelper<CreateUserRequestModel, UserSignupResponseModel>();
+            UserSignupResponseModel? responseBody = default;
+            HttpClientHelper<CreateUserRequestModel> httpClientHelper = new HttpClientHelper<CreateUserRequestModel>();
 
             var keycloakConfigs = keycloakConfigHelper.GetKeycloakConfig();
             string WebServiceUrl = string.Concat(keycloakConfigs["Host"], string.Format(keycloakConfigs["UsersRoute"], keycloakConfigs["UserRealmName"]));
@@ -127,11 +256,91 @@ namespace DotNetCoreFirstproject.ServiceLayer
             httpHeaders.Add(HttpRequestHeader.Accept.ToString(), "application/json");
             httpHeaders.Add(HttpRequestHeader.Authorization.ToString(), string.Format("Bearer {0}", token.access_token));
 
-            var APIResult = httpClientHelper.MakeJSONRequest(WebServiceUrl, requestBody, HttpMethod.Post, httpHeaders, token);
+            var httpResponseMessage = httpClientHelper.MakeJSONRequest(WebServiceUrl, requestBody, HttpMethod.Post, httpHeaders, token);
+
+            if (httpResponseMessage.StatusCode == HttpStatusCode.Created)
+            {
+                var jsonString = httpResponseMessage.Content.ReadAsStringAsync();
+                responseBody = JsonConvert.DeserializeObject<UserSignupResponseModel>(jsonString.Result);
+
+            }
+            else if (httpResponseMessage.StatusCode == HttpStatusCode.Conflict)
+            {
+                var jsonString = httpResponseMessage.Content.ReadAsStringAsync();
+                var createUserErrorResponseModel = JsonConvert.DeserializeObject<CreateUserErrorResponseModel>(jsonString.Result);
+
+                if (token == null)
+                {
+                    CustomAppErrorModel customAppErrorModel = new CustomAppErrorModel();
+                    customAppErrorModel.ErrorMessage = "Application Error";
+                    customAppErrorModel.ErrorCode = ((int)httpResponseMessage.StatusCode).ToString();
+
+                    throw new AppException(JsonConvert.SerializeObject(customAppErrorModel));
+                }
+                else
+                {
+
+                    CustomKeycloakErrorModel errorModel = new CustomKeycloakErrorModel();
+                    errorModel.ErrorMessage = createUserErrorResponseModel.errorMessage;
+                    errorModel.ErrorCode = ((int)httpResponseMessage.StatusCode).ToString();
+                    errorModel.KeycloakToken = token;
+
+                    throw new KeycloakException(JsonConvert.SerializeObject(errorModel));
+                }
+
+            }
+            else if (httpResponseMessage.StatusCode == HttpStatusCode.BadRequest)
+            {
+
+                if (token == null)
+                {
+                    CustomAppErrorModel customAppErrorModel = new CustomAppErrorModel();
+                    customAppErrorModel.ErrorMessage = "Application Error";
+                    customAppErrorModel.ErrorCode = ((int)httpResponseMessage.StatusCode).ToString();
+
+                    throw new AppException(JsonConvert.SerializeObject(customAppErrorModel));
+                }
+                else
+                {
+
+                    var jsonString = httpResponseMessage.Content.ReadAsStringAsync();
+                    var createUserErrorResponseModel = JsonConvert.DeserializeObject<CreateUserErrorResponseModel>(jsonString.Result);
+
+                    CustomKeycloakErrorModel errorModel = new CustomKeycloakErrorModel();
+                    errorModel.ErrorMessage = createUserErrorResponseModel.errorMessage;
+                    errorModel.ErrorCode = ((int)httpResponseMessage.StatusCode).ToString();
+                    errorModel.KeycloakToken = token;
+
+                    throw new KeycloakException(JsonConvert.SerializeObject(errorModel));
+                }
+
+            }
+            else
+            {
+
+                if (token == null)
+                {
+                    CustomAppErrorModel customAppErrorModel = new CustomAppErrorModel();
+                    customAppErrorModel.ErrorMessage = "Application Error";
+                    customAppErrorModel.ErrorCode = ((int)httpResponseMessage.StatusCode).ToString();
+
+                    throw new AppException(JsonConvert.SerializeObject(customAppErrorModel));
+                }
+                else
+                {
+                    CustomKeycloakErrorModel errorModel = new CustomKeycloakErrorModel();
+                    errorModel.ErrorMessage = "HTTP 500 Internal Server Error";
+                    errorModel.ErrorCode = ((int)httpResponseMessage.StatusCode).ToString();
+                    errorModel.KeycloakToken = token;
+
+                    throw new KeycloakException(JsonConvert.SerializeObject(errorModel));
+                }
+
+            }
 
             var RemoveSessionResult = await RemoveSession(true, token); //If error comes what to do?
 
-            return APIResult;
+            return responseBody;
 
         }
 

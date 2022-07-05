@@ -26,7 +26,7 @@ configuration.GetSection(ApplicationSettings.RootOption).Bind(ApplicationSetting
 
 //app.UsePathBase(new PathString("/rest/api/v1")); //Value must start with '/' //This is not working
 
-app.UseLoggingMiddleware();
+//app.UseLoggingMiddleware();
 
 app.UseErrorHandlerMiddleware();
 

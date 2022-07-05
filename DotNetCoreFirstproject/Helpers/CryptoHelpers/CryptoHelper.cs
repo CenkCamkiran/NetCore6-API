@@ -23,7 +23,7 @@ namespace DotNetCoreFirstproject.Helpers.CryptoHelpers
                 {
                     builder.Append(bytes[i].ToString("x2"));
                 }
-                return builder.ToString();
+                return builder.ToString().ToUpper();
             }
         }
 
