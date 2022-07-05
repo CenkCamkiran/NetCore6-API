@@ -17,7 +17,13 @@ namespace DotNetCoreFirstproject.DataAccessLayer.ElasticSearch.Infrastructure
 		{
 			try
 			{
-				var indexResult = elasticConn.ElasticSearchClient.IndexDocument(document);
+
+				var cenk = new
+				{
+					Number = 5,
+					Name = "Test"
+				};
+				var indexResult = elasticConn.ElasticSearchClient.IndexDocument(cenk);
 				Console.WriteLine("Index ID: " + indexResult.Id);
 				Console.WriteLine("Index Name: " + indexResult.Index);
 				Console.WriteLine("Result Code: " + indexResult.Result);

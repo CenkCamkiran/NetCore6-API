@@ -18,38 +18,47 @@ namespace DotNetCoreFirstproject.DataAccessLayer.ElasticSearch.Elastic
 
 		public async Task InsertControllerRequestResponseLog(HttpRequest request, HttpResponse response)
 		{
+			//That way any code later in the request lifecycle will find the request.Body in a state just like it hasn't been read yet.
+			request.Body.Position = 0;
+			response.Body.Position = 0;
 
 			try
 			{
-				using (StreamReader requestStream = new StreamReader(request.Body), responseStream = new StreamReader(response.Body))
+
+				//I did not close stream on purpose.
+				StreamReader requestStream = new StreamReader(request.Body);
+				StreamReader responseStream = new StreamReader(response.Body);
+
+				var JSONRequestBody = await requestStream.ReadToEndAsync();
+				var JSONResponseBody = await responseStream.ReadToEndAsync();
+
+				JObject? jsonRequestObject = string.IsNullOrEmpty(JSONRequestBody) == null ? JObject.Parse(JSONRequestBody) : null;
+				JObject? jsonResponseObject = string.IsNullOrEmpty(JSONResponseBody) == null ? JObject.Parse(JSONResponseBody) : null;
+
+				ControllerRequestResponseModel model = new ControllerRequestResponseModel()
 				{
-				    var JSONRequestBody = await requestStream.ReadToEndAsync();
-					var JSONResponseBody = await responseStream.ReadToEndAsync();
-
-					JObject? jsonRequestObject = string.IsNullOrEmpty(JSONRequestBody) == null ? JObject.Parse(JSONRequestBody) : null;
-					JObject? jsonResponseObject = string.IsNullOrEmpty(JSONResponseBody) == null ? JObject.Parse(JSONResponseBody) : null;
-
-					ControllerRequestResponseModel model = new ControllerRequestResponseModel()
+					//RequestPath = request.Path,
+					//RequestHost = request.Host.ToString(),
+					//ContentLength = 
+					RequestInfo = new Request()
 					{
-						RequestPath = request.Path,
+						RequestDate = DateTime.Now,
+						RequestHeaders = request.Headers,
+						RequestJSONBody = jsonRequestObject,
+						Method = request.Method,
+						Protocol = request.Protocol,
 						RequestHost = request.Host.ToString(),
-						RequestInfo = new Request()
-						{
-							RequestDate = DateTime.Now,
-							RequestHeaders = request.Headers,
-							RequestJSONBody = jsonRequestObject
-						},
-						ResponseInfo = new Response()
-						{
-							ResponseDate = DateTime.Now,
-							ResponseHeaders = response.Headers,
-							ResponseJSONBody = jsonResponseObject
-						}
-					};
+						RequestPath = request.Path.ToString()
+					},
+					ResponseInfo = new Response()
+					{
+						ResponseDate = DateTime.Now,
+						ResponseHeaders = response.Headers,
+						ResponseJSONBody = jsonResponseObject
+					}
+				};
 
-					elasticCommand.InsertDocument(model);
-
-				}
+				elasticCommand.InsertDocument(model);
 
 			}
 			finally
