@@ -18,7 +18,6 @@ namespace DotNetCoreFirstproject.DataAccessLayer.ElasticSearch.Infrastructure
 
 		public void IndexData(ControllerRequestResponseModel document)
 		{
-
 			IndexResponse? indexResult = default;
 
 			try

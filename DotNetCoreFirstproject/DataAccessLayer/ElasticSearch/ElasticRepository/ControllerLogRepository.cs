@@ -32,15 +32,15 @@ namespace DotNetCoreFirstproject.DataAccessLayer.ElasticSearch.Elastic
 				var JSONRequestBody = await requestStream.ReadToEndAsync();
 				var JSONResponseBody = await responseStream.ReadToEndAsync();
 
-				JObject? jsonRequestObject = string.IsNullOrEmpty(JSONRequestBody) == null ? JObject.Parse(JSONRequestBody) : null;
-				JObject? jsonResponseObject = string.IsNullOrEmpty(JSONResponseBody) == null ? JObject.Parse(JSONResponseBody) : null;
+				JObject? jsonRequestObject = string.IsNullOrEmpty(JSONRequestBody) ? null : JObject.Parse(JSONRequestBody);
+				JObject? jsonResponseObject = string.IsNullOrEmpty(JSONResponseBody) ? null : JObject.Parse(JSONResponseBody);
 
 				ControllerRequestResponseModel model = new ControllerRequestResponseModel()
 				{
 					RequestInfo = new Request()
 					{
 						RequestDate = DateTime.Now,
-						RequestJSONBody = JSONRequestBody,
+						RequestJSONBody = jsonRequestObject,
 						Method = request.Method,
 						Protocol = request.Protocol,
 						RequestHost = request.Host.ToString(),
@@ -49,7 +49,7 @@ namespace DotNetCoreFirstproject.DataAccessLayer.ElasticSearch.Elastic
 					ResponseInfo = new Response()
 					{
 						ResponseDate = DateTime.Now,
-						ResponseJSONBody = JSONResponseBody
+						ResponseJSONBody = jsonResponseObject
 					}
 				};
 
@@ -58,7 +58,7 @@ namespace DotNetCoreFirstproject.DataAccessLayer.ElasticSearch.Elastic
 			}
 			finally
 			{
-
+				//
 			}
 
 		}

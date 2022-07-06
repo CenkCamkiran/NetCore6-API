@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace DotNetCoreFirstproject.DataAccessLayer.ElasticSearch.Entities
 {
@@ -15,7 +16,7 @@ namespace DotNetCoreFirstproject.DataAccessLayer.ElasticSearch.Entities
 	{
 
 		[JsonProperty(PropertyName = "RequestJSONBody")]
-		public object? RequestJSONBody { get; set; }
+		public JObject? RequestJSONBody { get; set; }
 
 		[JsonProperty(PropertyName = "RequestDate")]
 		public DateTime RequestDate { get; set; }
@@ -37,7 +38,7 @@ namespace DotNetCoreFirstproject.DataAccessLayer.ElasticSearch.Entities
 	{
 
 		[JsonProperty(PropertyName = "ResponseJSONBody")]
-		public object? ResponseJSONBody { get; set; }
+		public JObject? ResponseJSONBody { get; set; }
 
 		[JsonProperty(PropertyName = "ResponseHeaders")]
 		public object? ResponseHeaders { get; set; }

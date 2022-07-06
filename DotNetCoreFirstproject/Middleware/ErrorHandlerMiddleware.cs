@@ -30,6 +30,9 @@ namespace DotNetCoreFirstproject.Middleware
             }
             catch(AggregateException error)
             {
+
+                KeycloakService keycloakService = new KeycloakService();
+
                 var response = httpContext.Response;
                 response.ContentType = MediaTypeNames.Application.Json; // HttpResponseHeader.ContentType.ToString();
 
@@ -42,7 +45,6 @@ namespace DotNetCoreFirstproject.Middleware
                 {
                     case KeycloakException:
 
-                        KeycloakService keycloakService = new KeycloakService();
                         CustomKeycloakErrorModel AdminTokenModel = JsonConvert.DeserializeObject<CustomKeycloakErrorModel>(error.InnerException.Message);
 
                         response.StatusCode = Convert.ToInt32(AdminTokenModel.ErrorCode);
@@ -142,6 +144,8 @@ namespace DotNetCoreFirstproject.Middleware
             catch (Exception error)
             {
 
+                KeycloakService keycloakService = new KeycloakService();
+
                 var response = httpContext.Response;
                 response.ContentType = MediaTypeNames.Application.Json; // HttpResponseHeader.ContentType.ToString();
 
@@ -152,9 +156,9 @@ namespace DotNetCoreFirstproject.Middleware
 
                 switch (error)
                 {
+
                     case KeycloakException:
 
-                        KeycloakService keycloakService = new KeycloakService();
                         CustomKeycloakErrorModel AdminTokenModel = JsonConvert.DeserializeObject<CustomKeycloakErrorModel>(error.Message);
 
                         response.StatusCode = Convert.ToInt32(AdminTokenModel.ErrorCode);
@@ -162,7 +166,8 @@ namespace DotNetCoreFirstproject.Middleware
                         errorResponse.ErrorMessage = AdminTokenModel?.ErrorMessage;
                         errorResponse.ErrorCode = AdminTokenModel?.ErrorCode;
 
-                        keycloakService.RemoveSession(true, AdminTokenModel.KeycloakToken);
+                        if (AdminTokenModel.KeycloakToken != null)
+                            keycloakService.RemoveSession(true, AdminTokenModel.KeycloakToken);
 
                         break;
 
