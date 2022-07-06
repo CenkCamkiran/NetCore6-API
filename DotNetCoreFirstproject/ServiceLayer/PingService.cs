@@ -15,7 +15,7 @@ namespace DotNetCoreFirstproject.ServiceLayer
 			pingHelper = new PingHelper();
 		}
 
-		public async Task<PingReply> PingKeycloak()
+		public PingReply PingKeycloak()
 		{
 
 			Dictionary<string, string> config = configHelper.GetKeycloakConfig();
@@ -23,7 +23,7 @@ namespace DotNetCoreFirstproject.ServiceLayer
 
 		}
 
-		public async Task<PingReply> PingElasticSearch()
+		public PingReply PingElasticSearch()
 		{
 
 			Dictionary<string, string> config = configHelper.GetElasticSearchConfig();

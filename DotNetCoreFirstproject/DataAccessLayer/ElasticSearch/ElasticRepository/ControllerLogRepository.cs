@@ -37,14 +37,10 @@ namespace DotNetCoreFirstproject.DataAccessLayer.ElasticSearch.Elastic
 
 				ControllerRequestResponseModel model = new ControllerRequestResponseModel()
 				{
-					//RequestPath = request.Path,
-					//RequestHost = request.Host.ToString(),
-					//ContentLength = 
 					RequestInfo = new Request()
 					{
 						RequestDate = DateTime.Now,
-						RequestHeaders = request.Headers,
-						RequestJSONBody = jsonRequestObject,
+						RequestJSONBody = JSONRequestBody,
 						Method = request.Method,
 						Protocol = request.Protocol,
 						RequestHost = request.Host.ToString(),
@@ -53,12 +49,11 @@ namespace DotNetCoreFirstproject.DataAccessLayer.ElasticSearch.Elastic
 					ResponseInfo = new Response()
 					{
 						ResponseDate = DateTime.Now,
-						ResponseHeaders = response.Headers,
-						ResponseJSONBody = jsonResponseObject
+						ResponseJSONBody = JSONResponseBody
 					}
 				};
 
-				elasticCommand.InsertDocument(model);
+				elasticCommand.IndexData(model);
 
 			}
 			finally

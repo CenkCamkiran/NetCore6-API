@@ -18,10 +18,10 @@ namespace DotNetCoreFirstproject.Controllers.Health
             APIHealthResponseModel apiHealthResponseModel = new APIHealthResponseModel();   
 
             PingService pingService = new PingService();
-            Task<PingReply> elasticStatus = pingService.PingElasticSearch();
-            Task<PingReply> keycloakStatus = pingService.PingKeycloak();
+            PingReply elasticStatus = pingService.PingElasticSearch();
+            PingReply keycloakStatus = pingService.PingKeycloak();
 
-            if (elasticStatus.Result.Status == IPStatus.Success && keycloakStatus.Result.Status == IPStatus.Success)
+            if (elasticStatus.Status == IPStatus.Success && keycloakStatus.Status == IPStatus.Success)
 			{
                 apiHealthResponseModel.HealthStatus = ((int)HttpStatusCode.OK).ToString();
                 apiHealthResponseModel.HealthStatusDescription = "API is OK!";

@@ -1,5 +1,8 @@
 ﻿using DotNetCoreFirstproject.DataAccessLayer.ElasticSearch.Entities;
 using DotNetCoreFirstproject.DataAccessLayer.ElasticSearch.Interfaces;
+using DotNetCoreFirstproject.Helpers.AppExceptionHelpers;
+using DotNetCoreFirstproject.Helpers.Entities.Keycloak;
+using Nest;
 
 namespace DotNetCoreFirstproject.DataAccessLayer.ElasticSearch.Infrastructure
 {
@@ -13,26 +16,33 @@ namespace DotNetCoreFirstproject.DataAccessLayer.ElasticSearch.Infrastructure
 			elasticConn = new ElasticSearchConnection();
 		}
 
-		public void InsertDocument(ControllerRequestResponseModel document)
+		public void IndexData(ControllerRequestResponseModel document)
 		{
+
+			IndexResponse? indexResult = default;
+
 			try
 			{
 
-				var cenk = new
-				{
-					Number = 5,
-					Name = "Test"
-				};
-				var indexResult = elasticConn.ElasticSearchClient.IndexDocument(cenk);
+				indexResult = elasticConn.ElasticSearchClient.IndexDocument(document);
 				Console.WriteLine("Index ID: " + indexResult.Id);
 				Console.WriteLine("Index Name: " + indexResult.Index);
 				Console.WriteLine("Result Code: " + indexResult.Result);
 				Console.WriteLine("Is Valid: " + indexResult.IsValid);
+				Console.WriteLine("Server Error: " + indexResult.ServerError);
+				Console.WriteLine("API Call HTTP Status Code: " + indexResult.ApiCall.HttpStatusCode);
+				Console.WriteLine("API Call Original Exception: " + indexResult.ApiCall.OriginalException);
+				Console.WriteLine("API Call Success: " + indexResult.ApiCall.Success);
 
 			}
-			catch (Exception ex)
+			catch (Exception exception)
 			{
-				Console.WriteLine(ex.Message.ToString());
+
+				CustomAppErrorModel customAppErrorModel = new CustomAppErrorModel();
+				customAppErrorModel.ErrorMessage = exception.Message.ToString() + " - " + indexResult.ApiCall.OriginalException;
+				customAppErrorModel.ErrorCode = (indexResult.ApiCall.HttpStatusCode).ToString();
+
+				throw new ElasticSearchException();
 			}
 
 		}
