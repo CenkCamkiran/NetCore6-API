@@ -21,13 +21,15 @@ namespace DotNetCoreFirstproject.Middleware
 
             var request = httpContext.Request;
 
-            StringValues AccessToken = "";
+            StringValues AuthorizationBearerToken = "";
             StringValues RefreshToken = "";
 
-            bool IsAccessTokenHeaderExists = request.Headers.TryGetValue("AccessToken", out AccessToken);
+            bool IsAuthorizationHeaderExists = request.Headers.TryGetValue(HttpRequestHeader.Authorization.ToString(), out AuthorizationBearerToken);
+            string AccessToken = AuthorizationBearerToken.ToString().Replace("Bearer", "", StringComparison.OrdinalIgnoreCase).Trim();
+            //bool IsAccessTokenHeaderExists = request.Headers.TryGetValue("AccessToken", out AccessToken);
             bool IsRefreshTokenHeaderExists = request.Headers.TryGetValue("RefreshToken", out RefreshToken);
 
-            if (!IsAccessTokenHeaderExists || !IsRefreshTokenHeaderExists)
+            if (!IsAuthorizationHeaderExists || !IsRefreshTokenHeaderExists)
             {
                 CustomAppErrorModel errorModel = new CustomAppErrorModel();
                 errorModel.ErrorMessage = "AccessToken or RefreshToken not found in request headers.";
