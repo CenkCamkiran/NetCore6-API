@@ -1,6 +1,6 @@
-﻿namespace Helpers.FileHelper
+﻿namespace Helpers.FileHelpers
 {
-    public class FileHelper
-    {
-    }
+	public class FileHelper
+	{
+	}
 }

@@ -1,20 +1,21 @@
 ﻿using Entities.ControllerEntities;
-using Helpers.HttpClientHelper;
 using Newtonsoft.Json;
 using System.Net;
 using System.Net.Mime;
 using Helpers.AppExceptionHelpers;
 using Entities.HelpersEntities;
+using Helpers.HttpClientHelpers;
+using Configurations;
 
 namespace BusinessLayer
 {
-	public class KeycloakService : Helpers.AppConfigurationHelpers.AppConfigurationHelper
+	public class KeycloakService : AppConfiguration
     {
-        private Helpers.AppConfigurationHelpers.AppConfigurationHelper keycloakConfigHelper;
+        private AppConfiguration appConfiguration;
 
         public KeycloakService()
         {
-            keycloakConfigHelper = new Helpers.AppConfigurationHelpers.AppConfigurationHelper();
+            appConfiguration = new AppConfiguration();
         }
 
         public TokenResponseModel? AdminAuth()
@@ -23,7 +24,7 @@ namespace BusinessLayer
             TokenResponseModel? responseBody = default;
 			HttpClientHelper<string> httpClientHelper = new HttpClientHelper<string>();
 
-            var keycloakConfigs = keycloakConfigHelper.GetKeycloakConfig();
+            var keycloakConfigs = appConfiguration.GetKeycloakConfig();
             string WebServiceUrl = string.Concat(keycloakConfigs["Host"], string.Format(keycloakConfigs["TokenRoute"], keycloakConfigs["AdminRealmName"]));
 
             Dictionary<string, string> requestForm = new Dictionary<string, string>();
@@ -89,7 +90,7 @@ namespace BusinessLayer
             TokenResponseModel? responseBody = default;
             HttpClientHelper<string> httpClientHelper = new HttpClientHelper<string>();
 
-            var keycloakConfigs = keycloakConfigHelper.GetKeycloakConfig();
+            var keycloakConfigs = appConfiguration.GetKeycloakConfig();
             string WebServiceUrl = string.Concat(keycloakConfigs["Host"], string.Format(keycloakConfigs["TokenRoute"], keycloakConfigs["UserRealmName"]));
 
             Dictionary<string, string> requestForm = new Dictionary<string, string>();
@@ -155,7 +156,7 @@ namespace BusinessLayer
             TokenResponseModel? responseBody = default;
             HttpClientHelper<string> httpClientHelper = new HttpClientHelper<string>();
 
-            var keycloakConfigs = keycloakConfigHelper.GetKeycloakConfig();
+            var keycloakConfigs = appConfiguration.GetKeycloakConfig();
             string WebServiceUrl = IsAdmin ? string.Concat(keycloakConfigs["Host"], string.Format(keycloakConfigs["TokenRoute"], keycloakConfigs["AdminRealmName"]))
                 : string.Concat(keycloakConfigs["Host"], string.Format(keycloakConfigs["TokenRoute"], keycloakConfigs["UserRealmName"]));
 
@@ -222,7 +223,7 @@ namespace BusinessLayer
             var newSession = RefreshSession(IsAdmin, token);
             HttpClientHelper<string> httpClientHelper = new HttpClientHelper<string>();
 
-            var keycloakConfigs = keycloakConfigHelper.GetKeycloakConfig();
+            var keycloakConfigs = appConfiguration.GetKeycloakConfig();
             string WebServiceUrl = IsAdmin ? string.Concat(keycloakConfigs["Host"], string.Format(keycloakConfigs["SessionRoute"], keycloakConfigs["AdminRealmName"], token.session_state)) 
                 : string.Concat(keycloakConfigs["Host"], string.Format(keycloakConfigs["SessionRoute"], keycloakConfigs["UserRealmName"], token.session_state));
 
@@ -242,7 +243,7 @@ namespace BusinessLayer
             UserSignupResponseModel? responseBody = default;
             HttpClientHelper<CreateUserRequestModel> httpClientHelper = new HttpClientHelper<CreateUserRequestModel>();
 
-            var keycloakConfigs = keycloakConfigHelper.GetKeycloakConfig();
+            var keycloakConfigs = appConfiguration.GetKeycloakConfig();
             string WebServiceUrl = string.Concat(keycloakConfigs["Host"], string.Format(keycloakConfigs["UsersRoute"], keycloakConfigs["UserRealmName"]));
 
             Dictionary<string, string> httpHeaders = new Dictionary<string, string>();
@@ -274,7 +275,6 @@ namespace BusinessLayer
                 }
                 else
                 {
-
                     CustomKeycloakErrorModel errorModel = new CustomKeycloakErrorModel();
                     errorModel.ErrorMessage = createUserErrorResponseModel.errorMessage;
                     errorModel.ErrorCode = ((int)httpResponseMessage.StatusCode).ToString();
@@ -297,7 +297,6 @@ namespace BusinessLayer
                 }
                 else
                 {
-
                     var jsonString = httpResponseMessage.Content.ReadAsStringAsync();
                     var createUserErrorResponseModel = JsonConvert.DeserializeObject<CreateUserErrorResponseModel>(jsonString.Result);
 

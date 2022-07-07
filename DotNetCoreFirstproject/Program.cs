@@ -1,3 +1,6 @@
+using MiddlewareLayer;
+using Configurations;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -19,7 +22,7 @@ if (app.Environment.IsDevelopment())
 }
 
 ConfigurationManager configuration = builder.Configuration;
-configuration.GetSection(ApplicationSettings.RootOption).Bind(ApplicationSettings.ExternalTools);
+configuration.GetSection(ApplicationSettingsModel.RootOption).Bind(ApplicationSettingsModel.ExternalTools);
 
 //app.UsePathBase(new PathString("/rest/api/v1")); //Value must start with '/' //This is not working
 

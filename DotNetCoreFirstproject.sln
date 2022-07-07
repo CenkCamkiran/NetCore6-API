@@ -5,17 +5,19 @@ VisualStudioVersion = 17.2.32602.215
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotNetCoreFirstproject", "DotNetCoreFirstproject\DotNetCoreFirstproject.csproj", "{6A27A932-5E57-4A29-A409-FD9D3EE26477}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessLayer", "BusinessLayer\BusinessLayer.csproj", "{C5F2B873-9F16-4AC8-AD16-A6A8FD268AE0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BusinessLayer", "BusinessLayer\BusinessLayer.csproj", "{C5F2B873-9F16-4AC8-AD16-A6A8FD268AE0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APILayer", "APILayer\APILayer.csproj", "{361CF193-59FF-4B9D-A689-7CD2796C61D9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "APILayer", "APILayer\APILayer.csproj", "{361CF193-59FF-4B9D-A689-7CD2796C61D9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccessLayer", "DataAccessLayer\DataAccessLayer.csproj", "{3F14C8F8-5683-4E0B-8BAA-BD7639DBE55F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccessLayer", "DataAccessLayer\DataAccessLayer.csproj", "{3F14C8F8-5683-4E0B-8BAA-BD7639DBE55F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Helpers", "Helpers\Helpers.csproj", "{33D5447A-F5BF-4EE6-8279-710BD91FDF0D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Helpers", "Helpers\Helpers.csproj", "{33D5447A-F5BF-4EE6-8279-710BD91FDF0D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiddlewareLayer", "MiddlewareLayer\MiddlewareLayer.csproj", "{11C859BD-5C78-4F32-84F7-C1FCC0E8A0C6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MiddlewareLayer", "MiddlewareLayer\MiddlewareLayer.csproj", "{11C859BD-5C78-4F32-84F7-C1FCC0E8A0C6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entities", "Entities\Entities.csproj", "{495E9E1C-F1D7-424B-81BD-0CF4A2366197}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Entities", "Entities\Entities.csproj", "{495E9E1C-F1D7-424B-81BD-0CF4A2366197}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Configurations", "Configurations\Configurations.csproj", "{2F71A9EF-0F3D-4208-ACE1-82C2601BD06E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{495E9E1C-F1D7-424B-81BD-0CF4A2366197}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{495E9E1C-F1D7-424B-81BD-0CF4A2366197}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{495E9E1C-F1D7-424B-81BD-0CF4A2366197}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2F71A9EF-0F3D-4208-ACE1-82C2601BD06E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F71A9EF-0F3D-4208-ACE1-82C2601BD06E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F71A9EF-0F3D-4208-ACE1-82C2601BD06E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F71A9EF-0F3D-4208-ACE1-82C2601BD06E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

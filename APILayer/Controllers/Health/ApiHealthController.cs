@@ -7,8 +7,8 @@ using System.Net.NetworkInformation;
 namespace APILayer.Controllers.Health
 {
 	[ApiController]
-    public class ApiHealthController : Controller
-    {
+    public class ApiHealthController : ControllerBase
+	{
 
         [HttpGet]
         [Route("rest/api/v1/status/[controller]")]

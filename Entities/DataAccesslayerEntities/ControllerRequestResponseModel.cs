@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace DotNetCoreFirstproject.DataAccessLayer.ElasticSearch.Entities
+namespace Entities.DataAccesslayerEntities
 {
 	public class ControllerRequestResponseModel
 	{
@@ -9,7 +9,7 @@ namespace DotNetCoreFirstproject.DataAccessLayer.ElasticSearch.Entities
 		public Request? RequestInfo { get; set; }
 
 		[JsonProperty(PropertyName = "ResponseInfo")]
-		public Response? ResponseInfo { get; set; }	
+		public Response? ResponseInfo { get; set; }
 	}
 
 	public class Request

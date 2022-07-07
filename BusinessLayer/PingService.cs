@@ -1,24 +1,24 @@
-﻿using Helpers.HttpClientHelper;
-using System.Net.NetworkInformation;
-using Helpers.AppConfigurationHelpers;
+﻿using System.Net.NetworkInformation;
+using Configurations;
+using Helpers.HttpClientHelpers;
 
 namespace BusinessLayer
 {
 	public class PingService
 	{
-		private AppConfigurationHelper configHelper;
+		private AppConfiguration appConfiguration;
 		private PingHelper pingHelper;
 
 		public PingService()
 		{
-			configHelper = new AppConfigurationHelper();
+			appConfiguration = new AppConfiguration();
 			pingHelper = new PingHelper();
 		}
 
 		public PingReply PingKeycloak()
 		{
 
-			Dictionary<string, string> config = configHelper.GetKeycloakConfig();
+			Dictionary<string, string> config = appConfiguration.GetKeycloakConfig();
 			return pingHelper.PingKeycloak(new Uri(config["Host"]).Host);
 
 		}
@@ -26,7 +26,7 @@ namespace BusinessLayer
 		public PingReply PingElasticSearch()
 		{
 
-			Dictionary<string, string> config = configHelper.GetElasticSearchConfig();
+			Dictionary<string, string> config = appConfiguration.GetElasticSearchConfig();
 			return pingHelper.PingElasticsearch(new Uri(config["ElasticHost"]).Host);
 
 		}

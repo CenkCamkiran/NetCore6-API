@@ -3,3 +3,24 @@ C:\Users\ccamkiran\source\repos\DotNetCoreFirstproject\BusinessLayer\obj\Debug\n
 C:\Users\ccamkiran\source\repos\DotNetCoreFirstproject\BusinessLayer\obj\Debug\net6.0\BusinessLayer.AssemblyInfoInputs.cache
 C:\Users\ccamkiran\source\repos\DotNetCoreFirstproject\BusinessLayer\obj\Debug\net6.0\BusinessLayer.AssemblyInfo.cs
 C:\Users\ccamkiran\source\repos\DotNetCoreFirstproject\BusinessLayer\obj\Debug\net6.0\BusinessLayer.csproj.CoreCompileInputs.cache
+C:\Users\camki\Desktop\Klasörler\Google Cloud\Projects\DotNetCore-Example-API\BusinessLayer\obj\Debug\net6.0\BusinessLayer.csproj.AssemblyReference.cache
+C:\Users\camki\Desktop\Klasörler\Google Cloud\Projects\DotNetCore-Example-API\BusinessLayer\obj\Debug\net6.0\BusinessLayer.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\camki\Desktop\Klasörler\Google Cloud\Projects\DotNetCore-Example-API\BusinessLayer\obj\Debug\net6.0\BusinessLayer.AssemblyInfoInputs.cache
+C:\Users\camki\Desktop\Klasörler\Google Cloud\Projects\DotNetCore-Example-API\BusinessLayer\obj\Debug\net6.0\BusinessLayer.AssemblyInfo.cs
+C:\Users\camki\Desktop\Klasörler\Google Cloud\Projects\DotNetCore-Example-API\BusinessLayer\obj\Debug\net6.0\BusinessLayer.csproj.CoreCompileInputs.cache
+C:\Users\camki\Desktop\Klasörler\Google Cloud\Projects\DotNetCore-Example-API\BusinessLayer\bin\Debug\net6.0\BusinessLayer.deps.json
+C:\Users\camki\Desktop\Klasörler\Google Cloud\Projects\DotNetCore-Example-API\BusinessLayer\bin\Debug\net6.0\BusinessLayer.dll
+C:\Users\camki\Desktop\Klasörler\Google Cloud\Projects\DotNetCore-Example-API\BusinessLayer\bin\Debug\net6.0\BusinessLayer.pdb
+C:\Users\camki\Desktop\Klasörler\Google Cloud\Projects\DotNetCore-Example-API\BusinessLayer\bin\Debug\net6.0\Configurations.dll
+C:\Users\camki\Desktop\Klasörler\Google Cloud\Projects\DotNetCore-Example-API\BusinessLayer\bin\Debug\net6.0\DataAccessLayer.dll
+C:\Users\camki\Desktop\Klasörler\Google Cloud\Projects\DotNetCore-Example-API\BusinessLayer\bin\Debug\net6.0\Entities.dll
+C:\Users\camki\Desktop\Klasörler\Google Cloud\Projects\DotNetCore-Example-API\BusinessLayer\bin\Debug\net6.0\Helpers.dll
+C:\Users\camki\Desktop\Klasörler\Google Cloud\Projects\DotNetCore-Example-API\BusinessLayer\bin\Debug\net6.0\DataAccessLayer.pdb
+C:\Users\camki\Desktop\Klasörler\Google Cloud\Projects\DotNetCore-Example-API\BusinessLayer\bin\Debug\net6.0\Entities.pdb
+C:\Users\camki\Desktop\Klasörler\Google Cloud\Projects\DotNetCore-Example-API\BusinessLayer\bin\Debug\net6.0\Helpers.pdb
+C:\Users\camki\Desktop\Klasörler\Google Cloud\Projects\DotNetCore-Example-API\BusinessLayer\bin\Debug\net6.0\Configurations.pdb
+C:\Users\camki\Desktop\Klasörler\Google Cloud\Projects\DotNetCore-Example-API\BusinessLayer\obj\Debug\net6.0\BusinessLayer.csproj.CopyComplete
+C:\Users\camki\Desktop\Klasörler\Google Cloud\Projects\DotNetCore-Example-API\BusinessLayer\obj\Debug\net6.0\BusinessLayer.dll
+C:\Users\camki\Desktop\Klasörler\Google Cloud\Projects\DotNetCore-Example-API\BusinessLayer\obj\Debug\net6.0\refint\BusinessLayer.dll
+C:\Users\camki\Desktop\Klasörler\Google Cloud\Projects\DotNetCore-Example-API\BusinessLayer\obj\Debug\net6.0\BusinessLayer.pdb
+C:\Users\camki\Desktop\Klasörler\Google Cloud\Projects\DotNetCore-Example-API\BusinessLayer\obj\Debug\net6.0\ref\BusinessLayer.dll

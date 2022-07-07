@@ -1,9 +1,9 @@
 ﻿using Entities.HelpersEntities;
 using System.Net.NetworkInformation;
 
-namespace Helpers.HttpClientHelper
+namespace Helpers.HttpClientHelpers
 {
-	public class PingHelper : AppConfigurationHelper
+	public class PingHelper
 	{
 
 		public PingHelper()

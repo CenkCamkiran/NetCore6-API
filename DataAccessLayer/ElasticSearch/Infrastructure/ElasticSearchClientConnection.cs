@@ -1,11 +1,12 @@
-﻿using Entities.HelpersEntities;
+﻿using Configurations;
+using Entities.HelpersEntities;
 using Nest;
 
 namespace DataAccessLayer.ElasticSearch.Infrastructure
 {
 	public partial class ElasticSearchConnection
 	{
-		private AppConfigurationHelper appConfigurationHelper;
+		private AppConfiguration appConfiguration;
 		private readonly ConnectionSettings connection;
 
 		private ElasticClient client;

@@ -12,12 +12,12 @@ namespace APILayer.Controllers.User
 {
 	[ApiController]
     [Consumes(MediaTypeNames.Application.Json)]
-    public class LoginController : Controller
+    public class LoginController : ControllerBase
     {
 
         [HttpPost]
         [Route("rest/api/v1/user/[controller]")]
-        public TokenResponseModel UserLogin([FromBody] UserLoginRequestModel requestBody)
+        public UserLoginResponseModel UserLogin([FromBody] UserLoginRequestModel requestBody)
         {
 
             if (string.IsNullOrEmpty(requestBody.username) || string.IsNullOrEmpty(requestBody.password))
@@ -43,7 +43,15 @@ namespace APILayer.Controllers.User
             KeycloakService keycloakService = new KeycloakService();
             TokenResponseModel? token = keycloakService.UserAuth(requestBody);
 
-            TokenResponseModel? tokenResult = token;
+            UserLoginResponseModel? tokenResult = new UserLoginResponseModel()
+            {
+                access_token = token.access_token,
+                refresh_token = token.refresh_token,
+                expires_in = token.expires_in,
+                refresh_expires_in = token.refresh_expires_in, 
+                session_state = token.session_state,
+                token_type = token.token_type
+            };
 
             return tokenResult;
         }

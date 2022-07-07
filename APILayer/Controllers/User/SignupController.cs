@@ -12,7 +12,7 @@ namespace APILayer.Controllers.User
 
 	[ApiController]
     [Consumes(MediaTypeNames.Application.Json)]
-    public class SignupController : Controller
+    public class SignupController : ControllerBase
     {
 
         [HttpPost]

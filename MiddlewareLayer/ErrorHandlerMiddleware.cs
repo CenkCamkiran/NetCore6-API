@@ -1,5 +1,5 @@
-﻿using APILayer.Entities;
-using BusinessLayer;
+﻿using BusinessLayer;
+using Entities.ControllerEntities;
 using Entities.HelpersEntities;
 using Helpers.AppExceptionHelpers;
 using Microsoft.AspNetCore.Builder;

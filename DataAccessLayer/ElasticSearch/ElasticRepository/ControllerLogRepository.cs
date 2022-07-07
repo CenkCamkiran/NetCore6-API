@@ -1,6 +1,6 @@
 ﻿using DataAccessLayer.ElasticSearch.Infrastructure;
 using DataAccessLayer.ElasticSearch.Interfaces;
-using DotNetCoreFirstproject.DataAccessLayer.ElasticSearch.Entities;
+using Entities.DataAccesslayerEntities;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json.Linq;
 

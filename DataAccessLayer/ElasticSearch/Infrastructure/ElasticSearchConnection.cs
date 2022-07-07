@@ -1,5 +1,6 @@
 ﻿using Nest;
 using Elasticsearch.Net;
+using Configurations;
 
 namespace DataAccessLayer.ElasticSearch.Infrastructure
 {
@@ -9,8 +10,8 @@ namespace DataAccessLayer.ElasticSearch.Infrastructure
 		public ElasticSearchConnection()
 		{
 
-			appConfigurationHelper = new AppConfigurationHelper();
-			Dictionary<string, string> elasticConfig = appConfigurationHelper.GetElasticSearchConfig();
+			AppConfiguration appConfiguration = new AppConfiguration();
+			Dictionary<string, string> elasticConfig = appConfiguration.GetElasticSearchConfig();
 
 			connection = new ConnectionSettings(new Uri(elasticConfig["ElasticHost"])).
 			   DefaultIndex(elasticConfig["DefaultIndexName"]).
