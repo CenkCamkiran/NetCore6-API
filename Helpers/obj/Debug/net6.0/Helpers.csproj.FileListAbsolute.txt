@@ -1,0 +1,5 @@
+C:\Users\ccamkiran\source\repos\DotNetCoreFirstproject\Helpers\obj\Debug\net6.0\Helpers.csproj.AssemblyReference.cache
+C:\Users\ccamkiran\source\repos\DotNetCoreFirstproject\Helpers\obj\Debug\net6.0\Helpers.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ccamkiran\source\repos\DotNetCoreFirstproject\Helpers\obj\Debug\net6.0\Helpers.AssemblyInfoInputs.cache
+C:\Users\ccamkiran\source\repos\DotNetCoreFirstproject\Helpers\obj\Debug\net6.0\Helpers.AssemblyInfo.cs
+C:\Users\ccamkiran\source\repos\DotNetCoreFirstproject\Helpers\obj\Debug\net6.0\Helpers.csproj.CoreCompileInputs.cache

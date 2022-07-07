@@ -18,10 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="DataAccessLayer\MongoDB\Entities\" />
-    <Folder Include="DataAccessLayer\MongoDB\Interfaces\" />
-    <Folder Include="DataAccessLayer\MongoDB\NoSQL\" />
-    <Folder Include="ServiceLayer\Entities\" />
+    <ProjectReference Include="..\Entities\Entities.csproj" />
   </ItemGroup>
 
 </Project>
