@@ -29,6 +29,8 @@ configuration.GetSection(ApplicationSettings.RootOption).Bind(ApplicationSetting
 app.Use(async (context, next) =>
 {
     context.Request.EnableBuffering();
+
+    context.Request.Headers.Date = DateTime.Now.ToString();
     //This line of code can be used to seeking or reading stream second or multiple times.
     //Old C# code is EnableRewind(). This code does the same job of EnableBuffering. EnableBuffering => ASP.NET Core 2.1
     //Ideally do this early in the middleware before anything needs to read the body

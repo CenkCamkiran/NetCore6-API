@@ -3,6 +3,7 @@ using DotNetCoreFirstproject.DataAccessLayer.ElasticSearch.Interfaces;
 using DotNetCoreFirstproject.Helpers.AppExceptionHelpers;
 using DotNetCoreFirstproject.Helpers.Entities.Keycloak;
 using Nest;
+using Newtonsoft.Json;
 
 namespace DotNetCoreFirstproject.DataAccessLayer.ElasticSearch.Infrastructure
 {
@@ -16,9 +17,15 @@ namespace DotNetCoreFirstproject.DataAccessLayer.ElasticSearch.Infrastructure
 			elasticConn = new ElasticSearchConnection();
 		}
 
-		public void IndexData(ControllerRequestResponseModel document)
+		//ControllerRequestResponseModel
+		public void IndexData(dynamic document)
 		{
 			IndexResponse? indexResult = default;
+
+			IndexRequest<object> request = new IndexRequest<object>(document)
+			{
+				
+			};
 
 			try
 			{
