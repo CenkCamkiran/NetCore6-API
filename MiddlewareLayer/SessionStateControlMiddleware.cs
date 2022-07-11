@@ -3,6 +3,7 @@ using Entities.HelpersEntities;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Primitives;
+using System.Net;
 
 namespace MiddlewareLayer
 {
@@ -26,7 +27,7 @@ namespace MiddlewareLayer
             StringValues AccessToken = "";
             StringValues RefreshToken = "";
 
-            request.Headers.TryGetValue("AccessToken", out AccessToken);
+            request.Headers.TryGetValue(HttpRequestHeader.Authorization.ToString(), out AccessToken);
             request.Headers.TryGetValue("RefreshToken", out RefreshToken);
 
             TokenResponseModel token = new TokenResponseModel();

@@ -12,7 +12,7 @@ namespace APILayer.Controllers.Health
 
         [HttpGet]
         [Route("rest/api/v1/status/[controller]")]
-        public APIHealthResponseModel GetHealth()
+        internal APIHealthResponseModel GetHealth()
         {
 
             APIHealthResponseModel apiHealthResponseModel = new APIHealthResponseModel();   

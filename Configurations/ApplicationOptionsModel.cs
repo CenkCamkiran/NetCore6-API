@@ -10,6 +10,18 @@ namespace Configurations
 
         [JsonProperty("ElasticSearch")]
         public ElasticSearch ElasticSearch { get; set; }
+
+        [JsonProperty("MongoDB")]
+        public MongoDB MongoDB { get; set; }
+    }
+
+    public partial class MongoDB
+    {
+        [JsonProperty("ConnectionString")]
+        public string ConnectionString { get; set; }
+
+        [JsonProperty("DefaultCollectionName")]
+        public string DefaultCollectionName { get; set; }
     }
 
     public partial class ElasticSearch

@@ -64,5 +64,20 @@
 
         }
 
+        public Dictionary<string, string> GetMongoDBConfig()
+        {
+            DefaultCollectionName = ApplicationSettingsModel.ExternalTools.MongoDB.DefaultCollectionName.ToString();
+            MongoDBConnectionString = ApplicationSettingsModel.ExternalTools.MongoDB.ConnectionString.ToString(); 
+
+            Dictionary<string, string> ConfigList = new Dictionary<string, string>()
+            {
+                { "DefaultCollectionName", DefaultCollectionName },
+                { "MongoDBConnectionString", MongoDBConnectionString }
+            };
+
+            return ConfigList;
+
+        }
+
     }
 }

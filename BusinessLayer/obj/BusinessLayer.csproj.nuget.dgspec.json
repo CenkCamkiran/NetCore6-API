@@ -196,6 +196,10 @@
               "target": "Package",
               "version": "[2.2.0, )"
             },
+            "MongoDB.Driver": {
+              "target": "Package",
+              "version": "[2.16.1, )"
+            },
             "NEST": {
               "target": "Package",
               "version": "[7.17.4, )"

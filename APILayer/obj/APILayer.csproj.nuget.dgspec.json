@@ -59,6 +59,10 @@
             "Microsoft.AspNetCore.Mvc.Core": {
               "target": "Package",
               "version": "[2.2.5, )"
+            },
+            "MongoDB.Driver": {
+              "target": "Package",
+              "version": "[2.16.1, )"
             }
           },
           "imports": [
@@ -271,6 +275,10 @@
             "Microsoft.AspNetCore.Http.Abstractions": {
               "target": "Package",
               "version": "[2.2.0, )"
+            },
+            "MongoDB.Driver": {
+              "target": "Package",
+              "version": "[2.16.1, )"
             },
             "NEST": {
               "target": "Package",
