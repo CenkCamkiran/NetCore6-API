@@ -1,7 +1,11 @@
 ﻿using DataAccessLayer.ElasticSearch.Interfaces;
-using Entities.HelpersEntities;
+using Entities.DataAccessLayerEntities;
 using Helpers.AppExceptionHelpers;
 using Nest;
+using Elasticsearch.Net;
+using Entities.HelpersEntities;
+using Newtonsoft.Json;
+using System.Net;
 
 namespace DataAccessLayer.ElasticSearch.Infrastructure
 {
@@ -16,17 +20,16 @@ namespace DataAccessLayer.ElasticSearch.Infrastructure
 		}
 
 		//ControllerRequestResponseModel
-		public void IndexData(dynamic document)
+		public void IndexData(ControllerRequestResponseModel? document)
 		{
 			IndexResponse? indexResult = default;
 
-			IndexRequest<object> request = new IndexRequest<object>(document)
-			{
-				
-			};
-
 			try
 			{
+
+				//var cenk = elasticConn.ElasticSearchClient.LowLevel.Index<StringResponse>("controller-logs-index", PostData.Serializable(document));
+				//Console.WriteLine("Success: " + cenk.Success);
+				//Console.WriteLine("HTTP Status Code: " + cenk.HttpStatusCode);
 
 				indexResult = elasticConn.ElasticSearchClient.IndexDocument(document);
 				Console.WriteLine("Index ID: " + indexResult.Id);
@@ -43,10 +46,10 @@ namespace DataAccessLayer.ElasticSearch.Infrastructure
 			{
 
 				CustomAppErrorModel customAppErrorModel = new CustomAppErrorModel();
-				customAppErrorModel.ErrorMessage = exception.Message.ToString() + " - " + indexResult.ApiCall.OriginalException;
-				customAppErrorModel.ErrorCode = (indexResult.ApiCall.HttpStatusCode).ToString();
+				customAppErrorModel.ErrorMessage = exception.Message.ToString() + " - " + indexResult?.ApiCall.OriginalException.Message.ToString();
+				customAppErrorModel.ErrorCode = indexResult?.ApiCall.HttpStatusCode == null ? ((int)HttpStatusCode.InternalServerError).ToString() : ((int)HttpStatusCode.OK).ToString();
 
-				throw new ElasticSearchException();
+				throw new ElasticSearchException(JsonConvert.SerializeObject(customAppErrorModel));
 			}
 
 		}
@@ -86,5 +89,6 @@ namespace DataAccessLayer.ElasticSearch.Infrastructure
 				Console.WriteLine(ex.Message.ToString());
 			}
 		}
+
 	}
 }

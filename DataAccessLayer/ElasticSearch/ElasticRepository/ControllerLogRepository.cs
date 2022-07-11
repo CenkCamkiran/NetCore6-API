@@ -1,7 +1,8 @@
 ﻿using DataAccessLayer.ElasticSearch.Infrastructure;
 using DataAccessLayer.ElasticSearch.Interfaces;
-using Entities.DataAccesslayerEntities;
+using Entities.DataAccessLayerEntities;
 using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
 namespace DataAccessLayer.ElasticSearch.ElasticRepository
@@ -36,20 +37,14 @@ namespace DataAccessLayer.ElasticSearch.ElasticRepository
 
 				ControllerRequestResponseModel model = new ControllerRequestResponseModel()
 				{
-					RequestInfo = new Request()
-					{
-						RequestDate = DateTime.Now,
-						RequestJSONBody = jsonRequestObject,
-						Method = request.Method,
-						Protocol = request.Protocol,
-						RequestHost = request.Host.ToString(),
-						RequestPath = request.Path.ToString()
-					},
-					ResponseInfo = new Response()
-					{
-						ResponseDate = DateTime.Now,
-						ResponseJSONBody = jsonResponseObject
-					}
+					RequestDate = DateTime.Now,
+					RequestJSONBody = jsonRequestObject?.ToString(),
+					Method = request.Method,
+					Protocol = request.Protocol,
+					RequestHost = request.Host.ToString(),
+					RequestPath = request.Path.ToString(),
+					ResponseDate = DateTime.Now,
+					ResponseJSONBody = jsonResponseObject?.ToString()
 				};
 
 				elasticCommand.IndexData(model);

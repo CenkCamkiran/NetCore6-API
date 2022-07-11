@@ -45,12 +45,12 @@ namespace APILayer.Controllers.User
 
             UserLoginResponseModel? tokenResult = new UserLoginResponseModel()
             {
-                access_token = token.access_token,
-                refresh_token = token.refresh_token,
-                expires_in = token.expires_in,
-                refresh_expires_in = token.refresh_expires_in, 
-                session_state = token.session_state,
-                token_type = token.token_type
+                accessToken = token.access_token,
+                refreshToken = token.refresh_token,
+                expiresIn = token.expires_in,
+                refreshExpiresIn = token.refresh_expires_in, 
+                sessionState = token.session_state,
+                tokenType = token.token_type
             };
 
             return tokenResult;

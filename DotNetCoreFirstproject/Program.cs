@@ -31,15 +31,25 @@ app.Use(async (context, next) =>
     context.Request.EnableBuffering();
 
     context.Request.Headers.Date = DateTime.Now.ToString();
-    //This line of code can be used to seeking or reading stream second or multiple times.
-    //Old C# code is EnableRewind(). This code does the same job of EnableBuffering. EnableBuffering => ASP.NET Core 2.1
-    //Ideally do this early in the middleware before anything needs to read the body
-    await next();
+	//This line of code can be used to seeking or reading stream second or multiple times.
+	//Old C# code is EnableRewind(). This code does the same job of EnableBuffering. EnableBuffering => ASP.NET Core 2.1
+	//Ideally do this early in the middleware before anything needs to read the body
+
+	try
+	{
+		await next();
+	}
+	catch (Exception exception)
+	{
+		Console.WriteLine(exception.Message.ToString());
+	}
 });
+
+//app.UseErrorHandlerMiddleware(); enters ErrorMiddleware but not LoggingMiddleware. Why?
 
 app.UseResponseReadableStreamMiddleware();
 
-app.UseLoggingMiddleware();
+app.UseLoggingMiddleware(); //If exception will happen, it wont enter ErrorHandlerMiddleware.
 
 app.UseErrorHandlerMiddleware();
 

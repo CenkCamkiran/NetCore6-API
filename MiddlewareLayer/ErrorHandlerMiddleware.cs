@@ -129,6 +129,15 @@ namespace MiddlewareLayer
 
                         break;
 
+                    case ElasticSearchException:
+
+                        response.StatusCode = Convert.ToInt32(JsonConvert.DeserializeObject<CustomAppErrorModel>(error.Message).ErrorCode);
+
+                        errorResponse.ErrorMessage = JsonConvert.DeserializeObject<CustomAppErrorModel>(error.Message)?.ErrorMessage;
+                        errorResponse.ErrorCode = JsonConvert.DeserializeObject<CustomAppErrorModel>(error.Message)?.ErrorCode;
+
+                        break;
+
                     default:
 
                         response.StatusCode = Convert.ToInt32(JsonConvert.DeserializeObject<CustomAppErrorModel>(error.InnerException.Message).ErrorCode);
@@ -235,6 +244,15 @@ namespace MiddlewareLayer
                         break;
 
                     case HashFailedException:
+
+                        response.StatusCode = Convert.ToInt32(JsonConvert.DeserializeObject<CustomAppErrorModel>(error.Message).ErrorCode);
+
+                        errorResponse.ErrorMessage = JsonConvert.DeserializeObject<CustomAppErrorModel>(error.Message)?.ErrorMessage;
+                        errorResponse.ErrorCode = JsonConvert.DeserializeObject<CustomAppErrorModel>(error.Message)?.ErrorCode;
+
+                        break;
+
+                    case ElasticSearchException:
 
                         response.StatusCode = Convert.ToInt32(JsonConvert.DeserializeObject<CustomAppErrorModel>(error.Message).ErrorCode);
 

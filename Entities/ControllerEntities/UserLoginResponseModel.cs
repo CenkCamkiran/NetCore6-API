@@ -4,23 +4,16 @@ namespace Entities.ControllerEntities
 {
     public class UserLoginResponseModel
     {
-        [JsonProperty(PropertyName = "accesToken", Required = Required.Always)]
-        public string access_token { get; set; }
+        public string accessToken { get; set; }
 
-        [JsonProperty(PropertyName = "expiresIn", Required = Required.Always)]
-        public int expires_in { get; set; }
+        public int expiresIn { get; set; }
 
+        public string refreshToken { get; set; }
 
-        [JsonProperty(PropertyName = "refreshToken", Required = Required.Always)]
-        public string refresh_token { get; set; }
+        public int refreshExpiresIn { get; set; }
 
-        [JsonProperty(PropertyName = "refreshExpiresIn", Required = Required.Always)]
-        public int refresh_expires_in { get; set; }
+        public string tokenType { get; set; }
 
-        [JsonProperty(PropertyName = "tokenType", Required = Required.Always)]
-        public string token_type { get; set; }
-
-        [JsonProperty(PropertyName = "sessionState", Required = Required.Always)]
-        public string session_state { get; set; }
+        public string sessionState { get; set; }
     }
 }
