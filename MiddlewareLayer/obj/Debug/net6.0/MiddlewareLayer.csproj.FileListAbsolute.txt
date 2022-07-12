@@ -9,15 +9,15 @@ C:\Users\camki\Desktop\Klasörler\Google Cloud\Projects\DotNetCore-Example-API\M
 C:\Users\camki\Desktop\Klasörler\Google Cloud\Projects\DotNetCore-Example-API\MiddlewareLayer\bin\Debug\net6.0\BusinessLayer.dll
 C:\Users\camki\Desktop\Klasörler\Google Cloud\Projects\DotNetCore-Example-API\MiddlewareLayer\bin\Debug\net6.0\Configurations.dll
 C:\Users\camki\Desktop\Klasörler\Google Cloud\Projects\DotNetCore-Example-API\MiddlewareLayer\bin\Debug\net6.0\DataAccessLayer.dll
-C:\Users\camki\Desktop\Klasörler\Google Cloud\Projects\DotNetCore-Example-API\MiddlewareLayer\bin\Debug\net6.0\Entities.dll
 C:\Users\camki\Desktop\Klasörler\Google Cloud\Projects\DotNetCore-Example-API\MiddlewareLayer\bin\Debug\net6.0\Helpers.dll
 C:\Users\camki\Desktop\Klasörler\Google Cloud\Projects\DotNetCore-Example-API\MiddlewareLayer\bin\Debug\net6.0\BusinessLayer.pdb
 C:\Users\camki\Desktop\Klasörler\Google Cloud\Projects\DotNetCore-Example-API\MiddlewareLayer\bin\Debug\net6.0\Configurations.pdb
 C:\Users\camki\Desktop\Klasörler\Google Cloud\Projects\DotNetCore-Example-API\MiddlewareLayer\bin\Debug\net6.0\DataAccessLayer.pdb
-C:\Users\camki\Desktop\Klasörler\Google Cloud\Projects\DotNetCore-Example-API\MiddlewareLayer\bin\Debug\net6.0\Entities.pdb
 C:\Users\camki\Desktop\Klasörler\Google Cloud\Projects\DotNetCore-Example-API\MiddlewareLayer\bin\Debug\net6.0\Helpers.pdb
 C:\Users\camki\Desktop\Klasörler\Google Cloud\Projects\DotNetCore-Example-API\MiddlewareLayer\obj\Debug\net6.0\MiddlewareLayer.csproj.CopyComplete
 C:\Users\camki\Desktop\Klasörler\Google Cloud\Projects\DotNetCore-Example-API\MiddlewareLayer\obj\Debug\net6.0\MiddlewareLayer.dll
 C:\Users\camki\Desktop\Klasörler\Google Cloud\Projects\DotNetCore-Example-API\MiddlewareLayer\obj\Debug\net6.0\refint\MiddlewareLayer.dll
 C:\Users\camki\Desktop\Klasörler\Google Cloud\Projects\DotNetCore-Example-API\MiddlewareLayer\obj\Debug\net6.0\MiddlewareLayer.pdb
 C:\Users\camki\Desktop\Klasörler\Google Cloud\Projects\DotNetCore-Example-API\MiddlewareLayer\obj\Debug\net6.0\ref\MiddlewareLayer.dll
+C:\Users\camki\Desktop\Klasörler\Google Cloud\Projects\DotNetCore-Example-API\MiddlewareLayer\bin\Debug\net6.0\Models.dll
+C:\Users\camki\Desktop\Klasörler\Google Cloud\Projects\DotNetCore-Example-API\MiddlewareLayer\bin\Debug\net6.0\Models.pdb

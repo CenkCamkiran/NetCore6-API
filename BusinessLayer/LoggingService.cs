@@ -1,5 +1,5 @@
 ﻿using BusinessLayer.Interfaces;
-using DataAccessLayer.ElasticSearch.ElasticRepository;
+using DataAccessLayer.ElasticSearch.Repository;
 using Microsoft.AspNetCore.Http;
 
 namespace BusinessLayer

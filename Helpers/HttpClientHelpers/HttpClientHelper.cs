@@ -1,4 +1,4 @@
-﻿using Entities.HelpersEntities;
+﻿using Models.HelpersModels;
 using Newtonsoft.Json;
 using System.Text;
 
@@ -43,7 +43,7 @@ namespace Helpers.HttpClientHelpers
 		}
 
 		// application/json
-		public HttpResponseMessage MakeJSONRequest(string WebServiceUrl, TRequestBody JSONBody, HttpMethod HTTPMethod, Dictionary<string, string> RequestHeaders, TokenResponseModel? Token = null)
+		public HttpResponseMessage MakeJSONRequest(string WebServiceUrl, TRequestBody JSONBody, HttpMethod HTTPMethod, Dictionary<string, string> RequestHeaders, TokenResponse? Token = null)
 		{
 
 			HttpRequestMessage httpRequestMessage = new HttpRequestMessage(HTTPMethod, WebServiceUrl);
@@ -71,7 +71,7 @@ namespace Helpers.HttpClientHelpers
 		}
 
 		//No JSON Body / Query Params
-		public HttpResponseMessage MakeRequestWithoutBodyQueryParams(string WebServiceUrl, HttpMethod HTTPMethod, Dictionary<string, string> RequestHeaders, TokenResponseModel? Token = null)
+		public HttpResponseMessage MakeRequestWithoutBodyQueryParams(string WebServiceUrl, HttpMethod HTTPMethod, Dictionary<string, string> RequestHeaders, TokenResponse? Token = null)
 		{
 
 			HttpRequestMessage httpRequestMessage = new HttpRequestMessage(HTTPMethod, WebServiceUrl);

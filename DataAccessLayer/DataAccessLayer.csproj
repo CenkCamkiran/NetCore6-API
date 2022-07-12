@@ -7,9 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="MongoDB\Entities\" />
-    <Folder Include="MongoDB\Interfaces\" />
-    <Folder Include="MongoDB\NoSQL\" />
+    <Compile Remove="MongoDB\Entities\**" />
+    <EmbeddedResource Remove="MongoDB\Entities\**" />
+    <None Remove="MongoDB\Entities\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -21,7 +21,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Configurations\Configurations.csproj" />
-    <ProjectReference Include="..\Entities\Entities.csproj" />
+    <ProjectReference Include="..\Entities\Models.csproj" />
     <ProjectReference Include="..\Helpers\Helpers.csproj" />
   </ItemGroup>
 

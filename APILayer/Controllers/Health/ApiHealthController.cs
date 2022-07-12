@@ -1,27 +1,28 @@
 ﻿using BusinessLayer;
-using Entities.ControllerEntities;
 using Microsoft.AspNetCore.Mvc;
+using Models.ControllerModels;
 using System.Net;
 using System.Net.NetworkInformation;
 
 namespace APILayer.Controllers.Health
 {
 	[ApiController]
+    [Route("rest/api/v1/status/[controller]")]
     public class ApiHealthController : ControllerBase
 	{
 
         [HttpGet]
-        [Route("rest/api/v1/status/[controller]")]
-        internal APIHealthResponseModel GetHealth()
+        public APIHealthResponse GetHealth()
         {
 
-            APIHealthResponseModel apiHealthResponseModel = new APIHealthResponseModel();   
+            APIHealthResponse apiHealthResponseModel = new APIHealthResponse();   
 
             PingService pingService = new PingService();
             PingReply elasticStatus = pingService.PingElasticSearch();
             PingReply keycloakStatus = pingService.PingKeycloak();
+            PingReply mongoDbStatus = pingService.PingMongoDB();
 
-            if (elasticStatus.Status == IPStatus.Success && keycloakStatus.Status == IPStatus.Success)
+            if (elasticStatus.Status == IPStatus.Success && keycloakStatus.Status == IPStatus.Success && mongoDbStatus.Status == IPStatus.Success)
 			{
                 apiHealthResponseModel.HealthStatus = ((int)HttpStatusCode.OK).ToString();
                 apiHealthResponseModel.HealthStatusDescription = "API is OK!";

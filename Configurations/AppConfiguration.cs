@@ -66,12 +66,14 @@
 
         public Dictionary<string, string> GetMongoDBConfig()
         {
-            DefaultCollectionName = ApplicationSettingsModel.ExternalTools.MongoDB.DefaultCollectionName.ToString();
-            MongoDBConnectionString = ApplicationSettingsModel.ExternalTools.MongoDB.ConnectionString.ToString(); 
+            DefaultDatabaseName = ApplicationSettingsModel.ExternalTools.MongoDB.DefaultDatabaseName.ToString();
+            MongoDBConnectionString = ApplicationSettingsModel.ExternalTools.MongoDB.ConnectionString.ToString();
+            MongoDBHost = ApplicationSettingsModel.ExternalTools.MongoDB.Host.ToString(); 
 
             Dictionary<string, string> ConfigList = new Dictionary<string, string>()
             {
-                { "DefaultCollectionName", DefaultCollectionName },
+                { "MongoDBHost", MongoDBHost },
+                { "DefaultDatabaseName", DefaultDatabaseName },
                 { "MongoDBConnectionString", MongoDBConnectionString }
             };
 

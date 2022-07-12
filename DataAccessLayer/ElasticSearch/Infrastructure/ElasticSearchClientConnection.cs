@@ -1,5 +1,4 @@
 ﻿using Configurations;
-using Entities.HelpersEntities;
 using Nest;
 
 namespace DataAccessLayer.ElasticSearch.Infrastructure

@@ -1,15 +1,17 @@
 {
   "version": 2,
-  "dgSpecHash": "4mTkgHBgL+acoJwVPzTIabxxyuL7rHVJU4D9n0Qwo/KlT1COOujmazIHDzx81FxAIKdln3eE3FD6elYKUAc7RA==",
+  "dgSpecHash": "rFkqos8QtHeSIDP0d3+rLSoHEIonoKcVdEId6EyzaNKCCSeAw7X8Nfke3imU513elgX86KQy2kcjXHiZPcOP+A==",
   "success": true,
-  "projectFilePath": "C:\\Users\\camki\\Desktop\\Klasörler\\Google Cloud\\Projects\\DotNetCore-Example-API\\Entities\\Entities.csproj",
+  "projectFilePath": "C:\\Users\\camki\\Desktop\\Klasörler\\Google Cloud\\Projects\\DotNetCore-Example-API\\Entities\\Models.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\camki\\.nuget\\packages\\elasticsearch.net\\7.17.4\\elasticsearch.net.7.17.4.nupkg.sha512",
     "C:\\Users\\camki\\.nuget\\packages\\microsoft.csharp\\4.6.0\\microsoft.csharp.4.6.0.nupkg.sha512",
+    "C:\\Users\\camki\\.nuget\\packages\\mongodb.bson\\2.16.1\\mongodb.bson.2.16.1.nupkg.sha512",
     "C:\\Users\\camki\\.nuget\\packages\\nest\\7.17.4\\nest.7.17.4.nupkg.sha512",
     "C:\\Users\\camki\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
     "C:\\Users\\camki\\.nuget\\packages\\system.buffers\\4.5.1\\system.buffers.4.5.1.nupkg.sha512",
-    "C:\\Users\\camki\\.nuget\\packages\\system.diagnostics.diagnosticsource\\5.0.0\\system.diagnostics.diagnosticsource.5.0.0.nupkg.sha512"
+    "C:\\Users\\camki\\.nuget\\packages\\system.diagnostics.diagnosticsource\\5.0.0\\system.diagnostics.diagnosticsource.5.0.0.nupkg.sha512",
+    "C:\\Users\\camki\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\5.0.0\\system.runtime.compilerservices.unsafe.5.0.0.nupkg.sha512"
   ],
   "logs": []
 }

@@ -234,8 +234,8 @@
       "BusinessLayer/1.0.0": {
         "dependencies": {
           "DataAccessLayer": "1.0.0",
-          "Entities": "1.0.0",
           "Helpers": "1.0.0",
+          "Models": "1.0.0",
           "Newtonsoft.Json": "13.0.1"
         },
         "runtime": {
@@ -253,9 +253,9 @@
       "DataAccessLayer/1.0.0": {
         "dependencies": {
           "Configurations": "1.0.0",
-          "Entities": "1.0.0",
           "Helpers": "1.0.0",
           "Microsoft.AspNetCore.Http.Abstractions": "2.2.0",
+          "Models": "1.0.0",
           "MongoDB.Driver": "2.16.1",
           "NEST": "7.17.4",
           "Newtonsoft.Json": "13.0.1"
@@ -264,21 +264,22 @@
           "DataAccessLayer.dll": {}
         }
       },
-      "Entities/1.0.0": {
+      "Helpers/1.0.0": {
         "dependencies": {
+          "Models": "1.0.0"
+        },
+        "runtime": {
+          "Helpers.dll": {}
+        }
+      },
+      "Models/1.0.0": {
+        "dependencies": {
+          "MongoDB.Bson": "2.16.1",
           "NEST": "7.17.4",
           "Newtonsoft.Json": "13.0.1"
         },
         "runtime": {
-          "Entities.dll": {}
-        }
-      },
-      "Helpers/1.0.0": {
-        "dependencies": {
-          "Entities": "1.0.0"
-        },
-        "runtime": {
-          "Helpers.dll": {}
+          "Models.dll": {}
         }
       }
     }
@@ -465,12 +466,12 @@
       "serviceable": false,
       "sha512": ""
     },
-    "Entities/1.0.0": {
+    "Helpers/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
     },
-    "Helpers/1.0.0": {
+    "Models/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

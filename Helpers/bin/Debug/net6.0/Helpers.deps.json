@@ -8,7 +8,7 @@
     ".NETCoreApp,Version=v6.0": {
       "Helpers/1.0.0": {
         "dependencies": {
-          "Entities": "1.0.0"
+          "Models": "1.0.0"
         },
         "runtime": {
           "Helpers.dll": {}
@@ -28,6 +28,17 @@
         }
       },
       "Microsoft.CSharp/4.6.0": {},
+      "MongoDB.Bson/2.16.1": {
+        "dependencies": {
+          "System.Runtime.CompilerServices.Unsafe": "5.0.0"
+        },
+        "runtime": {
+          "lib/netstandard2.1/MongoDB.Bson.dll": {
+            "assemblyVersion": "2.16.1.0",
+            "fileVersion": "2.16.1.0"
+          }
+        }
+      },
       "NEST/7.17.4": {
         "dependencies": {
           "Elasticsearch.Net": "7.17.4"
@@ -49,13 +60,15 @@
       },
       "System.Buffers/4.5.1": {},
       "System.Diagnostics.DiagnosticSource/5.0.0": {},
-      "Entities/1.0.0": {
+      "System.Runtime.CompilerServices.Unsafe/5.0.0": {},
+      "Models/1.0.0": {
         "dependencies": {
+          "MongoDB.Bson": "2.16.1",
           "NEST": "7.17.4",
           "Newtonsoft.Json": "13.0.1"
         },
         "runtime": {
-          "Entities.dll": {}
+          "Models.dll": {}
         }
       }
     }
@@ -79,6 +92,13 @@
       "sha512": "sha512-kxn3M2rnAGy5N5DgcIwcE8QTePWU/XiYcQVzn9HqTls2NKluVzVSmVWRjK7OUPWbljCXuZxHyhEz9kPRIQeXow==",
       "path": "microsoft.csharp/4.6.0",
       "hashPath": "microsoft.csharp.4.6.0.nupkg.sha512"
+    },
+    "MongoDB.Bson/2.16.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-d647KTPQ7hWqJmvCg80iiVdm239llaUwMyIeRF/0zKpN+ddRWh9jT/g6R6WQrmi4qd7yodvv/Jn0rpEqh4QN8g==",
+      "path": "mongodb.bson/2.16.1",
+      "hashPath": "mongodb.bson.2.16.1.nupkg.sha512"
     },
     "NEST/7.17.4": {
       "type": "package",
@@ -108,7 +128,14 @@
       "path": "system.diagnostics.diagnosticsource/5.0.0",
       "hashPath": "system.diagnostics.diagnosticsource.5.0.0.nupkg.sha512"
     },
-    "Entities/1.0.0": {
+    "System.Runtime.CompilerServices.Unsafe/5.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ZD9TMpsmYJLrxbbmdvhwt9YEgG5WntEnZ/d1eH8JBX9LBp+Ju8BSBhUGbZMNVHHomWo2KVImJhTDl2hIgw/6MA==",
+      "path": "system.runtime.compilerservices.unsafe/5.0.0",
+      "hashPath": "system.runtime.compilerservices.unsafe.5.0.0.nupkg.sha512"
+    },
+    "Models/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

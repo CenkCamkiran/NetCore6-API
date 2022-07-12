@@ -1,5 +1,4 @@
-﻿using Entities.HelpersEntities;
-using System.Net.NetworkInformation;
+﻿using System.Net.NetworkInformation;
 
 namespace Helpers.HttpClientHelpers
 {

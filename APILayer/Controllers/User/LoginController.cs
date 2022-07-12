@@ -1,9 +1,9 @@
 ﻿using BusinessLayer;
-using Entities.ControllerEntities;
-using Entities.HelpersEntities;
 using Helpers.AppExceptionHelpers;
 using Helpers.CryptoHelpers;
 using Microsoft.AspNetCore.Mvc;
+using Models.ControllerModels;
+using Models.HelpersModels;
 using Newtonsoft.Json;
 using System.Net;
 using System.Net.Mime;
@@ -12,28 +12,28 @@ namespace APILayer.Controllers.User
 {
 	[ApiController]
     [Consumes(MediaTypeNames.Application.Json)]
+    [Route("rest/api/v1/user/[controller]")]
     public class LoginController : ControllerBase
     {
 
         [HttpPost]
-        [Route("rest/api/v1/user/[controller]")]
-        public UserLoginResponseModel UserLogin([FromBody] UserLoginRequestModel requestBody)
+        public UserLoginResponse UserLogin([FromBody] UserLoginRequest requestBody)
         {
 
             if (string.IsNullOrEmpty(requestBody.username) || string.IsNullOrEmpty(requestBody.password))
             {
-                CustomAppErrorModel errorModel = new CustomAppErrorModel();
+                CustomAppError errorModel = new CustomAppError();
                 errorModel.ErrorMessage = "Username and password cannot be empty or null";
                 errorModel.ErrorCode = ((int)HttpStatusCode.BadRequest).ToString();
 
-                throw new MandatoryRequestParametersException(JsonConvert.SerializeObject(errorModel));
+                throw new MandatoryRequestBodyParametersException(JsonConvert.SerializeObject(errorModel));
             }
 
             CryptoHelper cryptoHelper = new CryptoHelper();
             string hash = cryptoHelper.ComputeSha256Hash(String.Concat(requestBody.username, requestBody.password));
             if (requestBody.hash != hash)
             {
-                CustomAppErrorModel errorModel = new CustomAppErrorModel();
+                CustomAppError errorModel = new CustomAppError();
                 errorModel.ErrorMessage = "Hash failed";
                 errorModel.ErrorCode = ((int)HttpStatusCode.BadRequest).ToString();
 
@@ -41,9 +41,9 @@ namespace APILayer.Controllers.User
             }
 
             KeycloakService keycloakService = new KeycloakService();
-            TokenResponseModel? token = keycloakService.UserAuth(requestBody);
+            TokenResponse? token = keycloakService.UserAuth(requestBody);
 
-            UserLoginResponseModel? tokenResult = new UserLoginResponseModel()
+            UserLoginResponse? tokenResult = new UserLoginResponse()
             {
                 accessToken = token.access_token,
                 refreshToken = token.refresh_token,

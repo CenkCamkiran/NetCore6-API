@@ -17,11 +17,14 @@ namespace Configurations
 
     public partial class MongoDB
     {
+        [JsonProperty("Host")]
+        public string Host { get; set; }
+
         [JsonProperty("ConnectionString")]
         public string ConnectionString { get; set; }
 
-        [JsonProperty("DefaultCollectionName")]
-        public string DefaultCollectionName { get; set; }
+        [JsonProperty("DefaultDatabaseName")]
+        public string DefaultDatabaseName { get; set; }
     }
 
     public partial class ElasticSearch

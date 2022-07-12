@@ -1,8 +1,8 @@
-﻿using Entities.ControllerEntities;
-using Entities.HelpersEntities;
-using Helpers.AppExceptionHelpers;
+﻿using Helpers.AppExceptionHelpers;
 using Helpers.ValidationHelpers;
 using Microsoft.AspNetCore.Mvc;
+using Models.ControllerModels;
+using Models.HelpersModels;
 using Newtonsoft.Json;
 using System.Net;
 using System.Net.Mime;
@@ -11,19 +11,19 @@ namespace APILayer.Controllers.User
 {
 
 	[ApiController]
+    [Route("rest/api/v1/user/[controller]")]
     [Consumes(MediaTypeNames.Application.Json)]
     public class SignupController : ControllerBase
     {
 
         [HttpPost]
-        [Route("rest/api/v1/user/[controller]")]
-        public UserSignupResponseModel UserSignUp([FromBody] UserSignupRequestModel requestBody)
+        public UserSignupResponse UserSignUp([FromBody] UserSignupRequest requestBody)
         {
 
 			EmailValidation validator = new EmailValidation();
 			if (!validator.IsEmailValid(requestBody.email))
 			{
-				CustomAppErrorModel errorModel = new CustomAppErrorModel();
+				CustomAppError errorModel = new CustomAppError();
 				errorModel.ErrorMessage = "Email Format is not correct";
 				errorModel.ErrorCode = ((int)HttpStatusCode.UnprocessableEntity).ToString();
 
@@ -31,10 +31,10 @@ namespace APILayer.Controllers.User
 			}
 
             BusinessLayer.KeycloakService keycloakService = new BusinessLayer.KeycloakService();
-            TokenResponseModel? AuthToken = keycloakService.AdminAuth();
+            TokenResponse? AuthToken = keycloakService.AdminAuth();
 
-            CreateUserRequestModel createUser = new CreateUserRequestModel();
-			Entities.HelpersEntities.Attributes attributes = new Entities.HelpersEntities.Attributes();
+            CreateUserRequest createUser = new CreateUserRequest();
+			Models.HelpersModels.Attributes attributes = new Models.HelpersModels.Attributes();
             Credential credential = new Credential();
             List<Credential> credentialList = new List<Credential>();
 
@@ -59,7 +59,7 @@ namespace APILayer.Controllers.User
             createUser.attributes = attributes;
             createUser.credentials = credentialList;
 
-            UserSignupResponseModel? createUserResult = keycloakService.CreateUser(createUser, AuthToken);
+            UserSignupResponse? createUserResult = keycloakService.CreateUser(createUser, AuthToken);
 
             //AggregateException? exception = createUserResult.Exception;
 
@@ -77,12 +77,12 @@ namespace APILayer.Controllers.User
             //    return false;
             //});
 
-            UserSignupResponseModel? result = createUserResult;
+            UserSignupResponse? result = createUserResult;
 
             HttpContext.Response.Headers.Add(HttpResponseHeader.ContentType.ToString(), MediaTypeNames.Application.Json);
             HttpContext.Response.StatusCode = (int)HttpStatusCode.Created;
 
-            UserSignupResponseModel response = new UserSignupResponseModel();
+            UserSignupResponse response = new UserSignupResponse();
             response.ResponseMessage = "User Created!";
             response.ResponseCode = ((int)HttpStatusCode.Created).ToString();
 

@@ -1,11 +1,11 @@
-﻿using Entities.ControllerEntities;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System.Net;
 using System.Net.Mime;
 using Helpers.AppExceptionHelpers;
-using Entities.HelpersEntities;
 using Helpers.HttpClientHelpers;
 using Configurations;
+using Models.HelpersModels;
+using Models.ControllerModels;
 
 namespace BusinessLayer
 {
@@ -18,10 +18,10 @@ namespace BusinessLayer
             appConfiguration = new AppConfiguration();
         }
 
-        public TokenResponseModel? AdminAuth()
+        public TokenResponse? AdminAuth()
 		{
 
-            TokenResponseModel? responseBody = default;
+            TokenResponse? responseBody = default;
 			HttpClientHelper<string> httpClientHelper = new HttpClientHelper<string>();
 
             var keycloakConfigs = appConfiguration.GetKeycloakConfig();
@@ -43,16 +43,16 @@ namespace BusinessLayer
             if (httpResponseMessage.StatusCode == HttpStatusCode.OK)
             {
                 var jsonString = httpResponseMessage.Content.ReadAsStringAsync();
-                responseBody = JsonConvert.DeserializeObject<TokenResponseModel>(jsonString.Result);
+                responseBody = JsonConvert.DeserializeObject<TokenResponse>(jsonString.Result);
 
             }
             else if (httpResponseMessage.StatusCode == HttpStatusCode.BadRequest)
             {
 
                 var jsonString = httpResponseMessage.Content.ReadAsStringAsync();
-                var errorResponse = JsonConvert.DeserializeObject<KeycloakGeneralErrorModel>(jsonString.Result);
+                var errorResponse = JsonConvert.DeserializeObject<KeycloakGeneralError>(jsonString.Result);
 
-                CustomAppErrorModel customAppErrorModel = new CustomAppErrorModel();
+                CustomAppError customAppErrorModel = new CustomAppError();
                 customAppErrorModel.ErrorMessage = errorResponse.error_description;
                 customAppErrorModel.ErrorCode = ((int)httpResponseMessage.StatusCode).ToString();
 
@@ -62,9 +62,9 @@ namespace BusinessLayer
             {
 
                 var jsonString = httpResponseMessage.Content.ReadAsStringAsync();
-                var errorResponse = JsonConvert.DeserializeObject<KeycloakGeneralErrorModel>(jsonString.Result);
+                var errorResponse = JsonConvert.DeserializeObject<KeycloakGeneralError>(jsonString.Result);
 
-                CustomKeycloakErrorModel errorModel = new CustomKeycloakErrorModel();
+                CustomKeycloakError errorModel = new CustomKeycloakError();
                 errorModel.ErrorMessage = errorResponse.error_description;
                 errorModel.ErrorCode = ((int)httpResponseMessage.StatusCode).ToString();
                 errorModel.KeycloakToken = null;
@@ -74,7 +74,7 @@ namespace BusinessLayer
             else
             {
 
-                CustomAppErrorModel customAppErrorModel = new CustomAppErrorModel();
+                CustomAppError customAppErrorModel = new CustomAppError();
                 customAppErrorModel.ErrorMessage = "Application Error";
                 customAppErrorModel.ErrorCode = ((int)httpResponseMessage.StatusCode).ToString();
 
@@ -85,9 +85,9 @@ namespace BusinessLayer
 
         }
 
-        public TokenResponseModel? UserAuth(UserLoginRequestModel userCredentials)
+        public TokenResponse? UserAuth(UserLoginRequest userCredentials)
         {
-            TokenResponseModel? responseBody = default;
+            TokenResponse? responseBody = default;
             HttpClientHelper<string> httpClientHelper = new HttpClientHelper<string>();
 
             var keycloakConfigs = appConfiguration.GetKeycloakConfig();
@@ -109,16 +109,16 @@ namespace BusinessLayer
             if (httpResponseMessage.StatusCode == HttpStatusCode.OK)
             {
                 var jsonString = httpResponseMessage.Content.ReadAsStringAsync();
-                responseBody = JsonConvert.DeserializeObject<TokenResponseModel>(jsonString.Result);
+                responseBody = JsonConvert.DeserializeObject<TokenResponse>(jsonString.Result);
 
             }
             else if (httpResponseMessage.StatusCode == HttpStatusCode.BadRequest)
             {
 
                 var jsonString = httpResponseMessage.Content.ReadAsStringAsync();
-                var errorResponse = JsonConvert.DeserializeObject<KeycloakGeneralErrorModel>(jsonString.Result);
+                var errorResponse = JsonConvert.DeserializeObject<KeycloakGeneralError>(jsonString.Result);
 
-                CustomAppErrorModel customAppErrorModel = new CustomAppErrorModel();
+                CustomAppError customAppErrorModel = new CustomAppError();
                 customAppErrorModel.ErrorMessage = errorResponse.error_description;
                 customAppErrorModel.ErrorCode = ((int)httpResponseMessage.StatusCode).ToString();
 
@@ -128,9 +128,9 @@ namespace BusinessLayer
             {
 
                 var jsonString = httpResponseMessage.Content.ReadAsStringAsync();
-                var errorResponse = JsonConvert.DeserializeObject<KeycloakGeneralErrorModel>(jsonString.Result);
+                var errorResponse = JsonConvert.DeserializeObject<KeycloakGeneralError>(jsonString.Result);
 
-                CustomKeycloakErrorModel errorModel = new CustomKeycloakErrorModel();
+                CustomKeycloakError errorModel = new CustomKeycloakError();
                 errorModel.ErrorMessage = errorResponse.error_description;
                 errorModel.ErrorCode = ((int)httpResponseMessage.StatusCode).ToString();
                 errorModel.KeycloakToken = null;
@@ -140,7 +140,7 @@ namespace BusinessLayer
             else
             {
 
-                CustomAppErrorModel customAppErrorModel = new CustomAppErrorModel();
+                CustomAppError customAppErrorModel = new CustomAppError();
                 customAppErrorModel.ErrorMessage = "Application Error";
                 customAppErrorModel.ErrorCode = ((int)httpResponseMessage.StatusCode).ToString();
 
@@ -151,9 +151,9 @@ namespace BusinessLayer
 
         }
 
-        public TokenResponseModel? RefreshSession(bool IsAdmin, TokenResponseModel token)
+        public TokenResponse? RefreshSession(bool IsAdmin, TokenResponse token)
         {
-            TokenResponseModel? responseBody = default;
+            TokenResponse? responseBody = default;
             HttpClientHelper<string> httpClientHelper = new HttpClientHelper<string>();
 
             var keycloakConfigs = appConfiguration.GetKeycloakConfig();
@@ -175,16 +175,16 @@ namespace BusinessLayer
             if (httpResponseMessage.StatusCode == HttpStatusCode.OK)
             {
                 var jsonString = httpResponseMessage.Content.ReadAsStringAsync();
-                responseBody = JsonConvert.DeserializeObject<TokenResponseModel>(jsonString.Result);
+                responseBody = JsonConvert.DeserializeObject<TokenResponse>(jsonString.Result);
 
             }
             else if (httpResponseMessage.StatusCode == HttpStatusCode.BadRequest)
             {
 
                 var jsonString = httpResponseMessage.Content.ReadAsStringAsync();
-                var errorResponse = JsonConvert.DeserializeObject<KeycloakGeneralErrorModel>(jsonString.Result);
+                var errorResponse = JsonConvert.DeserializeObject<KeycloakGeneralError>(jsonString.Result);
 
-                CustomAppErrorModel customAppErrorModel = new CustomAppErrorModel();
+                CustomAppError customAppErrorModel = new CustomAppError();
                 customAppErrorModel.ErrorMessage = errorResponse.error_description;
                 customAppErrorModel.ErrorCode = ((int)httpResponseMessage.StatusCode).ToString();
 
@@ -194,9 +194,9 @@ namespace BusinessLayer
             {
 
                 var jsonString = httpResponseMessage.Content.ReadAsStringAsync();
-                var errorResponse = JsonConvert.DeserializeObject<KeycloakGeneralErrorModel>(jsonString.Result);
+                var errorResponse = JsonConvert.DeserializeObject<KeycloakGeneralError>(jsonString.Result);
 
-                CustomKeycloakErrorModel errorModel = new CustomKeycloakErrorModel();
+                CustomKeycloakError errorModel = new CustomKeycloakError();
                 errorModel.ErrorMessage = errorResponse.error_description;
                 errorModel.ErrorCode = ((int)httpResponseMessage.StatusCode).ToString();
                 errorModel.KeycloakToken = null;
@@ -206,7 +206,7 @@ namespace BusinessLayer
             else
             {
 
-                CustomAppErrorModel customAppErrorModel = new CustomAppErrorModel();
+                CustomAppError customAppErrorModel = new CustomAppError();
                 customAppErrorModel.ErrorMessage = "Application Error";
                 customAppErrorModel.ErrorCode = ((int)httpResponseMessage.StatusCode).ToString();
 
@@ -217,7 +217,7 @@ namespace BusinessLayer
 
         }
 
-        public object RemoveSession(bool IsAdmin, TokenResponseModel token) //Remove a specific user session: 204 No Content cevabı geliyor.
+        public object RemoveSession(bool IsAdmin, TokenResponse token) //Remove a specific user session: 204 No Content cevabı geliyor.
         {
 
             var newSession = RefreshSession(IsAdmin, token);
@@ -237,11 +237,11 @@ namespace BusinessLayer
 
         }
 
-        public UserSignupResponseModel? CreateUser(CreateUserRequestModel requestBody, TokenResponseModel token)
+        public UserSignupResponse? CreateUser(CreateUserRequest requestBody, TokenResponse token)
         {
 
-            UserSignupResponseModel? responseBody = default;
-            HttpClientHelper<CreateUserRequestModel> httpClientHelper = new HttpClientHelper<CreateUserRequestModel>();
+            UserSignupResponse? responseBody = default;
+            HttpClientHelper<CreateUserRequest> httpClientHelper = new HttpClientHelper<CreateUserRequest>();
 
             var keycloakConfigs = appConfiguration.GetKeycloakConfig();
             string WebServiceUrl = string.Concat(keycloakConfigs["Host"], string.Format(keycloakConfigs["UsersRoute"], keycloakConfigs["UserRealmName"]));
@@ -257,17 +257,17 @@ namespace BusinessLayer
             if (httpResponseMessage.StatusCode == HttpStatusCode.Created)
             {
                 var jsonString = httpResponseMessage.Content.ReadAsStringAsync();
-                responseBody = JsonConvert.DeserializeObject<UserSignupResponseModel>(jsonString.Result);
+                responseBody = JsonConvert.DeserializeObject<UserSignupResponse>(jsonString.Result);
 
             }
             else if (httpResponseMessage.StatusCode == HttpStatusCode.Conflict)
             {
                 var jsonString = httpResponseMessage.Content.ReadAsStringAsync();
-                var createUserErrorResponseModel = JsonConvert.DeserializeObject<CreateUserErrorResponseModel>(jsonString.Result);
+                var createUserErrorResponseModel = JsonConvert.DeserializeObject<CreateUserErrorResponse>(jsonString.Result);
 
                 if (token == null)
                 {
-                    CustomAppErrorModel customAppErrorModel = new CustomAppErrorModel();
+                    CustomAppError customAppErrorModel = new CustomAppError();
                     customAppErrorModel.ErrorMessage = "Application Error";
                     customAppErrorModel.ErrorCode = ((int)httpResponseMessage.StatusCode).ToString();
 
@@ -275,7 +275,7 @@ namespace BusinessLayer
                 }
                 else
                 {
-                    CustomKeycloakErrorModel errorModel = new CustomKeycloakErrorModel();
+                    CustomKeycloakError errorModel = new CustomKeycloakError();
                     errorModel.ErrorMessage = createUserErrorResponseModel.errorMessage;
                     errorModel.ErrorCode = ((int)httpResponseMessage.StatusCode).ToString();
                     errorModel.KeycloakToken = token;
@@ -289,7 +289,7 @@ namespace BusinessLayer
 
                 if (token == null)
                 {
-                    CustomAppErrorModel customAppErrorModel = new CustomAppErrorModel();
+                    CustomAppError customAppErrorModel = new CustomAppError();
                     customAppErrorModel.ErrorMessage = "Application Error";
                     customAppErrorModel.ErrorCode = ((int)httpResponseMessage.StatusCode).ToString();
 
@@ -298,9 +298,9 @@ namespace BusinessLayer
                 else
                 {
                     var jsonString = httpResponseMessage.Content.ReadAsStringAsync();
-                    var createUserErrorResponseModel = JsonConvert.DeserializeObject<CreateUserErrorResponseModel>(jsonString.Result);
+                    var createUserErrorResponseModel = JsonConvert.DeserializeObject<CreateUserErrorResponse>(jsonString.Result);
 
-                    CustomKeycloakErrorModel errorModel = new CustomKeycloakErrorModel();
+                    CustomKeycloakError errorModel = new CustomKeycloakError();
                     errorModel.ErrorMessage = createUserErrorResponseModel.errorMessage;
                     errorModel.ErrorCode = ((int)httpResponseMessage.StatusCode).ToString();
                     errorModel.KeycloakToken = token;
@@ -314,7 +314,7 @@ namespace BusinessLayer
 
                 if (token == null)
                 {
-                    CustomAppErrorModel customAppErrorModel = new CustomAppErrorModel();
+                    CustomAppError customAppErrorModel = new CustomAppError();
                     customAppErrorModel.ErrorMessage = "Application Error";
                     customAppErrorModel.ErrorCode = ((int)httpResponseMessage.StatusCode).ToString();
 
@@ -322,7 +322,7 @@ namespace BusinessLayer
                 }
                 else
                 {
-                    CustomKeycloakErrorModel errorModel = new CustomKeycloakErrorModel();
+                    CustomKeycloakError errorModel = new CustomKeycloakError();
                     errorModel.ErrorMessage = "HTTP 500 Internal Server Error";
                     errorModel.ErrorCode = ((int)httpResponseMessage.StatusCode).ToString();
                     errorModel.KeycloakToken = token;

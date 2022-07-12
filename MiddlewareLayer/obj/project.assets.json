@@ -345,8 +345,8 @@
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
           "DataAccessLayer": "1.0.0",
-          "Entities": "1.0.0",
           "Helpers": "1.0.0",
+          "Models": "1.0.0",
           "Newtonsoft.Json": "13.0.1"
         },
         "compile": {
@@ -374,9 +374,9 @@
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
           "Configurations": "1.0.0",
-          "Entities": "1.0.0",
           "Helpers": "1.0.0",
           "Microsoft.AspNetCore.Http.Abstractions": "2.2.0",
+          "Models": "1.0.0",
           "MongoDB.Driver": "2.16.1",
           "NEST": "7.17.4",
           "Newtonsoft.Json": "13.0.1"
@@ -388,31 +388,32 @@
           "bin/placeholder/DataAccessLayer.dll": {}
         }
       },
-      "Entities/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v6.0",
-        "dependencies": {
-          "NEST": "7.17.4",
-          "Newtonsoft.Json": "13.0.1"
-        },
-        "compile": {
-          "bin/placeholder/Entities.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/Entities.dll": {}
-        }
-      },
       "Helpers/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
-          "Entities": "1.0.0"
+          "Models": "1.0.0"
         },
         "compile": {
           "bin/placeholder/Helpers.dll": {}
         },
         "runtime": {
           "bin/placeholder/Helpers.dll": {}
+        }
+      },
+      "Models/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "MongoDB.Bson": "2.16.1",
+          "NEST": "7.17.4",
+          "Newtonsoft.Json": "13.0.1"
+        },
+        "compile": {
+          "bin/placeholder/Models.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Models.dll": {}
         }
       }
     }
@@ -1085,15 +1086,15 @@
       "path": "../DataAccessLayer/DataAccessLayer.csproj",
       "msbuildProject": "../DataAccessLayer/DataAccessLayer.csproj"
     },
-    "Entities/1.0.0": {
-      "type": "project",
-      "path": "../Entities/Entities.csproj",
-      "msbuildProject": "../Entities/Entities.csproj"
-    },
     "Helpers/1.0.0": {
       "type": "project",
       "path": "../Helpers/Helpers.csproj",
       "msbuildProject": "../Helpers/Helpers.csproj"
+    },
+    "Models/1.0.0": {
+      "type": "project",
+      "path": "../Entities/Models.csproj",
+      "msbuildProject": "../Entities/Models.csproj"
     }
   },
   "projectFileDependencyGroups": {

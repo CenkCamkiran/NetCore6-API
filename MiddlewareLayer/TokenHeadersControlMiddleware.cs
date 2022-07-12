@@ -1,8 +1,8 @@
-﻿using Entities.HelpersEntities;
-using Helpers.AppExceptionHelpers;
+﻿using Helpers.AppExceptionHelpers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Primitives;
+using Models.HelpersModels;
 using Newtonsoft.Json;
 using System.Net;
 
@@ -33,7 +33,7 @@ namespace MiddlewareLayer
 
             if (!IsAuthorizationHeaderExists || !IsRefreshTokenHeaderExists)
             {
-                CustomAppErrorModel errorModel = new CustomAppErrorModel();
+                CustomAppError errorModel = new CustomAppError();
                 errorModel.ErrorMessage = "AccessToken or RefreshToken not found in request headers.";
                 errorModel.ErrorCode = ((int)HttpStatusCode.InternalServerError).ToString();
 
@@ -43,7 +43,7 @@ namespace MiddlewareLayer
             {
                 if (string.IsNullOrEmpty(AccessToken.ToString()) || string.IsNullOrEmpty(RefreshToken.ToString()))
                 {
-                    CustomAppErrorModel errorModel = new CustomAppErrorModel();
+                    CustomAppError errorModel = new CustomAppError();
                     errorModel.ErrorMessage = "AccessToken or RefreshToken not found in request headers.";
                     errorModel.ErrorCode = ((int)HttpStatusCode.InternalServerError).ToString();
 

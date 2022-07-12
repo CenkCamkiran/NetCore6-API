@@ -1,11 +1,11 @@
 ﻿using DataAccessLayer.ElasticSearch.Interfaces;
-using Entities.DataAccessLayerEntities;
 using Helpers.AppExceptionHelpers;
 using Nest;
 using Elasticsearch.Net;
-using Entities.HelpersEntities;
 using Newtonsoft.Json;
 using System.Net;
+using Models.HelpersModels;
+using Models.DataAccessLayerModels;
 
 namespace DataAccessLayer.ElasticSearch.Infrastructure
 {
@@ -20,7 +20,7 @@ namespace DataAccessLayer.ElasticSearch.Infrastructure
 		}
 
 		//ControllerRequestResponseModel
-		public void IndexData(ControllerRequestResponseModel? document)
+		public void IndexData(ControllerRequestResponseLog? document)
 		{
 			IndexResponse? indexResult = default;
 
@@ -45,7 +45,7 @@ namespace DataAccessLayer.ElasticSearch.Infrastructure
 			catch (Exception exception)
 			{
 
-				CustomAppErrorModel customAppErrorModel = new CustomAppErrorModel();
+				CustomAppError customAppErrorModel = new CustomAppError();
 				customAppErrorModel.ErrorMessage = exception.Message.ToString() + " - " + indexResult?.ApiCall.OriginalException.Message.ToString();
 				customAppErrorModel.ErrorCode = indexResult?.ApiCall.HttpStatusCode == null ? ((int)HttpStatusCode.InternalServerError).ToString() : ((int)HttpStatusCode.OK).ToString();
 

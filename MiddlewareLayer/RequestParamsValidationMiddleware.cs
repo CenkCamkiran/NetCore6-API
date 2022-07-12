@@ -1,8 +1,8 @@
-﻿using Entities.HelpersEntities;
-using Helpers.AppExceptionHelpers;
+﻿using Helpers.AppExceptionHelpers;
 using Helpers.ValidationHelpers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
+using Models.HelpersModels;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Net;
@@ -42,7 +42,7 @@ namespace MiddlewareLayer
 
 					if (!emailValidation.IsEmailValid(emailValue))
 					{
-						CustomAppErrorModel errorResponse = new CustomAppErrorModel();
+						CustomAppError errorResponse = new CustomAppError();
 						errorResponse.ErrorMessage = "Email is not valid";
 						errorResponse.ErrorCode = ((int)HttpStatusCode.UnprocessableEntity).ToString();
 

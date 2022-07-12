@@ -1,6 +1,6 @@
-﻿using Nest;
+﻿using Configurations;
 using Elasticsearch.Net;
-using Configurations;
+using Nest;
 
 namespace DataAccessLayer.ElasticSearch.Infrastructure
 {

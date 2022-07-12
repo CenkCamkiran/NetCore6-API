@@ -1,8 +1,8 @@
 ﻿using BusinessLayer;
-using Entities.HelpersEntities;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Primitives;
+using Models.HelpersModels;
 using System.Net;
 
 namespace MiddlewareLayer
@@ -30,7 +30,7 @@ namespace MiddlewareLayer
             request.Headers.TryGetValue(HttpRequestHeader.Authorization.ToString(), out AccessToken);
             request.Headers.TryGetValue("RefreshToken", out RefreshToken);
 
-            TokenResponseModel token = new TokenResponseModel();
+            TokenResponse token = new TokenResponse();
             token.access_token = AccessToken;
             token.refresh_token = RefreshToken;
 

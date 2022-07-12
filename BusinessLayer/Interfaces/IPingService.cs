@@ -1,6 +1,11 @@
-﻿namespace BusinessLayer.Interfaces
+﻿using System.Net.NetworkInformation;
+
+namespace BusinessLayer.Interfaces
 {
-	public class IPingService
+	public interface IPingService
 	{
+		public PingReply PingKeycloak();
+		public PingReply PingElasticSearch();
+		public PingReply PingMongoDB();
 	}
 }

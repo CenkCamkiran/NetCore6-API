@@ -1,10 +1,11 @@
 ﻿using System.Net.NetworkInformation;
+using BusinessLayer.Interfaces;
 using Configurations;
 using Helpers.HttpClientHelpers;
 
 namespace BusinessLayer
 {
-	public class PingService
+	public class PingService: IPingService
 	{
 		private AppConfiguration appConfiguration;
 		private PingHelper pingHelper;
@@ -30,6 +31,13 @@ namespace BusinessLayer
 			return pingHelper.PingElasticsearch(new Uri(config["ElasticHost"]).Host);
 
 		}
+
+		public PingReply PingMongoDB()
+		{
+			Dictionary<string, string> config = appConfiguration.GetMongoDBConfig();
+			return pingHelper.PingElasticsearch(new Uri(config["MongoDBHost"]).Host);
+		}
+
 
 		//public async Task<bool> PingMongoDB()
 		//{

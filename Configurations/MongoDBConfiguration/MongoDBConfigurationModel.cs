@@ -12,6 +12,6 @@ namespace Configurations
 		protected string? MongoDBConnectionString { get; set; }
 		protected string? MongoDBAdminUsername { get; set; }
 		protected string? MongoDBAdminPassword { get; set; }
-		protected string? DefaultCollectionName { get; set; }
+		protected string? DefaultDatabaseName { get; set; }
 	}
 }
