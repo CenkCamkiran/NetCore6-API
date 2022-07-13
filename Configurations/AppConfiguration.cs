@@ -23,6 +23,7 @@
             TokenRoute = ApplicationSettingsModel.ExternalTools.Keycloak.Routes.TokenRoute;
             UsersRoute = ApplicationSettingsModel.ExternalTools.Keycloak.Routes.UsersRoute;
             SessionRoute = ApplicationSettingsModel.ExternalTools.Keycloak.Routes.SessionRoute;
+            IntrospectRoute = ApplicationSettingsModel.ExternalTools.Keycloak.Routes.IntrospectRoute;
 
             Dictionary<string, string> ConfigList = new Dictionary<string, string>()
             {
@@ -38,7 +39,8 @@
                 { "AdminID", AdminID },
                 { "TokenRoute", TokenRoute },
                 { "UsersRoute", UsersRoute },
-                { "SessionRoute", SessionRoute }
+                { "SessionRoute", SessionRoute },
+                { "IntrospectRoute", IntrospectRoute }
             };
 
             return ConfigList;

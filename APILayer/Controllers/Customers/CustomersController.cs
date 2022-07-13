@@ -1,5 +1,6 @@
 ﻿using BusinessLayer;
 using Helpers.AppExceptionHelpers;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Models.ControllerModels;
 using Models.DataAccessLayerModels;
@@ -84,8 +85,21 @@ namespace APILayer.Controllers.Customers
 		}
 
 		[HttpPost("Id/{Id}")]
-		public void UpdateCustomer(string Id, [FromBody] CustomerRequest customerRequest) //Whole object or specific object?
+		public NoContentResult UpdateCustomer(string Id, [FromBody] CustomerRequest customerRequest) //Whole object or specific object?
 		{
+
+			Customer customer = new Customer()
+			{
+				Id = Id,
+				Accounts = customerRequest.Accounts,
+				Active = customerRequest.Active,
+				Address = customerRequest.Address,
+				Birthdate = customerRequest.Birthdate,
+				Email = customerRequest.Email,
+				Fullname = customerRequest.Fullname,
+				TierAndDetails = customerRequest.TierAndDetails,
+				Username = customerRequest.Username
+			};
 
 			if (Id.Length != 24)
 			{
@@ -96,7 +110,21 @@ namespace APILayer.Controllers.Customers
 				throw new AppException(JsonConvert.SerializeObject(errorModel));
 			}
 
-			customersService.UpdateCustomer(Id, customerRequest);
+			customersService.UpdateCustomer(Id, customer);
+
+			return NoContent();
+
+		}
+
+		[HttpPost]
+		//[ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Product))]
+		//[ProducesResponseType(StatusCodes.Status404NotFound)]
+		public NoContentResult InsertCustomer([FromBody] CustomerRequest customerRequest) //Whole object or specific object?
+		{
+
+			customersService.InsertCustomer(customerRequest);
+
+			return NoContent();
 
 		}
 

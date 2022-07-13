@@ -165,6 +165,15 @@ namespace MiddlewareLayer
 
                         break;
 
+                    case TokenNotActiveException:
+
+                        response.StatusCode = Convert.ToInt32(JsonConvert.DeserializeObject<CustomAppError>(error.Message).ErrorCode);
+
+                        errorResponse.ErrorMessage = JsonConvert.DeserializeObject<CustomAppError>(error.Message)?.ErrorMessage;
+                        errorResponse.ErrorCode = JsonConvert.DeserializeObject<CustomAppError>(error.Message)?.ErrorCode;
+
+                        break;                   
+
                     default:
 
                         response.StatusCode = ((int)HttpStatusCode.InternalServerError);
@@ -307,6 +316,15 @@ namespace MiddlewareLayer
                         break;
 
                     case MongoDBConnectionException:
+
+                        response.StatusCode = Convert.ToInt32(JsonConvert.DeserializeObject<CustomAppError>(error.Message).ErrorCode);
+
+                        errorResponse.ErrorMessage = JsonConvert.DeserializeObject<CustomAppError>(error.Message)?.ErrorMessage;
+                        errorResponse.ErrorCode = JsonConvert.DeserializeObject<CustomAppError>(error.Message)?.ErrorCode;
+
+                        break;
+
+                    case TokenNotActiveException:
 
                         response.StatusCode = Convert.ToInt32(JsonConvert.DeserializeObject<CustomAppError>(error.Message).ErrorCode);
 

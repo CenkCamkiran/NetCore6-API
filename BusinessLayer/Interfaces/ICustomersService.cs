@@ -16,6 +16,7 @@ namespace BusinessLayer.Interfaces
 
 		public Customer GetCustomerByEmail(string email);
 
-		public void UpdateCustomer(string id, CustomerRequest customerRequest);
+		public void UpdateCustomer(string id, Customer customerRequest);
+		public void InsertCustomer(CustomerRequest customerRequest);
 	}
 }

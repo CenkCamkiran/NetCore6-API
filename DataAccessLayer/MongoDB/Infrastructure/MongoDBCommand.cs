@@ -1,7 +1,10 @@
 ﻿using DataAccessLayer.MongoDB.Interfaces;
+using Helpers.AppExceptionHelpers;
 using Models.DataAccessLayerModels;
+using Models.HelpersModels;
 using MongoDB.Driver;
 using System.Linq.Expressions;
+using System.Net;
 
 namespace DataAccessLayer.MongoDB.Infrastructure
 {
@@ -26,23 +29,49 @@ namespace DataAccessLayer.MongoDB.Infrastructure
 			{
 				return _mongoCollection.Find(query).ToList();
 			}
-			finally
+			catch (Exception ex)
 			{
-				//
+				throw new Exception();
 			}
 		}
 
 		public void UpdateDocument(string id, Expression<Func<CollectionModel, bool>> query)
 		{
+			//Still dont know how to use it
+			try
+			{
+				_mongoCollection.UpdateOne(query, id);
+			}
+			catch (Exception ex)
+			{
+				throw new Exception();
+			}
+		}
 
-			//try
-			//{
-			//	return _mongoCollection.UpdateOne(query);
-			//}
-			//finally
-			//{
-			//	//
-			//}
+		public void ReplaceDocument(Expression<Func<CollectionModel, bool>> query, CollectionModel dataModel)
+		{
+
+			try
+			{
+				_mongoCollection.ReplaceOne(query, dataModel);
+			}
+			catch (Exception ex)
+			{
+				throw new Exception();
+			}
+		}
+
+		public void InsertDocument(CollectionModel document)
+		{
+
+			try
+			{
+				_mongoCollection.InsertOne(document);
+			}
+			catch (Exception ex)
+			{
+				throw new Exception();
+			}
 		}
 	}
 }

@@ -6,10 +6,11 @@ using Helpers.HttpClientHelpers;
 using Configurations;
 using Models.HelpersModels;
 using Models.ControllerModels;
+using BusinessLayer.Interfaces;
 
 namespace BusinessLayer
 {
-	public class KeycloakService : AppConfiguration
+	public class KeycloakService : AppConfiguration, IKeycloakService
     {
         private AppConfiguration appConfiguration;
 
@@ -338,5 +339,45 @@ namespace BusinessLayer
 
         }
 
-    }
+		public DecodedToken CheckTokenStatus(string token)
+		{
+
+            DecodedToken? responseBody = default;
+
+            HttpClientHelper<string> httpClientHelper = new HttpClientHelper<string>();
+
+            var keycloakConfigs = appConfiguration.GetKeycloakConfig();
+            string WebServiceUrl = string.Concat(keycloakConfigs["Host"], string.Format(keycloakConfigs["IntrospectRoute"], keycloakConfigs["UserRealmName"]));
+
+            Dictionary<string, string> requestForm = new Dictionary<string, string>();
+            requestForm["client_id"] = keycloakConfigs["AdminClientID"];
+            requestForm["client_secret"] = keycloakConfigs["AdminClientSecret"];
+            requestForm["token"] = token;
+
+            Dictionary<string, string> httpHeaders = new Dictionary<string, string>();
+            httpHeaders.Add(HttpRequestHeader.Accept.ToString(), MediaTypeNames.Application.Json);
+            httpHeaders.Add(HttpRequestHeader.ContentType.ToString(), "application/x-www-form-urlencoded");
+
+            var httpResponseMessage = httpClientHelper.MakeFormRequest(WebServiceUrl, requestForm, HttpMethod.Post, httpHeaders);
+
+            if (httpResponseMessage.StatusCode == HttpStatusCode.OK)
+            {
+                var jsonString = httpResponseMessage.Content.ReadAsStringAsync();
+                responseBody = JsonConvert.DeserializeObject<DecodedToken>(jsonString.Result);
+
+                return responseBody;
+
+            }
+            else
+            {
+
+                CustomAppError customAppErrorModel = new CustomAppError();
+                customAppErrorModel.ErrorMessage = "Keycloak IntrospectRoute Exception";
+                customAppErrorModel.ErrorCode = ((int)httpResponseMessage.StatusCode).ToString();
+
+                throw new KeycloakException(JsonConvert.SerializeObject(customAppErrorModel));
+            }
+
+        }
+	}
 }

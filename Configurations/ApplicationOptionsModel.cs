@@ -98,7 +98,10 @@ namespace Configurations
 
         [JsonProperty("SessionRoute")]
         public string SessionRoute { get; set; }
-        
+
+        [JsonProperty("IntrospectRoute")]
+        public string IntrospectRoute { get; set; }    
+
     }
 
 }

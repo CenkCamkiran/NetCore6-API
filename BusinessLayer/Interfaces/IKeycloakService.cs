@@ -5,10 +5,11 @@ namespace BusinessLayer.Interfaces
 {
 	public interface IKeycloakService
 	{
-		public Task<TokenResponse> AdminAuth();
-		public Task<TokenResponse> UserAuth(UserLoginRequest userCredentials);
-		public Task<TokenResponse> RefreshSession(bool IsAdmin, TokenResponse token);
-		public Task<TokenResponse> RemoveSession(bool IsAdmin, TokenResponse token);
-		public Task<TokenResponse> CreateUser(CreateUserRequest requestBody, TokenResponse token);
+		public TokenResponse AdminAuth();
+		public TokenResponse UserAuth(UserLoginRequest userCredentials);
+		public TokenResponse RefreshSession(bool IsAdmin, TokenResponse token);
+		public object RemoveSession(bool IsAdmin, TokenResponse token);
+		public UserSignupResponse CreateUser(CreateUserRequest requestBody, TokenResponse token);
+		public DecodedToken CheckTokenStatus(string token);
 	}
 }

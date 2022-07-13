@@ -15,6 +15,7 @@
         protected string? UserClientSecret { get; set; }
         protected string? TokenRoute { get; set; }
         protected string? UsersRoute { get; set; }
+        protected string? IntrospectRoute { get; set; }
         protected string? SessionRoute { get; set; }
         protected string? AdminID { get; set; }
     }

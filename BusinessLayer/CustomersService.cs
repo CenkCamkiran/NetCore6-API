@@ -30,9 +30,14 @@ namespace BusinessLayer
 			return customersRepository.GetCustomerByName(name);
 		}
 
-		public void UpdateCustomer(string id, CustomerRequest customerRequest)
+		public void UpdateCustomer(string id, Customer customerRequest)
 		{
 			customersRepository.UpdateCustomer(id, customerRequest);
+		}
+
+		public void InsertCustomer(CustomerRequest customerRequest)
+		{
+			customersRepository.InsertCustomer(customerRequest);
 		}
 	}
 }

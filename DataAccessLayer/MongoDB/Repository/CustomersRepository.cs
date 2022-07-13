@@ -32,11 +32,18 @@ namespace DataAccessLayer.MongoDB.Repository
 			return mongoDBCommand.SearchDocument(customer => customer.Email == email).SingleOrDefault(); //Null check?
 		}
 
-		public void UpdateCustomer(string id, CustomerRequest customerRequest)
+		public void UpdateCustomer(string id, Customer customerRequest)
 		{
 			MongoDBCommand<Customer> mongoDBCommand = new MongoDBCommand<Customer>(ANALYTICS_DB_NAME, ANALYTICS_COLLECTION_NAME);
 
-			mongoDBCommand.UpdateDocument(id, customer => customer.Id == id); //Null check?
+			mongoDBCommand.ReplaceDocument(customer => customer.Id == id, customerRequest); //Null check?
+		}
+
+		public void InsertCustomer(CustomerRequest customerRequest)
+		{
+			MongoDBCommand<CustomerRequest> mongoDBCommand = new MongoDBCommand<CustomerRequest>(ANALYTICS_DB_NAME, ANALYTICS_COLLECTION_NAME);
+
+			mongoDBCommand.InsertDocument(customerRequest); //Null check?
 		}
 
 		public object GetCustomerByBirthDates(string birthdate)
