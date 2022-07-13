@@ -218,7 +218,7 @@ namespace BusinessLayer
 
         }
 
-        public object RemoveSession(bool IsAdmin, TokenResponse token) //Remove a specific user session: 204 No Content cevabı geliyor.
+        public HttpResponseMessage RemoveSession(bool IsAdmin, TokenResponse token)
         {
 
             var newSession = RefreshSession(IsAdmin, token);
@@ -232,9 +232,24 @@ namespace BusinessLayer
             httpHeaders.Add(HttpRequestHeader.Accept.ToString(), MediaTypeNames.Application.Json);
             httpHeaders.Add(HttpRequestHeader.Authorization.ToString(), string.Format("Bearer {0}", newSession.access_token));
 
-            var APIResult = httpClientHelper.MakeRequestWithoutBodyQueryParams(WebServiceUrl, HttpMethod.Delete, httpHeaders, token);
+            var httpResponseMessage = httpClientHelper.MakeRequestWithoutBodyQueryParams(WebServiceUrl, HttpMethod.Delete, httpHeaders, token);
 
-            return APIResult;
+            if (httpResponseMessage.StatusCode == HttpStatusCode.NoContent)
+			{
+                return httpResponseMessage;
+            }
+			else
+			{
+                var jsonString = httpResponseMessage.Content.ReadAsStringAsync();
+                var keycloakError = JsonConvert.DeserializeObject<KeycloakGeneralError>(jsonString.Result);
+
+                CustomKeycloakError errorModel = new CustomKeycloakError();
+                errorModel.ErrorMessage = keycloakError.error;
+                errorModel.ErrorCode = ((int)httpResponseMessage.StatusCode).ToString();
+
+                throw new KeycloakException(JsonConvert.SerializeObject(errorModel));
+
+            }
 
         }
 

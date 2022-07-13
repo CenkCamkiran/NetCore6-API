@@ -33,7 +33,7 @@ namespace MiddlewareLayer
             request.Headers.TryGetValue(HttpRequestHeader.Authorization.ToString(), out AccessToken);
             request.Headers.TryGetValue("RefreshToken", out RefreshToken);
 
-            string AccessToken_ = AccessToken.ToString().Replace("Bearer", "", StringComparison.OrdinalIgnoreCase).Trim();
+            string AccessToken_ = AccessToken.ToString().Substring(7).Trim();
 
             TokenResponse token = new TokenResponse();
             token.access_token = AccessToken_;

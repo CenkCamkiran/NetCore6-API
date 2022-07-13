@@ -25,7 +25,7 @@ namespace APILayer.Controllers.Customers
 		public IEnumerable<Customer> GetAllCustomers()
 		{
 
-			return customersService.GetAllCustomers(); ;
+			return customersService.GetAllCustomers();
 
 		}
 
@@ -96,37 +96,35 @@ namespace APILayer.Controllers.Customers
 		public NoContentResult UpdateCustomer(string Id, [FromBody] CustomerRequest customerRequest) //Whole object or specific object?
 		{
 
-			Customer customer = new Customer()
-			{
-				Id = Id,
-				Accounts = customerRequest.Accounts,
-				Active = customerRequest.Active,
-				Address = customerRequest.Address,
-				Birthdate = customerRequest.Birthdate,
-				Email = customerRequest.Email,
-				Fullname = customerRequest.Fullname,
-				TierAndDetails = customerRequest.TierAndDetails,
-				Username = customerRequest.Username
-			};
+			//Customer customer = new Customer()
+			//{
+			//	Id = Id,
+			//	Accounts = customerRequest.Accounts,
+			//	Active = customerRequest.Active,
+			//	Address = customerRequest.Address,
+			//	Birthdate = customerRequest.Birthdate,
+			//	Email = customerRequest.Email,
+			//	Fullname = customerRequest.Fullname,
+			//	TierAndDetails = customerRequest.TierAndDetails,
+			//	Username = customerRequest.Username
+			//};
 
-			if (Id.Length != 24)
-			{
-				CustomAppError errorModel = new CustomAppError();
-				errorModel.ErrorMessage = "Id must be 24 Character length";
-				errorModel.ErrorCode = ((int)HttpStatusCode.UnprocessableEntity).ToString();
+			//if (Id.Length != 24)
+			//{
+			//	CustomAppError errorModel = new CustomAppError();
+			//	errorModel.ErrorMessage = "Id must be 24 Character length";
+			//	errorModel.ErrorCode = ((int)HttpStatusCode.UnprocessableEntity).ToString();
 
-				throw new AppException(JsonConvert.SerializeObject(errorModel));
-			}
+			//	throw new AppException(JsonConvert.SerializeObject(errorModel));
+			//}
 
-			customersService.UpdateCustomer(Id, customer);
+			//customersService.UpdateCustomer(Id, customer);
 
 			return NoContent();
 
 		}
 
 		[HttpPost]
-		//[ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Product))]
-		//[ProducesResponseType(StatusCodes.Status404NotFound)]
 		public NoContentResult InsertCustomer([FromBody] CustomerRequest customerRequest) //Whole object or specific object?
 		{
 
@@ -136,6 +134,8 @@ namespace APILayer.Controllers.Customers
 
 		}
 
+		//[ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Product))]
+		//[ProducesResponseType(StatusCodes.Status404NotFound)]
 		//Query Param
 		//[HttpGet]
 		//public Customer GetCustomerByName([FromQuery] string Name)

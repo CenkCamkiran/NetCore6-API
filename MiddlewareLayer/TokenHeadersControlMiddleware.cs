@@ -27,7 +27,7 @@ namespace MiddlewareLayer
             StringValues RefreshToken = "";
 
             bool IsAuthorizationHeaderExists = request.Headers.TryGetValue(HttpRequestHeader.Authorization.ToString(), out AuthorizationBearerToken);
-            string AccessToken = AuthorizationBearerToken.ToString().Replace("Bearer", "", StringComparison.OrdinalIgnoreCase).Trim();
+            string AccessToken = AuthorizationBearerToken.ToString().Substring(7).Trim();
             //bool IsAccessTokenHeaderExists = request.Headers.TryGetValue("AccessToken", out AccessToken);
             bool IsRefreshTokenHeaderExists = request.Headers.TryGetValue("RefreshToken", out RefreshToken);
 
