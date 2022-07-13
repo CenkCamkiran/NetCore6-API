@@ -31,19 +31,19 @@ namespace DataAccessLayer.ElasticSearch.Repository
 				var JSONRequestBody = await requestStream.ReadToEndAsync();
 				var JSONResponseBody = await responseStream.ReadToEndAsync();
 
-				JObject? jsonRequestObject = string.IsNullOrEmpty(JSONRequestBody) ? null : JObject.Parse(JSONRequestBody);
-				JObject? jsonResponseObject = string.IsNullOrEmpty(JSONResponseBody) ? null : JObject.Parse(JSONResponseBody);
+				JToken? jsonRequestObject = string.IsNullOrEmpty(JSONRequestBody) ? null : JToken.Parse(JSONRequestBody);
+				JToken? jsonResponseObject = string.IsNullOrEmpty(JSONResponseBody) ? null : JToken.Parse(JSONResponseBody);
 
 				ControllerRequestResponseLog model = new ControllerRequestResponseLog()
 				{
 					RequestDate = DateTime.Now,
-					RequestJSONBody = jsonRequestObject?.ToString(),
+					RequestJSONBody = jsonRequestObject.ToString(),
 					Method = request.Method,
 					Protocol = request.Protocol,
 					RequestHost = request.Host.ToString(),
 					RequestPath = request.Path.ToString(),
 					ResponseDate = DateTime.Now,
-					ResponseJSONBody = jsonResponseObject?.ToString()
+					ResponseJSONBody = jsonResponseObject.ToString()
 				};
 
 				elasticCommand.IndexData(model);

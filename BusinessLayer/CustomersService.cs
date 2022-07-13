@@ -39,5 +39,10 @@ namespace BusinessLayer
 		{
 			customersRepository.InsertCustomer(customerRequest);
 		}
+
+		public IEnumerable<Customer> GetAllCustomers()
+		{
+			return customersRepository.GetAllCustomers();	
+		}
 	}
 }

@@ -29,7 +29,7 @@ namespace MiddlewareLayer
 				string JSONBody = await reader.ReadToEndAsync();
 
 				var cenk = JsonConvert.DeserializeObject<object>(JSONBody);
-				var jObject = JObject.Parse(JSONBody);
+				var jObject = JObject.Parse(JSONBody); //Must use JToken
 
 				JToken? token = null;
 				bool isEmailPropertyExists = jObject.TryGetValue("email", out token);

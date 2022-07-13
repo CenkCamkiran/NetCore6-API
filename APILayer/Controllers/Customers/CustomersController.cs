@@ -21,6 +21,14 @@ namespace APILayer.Controllers.Customers
 			customersService = new CustomersService();	
 		}
 
+		[HttpGet]
+		public IEnumerable<Customer> GetAllCustomers()
+		{
+
+			return customersService.GetAllCustomers(); ;
+
+		}
+
 		[HttpGet("Id/{Id}")]
 		public Customer GetCustomerByID(string Id)
 		{

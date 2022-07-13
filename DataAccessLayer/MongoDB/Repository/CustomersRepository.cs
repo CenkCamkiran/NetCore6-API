@@ -11,6 +11,13 @@ namespace DataAccessLayer.MongoDB.Repository
 		private const string ANALYTICS_DB_NAME = "analytics";
 		private const string ANALYTICS_COLLECTION_NAME = "customers";
 
+		public IEnumerable<Customer> GetAllCustomers()
+		{
+			MongoDBCommand<Customer> mongoDBCommand = new MongoDBCommand<Customer>(ANALYTICS_DB_NAME, ANALYTICS_COLLECTION_NAME);
+
+			return mongoDBCommand.SearchDocument(_ => true); 
+		}
+
 		public Customer GetCustomerByID(string id)
 		{
 			MongoDBCommand<Customer> mongoDBCommand = new MongoDBCommand<Customer>(ANALYTICS_DB_NAME, ANALYTICS_COLLECTION_NAME);
@@ -52,11 +59,6 @@ namespace DataAccessLayer.MongoDB.Repository
 		}
 
 		public object GetCustomerByUsername(string username)
-		{
-			return null;
-		}
-
-		public IEnumerable<Customer> GetAllCustomers(string email)
 		{
 			return null;
 		}
