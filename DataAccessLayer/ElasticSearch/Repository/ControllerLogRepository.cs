@@ -37,13 +37,13 @@ namespace DataAccessLayer.ElasticSearch.Repository
 				ControllerRequestResponseLog model = new ControllerRequestResponseLog()
 				{
 					RequestDate = DateTime.Now,
-					RequestJSONBody = jsonRequestObject.ToString(),
+					RequestJSONBody = jsonRequestObject?.ToString(),
 					Method = request.Method,
 					Protocol = request.Protocol,
 					RequestHost = request.Host.ToString(),
 					RequestPath = request.Path.ToString(),
 					ResponseDate = DateTime.Now,
-					ResponseJSONBody = jsonResponseObject.ToString()
+					ResponseJSONBody = jsonResponseObject?.ToString()
 				};
 
 				elasticCommand.IndexData(model);
