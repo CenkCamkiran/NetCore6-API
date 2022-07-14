@@ -47,15 +47,12 @@ namespace APILayer.Controllers.User
 
 			KeycloakService keycloakService = new KeycloakService();
 
-			TokenResponse adminToken = keycloakService.AdminAuth();
-
 			TokenResponse tokenResponse = new TokenResponse()
 			{
 				access_token = token.accessToken,
 				refresh_token = token.refreshToken,
 				session_state = accessTokenPayload["session_state"].ToString()
 			};
-
 
 			keycloakService.RemoveSession(false, tokenResponse);
 
