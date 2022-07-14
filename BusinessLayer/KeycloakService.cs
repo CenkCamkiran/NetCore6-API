@@ -218,7 +218,7 @@ namespace BusinessLayer
 
         }
 
-        public HttpResponseMessage RemoveSession(bool IsAdmin, TokenResponse token)
+        public HttpResponseMessage RemoveSession(bool IsAdmin, TokenResponse token, TokenResponse? adminToken = null)
         {
 
             var newSession = RefreshSession(IsAdmin, token);
@@ -230,7 +230,7 @@ namespace BusinessLayer
 
             Dictionary<string, string> httpHeaders = new Dictionary<string, string>();
             httpHeaders.Add(HttpRequestHeader.Accept.ToString(), MediaTypeNames.Application.Json);
-            httpHeaders.Add(HttpRequestHeader.Authorization.ToString(), string.Format("Bearer {0}", newSession.access_token));
+            httpHeaders.Add(HttpRequestHeader.Authorization.ToString(), string.Format("Bearer {0}", adminToken == null ? newSession.access_token : adminToken.access_token));
 
             var httpResponseMessage = httpClientHelper.MakeRequestWithoutBodyQueryParams(WebServiceUrl, HttpMethod.Delete, httpHeaders, token);
 
