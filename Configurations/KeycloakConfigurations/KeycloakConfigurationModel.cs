@@ -2,7 +2,7 @@
 {
 	public partial class AppConfiguration
     {
-        protected string? Host { get; set; }
+        protected string? KeycloakHost { get; set; }
         protected string? AdminUsername { get; set; }
         protected string? AdminPassword { get; set; }
         protected string? AdminRealmName { get; set; }

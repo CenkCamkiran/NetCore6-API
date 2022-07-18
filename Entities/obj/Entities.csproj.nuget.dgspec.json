@@ -1,25 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\camki\\Desktop\\Klasörler\\Google Cloud\\Projects\\DotNetCore-Example-API\\Entities\\Entities.csproj": {}
+    "C:\\Users\\ccamkiran\\source\\repos\\DotNetCoreFirstproject\\Entities\\Entities.csproj": {}
   },
   "projects": {
-    "C:\\Users\\camki\\Desktop\\Klasörler\\Google Cloud\\Projects\\DotNetCore-Example-API\\Entities\\Entities.csproj": {
+    "C:\\Users\\ccamkiran\\source\\repos\\DotNetCoreFirstproject\\Entities\\Entities.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\camki\\Desktop\\Klasörler\\Google Cloud\\Projects\\DotNetCore-Example-API\\Entities\\Entities.csproj",
+        "projectUniqueName": "C:\\Users\\ccamkiran\\source\\repos\\DotNetCoreFirstproject\\Entities\\Entities.csproj",
         "projectName": "Entities",
-        "projectPath": "C:\\Users\\camki\\Desktop\\Klasörler\\Google Cloud\\Projects\\DotNetCore-Example-API\\Entities\\Entities.csproj",
-        "packagesPath": "C:\\Users\\camki\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\camki\\Desktop\\Klasörler\\Google Cloud\\Projects\\DotNetCore-Example-API\\Entities\\obj\\",
+        "projectPath": "C:\\Users\\ccamkiran\\source\\repos\\DotNetCoreFirstproject\\Entities\\Entities.csproj",
+        "packagesPath": "C:\\Users\\ccamkiran\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\ccamkiran\\source\\repos\\DotNetCoreFirstproject\\Entities\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
-          "C:\\Users\\camki\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\ccamkiran\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
@@ -68,7 +70,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.301\\RuntimeIdentifierGraph.json"
         }
       }
     }

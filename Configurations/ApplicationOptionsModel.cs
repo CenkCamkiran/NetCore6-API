@@ -13,6 +13,9 @@ namespace Configurations
 
         [JsonProperty("MongoDB")]
         public MongoDB MongoDB { get; set; }
+
+        [JsonProperty("Redis")]
+        public Redis Redis { get; set; }
     }
 
     public partial class MongoDB
@@ -25,6 +28,16 @@ namespace Configurations
 
         [JsonProperty("DefaultDatabaseName")]
         public string DefaultDatabaseName { get; set; }
+    }
+
+    public partial class Redis
+    {
+        [JsonProperty("Host")]
+        public string Host { get; set; }
+
+        [JsonProperty("Password")]
+        public string Password { get; set; }
+
     }
 
     public partial class ElasticSearch

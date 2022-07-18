@@ -26,7 +26,7 @@ namespace BusinessLayer
 			HttpClientHelper<string> httpClientHelper = new HttpClientHelper<string>();
 
             var keycloakConfigs = appConfiguration.GetKeycloakConfig();
-            string WebServiceUrl = string.Concat(keycloakConfigs["Host"], string.Format(keycloakConfigs["TokenRoute"], keycloakConfigs["AdminRealmName"]));
+            string WebServiceUrl = string.Concat(keycloakConfigs["KeycloakHost"], string.Format(keycloakConfigs["TokenRoute"], keycloakConfigs["AdminRealmName"]));
 
             Dictionary<string, string> requestForm = new Dictionary<string, string>();
             requestForm["client_id"] = keycloakConfigs["AdminClientID"];
@@ -92,7 +92,7 @@ namespace BusinessLayer
             HttpClientHelper<string> httpClientHelper = new HttpClientHelper<string>();
 
             var keycloakConfigs = appConfiguration.GetKeycloakConfig();
-            string WebServiceUrl = string.Concat(keycloakConfigs["Host"], string.Format(keycloakConfigs["TokenRoute"], keycloakConfigs["UserRealmName"]));
+            string WebServiceUrl = string.Concat(keycloakConfigs["KeycloakHost"], string.Format(keycloakConfigs["TokenRoute"], keycloakConfigs["UserRealmName"]));
 
             Dictionary<string, string> requestForm = new Dictionary<string, string>();
             requestForm["client_id"] = keycloakConfigs["UserClientID"];
@@ -158,8 +158,8 @@ namespace BusinessLayer
             HttpClientHelper<string> httpClientHelper = new HttpClientHelper<string>();
 
             var keycloakConfigs = appConfiguration.GetKeycloakConfig();
-            string WebServiceUrl = IsAdmin ? string.Concat(keycloakConfigs["Host"], string.Format(keycloakConfigs["TokenRoute"], keycloakConfigs["AdminRealmName"]))
-                : string.Concat(keycloakConfigs["Host"], string.Format(keycloakConfigs["TokenRoute"], keycloakConfigs["UserRealmName"]));
+            string WebServiceUrl = IsAdmin ? string.Concat(keycloakConfigs["KeycloakHost"], string.Format(keycloakConfigs["TokenRoute"], keycloakConfigs["AdminRealmName"]))
+                : string.Concat(keycloakConfigs["KeycloakHost"], string.Format(keycloakConfigs["TokenRoute"], keycloakConfigs["UserRealmName"]));
 
             Dictionary<string, string> requestForm = new Dictionary<string, string>();
             requestForm["client_id"] = IsAdmin ? keycloakConfigs["AdminClientID"] : keycloakConfigs["UserClientID"];
@@ -225,8 +225,8 @@ namespace BusinessLayer
             HttpClientHelper<string> httpClientHelper = new HttpClientHelper<string>();
 
             var keycloakConfigs = appConfiguration.GetKeycloakConfig();
-            string WebServiceUrl = IsAdmin ? string.Concat(keycloakConfigs["Host"], string.Format(keycloakConfigs["SessionRoute"], keycloakConfigs["AdminRealmName"], token.session_state)) 
-                : string.Concat(keycloakConfigs["Host"], string.Format(keycloakConfigs["SessionRoute"], keycloakConfigs["UserRealmName"], token.session_state));
+            string WebServiceUrl = IsAdmin ? string.Concat(keycloakConfigs["KeycloakHost"], string.Format(keycloakConfigs["SessionRoute"], keycloakConfigs["AdminRealmName"], token.session_state)) 
+                : string.Concat(keycloakConfigs["KeycloakHost"], string.Format(keycloakConfigs["SessionRoute"], keycloakConfigs["UserRealmName"], token.session_state));
 
             Dictionary<string, string> httpHeaders = new Dictionary<string, string>();
             httpHeaders.Add(HttpRequestHeader.Accept.ToString(), MediaTypeNames.Application.Json);
@@ -260,7 +260,7 @@ namespace BusinessLayer
             HttpClientHelper<CreateUserRequest> httpClientHelper = new HttpClientHelper<CreateUserRequest>();
 
             var keycloakConfigs = appConfiguration.GetKeycloakConfig();
-            string WebServiceUrl = string.Concat(keycloakConfigs["Host"], string.Format(keycloakConfigs["UsersRoute"], keycloakConfigs["UserRealmName"]));
+            string WebServiceUrl = string.Concat(keycloakConfigs["KeycloakHost"], string.Format(keycloakConfigs["UsersRoute"], keycloakConfigs["UserRealmName"]));
 
             Dictionary<string, string> httpHeaders = new Dictionary<string, string>();
 
@@ -362,7 +362,7 @@ namespace BusinessLayer
             HttpClientHelper<string> httpClientHelper = new HttpClientHelper<string>();
 
             var keycloakConfigs = appConfiguration.GetKeycloakConfig();
-            string WebServiceUrl = string.Concat(keycloakConfigs["Host"], string.Format(keycloakConfigs["IntrospectRoute"], keycloakConfigs["UserRealmName"]));
+            string WebServiceUrl = string.Concat(keycloakConfigs["KeycloakHost"], string.Format(keycloakConfigs["IntrospectRoute"], keycloakConfigs["UserRealmName"]));
 
             Dictionary<string, string> requestForm = new Dictionary<string, string>();
             requestForm["client_id"] = keycloakConfigs["AdminClientID"];

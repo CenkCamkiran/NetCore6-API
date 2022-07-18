@@ -7,7 +7,7 @@
         public Dictionary<string, string> GetKeycloakConfig()
         {
 
-            Host = ApplicationSettingsModel.ExternalTools.Keycloak.Host.ToString();
+            KeycloakHost = ApplicationSettingsModel.ExternalTools.Keycloak.Host.ToString();
 
             AdminUsername = ApplicationSettingsModel.ExternalTools.Keycloak.Admin.Username;
             AdminPassword = ApplicationSettingsModel.ExternalTools.Keycloak.Admin.Password;
@@ -27,7 +27,7 @@
 
             Dictionary<string, string> ConfigList = new Dictionary<string, string>()
             {
-                { "Host", Host },
+                { "KeycloakHost", KeycloakHost },
                 { "AdminUsername", AdminUsername },
                 { "AdminPassword", AdminPassword },
                 { "AdminRealmName", AdminRealmName },
@@ -77,6 +77,21 @@
                 { "MongoDBHost", MongoDBHost },
                 { "DefaultDatabaseName", DefaultDatabaseName },
                 { "MongoDBConnectionString", MongoDBConnectionString }
+            };
+
+            return ConfigList;
+
+        }
+
+        public Dictionary<string, string> GetRedisConfig()
+        {
+            RedisHost = ApplicationSettingsModel.ExternalTools.Redis.Host.ToString();
+            Password = ApplicationSettingsModel.ExternalTools.Redis.Password.ToString();
+
+            Dictionary<string, string> ConfigList = new Dictionary<string, string>()
+            {
+                { "RedisHost", RedisHost },
+                { "Password", Password }
             };
 
             return ConfigList;

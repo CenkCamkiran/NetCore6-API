@@ -22,3 +22,17 @@ C:\Users\camki\Desktop\Klasörler\Google Cloud\Projects\DotNetCore-Example-API\D
 C:\Users\camki\Desktop\Klasörler\Google Cloud\Projects\DotNetCore-Example-API\DataAccessLayer\obj\Debug\net6.0\ref\DataAccessLayer.dll
 C:\Users\camki\Desktop\Klasörler\Google Cloud\Projects\DotNetCore-Example-API\DataAccessLayer\bin\Debug\net6.0\Models.dll
 C:\Users\camki\Desktop\Klasörler\Google Cloud\Projects\DotNetCore-Example-API\DataAccessLayer\bin\Debug\net6.0\Models.pdb
+C:\Users\ccamkiran\source\repos\DotNetCoreFirstproject\DataAccessLayer\bin\Debug\net6.0\DataAccessLayer.deps.json
+C:\Users\ccamkiran\source\repos\DotNetCoreFirstproject\DataAccessLayer\bin\Debug\net6.0\DataAccessLayer.dll
+C:\Users\ccamkiran\source\repos\DotNetCoreFirstproject\DataAccessLayer\bin\Debug\net6.0\DataAccessLayer.pdb
+C:\Users\ccamkiran\source\repos\DotNetCoreFirstproject\DataAccessLayer\bin\Debug\net6.0\Configurations.dll
+C:\Users\ccamkiran\source\repos\DotNetCoreFirstproject\DataAccessLayer\bin\Debug\net6.0\Helpers.dll
+C:\Users\ccamkiran\source\repos\DotNetCoreFirstproject\DataAccessLayer\bin\Debug\net6.0\Models.dll
+C:\Users\ccamkiran\source\repos\DotNetCoreFirstproject\DataAccessLayer\bin\Debug\net6.0\Configurations.pdb
+C:\Users\ccamkiran\source\repos\DotNetCoreFirstproject\DataAccessLayer\bin\Debug\net6.0\Models.pdb
+C:\Users\ccamkiran\source\repos\DotNetCoreFirstproject\DataAccessLayer\bin\Debug\net6.0\Helpers.pdb
+C:\Users\ccamkiran\source\repos\DotNetCoreFirstproject\DataAccessLayer\obj\Debug\net6.0\DataAccessLayer.csproj.CopyComplete
+C:\Users\ccamkiran\source\repos\DotNetCoreFirstproject\DataAccessLayer\obj\Debug\net6.0\DataAccessLayer.dll
+C:\Users\ccamkiran\source\repos\DotNetCoreFirstproject\DataAccessLayer\obj\Debug\net6.0\refint\DataAccessLayer.dll
+C:\Users\ccamkiran\source\repos\DotNetCoreFirstproject\DataAccessLayer\obj\Debug\net6.0\DataAccessLayer.pdb
+C:\Users\ccamkiran\source\repos\DotNetCoreFirstproject\DataAccessLayer\obj\Debug\net6.0\ref\DataAccessLayer.dll

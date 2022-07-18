@@ -21,3 +21,26 @@ C:\Users\camki\Desktop\Klasörler\Google Cloud\Projects\DotNetCore-Example-API\A
 C:\Users\camki\Desktop\Klasörler\Google Cloud\Projects\DotNetCore-Example-API\APILayer\obj\Debug\net6.0\ref\APILayer.dll
 C:\Users\camki\Desktop\Klasörler\Google Cloud\Projects\DotNetCore-Example-API\APILayer\bin\Debug\net6.0\Models.dll
 C:\Users\camki\Desktop\Klasörler\Google Cloud\Projects\DotNetCore-Example-API\APILayer\bin\Debug\net6.0\Models.pdb
+C:\Users\ccamkiran\source\repos\DotNetCoreFirstproject\APILayer\bin\Debug\net6.0\APILayer.deps.json
+C:\Users\ccamkiran\source\repos\DotNetCoreFirstproject\APILayer\bin\Debug\net6.0\APILayer.dll
+C:\Users\ccamkiran\source\repos\DotNetCoreFirstproject\APILayer\bin\Debug\net6.0\APILayer.pdb
+C:\Users\ccamkiran\source\repos\DotNetCoreFirstproject\APILayer\bin\Debug\net6.0\BusinessLayer.dll
+C:\Users\ccamkiran\source\repos\DotNetCoreFirstproject\APILayer\bin\Debug\net6.0\Configurations.dll
+C:\Users\ccamkiran\source\repos\DotNetCoreFirstproject\APILayer\bin\Debug\net6.0\DataAccessLayer.dll
+C:\Users\ccamkiran\source\repos\DotNetCoreFirstproject\APILayer\bin\Debug\net6.0\Helpers.dll
+C:\Users\ccamkiran\source\repos\DotNetCoreFirstproject\APILayer\bin\Debug\net6.0\Models.dll
+C:\Users\ccamkiran\source\repos\DotNetCoreFirstproject\APILayer\bin\Debug\net6.0\BusinessLayer.pdb
+C:\Users\ccamkiran\source\repos\DotNetCoreFirstproject\APILayer\bin\Debug\net6.0\Configurations.pdb
+C:\Users\ccamkiran\source\repos\DotNetCoreFirstproject\APILayer\bin\Debug\net6.0\DataAccessLayer.pdb
+C:\Users\ccamkiran\source\repos\DotNetCoreFirstproject\APILayer\bin\Debug\net6.0\Helpers.pdb
+C:\Users\ccamkiran\source\repos\DotNetCoreFirstproject\APILayer\bin\Debug\net6.0\Models.pdb
+C:\Users\ccamkiran\source\repos\DotNetCoreFirstproject\APILayer\obj\Debug\net6.0\APILayer.csproj.AssemblyReference.cache
+C:\Users\ccamkiran\source\repos\DotNetCoreFirstproject\APILayer\obj\Debug\net6.0\APILayer.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ccamkiran\source\repos\DotNetCoreFirstproject\APILayer\obj\Debug\net6.0\APILayer.AssemblyInfoInputs.cache
+C:\Users\ccamkiran\source\repos\DotNetCoreFirstproject\APILayer\obj\Debug\net6.0\APILayer.AssemblyInfo.cs
+C:\Users\ccamkiran\source\repos\DotNetCoreFirstproject\APILayer\obj\Debug\net6.0\APILayer.csproj.CoreCompileInputs.cache
+C:\Users\ccamkiran\source\repos\DotNetCoreFirstproject\APILayer\obj\Debug\net6.0\APILayer.csproj.CopyComplete
+C:\Users\ccamkiran\source\repos\DotNetCoreFirstproject\APILayer\obj\Debug\net6.0\APILayer.dll
+C:\Users\ccamkiran\source\repos\DotNetCoreFirstproject\APILayer\obj\Debug\net6.0\refint\APILayer.dll
+C:\Users\ccamkiran\source\repos\DotNetCoreFirstproject\APILayer\obj\Debug\net6.0\APILayer.pdb
+C:\Users\ccamkiran\source\repos\DotNetCoreFirstproject\APILayer\obj\Debug\net6.0\ref\APILayer.dll

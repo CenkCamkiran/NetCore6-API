@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="ControllerModels\TopPostsResponse.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="MongoDB.Bson" Version="2.16.1" />
     <PackageReference Include="NEST" Version="7.17.4" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
