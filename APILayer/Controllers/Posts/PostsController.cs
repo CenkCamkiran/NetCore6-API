@@ -33,7 +33,6 @@ namespace APILayer.Controllers.Posts
 				string serializedPosts = JsonConvert.SerializeObject(topPostsDB);
 				PostsService.SetTopPostsCache(cacheKey, serializedPosts, ttl);
 
-				return topPostsDB;
 			}
 
 			return topPosts;
