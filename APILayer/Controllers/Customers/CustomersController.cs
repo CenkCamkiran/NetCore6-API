@@ -1,6 +1,5 @@
 ﻿using BusinessLayer;
 using Helpers.AppExceptionHelpers;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Models.ControllerModels;
 using Models.DataAccessLayerModels;
@@ -18,7 +17,7 @@ namespace APILayer.Controllers.Customers
 
 		public CustomersController()
 		{
-			customersService = new CustomersService();	
+			customersService = new CustomersService();
 		}
 
 		[HttpGet]

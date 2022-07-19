@@ -1,10 +1,6 @@
 ﻿using DataAccessLayer.MongoDB.Interfaces;
-using Helpers.AppExceptionHelpers;
-using Models.DataAccessLayerModels;
-using Models.HelpersModels;
 using MongoDB.Driver;
 using System.Linq.Expressions;
-using System.Net;
 
 namespace DataAccessLayer.MongoDB.Infrastructure
 {

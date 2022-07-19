@@ -15,7 +15,7 @@ namespace DataAccessLayer.MongoDB.Repository
 		{
 			MongoDBCommand<Customer> mongoDBCommand = new MongoDBCommand<Customer>(ANALYTICS_DB_NAME, ANALYTICS_COLLECTION_NAME);
 
-			return mongoDBCommand.SearchDocument(_ => true); 
+			return mongoDBCommand.SearchDocument(_ => true);
 		}
 
 		public Customer GetCustomerByID(string id)

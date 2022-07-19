@@ -1,6 +1,4 @@
-﻿using Newtonsoft.Json;
-
-namespace Models.ControllerModels
+﻿namespace Models.ControllerModels
 {
 	[Serializable]
 	public class GeneralResponse

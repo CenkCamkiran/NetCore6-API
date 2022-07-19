@@ -13,349 +13,349 @@ namespace MiddlewareLayer
 {
 	// You may need to install the Microsoft.AspNetCore.Http.Abstractions package into your project
 	public class ErrorHandlerMiddleware
-    {
-        private readonly RequestDelegate _next;
+	{
+		private readonly RequestDelegate _next;
 
-        public ErrorHandlerMiddleware(RequestDelegate next)
-        {
-            _next = next;
-        }
+		public ErrorHandlerMiddleware(RequestDelegate next)
+		{
+			_next = next;
+		}
 
-        public async Task Invoke(HttpContext httpContext)
-        {
+		public async Task Invoke(HttpContext httpContext)
+		{
 
-            try
-            {
-                await _next(httpContext);
-            }
-            catch(AggregateException error)
-            {
+			try
+			{
+				await _next(httpContext);
+			}
+			catch (AggregateException error)
+			{
 
-                KeycloakService keycloakService = new KeycloakService();
+				KeycloakService keycloakService = new KeycloakService();
 
-                var response = httpContext.Response;
-                response.ContentType = MediaTypeNames.Application.Json; // HttpResponseHeader.ContentType.ToString();
+				var response = httpContext.Response;
+				response.ContentType = MediaTypeNames.Application.Json; // HttpResponseHeader.ContentType.ToString();
 
-                //var cenk = error is KeycloakException;
-                //var cengo = error.InnerException is KeycloakException;
+				//var cenk = error is KeycloakException;
+				//var cengo = error.InnerException is KeycloakException;
 
-                CustomErrorResponse errorResponse = new CustomErrorResponse();
+				CustomErrorResponse errorResponse = new CustomErrorResponse();
 
-                switch (error.InnerException)
-                {
-                    case KeycloakException:
+				switch (error.InnerException)
+				{
+					case KeycloakException:
 
-                        CustomKeycloakError AdminTokenModel = JsonConvert.DeserializeObject<CustomKeycloakError>(error.InnerException.Message);
+						CustomKeycloakError AdminTokenModel = JsonConvert.DeserializeObject<CustomKeycloakError>(error.InnerException.Message);
 
-                        response.StatusCode = Convert.ToInt32(AdminTokenModel.ErrorCode);
+						response.StatusCode = Convert.ToInt32(AdminTokenModel.ErrorCode);
 
-                        errorResponse.ErrorMessage = AdminTokenModel?.ErrorMessage;
-                        errorResponse.ErrorCode = AdminTokenModel?.ErrorCode;
-                        
-                        if (AdminTokenModel.KeycloakToken != null)
-                            keycloakService.RemoveSession(true, AdminTokenModel.KeycloakToken);
+						errorResponse.ErrorMessage = AdminTokenModel?.ErrorMessage;
+						errorResponse.ErrorCode = AdminTokenModel?.ErrorCode;
 
-                        break;
+						if (AdminTokenModel.KeycloakToken != null)
+							keycloakService.RemoveSession(true, AdminTokenModel.KeycloakToken);
 
-                    case BadRequestException:
+						break;
 
-                        response.StatusCode = Convert.ToInt32(JsonConvert.DeserializeObject<CustomAppError>(error.InnerException.Message).ErrorCode);
+					case BadRequestException:
 
-                        errorResponse.ErrorMessage = JsonConvert.DeserializeObject<CustomAppError>(error.InnerException.Message)?.ErrorMessage;
-                        errorResponse.ErrorCode = JsonConvert.DeserializeObject<CustomAppError>(error.InnerException.Message)?.ErrorCode;
+						response.StatusCode = Convert.ToInt32(JsonConvert.DeserializeObject<CustomAppError>(error.InnerException.Message).ErrorCode);
 
-                        break;
+						errorResponse.ErrorMessage = JsonConvert.DeserializeObject<CustomAppError>(error.InnerException.Message)?.ErrorMessage;
+						errorResponse.ErrorCode = JsonConvert.DeserializeObject<CustomAppError>(error.InnerException.Message)?.ErrorCode;
 
-                    case AppException:
+						break;
 
-                        response.StatusCode = Convert.ToInt32(JsonConvert.DeserializeObject<CustomAppError>(error.InnerException.Message).ErrorCode);
+					case AppException:
 
-                        errorResponse.ErrorMessage = JsonConvert.DeserializeObject<CustomAppError>(error.InnerException.Message)?.ErrorMessage;
-                        errorResponse.ErrorCode = JsonConvert.DeserializeObject<CustomAppError>(error.InnerException.Message)?.ErrorCode;
+						response.StatusCode = Convert.ToInt32(JsonConvert.DeserializeObject<CustomAppError>(error.InnerException.Message).ErrorCode);
 
-                        break;
+						errorResponse.ErrorMessage = JsonConvert.DeserializeObject<CustomAppError>(error.InnerException.Message)?.ErrorMessage;
+						errorResponse.ErrorCode = JsonConvert.DeserializeObject<CustomAppError>(error.InnerException.Message)?.ErrorCode;
 
-                    case KeyNotFoundException:
+						break;
 
-                        response.StatusCode = Convert.ToInt32(JsonConvert.DeserializeObject<CustomAppError>(error.InnerException.Message).ErrorCode);
+					case KeyNotFoundException:
 
-                        errorResponse.ErrorMessage = JsonConvert.DeserializeObject<CustomAppError>(error.InnerException.Message)?.ErrorMessage;
-                        errorResponse.ErrorCode = JsonConvert.DeserializeObject<CustomAppError>(error.InnerException.Message)?.ErrorCode;
+						response.StatusCode = Convert.ToInt32(JsonConvert.DeserializeObject<CustomAppError>(error.InnerException.Message).ErrorCode);
 
-                        break;
+						errorResponse.ErrorMessage = JsonConvert.DeserializeObject<CustomAppError>(error.InnerException.Message)?.ErrorMessage;
+						errorResponse.ErrorCode = JsonConvert.DeserializeObject<CustomAppError>(error.InnerException.Message)?.ErrorCode;
 
-                    case MandatoryRequestTokenHeadersException:
+						break;
 
-                        response.StatusCode = Convert.ToInt32(JsonConvert.DeserializeObject<CustomAppError>(error.InnerException.Message).ErrorCode);
+					case MandatoryRequestTokenHeadersException:
 
-                        errorResponse.ErrorMessage = JsonConvert.DeserializeObject<CustomAppError>(error.InnerException.Message)?.ErrorMessage;
-                        errorResponse.ErrorCode = JsonConvert.DeserializeObject<CustomAppError>(error.InnerException.Message)?.ErrorCode;
+						response.StatusCode = Convert.ToInt32(JsonConvert.DeserializeObject<CustomAppError>(error.InnerException.Message).ErrorCode);
 
-                        break;
+						errorResponse.ErrorMessage = JsonConvert.DeserializeObject<CustomAppError>(error.InnerException.Message)?.ErrorMessage;
+						errorResponse.ErrorCode = JsonConvert.DeserializeObject<CustomAppError>(error.InnerException.Message)?.ErrorCode;
 
-                    case ArgumentException or ArgumentNullException or FormatException:
+						break;
 
-                        response.StatusCode = Convert.ToInt32(JsonConvert.DeserializeObject<CustomAppError>(error.Message).ErrorCode);
+					case ArgumentException or ArgumentNullException or FormatException:
 
-                        errorResponse.ErrorMessage = JsonConvert.DeserializeObject<CustomAppError>(error.Message)?.ErrorMessage;
-                        errorResponse.ErrorCode = JsonConvert.DeserializeObject<CustomAppError>(error.Message)?.ErrorCode;
+						response.StatusCode = Convert.ToInt32(JsonConvert.DeserializeObject<CustomAppError>(error.Message).ErrorCode);
 
-                        break;
+						errorResponse.ErrorMessage = JsonConvert.DeserializeObject<CustomAppError>(error.Message)?.ErrorMessage;
+						errorResponse.ErrorCode = JsonConvert.DeserializeObject<CustomAppError>(error.Message)?.ErrorCode;
 
-                    case EmailFormatException:
+						break;
 
-                        response.StatusCode = Convert.ToInt32(JsonConvert.DeserializeObject<CustomAppError>(error.Message).ErrorCode);
+					case EmailFormatException:
 
-                        errorResponse.ErrorMessage = JsonConvert.DeserializeObject<CustomAppError>(error.Message)?.ErrorMessage;
-                        errorResponse.ErrorCode = JsonConvert.DeserializeObject<CustomAppError>(error.Message)?.ErrorCode;
+						response.StatusCode = Convert.ToInt32(JsonConvert.DeserializeObject<CustomAppError>(error.Message).ErrorCode);
 
-                        break;
+						errorResponse.ErrorMessage = JsonConvert.DeserializeObject<CustomAppError>(error.Message)?.ErrorMessage;
+						errorResponse.ErrorCode = JsonConvert.DeserializeObject<CustomAppError>(error.Message)?.ErrorCode;
 
-                    case MandatoryRequestBodyParametersException:
+						break;
 
-                        response.StatusCode = Convert.ToInt32(JsonConvert.DeserializeObject<CustomAppError>(error.Message).ErrorCode);
+					case MandatoryRequestBodyParametersException:
 
-                        errorResponse.ErrorMessage = JsonConvert.DeserializeObject<CustomAppError>(error.Message)?.ErrorMessage;
-                        errorResponse.ErrorCode = JsonConvert.DeserializeObject<CustomAppError>(error.Message)?.ErrorCode;
+						response.StatusCode = Convert.ToInt32(JsonConvert.DeserializeObject<CustomAppError>(error.Message).ErrorCode);
 
-                        break;
+						errorResponse.ErrorMessage = JsonConvert.DeserializeObject<CustomAppError>(error.Message)?.ErrorMessage;
+						errorResponse.ErrorCode = JsonConvert.DeserializeObject<CustomAppError>(error.Message)?.ErrorCode;
 
-                    case HashFailedException:
+						break;
 
-                        response.StatusCode = Convert.ToInt32(JsonConvert.DeserializeObject<CustomAppError>(error.Message).ErrorCode);
+					case HashFailedException:
 
-                        errorResponse.ErrorMessage = JsonConvert.DeserializeObject<CustomAppError>(error.Message)?.ErrorMessage;
-                        errorResponse.ErrorCode = JsonConvert.DeserializeObject<CustomAppError>(error.Message)?.ErrorCode;
+						response.StatusCode = Convert.ToInt32(JsonConvert.DeserializeObject<CustomAppError>(error.Message).ErrorCode);
 
-                        break;
+						errorResponse.ErrorMessage = JsonConvert.DeserializeObject<CustomAppError>(error.Message)?.ErrorMessage;
+						errorResponse.ErrorCode = JsonConvert.DeserializeObject<CustomAppError>(error.Message)?.ErrorCode;
 
-                    case ElasticSearchException:
+						break;
 
-                        response.StatusCode = Convert.ToInt32(JsonConvert.DeserializeObject<CustomAppError>(error.Message).ErrorCode);
+					case ElasticSearchException:
 
-                        errorResponse.ErrorMessage = JsonConvert.DeserializeObject<CustomAppError>(error.Message)?.ErrorMessage;
-                        errorResponse.ErrorCode = JsonConvert.DeserializeObject<CustomAppError>(error.Message)?.ErrorCode;
+						response.StatusCode = Convert.ToInt32(JsonConvert.DeserializeObject<CustomAppError>(error.Message).ErrorCode);
 
-                        break;
+						errorResponse.ErrorMessage = JsonConvert.DeserializeObject<CustomAppError>(error.Message)?.ErrorMessage;
+						errorResponse.ErrorCode = JsonConvert.DeserializeObject<CustomAppError>(error.Message)?.ErrorCode;
 
-                    case MandatoryRequestQueryParamsException:
+						break;
 
-                        response.StatusCode = Convert.ToInt32(JsonConvert.DeserializeObject<CustomAppError>(error.Message).ErrorCode);
+					case MandatoryRequestQueryParamsException:
 
-                        errorResponse.ErrorMessage = JsonConvert.DeserializeObject<CustomAppError>(error.Message)?.ErrorMessage;
-                        errorResponse.ErrorCode = JsonConvert.DeserializeObject<CustomAppError>(error.Message)?.ErrorCode;
+						response.StatusCode = Convert.ToInt32(JsonConvert.DeserializeObject<CustomAppError>(error.Message).ErrorCode);
 
-                        break;
+						errorResponse.ErrorMessage = JsonConvert.DeserializeObject<CustomAppError>(error.Message)?.ErrorMessage;
+						errorResponse.ErrorCode = JsonConvert.DeserializeObject<CustomAppError>(error.Message)?.ErrorCode;
 
-                    case DataNotFoundException:
+						break;
 
-                        response.StatusCode = Convert.ToInt32(JsonConvert.DeserializeObject<CustomAppError>(error.Message).ErrorCode);
+					case DataNotFoundException:
 
-                        errorResponse.ErrorMessage = JsonConvert.DeserializeObject<CustomAppError>(error.Message)?.ErrorMessage;
-                        errorResponse.ErrorCode = JsonConvert.DeserializeObject<CustomAppError>(error.Message)?.ErrorCode;
+						response.StatusCode = Convert.ToInt32(JsonConvert.DeserializeObject<CustomAppError>(error.Message).ErrorCode);
 
-                        break;
+						errorResponse.ErrorMessage = JsonConvert.DeserializeObject<CustomAppError>(error.Message)?.ErrorMessage;
+						errorResponse.ErrorCode = JsonConvert.DeserializeObject<CustomAppError>(error.Message)?.ErrorCode;
 
-                    case MongoDBConnectionException:
+						break;
 
-                        response.StatusCode = Convert.ToInt32(JsonConvert.DeserializeObject<CustomAppError>(error.Message).ErrorCode);
+					case MongoDBConnectionException:
 
-                        errorResponse.ErrorMessage = JsonConvert.DeserializeObject<CustomAppError>(error.Message)?.ErrorMessage;
-                        errorResponse.ErrorCode = JsonConvert.DeserializeObject<CustomAppError>(error.Message)?.ErrorCode;
+						response.StatusCode = Convert.ToInt32(JsonConvert.DeserializeObject<CustomAppError>(error.Message).ErrorCode);
 
-                        break;
+						errorResponse.ErrorMessage = JsonConvert.DeserializeObject<CustomAppError>(error.Message)?.ErrorMessage;
+						errorResponse.ErrorCode = JsonConvert.DeserializeObject<CustomAppError>(error.Message)?.ErrorCode;
 
-                    case TokenNotActiveException:
+						break;
 
-                        response.StatusCode = Convert.ToInt32(JsonConvert.DeserializeObject<CustomAppError>(error.Message).ErrorCode);
+					case TokenNotActiveException:
 
-                        errorResponse.ErrorMessage = JsonConvert.DeserializeObject<CustomAppError>(error.Message)?.ErrorMessage;
-                        errorResponse.ErrorCode = JsonConvert.DeserializeObject<CustomAppError>(error.Message)?.ErrorCode;
+						response.StatusCode = Convert.ToInt32(JsonConvert.DeserializeObject<CustomAppError>(error.Message).ErrorCode);
 
-                        break;                   
+						errorResponse.ErrorMessage = JsonConvert.DeserializeObject<CustomAppError>(error.Message)?.ErrorMessage;
+						errorResponse.ErrorCode = JsonConvert.DeserializeObject<CustomAppError>(error.Message)?.ErrorCode;
 
-                    default:
+						break;
 
-                        response.StatusCode = ((int)HttpStatusCode.InternalServerError);
+					default:
 
-                        errorResponse.ErrorMessage = error.Message.ToString();
-                        errorResponse.ErrorCode = ((int)HttpStatusCode.InternalServerError).ToString();
+						response.StatusCode = ((int)HttpStatusCode.InternalServerError);
 
-                        break;
-                }
+						errorResponse.ErrorMessage = error.Message.ToString();
+						errorResponse.ErrorCode = ((int)HttpStatusCode.InternalServerError).ToString();
 
-                await response.WriteAsync(JsonConvert.SerializeObject(errorResponse));
-            }
-            catch (Exception error)
-            {
+						break;
+				}
 
-                KeycloakService keycloakService = new KeycloakService();
+				await response.WriteAsync(JsonConvert.SerializeObject(errorResponse));
+			}
+			catch (Exception error)
+			{
 
-                var response = httpContext.Response;
-                response.ContentType = MediaTypeNames.Application.Json; // HttpResponseHeader.ContentType.ToString();
+				KeycloakService keycloakService = new KeycloakService();
 
-                //var cenk = error is KeycloakException;
-                //var cengo = error.InnerException is KeycloakException;
+				var response = httpContext.Response;
+				response.ContentType = MediaTypeNames.Application.Json; // HttpResponseHeader.ContentType.ToString();
 
-                CustomErrorResponse errorResponse = new CustomErrorResponse();
+				//var cenk = error is KeycloakException;
+				//var cengo = error.InnerException is KeycloakException;
 
-                switch (error)
-                {
+				CustomErrorResponse errorResponse = new CustomErrorResponse();
 
-                    case KeycloakException:
+				switch (error)
+				{
 
-                        CustomKeycloakError AdminTokenModel = JsonConvert.DeserializeObject<CustomKeycloakError>(error.Message);
+					case KeycloakException:
 
-                        response.StatusCode = Convert.ToInt32(AdminTokenModel.ErrorCode);
+						CustomKeycloakError AdminTokenModel = JsonConvert.DeserializeObject<CustomKeycloakError>(error.Message);
 
-                        errorResponse.ErrorMessage = AdminTokenModel?.ErrorMessage;
-                        errorResponse.ErrorCode = AdminTokenModel?.ErrorCode;
+						response.StatusCode = Convert.ToInt32(AdminTokenModel.ErrorCode);
 
-                        if (AdminTokenModel.KeycloakToken != null)
-                            keycloakService.RemoveSession(true, AdminTokenModel.KeycloakToken);
+						errorResponse.ErrorMessage = AdminTokenModel?.ErrorMessage;
+						errorResponse.ErrorCode = AdminTokenModel?.ErrorCode;
 
-                        break;
+						if (AdminTokenModel.KeycloakToken != null)
+							keycloakService.RemoveSession(true, AdminTokenModel.KeycloakToken);
 
-                    case BadRequestException:
+						break;
 
-                        response.StatusCode = Convert.ToInt32(JsonConvert.DeserializeObject<CustomAppError>(error.Message).ErrorCode);
+					case BadRequestException:
 
-                        errorResponse.ErrorMessage = JsonConvert.DeserializeObject<CustomAppError>(error.Message)?.ErrorMessage;
-                        errorResponse.ErrorCode = JsonConvert.DeserializeObject<CustomAppError>(error.Message)?.ErrorCode;
+						response.StatusCode = Convert.ToInt32(JsonConvert.DeserializeObject<CustomAppError>(error.Message).ErrorCode);
 
-                        break;
+						errorResponse.ErrorMessage = JsonConvert.DeserializeObject<CustomAppError>(error.Message)?.ErrorMessage;
+						errorResponse.ErrorCode = JsonConvert.DeserializeObject<CustomAppError>(error.Message)?.ErrorCode;
 
-                    case AppException:
+						break;
 
-                        response.StatusCode = Convert.ToInt32(JsonConvert.DeserializeObject<CustomAppError>(error.Message).ErrorCode);
+					case AppException:
 
-                        errorResponse.ErrorMessage = JsonConvert.DeserializeObject<CustomAppError>(error.Message)?.ErrorMessage;
-                        errorResponse.ErrorCode = JsonConvert.DeserializeObject<CustomAppError>(error.Message)?.ErrorCode;
+						response.StatusCode = Convert.ToInt32(JsonConvert.DeserializeObject<CustomAppError>(error.Message).ErrorCode);
 
-                        break;
+						errorResponse.ErrorMessage = JsonConvert.DeserializeObject<CustomAppError>(error.Message)?.ErrorMessage;
+						errorResponse.ErrorCode = JsonConvert.DeserializeObject<CustomAppError>(error.Message)?.ErrorCode;
 
-                    case KeyNotFoundException:
+						break;
 
-                        response.StatusCode = Convert.ToInt32(JsonConvert.DeserializeObject<CustomAppError>(error.Message).ErrorCode);
+					case KeyNotFoundException:
 
-                        errorResponse.ErrorMessage = JsonConvert.DeserializeObject<CustomAppError>(error.Message)?.ErrorMessage;
-                        errorResponse.ErrorCode = JsonConvert.DeserializeObject<CustomAppError>(error.Message)?.ErrorCode;
+						response.StatusCode = Convert.ToInt32(JsonConvert.DeserializeObject<CustomAppError>(error.Message).ErrorCode);
 
-                        break;
+						errorResponse.ErrorMessage = JsonConvert.DeserializeObject<CustomAppError>(error.Message)?.ErrorMessage;
+						errorResponse.ErrorCode = JsonConvert.DeserializeObject<CustomAppError>(error.Message)?.ErrorCode;
 
-                    case MandatoryRequestTokenHeadersException:
+						break;
 
-                        response.StatusCode = Convert.ToInt32(JsonConvert.DeserializeObject<CustomAppError>(error.Message).ErrorCode);
+					case MandatoryRequestTokenHeadersException:
 
-                        errorResponse.ErrorMessage = JsonConvert.DeserializeObject<CustomAppError>(error.Message)?.ErrorMessage;
-                        errorResponse.ErrorCode = JsonConvert.DeserializeObject<CustomAppError>(error.Message)?.ErrorCode;
+						response.StatusCode = Convert.ToInt32(JsonConvert.DeserializeObject<CustomAppError>(error.Message).ErrorCode);
 
-                        break;
+						errorResponse.ErrorMessage = JsonConvert.DeserializeObject<CustomAppError>(error.Message)?.ErrorMessage;
+						errorResponse.ErrorCode = JsonConvert.DeserializeObject<CustomAppError>(error.Message)?.ErrorCode;
 
-                    case ArgumentException or ArgumentNullException or FormatException:
+						break;
 
-                        response.StatusCode = Convert.ToInt32(JsonConvert.DeserializeObject<CustomAppError>(error.Message).ErrorCode);
+					case ArgumentException or ArgumentNullException or FormatException:
 
-                        errorResponse.ErrorMessage = JsonConvert.DeserializeObject<CustomAppError>(error.Message)?.ErrorMessage;
-                        errorResponse.ErrorCode = JsonConvert.DeserializeObject<CustomAppError>(error.Message)?.ErrorCode;
+						response.StatusCode = Convert.ToInt32(JsonConvert.DeserializeObject<CustomAppError>(error.Message).ErrorCode);
 
-                        break; 
+						errorResponse.ErrorMessage = JsonConvert.DeserializeObject<CustomAppError>(error.Message)?.ErrorMessage;
+						errorResponse.ErrorCode = JsonConvert.DeserializeObject<CustomAppError>(error.Message)?.ErrorCode;
 
-                    case EmailFormatException:
+						break;
 
-                        response.StatusCode = Convert.ToInt32(JsonConvert.DeserializeObject<CustomAppError>(error.Message).ErrorCode);
+					case EmailFormatException:
 
-                        errorResponse.ErrorMessage = JsonConvert.DeserializeObject<CustomAppError>(error.Message)?.ErrorMessage;
-                        errorResponse.ErrorCode = JsonConvert.DeserializeObject<CustomAppError>(error.Message)?.ErrorCode;
+						response.StatusCode = Convert.ToInt32(JsonConvert.DeserializeObject<CustomAppError>(error.Message).ErrorCode);
 
-                        break;
+						errorResponse.ErrorMessage = JsonConvert.DeserializeObject<CustomAppError>(error.Message)?.ErrorMessage;
+						errorResponse.ErrorCode = JsonConvert.DeserializeObject<CustomAppError>(error.Message)?.ErrorCode;
 
-                    case MandatoryRequestBodyParametersException:
+						break;
 
-                        response.StatusCode = Convert.ToInt32(JsonConvert.DeserializeObject<CustomAppError>(error.Message).ErrorCode);
+					case MandatoryRequestBodyParametersException:
 
-                        errorResponse.ErrorMessage = JsonConvert.DeserializeObject<CustomAppError>(error.Message)?.ErrorMessage;
-                        errorResponse.ErrorCode = JsonConvert.DeserializeObject<CustomAppError>(error.Message)?.ErrorCode;
+						response.StatusCode = Convert.ToInt32(JsonConvert.DeserializeObject<CustomAppError>(error.Message).ErrorCode);
 
-                        break;
+						errorResponse.ErrorMessage = JsonConvert.DeserializeObject<CustomAppError>(error.Message)?.ErrorMessage;
+						errorResponse.ErrorCode = JsonConvert.DeserializeObject<CustomAppError>(error.Message)?.ErrorCode;
 
-                    case HashFailedException:
+						break;
 
-                        response.StatusCode = Convert.ToInt32(JsonConvert.DeserializeObject<CustomAppError>(error.Message).ErrorCode);
+					case HashFailedException:
 
-                        errorResponse.ErrorMessage = JsonConvert.DeserializeObject<CustomAppError>(error.Message)?.ErrorMessage;
-                        errorResponse.ErrorCode = JsonConvert.DeserializeObject<CustomAppError>(error.Message)?.ErrorCode;
+						response.StatusCode = Convert.ToInt32(JsonConvert.DeserializeObject<CustomAppError>(error.Message).ErrorCode);
 
-                        break;
+						errorResponse.ErrorMessage = JsonConvert.DeserializeObject<CustomAppError>(error.Message)?.ErrorMessage;
+						errorResponse.ErrorCode = JsonConvert.DeserializeObject<CustomAppError>(error.Message)?.ErrorCode;
 
-                    case MandatoryRequestQueryParamsException:
+						break;
 
-                        response.StatusCode = Convert.ToInt32(JsonConvert.DeserializeObject<CustomAppError>(error.Message).ErrorCode);
+					case MandatoryRequestQueryParamsException:
 
-                        errorResponse.ErrorMessage = JsonConvert.DeserializeObject<CustomAppError>(error.Message)?.ErrorMessage;
-                        errorResponse.ErrorCode = JsonConvert.DeserializeObject<CustomAppError>(error.Message)?.ErrorCode;
+						response.StatusCode = Convert.ToInt32(JsonConvert.DeserializeObject<CustomAppError>(error.Message).ErrorCode);
 
-                        break;
+						errorResponse.ErrorMessage = JsonConvert.DeserializeObject<CustomAppError>(error.Message)?.ErrorMessage;
+						errorResponse.ErrorCode = JsonConvert.DeserializeObject<CustomAppError>(error.Message)?.ErrorCode;
 
-                    case ElasticSearchException:
+						break;
 
-                        response.StatusCode = Convert.ToInt32(JsonConvert.DeserializeObject<CustomAppError>(error.Message).ErrorCode);
+					case ElasticSearchException:
 
-                        errorResponse.ErrorMessage = JsonConvert.DeserializeObject<CustomAppError>(error.Message)?.ErrorMessage;
-                        errorResponse.ErrorCode = JsonConvert.DeserializeObject<CustomAppError>(error.Message)?.ErrorCode;
+						response.StatusCode = Convert.ToInt32(JsonConvert.DeserializeObject<CustomAppError>(error.Message).ErrorCode);
 
-                        break;
+						errorResponse.ErrorMessage = JsonConvert.DeserializeObject<CustomAppError>(error.Message)?.ErrorMessage;
+						errorResponse.ErrorCode = JsonConvert.DeserializeObject<CustomAppError>(error.Message)?.ErrorCode;
 
-                    case DataNotFoundException:
+						break;
 
-                        response.StatusCode = Convert.ToInt32(JsonConvert.DeserializeObject<CustomAppError>(error.Message).ErrorCode);
+					case DataNotFoundException:
 
-                        errorResponse.ErrorMessage = JsonConvert.DeserializeObject<CustomAppError>(error.Message)?.ErrorMessage;
-                        errorResponse.ErrorCode = JsonConvert.DeserializeObject<CustomAppError>(error.Message)?.ErrorCode;
+						response.StatusCode = Convert.ToInt32(JsonConvert.DeserializeObject<CustomAppError>(error.Message).ErrorCode);
 
-                        break;
+						errorResponse.ErrorMessage = JsonConvert.DeserializeObject<CustomAppError>(error.Message)?.ErrorMessage;
+						errorResponse.ErrorCode = JsonConvert.DeserializeObject<CustomAppError>(error.Message)?.ErrorCode;
 
-                    case MongoDBConnectionException:
+						break;
 
-                        response.StatusCode = Convert.ToInt32(JsonConvert.DeserializeObject<CustomAppError>(error.Message).ErrorCode);
+					case MongoDBConnectionException:
 
-                        errorResponse.ErrorMessage = JsonConvert.DeserializeObject<CustomAppError>(error.Message)?.ErrorMessage;
-                        errorResponse.ErrorCode = JsonConvert.DeserializeObject<CustomAppError>(error.Message)?.ErrorCode;
+						response.StatusCode = Convert.ToInt32(JsonConvert.DeserializeObject<CustomAppError>(error.Message).ErrorCode);
 
-                        break;
+						errorResponse.ErrorMessage = JsonConvert.DeserializeObject<CustomAppError>(error.Message)?.ErrorMessage;
+						errorResponse.ErrorCode = JsonConvert.DeserializeObject<CustomAppError>(error.Message)?.ErrorCode;
 
-                    case TokenNotActiveException:
+						break;
 
-                        response.StatusCode = Convert.ToInt32(JsonConvert.DeserializeObject<CustomAppError>(error.Message).ErrorCode);
+					case TokenNotActiveException:
 
-                        errorResponse.ErrorMessage = JsonConvert.DeserializeObject<CustomAppError>(error.Message)?.ErrorMessage;
-                        errorResponse.ErrorCode = JsonConvert.DeserializeObject<CustomAppError>(error.Message)?.ErrorCode;
+						response.StatusCode = Convert.ToInt32(JsonConvert.DeserializeObject<CustomAppError>(error.Message).ErrorCode);
 
-                        break;
+						errorResponse.ErrorMessage = JsonConvert.DeserializeObject<CustomAppError>(error.Message)?.ErrorMessage;
+						errorResponse.ErrorCode = JsonConvert.DeserializeObject<CustomAppError>(error.Message)?.ErrorCode;
 
-                    default:
+						break;
 
-                        response.StatusCode = ((int)HttpStatusCode.InternalServerError);
+					default:
 
-                        errorResponse.ErrorMessage = "General error occurred!";
-                        errorResponse.ErrorCode = ((int)HttpStatusCode.InternalServerError).ToString();
+						response.StatusCode = ((int)HttpStatusCode.InternalServerError);
 
-                        break;
-                }
+						errorResponse.ErrorMessage = "General error occurred!";
+						errorResponse.ErrorCode = ((int)HttpStatusCode.InternalServerError).ToString();
 
-                await response.WriteAsync(JsonConvert.SerializeObject(errorResponse));
+						break;
+				}
 
-            }
+				await response.WriteAsync(JsonConvert.SerializeObject(errorResponse));
 
-        }
-    }
+			}
 
-    // Extension method used to add the middleware to the HTTP request pipeline.
-    public static class ErrorHandlerMiddlewareExtensions
-    {
-        public static IApplicationBuilder UseErrorHandlerMiddleware(this IApplicationBuilder builder)
-        {
-            return builder.UseMiddleware<ErrorHandlerMiddleware>();
-        }
-    }
+		}
+	}
+
+	// Extension method used to add the middleware to the HTTP request pipeline.
+	public static class ErrorHandlerMiddlewareExtensions
+	{
+		public static IApplicationBuilder UseErrorHandlerMiddleware(this IApplicationBuilder builder)
+		{
+			return builder.UseMiddleware<ErrorHandlerMiddleware>();
+		}
+	}
 }

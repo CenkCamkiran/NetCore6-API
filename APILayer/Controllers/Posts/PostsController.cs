@@ -1,6 +1,7 @@
 ﻿using BusinessLayer;
 using Microsoft.AspNetCore.Mvc;
-using Models.ControllerModels;
+using Newtonsoft.Json;
+using System.Text;
 
 namespace APILayer.Controllers.Posts
 {
@@ -9,16 +10,33 @@ namespace APILayer.Controllers.Posts
 	public class PostsController : ControllerBase
 	{
 
-		private CustomersService customersService;
+		private PostsService PostsService;
+
+		public PostsController()
+		{
+			PostsService = new PostsService();
+		}
 
 		[HttpGet]
-		public Models.ControllerModels.Posts GetTopPosts()
+		public object GetTopPosts()
 		{
 
 			var cacheKey = "topPosts";
-			List<Models.ControllerModels.Posts> Posts = new List<Models.ControllerModels.Posts>();
+			List<Models.ControllerModels.Posts>? topPosts;
+			topPosts = PostsService.GetTopPostsCache(cacheKey)?.ToList();
 
-			return null;
+			if (topPosts == null)
+			{
+				var topPostsDB = PostsService.GetTopPosts().ToList();
+				TimeSpan ttl = TimeSpan.FromMinutes(5); //5 minutes ttl
+
+				string serializedPosts = JsonConvert.SerializeObject(topPostsDB);
+				PostsService.SetTopPostsCache(cacheKey, serializedPosts, ttl);
+
+				return topPostsDB;
+			}
+
+			return topPosts;
 		}
 	}
 }

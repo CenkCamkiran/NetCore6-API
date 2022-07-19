@@ -1,13 +1,13 @@
 ﻿namespace Helpers.AppExceptionHelpers
 {
-    public class MandatoryRequestBodyParametersException : Exception
-    {
-        public MandatoryRequestBodyParametersException()
-        {
-        }
+	public class MandatoryRequestBodyParametersException : Exception
+	{
+		public MandatoryRequestBodyParametersException()
+		{
+		}
 
-        public MandatoryRequestBodyParametersException(string? message) : base(message)
-        {
-        }
-    }
+		public MandatoryRequestBodyParametersException(string? message) : base(message)
+		{
+		}
+	}
 }

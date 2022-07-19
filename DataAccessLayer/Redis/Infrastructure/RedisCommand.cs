@@ -1,15 +1,10 @@
 ﻿using DataAccessLayer.Redis.Interfaces;
 using Newtonsoft.Json;
 using StackExchange.Redis;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DataAccessLayer.Redis.Infrastructure
 {
-	public class RedisCommand<TModel>: IRedisCommand<TModel>
+	public class RedisCommand<TModel> : IRedisCommand<TModel>
 	{
 
 		private IDatabase redisDatabase;
@@ -20,10 +15,9 @@ namespace DataAccessLayer.Redis.Infrastructure
 			redisDatabase = redisConnection.connection.GetDatabase();
 		}
 
-		public void Add(string key, TModel data)
+		public void Add(string key, string data, TimeSpan ttl)
 		{
-			string jsonData = JsonConvert.SerializeObject(data);
-			redisDatabase.StringSet(key, jsonData);
+			redisDatabase.StringSet(key, data, ttl);
 		}
 
 		public bool Any(string key)
@@ -36,9 +30,9 @@ namespace DataAccessLayer.Redis.Infrastructure
 			throw new NotImplementedException();
 		}
 
-		public TModel Get(string key)
+		public RedisValue Get(string key)
 		{
-			throw new NotImplementedException();
+			return redisDatabase.StringGet(key);
 		}
 
 		public void Remove(string key)

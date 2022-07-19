@@ -1,5 +1,5 @@
-using MiddlewareLayer;
 using Configurations;
+using MiddlewareLayer;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,10 +15,10 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    //These config changes depending the environment (DEV or PROD etc.)
-    //var configuration = new ConfigurationBuilder().AddJsonFile($"appsettings.json", optional: true, reloadOnChange: true);
-    app.UseSwagger();
-    app.UseSwaggerUI();
+	//These config changes depending the environment (DEV or PROD etc.)
+	//var configuration = new ConfigurationBuilder().AddJsonFile($"appsettings.json", optional: true, reloadOnChange: true);
+	app.UseSwagger();
+	app.UseSwaggerUI();
 }
 
 ConfigurationManager configuration = builder.Configuration;
@@ -28,9 +28,9 @@ configuration.GetSection(ApplicationSettingsModel.RootOption).Bind(ApplicationSe
 
 app.Use(async (context, next) =>
 {
-    context.Request.EnableBuffering();
+	context.Request.EnableBuffering();
 
-    context.Request.Headers.Date = DateTime.Now.ToString();
+	context.Request.Headers.Date = DateTime.Now.ToString();
 	//This line of code can be used to seeking or reading stream second or multiple times.
 	//Old C# code is EnableRewind(). This code does the same job of EnableBuffering. EnableBuffering => ASP.NET Core 2.1
 	//Ideally do this early in the middleware before anything needs to read the body
@@ -60,13 +60,13 @@ app.UseErrorHandlerMiddleware();
 
 app.UseWhen(context => context.Request.Path.StartsWithSegments("/rest/api/v1/main"), appBuilder =>  // The path must be started with '/'
 {
-    appBuilder.UseTokenControlMiddleware();
+	appBuilder.UseTokenControlMiddleware();
 });
 
 app.UseWhen(context => context.Request.Path.StartsWithSegments("/rest/api/v1/main"), appBuilder =>  // The path must be started with '/'
 {
-    appBuilder.UseSessionControlMiddleware();
-    //appBuilder.UseMiddleware<AuthenticationMiddleware>(); //Same thing //
+	appBuilder.UseSessionControlMiddleware();
+	//appBuilder.UseMiddleware<AuthenticationMiddleware>(); //Same thing //
 });
 
 app.UseHttpsRedirection();

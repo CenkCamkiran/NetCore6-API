@@ -1,18 +1,17 @@
 ﻿using DataAccessLayer.ElasticSearch.Interfaces;
 using Helpers.AppExceptionHelpers;
+using Models.DataAccessLayerModels;
+using Models.HelpersModels;
 using Nest;
-using Elasticsearch.Net;
 using Newtonsoft.Json;
 using System.Net;
-using Models.HelpersModels;
-using Models.DataAccessLayerModels;
 
 namespace DataAccessLayer.ElasticSearch.Infrastructure
 {
 	public class ElasticSearchCommand : ElasticSearchConnection, IElasticSearchCommand
 	{
 
-		private ElasticSearchConnection elasticConn; 
+		private ElasticSearchConnection elasticConn;
 
 		public ElasticSearchCommand()
 		{

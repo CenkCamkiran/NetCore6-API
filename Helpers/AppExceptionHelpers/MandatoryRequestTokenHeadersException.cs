@@ -1,14 +1,14 @@
 ﻿namespace Helpers.AppExceptionHelpers
 {
-    public class MandatoryRequestTokenHeadersException : Exception
-    {
-        public MandatoryRequestTokenHeadersException()
-        {
-        }
+	public class MandatoryRequestTokenHeadersException : Exception
+	{
+		public MandatoryRequestTokenHeadersException()
+		{
+		}
 
-        public MandatoryRequestTokenHeadersException(string? message) : base(message)
-        {
-        }
+		public MandatoryRequestTokenHeadersException(string? message) : base(message)
+		{
+		}
 
-    }
+	}
 }

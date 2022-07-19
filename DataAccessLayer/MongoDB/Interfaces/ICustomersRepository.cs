@@ -1,10 +1,5 @@
 ﻿using Models.ControllerModels;
 using Models.DataAccessLayerModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DataAccessLayer.MongoDB.Interfaces
 {
@@ -16,7 +11,7 @@ namespace DataAccessLayer.MongoDB.Interfaces
 		public Customer GetCustomerByEmail(string email);
 		public void UpdateCustomer(string id, Customer customerRequest);
 		public void InsertCustomer(CustomerRequest customerRequest);
-		public object GetCustomerByUsername(string username);	
-		public object GetCustomerByBirthDates(string birthdate);	
+		public object GetCustomerByUsername(string username);
+		public object GetCustomerByBirthDates(string birthdate);
 	}
 }

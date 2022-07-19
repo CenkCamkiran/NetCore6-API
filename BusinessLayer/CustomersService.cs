@@ -42,7 +42,7 @@ namespace BusinessLayer
 
 		public IEnumerable<Customer> GetAllCustomers()
 		{
-			return customersRepository.GetAllCustomers();	
+			return customersRepository.GetAllCustomers();
 		}
 	}
 }

@@ -1,6 +1,6 @@
 ﻿namespace Helpers.AppExceptionHelpers
 {
-	public class ElasticSearchException: Exception
+	public class ElasticSearchException : Exception
 	{
 		public ElasticSearchException()
 		{

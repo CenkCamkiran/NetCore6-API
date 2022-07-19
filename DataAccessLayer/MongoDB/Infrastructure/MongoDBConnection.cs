@@ -3,12 +3,7 @@ using Helpers.AppExceptionHelpers;
 using Models.HelpersModels;
 using MongoDB.Driver;
 using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DataAccessLayer.MongoDB.Infrastructure
 {

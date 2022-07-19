@@ -1,13 +1,13 @@
 ﻿namespace Helpers.AppExceptionHelpers
 {
-    public class HashFailedException : Exception
-    {
-        public HashFailedException()
-        {
-        }
+	public class HashFailedException : Exception
+	{
+		public HashFailedException()
+		{
+		}
 
-        public HashFailedException(string? message) : base(message)
-        {
-        }
-    }
+		public HashFailedException(string? message) : base(message)
+		{
+		}
+	}
 }

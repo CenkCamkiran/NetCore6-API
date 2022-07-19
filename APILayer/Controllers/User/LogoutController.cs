@@ -1,5 +1,6 @@
 ﻿using BusinessLayer;
 using Helpers.AppExceptionHelpers;
+using Helpers.TokenHelpers;
 using Microsoft.AspNetCore.Mvc;
 using Models.ControllerModels;
 using Models.HelpersModels;
@@ -20,15 +21,7 @@ namespace APILayer.Controllers.User
 		public NoContentResult UserLogout([FromBody] LogoutRequest token)
 		{
 
-			if (string.IsNullOrEmpty(token.accessToken) || string.IsNullOrEmpty(token.refreshToken))
-			{
-
-				CustomAppError errorModel = new CustomAppError();
-				errorModel.ErrorMessage = "AccessToken and RefreshToken must not be null or empty";
-				errorModel.ErrorCode = ((int)HttpStatusCode.BadRequest).ToString();
-
-				throw new MandatoryRequestBodyParametersException(JsonConvert.SerializeObject(errorModel));
-			}
+			TokenHelper.CheckToken(token.accessToken, token.refreshToken);
 
 			JwtSecurityToken? decodedAccessToken = new JwtSecurityToken(token.accessToken);
 			JwtPayload? accessTokenPayload = decodedAccessToken.Payload;
