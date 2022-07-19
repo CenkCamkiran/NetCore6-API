@@ -1,14 +1,29 @@
 using Configurations;
 using MiddlewareLayer;
+using StackExchange.Redis;
 
 var builder = WebApplication.CreateBuilder(args);
 
+ConfigurationManager configuration = builder.Configuration;
+configuration.GetSection(ApplicationSettingsModel.RootOption).Bind(ApplicationSettingsModel.ExternalTools);
+
 // Add services to the container.
 
+AppConfiguration appConfiguration = new AppConfiguration();
+Dictionary<string, string> redisConfig = appConfiguration.GetRedisConfig();
+//Dictionary<string, string> mongodbConfig = appConfiguration.GetMongoDBConfig();
+
+var options = ConfigurationOptions.Parse(redisConfig["RedisHost"]);
+options.Password = redisConfig["Password"];
+var redisConnection = ConnectionMultiplexer.Connect(options);
+builder.Services.AddSingleton<IConnectionMultiplexer>(redisConnection);
 builder.Services.AddControllers();
+
+// ********************************* For Swagger *********************************
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+// ********************************* For Swagger *********************************
 
 var app = builder.Build();
 
@@ -20,9 +35,6 @@ if (app.Environment.IsDevelopment())
 	app.UseSwagger();
 	app.UseSwaggerUI();
 }
-
-ConfigurationManager configuration = builder.Configuration;
-configuration.GetSection(ApplicationSettingsModel.RootOption).Bind(ApplicationSettingsModel.ExternalTools);
 
 //app.UsePathBase(new PathString("/rest/api/v1")); //Value must start with '/' //This is not working
 
@@ -52,11 +64,6 @@ app.UseResponseReadableStreamMiddleware();
 app.UseLoggingMiddleware(); //If exception will happen, it wont enter ErrorHandlerMiddleware.
 
 app.UseErrorHandlerMiddleware();
-
-//app.UseWhen(context => context.Request.Path.StartsWithSegments("/rest/api/v1/user"), appBuilder =>  // The path must be started with '/'
-//{
-//	appBuilder.UseRequestParamsValidationMiddleware();
-//});
 
 app.UseWhen(context => context.Request.Path.StartsWithSegments("/rest/api/v1/main"), appBuilder =>  // The path must be started with '/'
 {

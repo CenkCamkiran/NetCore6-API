@@ -1,6 +1,7 @@
 ﻿using BusinessLayer;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using StackExchange.Redis;
 
 namespace APILayer.Controllers.Posts
 {
@@ -9,11 +10,17 @@ namespace APILayer.Controllers.Posts
 	public class PostsController : ControllerBase
 	{
 
+		private readonly IConnectionMultiplexer _redisConnection;
 		private PostsService PostsService;
 
 		public PostsController()
 		{
 			PostsService = new PostsService();
+		}
+
+		public PostsController(IConnectionMultiplexer redisConnection)
+		{
+			_redisConnection = redisConnection;
 		}
 
 		[HttpGet]

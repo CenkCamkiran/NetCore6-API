@@ -7,6 +7,7 @@ using System.Net;
 
 namespace DataAccessLayer.Redis.Infrastructure
 {
+
 	public class RedisConnection
 	{
 		private ConnectionMultiplexer redisConnection;

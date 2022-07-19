@@ -7,7 +7,7 @@ namespace DataAccessLayer.MongoDB.Infrastructure
 	public class MongoDBCommand<CollectionModel> : MongoDBConnection, IMongoDBCommand<CollectionModel> where CollectionModel : class
 	{
 
-		IMongoCollection<CollectionModel> _mongoCollection;
+		private readonly IMongoCollection<CollectionModel> _mongoCollection;
 
 		public MongoDBCommand(string DatabaseName, string CollectionName) : base(DatabaseName, CollectionName)
 		{
