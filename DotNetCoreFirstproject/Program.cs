@@ -1,5 +1,6 @@
 using Configurations;
 using MiddlewareLayer;
+using MongoDB.Driver;
 using StackExchange.Redis;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,14 +10,18 @@ configuration.GetSection(ApplicationSettingsModel.RootOption).Bind(ApplicationSe
 
 // Add services to the container.
 
-AppConfiguration appConfiguration = new AppConfiguration();
-Dictionary<string, string> redisConfig = appConfiguration.GetRedisConfig();
+//AppConfiguration appConfiguration = new AppConfiguration();
+//Dictionary<string, string> redisConfig = appConfiguration.GetRedisConfig();
 //Dictionary<string, string> mongodbConfig = appConfiguration.GetMongoDBConfig();
 
-var options = ConfigurationOptions.Parse(redisConfig["RedisHost"]);
-options.Password = redisConfig["Password"];
-var redisConnection = ConnectionMultiplexer.Connect(options);
-builder.Services.AddSingleton<IConnectionMultiplexer>(redisConnection);
+//var options = ConfigurationOptions.Parse(redisConfig["RedisHost"]);
+//options.Password = redisConfig["Password"];
+//var redisConnection = ConnectionMultiplexer.Connect(options);
+
+//MongoClient client = new MongoClient(mongodbConfig["MongoDBConnectionString"]);
+
+//builder.Services.AddSingleton<IConnectionMultiplexer>(redisConnection);
+//builder.Services.AddSingleton<IMongoClient>(client);
 builder.Services.AddControllers();
 
 // ********************************* For Swagger *********************************

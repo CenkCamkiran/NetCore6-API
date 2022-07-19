@@ -1,27 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ccamkiran\\source\\repos\\DotNetCoreFirstproject\\MiddlewareLayer\\MiddlewareLayer.csproj": {}
+    "C:\\Users\\camki\\Desktop\\Klasörler\\Google Cloud\\Projects\\DotNetCore-Example-API\\MiddlewareLayer\\MiddlewareLayer.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ccamkiran\\source\\repos\\DotNetCoreFirstproject\\BusinessLayer\\BusinessLayer.csproj": {
+    "C:\\Users\\camki\\Desktop\\Klasörler\\Google Cloud\\Projects\\DotNetCore-Example-API\\BusinessLayer\\BusinessLayer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ccamkiran\\source\\repos\\DotNetCoreFirstproject\\BusinessLayer\\BusinessLayer.csproj",
+        "projectUniqueName": "C:\\Users\\camki\\Desktop\\Klasörler\\Google Cloud\\Projects\\DotNetCore-Example-API\\BusinessLayer\\BusinessLayer.csproj",
         "projectName": "BusinessLayer",
-        "projectPath": "C:\\Users\\ccamkiran\\source\\repos\\DotNetCoreFirstproject\\BusinessLayer\\BusinessLayer.csproj",
-        "packagesPath": "C:\\Users\\ccamkiran\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ccamkiran\\source\\repos\\DotNetCoreFirstproject\\BusinessLayer\\obj\\",
+        "projectPath": "C:\\Users\\camki\\Desktop\\Klasörler\\Google Cloud\\Projects\\DotNetCore-Example-API\\BusinessLayer\\BusinessLayer.csproj",
+        "packagesPath": "C:\\Users\\camki\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\camki\\Desktop\\Klasörler\\Google Cloud\\Projects\\DotNetCore-Example-API\\BusinessLayer\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\ccamkiran\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\camki\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
@@ -34,14 +32,14 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\ccamkiran\\source\\repos\\DotNetCoreFirstproject\\DataAccessLayer\\DataAccessLayer.csproj": {
-                "projectPath": "C:\\Users\\ccamkiran\\source\\repos\\DotNetCoreFirstproject\\DataAccessLayer\\DataAccessLayer.csproj"
+              "C:\\Users\\camki\\Desktop\\Klasörler\\Google Cloud\\Projects\\DotNetCore-Example-API\\DataAccessLayer\\DataAccessLayer.csproj": {
+                "projectPath": "C:\\Users\\camki\\Desktop\\Klasörler\\Google Cloud\\Projects\\DotNetCore-Example-API\\DataAccessLayer\\DataAccessLayer.csproj"
               },
-              "C:\\Users\\ccamkiran\\source\\repos\\DotNetCoreFirstproject\\Entities\\Models.csproj": {
-                "projectPath": "C:\\Users\\ccamkiran\\source\\repos\\DotNetCoreFirstproject\\Entities\\Models.csproj"
+              "C:\\Users\\camki\\Desktop\\Klasörler\\Google Cloud\\Projects\\DotNetCore-Example-API\\Entities\\Models.csproj": {
+                "projectPath": "C:\\Users\\camki\\Desktop\\Klasörler\\Google Cloud\\Projects\\DotNetCore-Example-API\\Entities\\Models.csproj"
               },
-              "C:\\Users\\ccamkiran\\source\\repos\\DotNetCoreFirstproject\\Helpers\\Helpers.csproj": {
-                "projectPath": "C:\\Users\\ccamkiran\\source\\repos\\DotNetCoreFirstproject\\Helpers\\Helpers.csproj"
+              "C:\\Users\\camki\\Desktop\\Klasörler\\Google Cloud\\Projects\\DotNetCore-Example-API\\Helpers\\Helpers.csproj": {
+                "projectPath": "C:\\Users\\camki\\Desktop\\Klasörler\\Google Cloud\\Projects\\DotNetCore-Example-API\\Helpers\\Helpers.csproj"
               }
             }
           }
@@ -76,28 +74,26 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.301\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\ccamkiran\\source\\repos\\DotNetCoreFirstproject\\Configurations\\Configurations.csproj": {
+    "C:\\Users\\camki\\Desktop\\Klasörler\\Google Cloud\\Projects\\DotNetCore-Example-API\\Configurations\\Configurations.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ccamkiran\\source\\repos\\DotNetCoreFirstproject\\Configurations\\Configurations.csproj",
+        "projectUniqueName": "C:\\Users\\camki\\Desktop\\Klasörler\\Google Cloud\\Projects\\DotNetCore-Example-API\\Configurations\\Configurations.csproj",
         "projectName": "Configurations",
-        "projectPath": "C:\\Users\\ccamkiran\\source\\repos\\DotNetCoreFirstproject\\Configurations\\Configurations.csproj",
-        "packagesPath": "C:\\Users\\ccamkiran\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ccamkiran\\source\\repos\\DotNetCoreFirstproject\\Configurations\\obj\\",
+        "projectPath": "C:\\Users\\camki\\Desktop\\Klasörler\\Google Cloud\\Projects\\DotNetCore-Example-API\\Configurations\\Configurations.csproj",
+        "packagesPath": "C:\\Users\\camki\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\camki\\Desktop\\Klasörler\\Google Cloud\\Projects\\DotNetCore-Example-API\\Configurations\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\ccamkiran\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\camki\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
@@ -142,28 +138,26 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.301\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\ccamkiran\\source\\repos\\DotNetCoreFirstproject\\DataAccessLayer\\DataAccessLayer.csproj": {
+    "C:\\Users\\camki\\Desktop\\Klasörler\\Google Cloud\\Projects\\DotNetCore-Example-API\\DataAccessLayer\\DataAccessLayer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ccamkiran\\source\\repos\\DotNetCoreFirstproject\\DataAccessLayer\\DataAccessLayer.csproj",
+        "projectUniqueName": "C:\\Users\\camki\\Desktop\\Klasörler\\Google Cloud\\Projects\\DotNetCore-Example-API\\DataAccessLayer\\DataAccessLayer.csproj",
         "projectName": "DataAccessLayer",
-        "projectPath": "C:\\Users\\ccamkiran\\source\\repos\\DotNetCoreFirstproject\\DataAccessLayer\\DataAccessLayer.csproj",
-        "packagesPath": "C:\\Users\\ccamkiran\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ccamkiran\\source\\repos\\DotNetCoreFirstproject\\DataAccessLayer\\obj\\",
+        "projectPath": "C:\\Users\\camki\\Desktop\\Klasörler\\Google Cloud\\Projects\\DotNetCore-Example-API\\DataAccessLayer\\DataAccessLayer.csproj",
+        "packagesPath": "C:\\Users\\camki\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\camki\\Desktop\\Klasörler\\Google Cloud\\Projects\\DotNetCore-Example-API\\DataAccessLayer\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\ccamkiran\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\camki\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
@@ -176,14 +170,14 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\ccamkiran\\source\\repos\\DotNetCoreFirstproject\\Configurations\\Configurations.csproj": {
-                "projectPath": "C:\\Users\\ccamkiran\\source\\repos\\DotNetCoreFirstproject\\Configurations\\Configurations.csproj"
+              "C:\\Users\\camki\\Desktop\\Klasörler\\Google Cloud\\Projects\\DotNetCore-Example-API\\Configurations\\Configurations.csproj": {
+                "projectPath": "C:\\Users\\camki\\Desktop\\Klasörler\\Google Cloud\\Projects\\DotNetCore-Example-API\\Configurations\\Configurations.csproj"
               },
-              "C:\\Users\\ccamkiran\\source\\repos\\DotNetCoreFirstproject\\Entities\\Models.csproj": {
-                "projectPath": "C:\\Users\\ccamkiran\\source\\repos\\DotNetCoreFirstproject\\Entities\\Models.csproj"
+              "C:\\Users\\camki\\Desktop\\Klasörler\\Google Cloud\\Projects\\DotNetCore-Example-API\\Entities\\Models.csproj": {
+                "projectPath": "C:\\Users\\camki\\Desktop\\Klasörler\\Google Cloud\\Projects\\DotNetCore-Example-API\\Entities\\Models.csproj"
               },
-              "C:\\Users\\ccamkiran\\source\\repos\\DotNetCoreFirstproject\\Helpers\\Helpers.csproj": {
-                "projectPath": "C:\\Users\\ccamkiran\\source\\repos\\DotNetCoreFirstproject\\Helpers\\Helpers.csproj"
+              "C:\\Users\\camki\\Desktop\\Klasörler\\Google Cloud\\Projects\\DotNetCore-Example-API\\Helpers\\Helpers.csproj": {
+                "projectPath": "C:\\Users\\camki\\Desktop\\Klasörler\\Google Cloud\\Projects\\DotNetCore-Example-API\\Helpers\\Helpers.csproj"
               }
             }
           }
@@ -234,28 +228,26 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.301\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\ccamkiran\\source\\repos\\DotNetCoreFirstproject\\Entities\\Models.csproj": {
+    "C:\\Users\\camki\\Desktop\\Klasörler\\Google Cloud\\Projects\\DotNetCore-Example-API\\Entities\\Models.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ccamkiran\\source\\repos\\DotNetCoreFirstproject\\Entities\\Models.csproj",
+        "projectUniqueName": "C:\\Users\\camki\\Desktop\\Klasörler\\Google Cloud\\Projects\\DotNetCore-Example-API\\Entities\\Models.csproj",
         "projectName": "Models",
-        "projectPath": "C:\\Users\\ccamkiran\\source\\repos\\DotNetCoreFirstproject\\Entities\\Models.csproj",
-        "packagesPath": "C:\\Users\\ccamkiran\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ccamkiran\\source\\repos\\DotNetCoreFirstproject\\Entities\\obj\\",
+        "projectPath": "C:\\Users\\camki\\Desktop\\Klasörler\\Google Cloud\\Projects\\DotNetCore-Example-API\\Entities\\Models.csproj",
+        "packagesPath": "C:\\Users\\camki\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\camki\\Desktop\\Klasörler\\Google Cloud\\Projects\\DotNetCore-Example-API\\Entities\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\ccamkiran\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\camki\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
@@ -308,28 +300,26 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.301\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\ccamkiran\\source\\repos\\DotNetCoreFirstproject\\Helpers\\Helpers.csproj": {
+    "C:\\Users\\camki\\Desktop\\Klasörler\\Google Cloud\\Projects\\DotNetCore-Example-API\\Helpers\\Helpers.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ccamkiran\\source\\repos\\DotNetCoreFirstproject\\Helpers\\Helpers.csproj",
+        "projectUniqueName": "C:\\Users\\camki\\Desktop\\Klasörler\\Google Cloud\\Projects\\DotNetCore-Example-API\\Helpers\\Helpers.csproj",
         "projectName": "Helpers",
-        "projectPath": "C:\\Users\\ccamkiran\\source\\repos\\DotNetCoreFirstproject\\Helpers\\Helpers.csproj",
-        "packagesPath": "C:\\Users\\ccamkiran\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ccamkiran\\source\\repos\\DotNetCoreFirstproject\\Helpers\\obj\\",
+        "projectPath": "C:\\Users\\camki\\Desktop\\Klasörler\\Google Cloud\\Projects\\DotNetCore-Example-API\\Helpers\\Helpers.csproj",
+        "packagesPath": "C:\\Users\\camki\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\camki\\Desktop\\Klasörler\\Google Cloud\\Projects\\DotNetCore-Example-API\\Helpers\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\ccamkiran\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\camki\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
@@ -342,8 +332,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\ccamkiran\\source\\repos\\DotNetCoreFirstproject\\Entities\\Models.csproj": {
-                "projectPath": "C:\\Users\\ccamkiran\\source\\repos\\DotNetCoreFirstproject\\Entities\\Models.csproj"
+              "C:\\Users\\camki\\Desktop\\Klasörler\\Google Cloud\\Projects\\DotNetCore-Example-API\\Entities\\Models.csproj": {
+                "projectPath": "C:\\Users\\camki\\Desktop\\Klasörler\\Google Cloud\\Projects\\DotNetCore-Example-API\\Entities\\Models.csproj"
               }
             }
           }
@@ -378,28 +368,26 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.301\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\ccamkiran\\source\\repos\\DotNetCoreFirstproject\\MiddlewareLayer\\MiddlewareLayer.csproj": {
+    "C:\\Users\\camki\\Desktop\\Klasörler\\Google Cloud\\Projects\\DotNetCore-Example-API\\MiddlewareLayer\\MiddlewareLayer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ccamkiran\\source\\repos\\DotNetCoreFirstproject\\MiddlewareLayer\\MiddlewareLayer.csproj",
+        "projectUniqueName": "C:\\Users\\camki\\Desktop\\Klasörler\\Google Cloud\\Projects\\DotNetCore-Example-API\\MiddlewareLayer\\MiddlewareLayer.csproj",
         "projectName": "MiddlewareLayer",
-        "projectPath": "C:\\Users\\ccamkiran\\source\\repos\\DotNetCoreFirstproject\\MiddlewareLayer\\MiddlewareLayer.csproj",
-        "packagesPath": "C:\\Users\\ccamkiran\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ccamkiran\\source\\repos\\DotNetCoreFirstproject\\MiddlewareLayer\\obj\\",
+        "projectPath": "C:\\Users\\camki\\Desktop\\Klasörler\\Google Cloud\\Projects\\DotNetCore-Example-API\\MiddlewareLayer\\MiddlewareLayer.csproj",
+        "packagesPath": "C:\\Users\\camki\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\camki\\Desktop\\Klasörler\\Google Cloud\\Projects\\DotNetCore-Example-API\\MiddlewareLayer\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\ccamkiran\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\camki\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
@@ -412,8 +400,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\ccamkiran\\source\\repos\\DotNetCoreFirstproject\\BusinessLayer\\BusinessLayer.csproj": {
-                "projectPath": "C:\\Users\\ccamkiran\\source\\repos\\DotNetCoreFirstproject\\BusinessLayer\\BusinessLayer.csproj"
+              "C:\\Users\\camki\\Desktop\\Klasörler\\Google Cloud\\Projects\\DotNetCore-Example-API\\BusinessLayer\\BusinessLayer.csproj": {
+                "projectPath": "C:\\Users\\camki\\Desktop\\Klasörler\\Google Cloud\\Projects\\DotNetCore-Example-API\\BusinessLayer\\BusinessLayer.csproj"
               }
             }
           }
@@ -452,7 +440,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.301\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
         }
       }
     }

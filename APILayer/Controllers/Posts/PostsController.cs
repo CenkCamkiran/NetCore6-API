@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using StackExchange.Redis;
+using System.Text;
 
 namespace APILayer.Controllers.Posts
 {
@@ -10,22 +11,18 @@ namespace APILayer.Controllers.Posts
 	public class PostsController : ControllerBase
 	{
 
-		private readonly IConnectionMultiplexer _redisConnection;
-		private PostsService PostsService;
+		//private readonly IConnectionMultiplexer _redisConnection;
 
-		public PostsController()
-		{
-			PostsService = new PostsService();
-		}
-
-		public PostsController(IConnectionMultiplexer redisConnection)
-		{
-			_redisConnection = redisConnection;
-		}
+		//public PostsController(IConnectionMultiplexer redisConnection)
+		//{
+		//	_redisConnection = redisConnection;
+		//}
 
 		[HttpGet]
 		public object GetTopPosts()
 		{
+
+			PostsService PostsService = new PostsService();
 
 			var cacheKey = "topPosts";
 			List<Models.ControllerModels.Posts>? topPosts;

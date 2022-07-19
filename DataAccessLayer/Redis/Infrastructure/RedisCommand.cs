@@ -15,7 +15,7 @@ namespace DataAccessLayer.Redis.Infrastructure
 			redisDatabase = redisConnection.connection.GetDatabase();
 		}
 
-		public void Add(string key, string data, TimeSpan ttl)
+		public void Add(string key, byte[]? data, TimeSpan ttl)
 		{
 			redisDatabase.StringSet(key, data, ttl);
 		}
