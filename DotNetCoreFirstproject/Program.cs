@@ -31,6 +31,8 @@ builder.Services.AddScoped<IPostsRepository, PostsRepository>();
 builder.Services.AddScoped<IPostsService, PostsService>();
 builder.Services.AddScoped<ICustomersService, CustomersService>();
 builder.Services.AddScoped<ICustomersRepository, CustomersRepository>();
+builder.Services.AddScoped<IKeycloakService, KeycloakService>();
+builder.Services.AddScoped<IPingService, PingService>();
 
 
 MongoClient client = new MongoClient(mongodbConfig["MongoDBConnectionString"]);

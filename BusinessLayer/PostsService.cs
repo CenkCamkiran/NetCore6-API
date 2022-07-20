@@ -1,10 +1,7 @@
 ﻿using BusinessLayer.Interfaces;
 using DataAccessLayer.MongoDB.Interfaces;
-using DataAccessLayer.MongoDB.Repository;
 using DataAccessLayer.Redis.Interfaces;
-using DataAccessLayer.Redis.Repository;
 using Models.ControllerModels;
-using StackExchange.Redis;
 
 namespace BusinessLayer
 {

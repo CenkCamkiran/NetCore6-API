@@ -1,9 +1,8 @@
-﻿using Helpers.AppExceptionHelpers;
+﻿using BusinessLayer.Interfaces;
 using Helpers.ValidationHelpers;
 using Microsoft.AspNetCore.Mvc;
 using Models.ControllerModels;
 using Models.HelpersModels;
-using Newtonsoft.Json;
 using System.Net;
 using System.Net.Mime;
 
@@ -16,6 +15,13 @@ namespace APILayer.Controllers.User
 	public class SignupController : ControllerBase
 	{
 
+		private IKeycloakService _keycloakService;
+
+		public SignupController(IKeycloakService keycloakService)
+		{
+			_keycloakService = keycloakService;
+		}
+
 		[HttpPost]
 		public UserSignupResponse UserSignUp([FromBody] UserSignupRequest requestBody)
 		{
@@ -23,8 +29,7 @@ namespace APILayer.Controllers.User
 			EmailValidation validator = new EmailValidation();
 			validator.IsEmailValid(requestBody.email);
 
-			BusinessLayer.KeycloakService keycloakService = new BusinessLayer.KeycloakService();
-			TokenResponse? AuthToken = keycloakService.AdminAuth();
+			TokenResponse? AuthToken = _keycloakService.AdminAuth();
 
 			CreateUserRequest createUser = new CreateUserRequest();
 			Models.HelpersModels.Attributes attributes = new Models.HelpersModels.Attributes();
@@ -52,7 +57,7 @@ namespace APILayer.Controllers.User
 			createUser.attributes = attributes;
 			createUser.credentials = credentialList;
 
-			UserSignupResponse? createUserResult = keycloakService.CreateUser(createUser, AuthToken);
+			UserSignupResponse? createUserResult = _keycloakService.CreateUser(createUser, AuthToken);
 
 			//AggregateException? exception = createUserResult.Exception;
 

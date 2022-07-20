@@ -1,5 +1,4 @@
 ﻿using DataAccessLayer.Redis.Interfaces;
-using Newtonsoft.Json;
 using StackExchange.Redis;
 
 namespace DataAccessLayer.Redis.Infrastructure

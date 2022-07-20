@@ -6,7 +6,7 @@ using MongoDB.Driver;
 
 namespace DataAccessLayer.MongoDB.Repository
 {
-	public class CustomersRepository: ICustomersRepository
+	public class CustomersRepository : ICustomersRepository
 	{
 
 		private const string ANALYTICS_DB_NAME = "analytics";

@@ -1,4 +1,5 @@
 ﻿using BusinessLayer;
+using BusinessLayer.Interfaces;
 using Helpers.AppExceptionHelpers;
 using Helpers.TokenHelpers;
 using Microsoft.AspNetCore.Mvc;
@@ -16,6 +17,13 @@ namespace APILayer.Controllers.User
 	[Route("rest/api/v1/user/[controller]")]
 	public class LogoutController : ControllerBase
 	{
+
+		private IKeycloakService _keycloakService;
+
+		public LogoutController(IKeycloakService keycloakService)
+		{
+			_keycloakService = keycloakService;
+		}
 
 		[HttpPost]
 		public NoContentResult UserLogout([FromBody] LogoutRequest token)
@@ -38,8 +46,7 @@ namespace APILayer.Controllers.User
 				throw new MalformedTokenException(JsonConvert.SerializeObject(errorModel));
 			}
 
-			KeycloakService keycloakService = new KeycloakService();
-			TokenResponse? adminToken = keycloakService.AdminAuth();
+			TokenResponse? adminToken = _keycloakService.AdminAuth();
 
 			TokenResponse tokenResponse = new TokenResponse()
 			{
@@ -48,7 +55,7 @@ namespace APILayer.Controllers.User
 				session_state = accessTokenPayload["session_state"].ToString()
 			};
 
-			keycloakService.RemoveSession(false, tokenResponse, adminToken);
+			_keycloakService.RemoveSession(false, tokenResponse, adminToken);
 
 			return NoContent();
 		}

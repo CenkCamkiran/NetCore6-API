@@ -1,5 +1,4 @@
-﻿using BusinessLayer;
-using BusinessLayer.Interfaces;
+﻿using BusinessLayer.Interfaces;
 using Helpers.AppExceptionHelpers;
 using Microsoft.AspNetCore.Mvc;
 using Models.ControllerModels;

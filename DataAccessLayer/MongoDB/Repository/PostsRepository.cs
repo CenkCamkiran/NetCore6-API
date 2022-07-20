@@ -1,12 +1,6 @@
 ﻿using DataAccessLayer.MongoDB.Infrastructure;
 using DataAccessLayer.MongoDB.Interfaces;
-using Models.ControllerModels;
 using MongoDB.Driver;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DataAccessLayer.MongoDB.Repository
 {

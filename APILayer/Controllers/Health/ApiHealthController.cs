@@ -1,4 +1,5 @@
 ﻿using BusinessLayer;
+using BusinessLayer.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Models.ControllerModels;
 using System.Net;
@@ -11,16 +12,22 @@ namespace APILayer.Controllers.Health
 	public class ApiHealthController : ControllerBase
 	{
 
+		private IPingService _pingService;
+
+		public ApiHealthController(IPingService pingService)
+		{
+			_pingService = pingService;
+		}
+
 		[HttpGet]
 		public APIHealthResponse GetHealth()
 		{
 
 			APIHealthResponse apiHealthResponseModel = new APIHealthResponse();
 
-			PingService pingService = new PingService();
-			PingReply elasticStatus = pingService.PingElasticSearch();
-			PingReply keycloakStatus = pingService.PingKeycloak();
-			PingReply mongoDbStatus = pingService.PingMongoDB();
+			PingReply elasticStatus = _pingService.PingElasticSearch();
+			PingReply keycloakStatus = _pingService.PingKeycloak();
+			PingReply mongoDbStatus = _pingService.PingMongoDB();
 
 			if (elasticStatus.Status == IPStatus.Success && keycloakStatus.Status == IPStatus.Success && mongoDbStatus.Status == IPStatus.Success)
 			{

@@ -1,12 +1,10 @@
 ﻿using BusinessLayer;
-using Helpers.AppExceptionHelpers;
+using BusinessLayer.Interfaces;
 using Helpers.CryptoHelpers;
 using Helpers.LoginHelpers;
 using Microsoft.AspNetCore.Mvc;
 using Models.ControllerModels;
 using Models.HelpersModels;
-using Newtonsoft.Json;
-using System.Net;
 using System.Net.Mime;
 
 namespace APILayer.Controllers.User
@@ -16,6 +14,13 @@ namespace APILayer.Controllers.User
 	[Route("rest/api/v1/user/[controller]")]
 	public class LoginController : ControllerBase
 	{
+
+		private IKeycloakService _keycloakService;
+
+		public LoginController(IKeycloakService keycloakService)
+		{
+			_keycloakService = keycloakService;
+		}
 
 		[HttpPost]
 		public UserLoginResponse UserLogin([FromBody] UserLoginRequest requestBody)
@@ -27,8 +32,7 @@ namespace APILayer.Controllers.User
 			string hash = cryptoHelper.ComputeSha256Hash(String.Concat(requestBody.username, requestBody.password));
 			cryptoHelper.CheckHash(requestBody.hash, hash);
 
-			KeycloakService keycloakService = new KeycloakService();
-			TokenResponse? token = keycloakService.UserAuth(requestBody);
+			TokenResponse? token = _keycloakService.UserAuth(requestBody);
 
 			UserLoginResponse? tokenResult = new UserLoginResponse()
 			{

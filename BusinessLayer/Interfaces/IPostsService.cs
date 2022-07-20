@@ -1,5 +1,4 @@
 ﻿using Models.ControllerModels;
-using StackExchange.Redis;
 
 namespace BusinessLayer.Interfaces
 {

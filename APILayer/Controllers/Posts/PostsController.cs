@@ -1,9 +1,6 @@
-﻿using BusinessLayer;
-using BusinessLayer.Interfaces;
+﻿using BusinessLayer.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using StackExchange.Redis;
-using System.Text;
 
 namespace APILayer.Controllers.Posts
 {

@@ -1,6 +1,5 @@
 ﻿using BusinessLayer.Interfaces;
 using DataAccessLayer.MongoDB.Interfaces;
-using DataAccessLayer.MongoDB.Repository;
 using Models.ControllerModels;
 using Models.DataAccessLayerModels;
 

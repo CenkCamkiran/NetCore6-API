@@ -20,7 +20,7 @@ namespace BusinessLayer
 		{
 
 			Dictionary<string, string> config = appConfiguration.GetKeycloakConfig();
-			return pingHelper.PingKeycloak(new Uri(config["Host"]).Host);
+			return pingHelper.PingKeycloak(new Uri(config["KeycloakHost"]).Host);
 
 		}
 
