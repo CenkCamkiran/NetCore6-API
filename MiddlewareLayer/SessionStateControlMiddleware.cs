@@ -64,7 +64,6 @@ namespace MiddlewareLayer
 					response.Headers.Add(HttpRequestHeader.Authorization.ToString(), tokenResponse.access_token);
 					response.Headers.Add("RefreshToken", tokenResponse.refresh_token);
 
-					await _next(httpContext);
 				}
 			}
 

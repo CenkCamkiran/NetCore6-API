@@ -1,4 +1,10 @@
+using BusinessLayer;
+using BusinessLayer.Interfaces;
 using Configurations;
+using DataAccessLayer.MongoDB.Interfaces;
+using DataAccessLayer.MongoDB.Repository;
+using DataAccessLayer.Redis.Interfaces;
+using DataAccessLayer.Redis.Repository;
 using MiddlewareLayer;
 using MongoDB.Driver;
 using StackExchange.Redis;
@@ -8,21 +14,30 @@ var builder = WebApplication.CreateBuilder(args);
 ConfigurationManager configuration = builder.Configuration;
 configuration.GetSection(ApplicationSettingsModel.RootOption).Bind(ApplicationSettingsModel.ExternalTools);
 
+// ***************************************************************************************************
 // Add services to the container.
 
-//AppConfiguration appConfiguration = new AppConfiguration();
-//Dictionary<string, string> redisConfig = appConfiguration.GetRedisConfig();
-//Dictionary<string, string> mongodbConfig = appConfiguration.GetMongoDBConfig();
+AppConfiguration appConfiguration = new AppConfiguration();
+Dictionary<string, string> redisConfig = appConfiguration.GetRedisConfig();
+Dictionary<string, string> mongodbConfig = appConfiguration.GetMongoDBConfig();
 
-//var options = ConfigurationOptions.Parse(redisConfig["RedisHost"]);
-//options.Password = redisConfig["Password"];
-//var redisConnection = ConnectionMultiplexer.Connect(options);
 
-//MongoClient client = new MongoClient(mongodbConfig["MongoDBConnectionString"]);
+var options = ConfigurationOptions.Parse(redisConfig["RedisHost"]);
+options.Password = redisConfig["Password"];
+var redisConnection = ConnectionMultiplexer.Connect(options);
+builder.Services.AddSingleton<IConnectionMultiplexer>(redisConnection);
+builder.Services.AddScoped<IPostsCacheRepository, PostsCacheRepository>();
+builder.Services.AddScoped<IPostsRepository, PostsRepository>();
+builder.Services.AddScoped<IPostsService, PostsService>();
+builder.Services.AddScoped<ICustomersService, CustomersService>();
+builder.Services.AddScoped<ICustomersRepository, CustomersRepository>();
 
-//builder.Services.AddSingleton<IConnectionMultiplexer>(redisConnection);
-//builder.Services.AddSingleton<IMongoClient>(client);
+
+MongoClient client = new MongoClient(mongodbConfig["MongoDBConnectionString"]);
+builder.Services.AddSingleton<IMongoClient>(client);
 builder.Services.AddControllers();
+
+// ***************************************************************************************************
 
 // ********************************* For Swagger *********************************
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -89,9 +104,19 @@ app.MapControllers();
 
 app.Run();
 
+//services.AddCors(options =>
+//{
+//options.AddPolicy("ClientPermission", policy =>
+//{
+//	policy.AllowAnyHeader()
+//		  .AllowAnyMethod()
+//		  .WithOrigins("http://localhost:3000")
+//		  .AllowCredentials();
+//});
+
 /********************************************************
  * 
- * 
+ * Codes for test purposes
  * 
  * 
  ********************************************************/

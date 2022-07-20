@@ -1,4 +1,5 @@
 ﻿using BusinessLayer.Interfaces;
+using DataAccessLayer.MongoDB.Interfaces;
 using DataAccessLayer.MongoDB.Repository;
 using Models.ControllerModels;
 using Models.DataAccessLayerModels;
@@ -8,41 +9,41 @@ namespace BusinessLayer
 	public class CustomersService : ICustomersService
 	{
 
-		private CustomersRepository<Customer> customersRepository;
+		private ICustomersRepository _customersRepository;
 
-		public CustomersService()
+		public CustomersService(ICustomersRepository customersRepository)
 		{
-			customersRepository = new CustomersRepository<Customer>();
+			_customersRepository = customersRepository;
 		}
 
 		public Customer GetCustomerByEmail(string email)
 		{
-			return customersRepository.GetCustomerByEmail(email);
+			return _customersRepository.GetCustomerByEmail(email);
 		}
 
 		public Customer GetCustomerByID(string id)
 		{
-			return customersRepository.GetCustomerByID(id);
+			return _customersRepository.GetCustomerByID(id);
 		}
 
 		public Customer GetCustomerByName(string name)
 		{
-			return customersRepository.GetCustomerByName(name);
+			return _customersRepository.GetCustomerByName(name);
 		}
 
 		public void UpdateCustomer(string id, Customer customerRequest)
 		{
-			customersRepository.UpdateCustomer(id, customerRequest);
+			_customersRepository.UpdateCustomer(id, customerRequest);
 		}
 
 		public void InsertCustomer(CustomerRequest customerRequest)
 		{
-			customersRepository.InsertCustomer(customerRequest);
+			_customersRepository.InsertCustomer(customerRequest);
 		}
 
 		public IEnumerable<Customer> GetAllCustomers()
 		{
-			return customersRepository.GetAllCustomers();
+			return _customersRepository.GetAllCustomers();
 		}
 	}
 }

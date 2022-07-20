@@ -1,4 +1,5 @@
 ﻿using BusinessLayer;
+using BusinessLayer.Interfaces;
 using Helpers.AppExceptionHelpers;
 using Microsoft.AspNetCore.Mvc;
 using Models.ControllerModels;
@@ -13,18 +14,18 @@ namespace APILayer.Controllers.Customers
 	[Route("rest/api/v1/main/[controller]")]
 	public class CustomersController : ControllerBase
 	{
-		private CustomersService customersService;
+		private ICustomersService _customersService;
 
-		public CustomersController()
+		public CustomersController(ICustomersService customersService)
 		{
-			customersService = new CustomersService();
+			_customersService = customersService;
 		}
 
 		[HttpGet]
 		public IEnumerable<Customer> GetAllCustomers()
 		{
 
-			return customersService.GetAllCustomers();
+			return _customersService.GetAllCustomers();
 
 		}
 
@@ -41,7 +42,7 @@ namespace APILayer.Controllers.Customers
 				throw new AppException(JsonConvert.SerializeObject(errorModel));
 			}
 
-			Customer customer = customersService.GetCustomerByID(Id);
+			Customer customer = _customersService.GetCustomerByID(Id);
 			if (customer == null)
 			{
 				CustomAppError errorModel = new CustomAppError();
@@ -59,7 +60,7 @@ namespace APILayer.Controllers.Customers
 		public Customer GetCustomerByName(string Name)
 		{
 
-			Customer customer = customersService.GetCustomerByName(Name);
+			Customer customer = _customersService.GetCustomerByName(Name);
 			if (customer == null)
 			{
 				CustomAppError errorModel = new CustomAppError();
@@ -77,7 +78,7 @@ namespace APILayer.Controllers.Customers
 		public Customer GetCustomerByEmail(string Email)
 		{
 
-			Customer customer = customersService.GetCustomerByEmail(Email);
+			Customer customer = _customersService.GetCustomerByEmail(Email);
 			if (customer == null)
 			{
 				CustomAppError errorModel = new CustomAppError();
@@ -127,7 +128,7 @@ namespace APILayer.Controllers.Customers
 		public NoContentResult InsertCustomer([FromBody] CustomerRequest customerRequest) //Whole object or specific object?
 		{
 
-			customersService.InsertCustomer(customerRequest);
+			_customersService.InsertCustomer(customerRequest);
 
 			return NoContent();
 

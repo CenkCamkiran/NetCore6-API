@@ -1,4 +1,5 @@
 ﻿using BusinessLayer;
+using BusinessLayer.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using StackExchange.Redis;
@@ -11,30 +12,30 @@ namespace APILayer.Controllers.Posts
 	public class PostsController : ControllerBase
 	{
 
-		//private readonly IConnectionMultiplexer _redisConnection;
+		private IPostsService _postsService;
 
-		//public PostsController(IConnectionMultiplexer redisConnection)
-		//{
-		//	_redisConnection = redisConnection;
-		//}
+		public PostsController(IPostsService postsService)
+		{
+			_postsService = postsService;
+		}
 
 		[HttpGet]
 		public object GetTopPosts()
 		{
 
-			PostsService PostsService = new PostsService();
-
 			var cacheKey = "topPosts";
 			List<Models.ControllerModels.Posts>? topPosts;
-			topPosts = PostsService.GetTopPostsCache(cacheKey)?.ToList();
+			topPosts = _postsService.GetTopPostsCache(cacheKey)?.ToList();
 
 			if (topPosts == null)
 			{
-				var topPostsDB = PostsService.GetTopPosts().ToList();
+				var topPostsDB = _postsService.GetTopPosts().ToList();
 				TimeSpan ttl = TimeSpan.FromMinutes(5); //5 minutes ttl
 
 				string serializedPosts = JsonConvert.SerializeObject(topPostsDB);
-				PostsService.SetTopPostsCache(cacheKey, serializedPosts, ttl);
+				_postsService.SetTopPostsCache(cacheKey, serializedPosts, ttl);
+
+				return topPostsDB;
 
 			}
 

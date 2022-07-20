@@ -9,10 +9,17 @@ namespace DataAccessLayer.Redis.Repository
 {
 	public class PostsCacheRepository : IPostsCacheRepository
 	{
+		private readonly IConnectionMultiplexer _redisConnection;
+
+		public PostsCacheRepository(IConnectionMultiplexer redisConnection)
+		{
+			_redisConnection = redisConnection;
+		}
 
 		public IEnumerable<Posts> GetTopPostsCache(string key)
 		{
-			RedisCommand<Posts> redisCommand = new RedisCommand<Posts>();
+
+			RedisCommand<Posts> redisCommand = new RedisCommand<Posts>(_redisConnection);
 
 			RedisValue cacheResult = redisCommand.Get(key);
 			string dataByteArray = "";
@@ -22,13 +29,9 @@ namespace DataAccessLayer.Redis.Repository
 				dataByteArray = Encoding.UTF8.GetString(cacheResult);
 			}
 
-			var settings = new JsonSerializerSettings
-			{
-				NullValueHandling = NullValueHandling.Ignore,
-				MissingMemberHandling = MissingMemberHandling.Ignore
-			};
+			IEnumerable<Posts>? Postslist = JsonConvert.DeserializeObject<IEnumerable<Posts>>(dataByteArray);
 
-			return JsonConvert.DeserializeObject<IEnumerable<Posts>>(cacheResult, settings);
+			return Postslist;
 
 		}
 
@@ -36,7 +39,7 @@ namespace DataAccessLayer.Redis.Repository
 		{
 
 			byte[]? dataByteArray = Encoding.UTF8.GetBytes(data);
-			RedisCommand<string> redisCommand = new RedisCommand<string>();
+			RedisCommand<string> redisCommand = new RedisCommand<string>(_redisConnection);
 
 			redisCommand.Add(key, dataByteArray, ttl);
 		}

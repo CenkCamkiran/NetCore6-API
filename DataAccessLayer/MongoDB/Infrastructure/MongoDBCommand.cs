@@ -4,15 +4,15 @@ using System.Linq.Expressions;
 
 namespace DataAccessLayer.MongoDB.Infrastructure
 {
-	public class MongoDBCommand<CollectionModel> : MongoDBConnection, IMongoDBCommand<CollectionModel> where CollectionModel : class
+	public class MongoDBCommand<CollectionModel> : IMongoDBCommand<CollectionModel> where CollectionModel : class
 	{
 
 		private readonly IMongoCollection<CollectionModel> _mongoCollection;
 
-		public MongoDBCommand(string DatabaseName, string CollectionName) : base(DatabaseName, CollectionName)
+		public MongoDBCommand(string DatabaseName, string CollectionName, IMongoClient _mongoClient)
 		{
 			//try-catch?
-			IMongoDatabase? MongoDatabase = MongoClient.GetDatabase(DatabaseName);
+			IMongoDatabase? MongoDatabase = _mongoClient.GetDatabase(DatabaseName);
 
 			_mongoCollection = MongoDatabase.GetCollection<CollectionModel>(CollectionName);
 		}

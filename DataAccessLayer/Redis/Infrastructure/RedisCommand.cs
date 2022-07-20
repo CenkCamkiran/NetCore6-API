@@ -7,12 +7,11 @@ namespace DataAccessLayer.Redis.Infrastructure
 	public class RedisCommand<TModel> : IRedisCommand<TModel>
 	{
 
-		private IDatabase redisDatabase;
+		private readonly IDatabase redisDatabase;
 
-		public RedisCommand()
+		public RedisCommand(IConnectionMultiplexer _redisConnection)
 		{
-			RedisConnection redisConnection = new RedisConnection();
-			redisDatabase = redisConnection.connection.GetDatabase();
+			redisDatabase = _redisConnection.GetDatabase();
 		}
 
 		public void Add(string key, byte[]? data, TimeSpan ttl)

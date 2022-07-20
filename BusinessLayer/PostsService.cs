@@ -1,5 +1,7 @@
 ﻿using BusinessLayer.Interfaces;
+using DataAccessLayer.MongoDB.Interfaces;
 using DataAccessLayer.MongoDB.Repository;
+using DataAccessLayer.Redis.Interfaces;
 using DataAccessLayer.Redis.Repository;
 using Models.ControllerModels;
 using StackExchange.Redis;
@@ -9,29 +11,28 @@ namespace BusinessLayer
 	public class PostsService : IPostsService
 	{
 
-		private PostsCacheRepository postsCacheRepository;
-		private PostsRepository postsRepository;
+		private IPostsRepository _postsRepository;
+		private IPostsCacheRepository _postsCacheRepository;
 
-
-		public PostsService()
+		public PostsService(IPostsRepository postsRepository, IPostsCacheRepository postsCacheRepository)
 		{
-			postsCacheRepository = new PostsCacheRepository();
-			postsRepository = new PostsRepository();
+			_postsRepository = postsRepository;
+			_postsCacheRepository = postsCacheRepository;
 		}
 
 		public IEnumerable<Models.DataAccessLayerModels.Posts> GetTopPosts()
 		{
-			return postsRepository.GetTopPosts();
+			return _postsRepository.GetTopPosts();
 		}
 
 		public IEnumerable<Posts> GetTopPostsCache(string key)
 		{
-			return postsCacheRepository.GetTopPostsCache(key);
+			return _postsCacheRepository.GetTopPostsCache(key);
 		}
 
 		public void SetTopPostsCache(string key, string data, TimeSpan ttl)
 		{
-			postsCacheRepository.SetTopPostsCache(key, data, ttl);
+			_postsCacheRepository.SetTopPostsCache(key, data, ttl);
 		}
 	}
 }
