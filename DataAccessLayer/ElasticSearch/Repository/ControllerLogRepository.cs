@@ -1,5 +1,4 @@
-﻿using DataAccessLayer.ElasticSearch.Infrastructure;
-using DataAccessLayer.ElasticSearch.Interfaces;
+﻿using DataAccessLayer.ElasticSearch.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Models.DataAccessLayerModels;
 using Newtonsoft.Json.Linq;
@@ -8,11 +7,11 @@ namespace DataAccessLayer.ElasticSearch.Repository
 {
 	public class ControllerLogRepository : IControllerLogRepository
 	{
-		private ElasticSearchCommand elasticCommand;
+		private IElasticSearchCommand _elasticSearchCommand;
 
-		public ControllerLogRepository()
+		public ControllerLogRepository(IElasticSearchCommand elasticSearchCommand)
 		{
-			elasticCommand = new ElasticSearchCommand();
+			_elasticSearchCommand = elasticSearchCommand;
 		}
 
 		public async Task InsertControllerRequestResponseLog(HttpRequest request, HttpResponse response)
@@ -46,7 +45,7 @@ namespace DataAccessLayer.ElasticSearch.Repository
 					ResponseJSONBody = jsonResponseObject?.ToString()
 				};
 
-				elasticCommand.IndexData(model);
+				_elasticSearchCommand.IndexData(model);
 
 			}
 			finally

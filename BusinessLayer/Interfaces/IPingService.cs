@@ -7,5 +7,6 @@ namespace BusinessLayer.Interfaces
 		public PingReply PingKeycloak();
 		public PingReply PingElasticSearch();
 		public PingReply PingMongoDB();
+		public PingReply PingRedis();
 	}
 }

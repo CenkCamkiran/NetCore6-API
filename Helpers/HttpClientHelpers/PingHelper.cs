@@ -29,6 +29,16 @@ namespace Helpers.HttpClientHelpers
 			return pingResult.Result;
 		}
 
+		public PingReply PingRedis(string RedisHost)
+		{
+
+			Ping ping = new Ping();
+
+			Task<PingReply> pingResult = ping.SendPingAsync(RedisHost, 15);
+
+			return pingResult.Result;
+		}
+
 		//......
 
 	}

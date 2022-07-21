@@ -39,13 +39,11 @@ namespace BusinessLayer
 		}
 
 
-		//public async Task<bool> PingMongoDB()
-		//{
-		//	Dictionary<string, string> servers = configHelper.GetKeycloakConfig();
-
-		//	return true;
-
-		//}
+		public PingReply PingRedis()
+		{
+			Dictionary<string, string> config = appConfiguration.GetRedisConfig();
+			return pingHelper.PingRedis(new Uri(config["RedisHost"]).Host);
+		}
 
 	}
 }

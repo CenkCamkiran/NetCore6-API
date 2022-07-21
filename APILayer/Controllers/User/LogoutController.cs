@@ -1,5 +1,4 @@
-﻿using BusinessLayer;
-using BusinessLayer.Interfaces;
+﻿using BusinessLayer.Interfaces;
 using Helpers.AppExceptionHelpers;
 using Helpers.TokenHelpers;
 using Microsoft.AspNetCore.Mvc;
@@ -29,7 +28,7 @@ namespace APILayer.Controllers.User
 		public NoContentResult UserLogout([FromBody] LogoutRequest token)
 		{
 
-			TokenHelper.CheckToken(token.accessToken, token.refreshToken);
+			token.CheckToken(token.accessToken, token.refreshToken);
 
 			JwtSecurityToken? decodedAccessToken = new JwtSecurityToken(token.accessToken);
 			JwtPayload? accessTokenPayload = decodedAccessToken.Payload;

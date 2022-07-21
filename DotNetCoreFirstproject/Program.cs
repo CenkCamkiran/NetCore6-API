@@ -1,12 +1,17 @@
 using BusinessLayer;
 using BusinessLayer.Interfaces;
 using Configurations;
+using DataAccessLayer.ElasticSearch.Infrastructure;
+using DataAccessLayer.ElasticSearch.Interfaces;
+using DataAccessLayer.ElasticSearch.Repository;
 using DataAccessLayer.MongoDB.Interfaces;
 using DataAccessLayer.MongoDB.Repository;
 using DataAccessLayer.Redis.Interfaces;
 using DataAccessLayer.Redis.Repository;
+using Elasticsearch.Net;
 using MiddlewareLayer;
 using MongoDB.Driver;
+using Nest;
 using StackExchange.Redis;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -20,6 +25,7 @@ configuration.GetSection(ApplicationSettingsModel.RootOption).Bind(ApplicationSe
 AppConfiguration appConfiguration = new AppConfiguration();
 Dictionary<string, string> redisConfig = appConfiguration.GetRedisConfig();
 Dictionary<string, string> mongodbConfig = appConfiguration.GetMongoDBConfig();
+Dictionary<string, string> elasticConfig = appConfiguration.GetElasticSearchConfig();
 
 
 var options = ConfigurationOptions.Parse(redisConfig["RedisHost"]);
@@ -33,11 +39,27 @@ builder.Services.AddScoped<ICustomersService, CustomersService>();
 builder.Services.AddScoped<ICustomersRepository, CustomersRepository>();
 builder.Services.AddScoped<IKeycloakService, KeycloakService>();
 builder.Services.AddScoped<IPingService, PingService>();
+builder.Services.AddScoped<IElasticSearchCommand, ElasticSearchCommand>();
+builder.Services.AddScoped<IControllerLogRepository, ControllerLogRepository>();
+builder.Services.AddScoped<ILoggingService, LoggingService>();
+builder.Services.AddHealthChecks();
 
 
-MongoClient client = new MongoClient(mongodbConfig["MongoDBConnectionString"]);
-builder.Services.AddSingleton<IMongoClient>(client);
+MongoClient mongoClient = new MongoClient(mongodbConfig["MongoDBConnectionString"]);
+builder.Services.AddSingleton<IMongoClient>(mongoClient);
 builder.Services.AddControllers();
+
+
+ConnectionSettings? connection = new ConnectionSettings(new Uri(elasticConfig["ElasticHost"])).
+   DefaultIndex(elasticConfig["DefaultIndexName"]).
+   ServerCertificateValidationCallback(CertificateValidations.AllowAll).
+   ThrowExceptions(true).
+   PrettyJson().
+   RequestTimeout(TimeSpan.FromSeconds(300)).
+   BasicAuthentication(elasticConfig["ElasticRootUsername"], elasticConfig["ElasticRootPassword"]); //.ApiKeyAuthentication("<id>", "<api key>"); 
+
+ElasticClient? elasticClient = new ElasticClient(connection);
+builder.Services.AddSingleton<IElasticClient>(elasticClient);
 
 // ***************************************************************************************************
 

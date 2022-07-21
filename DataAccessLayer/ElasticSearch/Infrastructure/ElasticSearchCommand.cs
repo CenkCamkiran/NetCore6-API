@@ -8,14 +8,14 @@ using System.Net;
 
 namespace DataAccessLayer.ElasticSearch.Infrastructure
 {
-	public class ElasticSearchCommand : ElasticSearchConnection, IElasticSearchCommand
+	public class ElasticSearchCommand : IElasticSearchCommand
 	{
 
-		private ElasticSearchConnection elasticConn;
+		private readonly IElasticClient _elasticClient;
 
-		public ElasticSearchCommand()
+		public ElasticSearchCommand(IElasticClient elasticClient)
 		{
-			elasticConn = new ElasticSearchConnection();
+			_elasticClient = elasticClient;
 		}
 
 		//ControllerRequestResponseModel
@@ -30,7 +30,7 @@ namespace DataAccessLayer.ElasticSearch.Infrastructure
 				//Console.WriteLine("Success: " + cenk.Success);
 				//Console.WriteLine("HTTP Status Code: " + cenk.HttpStatusCode);
 
-				indexResult = elasticConn.ElasticSearchClient.IndexDocument(document);
+				indexResult = _elasticClient.IndexDocument(document);
 				Console.WriteLine("Index ID: " + indexResult.Id);
 				Console.WriteLine("Index Name: " + indexResult.Index);
 				Console.WriteLine("Result Code: " + indexResult.Result);

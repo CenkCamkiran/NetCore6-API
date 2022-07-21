@@ -1,5 +1,4 @@
-﻿using BusinessLayer;
-using BusinessLayer.Interfaces;
+﻿using BusinessLayer.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Models.ControllerModels;
 using System.Net;
@@ -28,8 +27,10 @@ namespace APILayer.Controllers.Health
 			PingReply elasticStatus = _pingService.PingElasticSearch();
 			PingReply keycloakStatus = _pingService.PingKeycloak();
 			PingReply mongoDbStatus = _pingService.PingMongoDB();
+			PingReply redisStatus = _pingService.PingRedis();
 
-			if (elasticStatus.Status == IPStatus.Success && keycloakStatus.Status == IPStatus.Success && mongoDbStatus.Status == IPStatus.Success)
+			if (elasticStatus.Status == IPStatus.Success && keycloakStatus.Status == IPStatus.Success &&
+				mongoDbStatus.Status == IPStatus.Success && redisStatus.Status == IPStatus.Success)
 			{
 				apiHealthResponseModel.HealthStatus = ((int)HttpStatusCode.OK).ToString();
 				apiHealthResponseModel.HealthStatusDescription = "API is OK!";

@@ -1,4 +1,4 @@
-﻿using BusinessLayer;
+﻿using BusinessLayer.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 
@@ -13,11 +13,10 @@ namespace MiddlewareLayer
 			_next = next;
 		}
 
-		public async Task Invoke(HttpContext httpContext)
+		public async Task Invoke(HttpContext httpContext, ILoggingService loggingService)
 		{
 			await _next(httpContext);
 
-			LoggingService loggingService = new LoggingService();
 			await loggingService.InsertControllerRequestResponseLog(httpContext.Request, httpContext.Response);
 
 		}

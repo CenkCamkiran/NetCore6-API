@@ -1,5 +1,4 @@
-﻿using BusinessLayer;
-using BusinessLayer.Interfaces;
+﻿using BusinessLayer.Interfaces;
 using Helpers.CryptoHelpers;
 using Helpers.LoginHelpers;
 using Microsoft.AspNetCore.Mvc;

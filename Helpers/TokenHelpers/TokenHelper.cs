@@ -1,4 +1,5 @@
 ﻿using Helpers.AppExceptionHelpers;
+using Models.ControllerModels;
 using Models.HelpersModels;
 using Newtonsoft.Json;
 using System.Net;
@@ -7,9 +8,9 @@ namespace Helpers.TokenHelpers
 {
 	public static class TokenHelper
 	{
-		public static bool ExtractToken(this string tokenHeader, int length)
+		public static bool ExtractToken(this string data, int length)
 		{
-			if (string.IsNullOrEmpty(tokenHeader) || length > tokenHeader.Length)
+			if (string.IsNullOrEmpty(data) || length > data.Length)
 			{
 				CustomAppError errorModel = new CustomAppError();
 				errorModel.ErrorMessage = "AccessToken or RefreshToken not found in request headers.";
@@ -21,7 +22,7 @@ namespace Helpers.TokenHelpers
 			return true;
 		}
 
-		public static void CheckToken(this string accessToken, string refreshToken)
+		public static void CheckToken(this LogoutRequest data, string accessToken, string refreshToken)
 		{
 			if (string.IsNullOrEmpty(accessToken) || string.IsNullOrEmpty(refreshToken))
 			{
