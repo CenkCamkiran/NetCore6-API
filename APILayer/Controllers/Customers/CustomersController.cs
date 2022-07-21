@@ -1,5 +1,6 @@
 ﻿using BusinessLayer.Interfaces;
 using Helpers.AppExceptionHelpers;
+using Helpers.StringHelpers;
 using Microsoft.AspNetCore.Mvc;
 using Models.ControllerModels;
 using Models.DataAccessLayerModels;
@@ -32,14 +33,7 @@ namespace APILayer.Controllers.Customers
 		public Customer GetCustomerByID(string Id)
 		{
 
-			if (Id.Length != 24)
-			{
-				CustomAppError errorModel = new CustomAppError();
-				errorModel.ErrorMessage = "Id must be 24 Character length";
-				errorModel.ErrorCode = ((int)HttpStatusCode.UnprocessableEntity).ToString();
-
-				throw new AppException(JsonConvert.SerializeObject(errorModel));
-			}
+			Id.ControlObjectID(Id);
 
 			Customer customer = _customersService.GetCustomerByID(Id);
 			if (customer == null)

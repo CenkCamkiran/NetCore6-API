@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "htG3+q2nRmYS+ov9cWNpeNVJvNOZMKFjyBwa7auT+un/uMJOeQrMYUMGwHDZlE1hsNgLjQuK0Zu8dBvTxfz/2Q==",
+  "dgSpecHash": "3BN5GCjgr8hCb60FnX/GvHvVwm2/+c/c9lhIQPhDbPNSDUre3Qt3MtzI92I1vgEJRWXuQF5ESFddCLVXgAzSxQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\ccamkiran\\source\\repos\\DotNetCoreFirstproject\\BusinessLayer\\BusinessLayer.csproj",
+  "projectFilePath": "C:\\Users\\ccamkiran\\source\\repos\\DotNetCoreFirstproject\\BusinessLayer\\ServiceLayer.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ccamkiran\\.nuget\\packages\\dnsclient\\1.6.1\\dnsclient.1.6.1.nupkg.sha512",
     "C:\\Users\\ccamkiran\\.nuget\\packages\\elasticsearch.net\\7.17.4\\elasticsearch.net.7.17.4.nupkg.sha512",

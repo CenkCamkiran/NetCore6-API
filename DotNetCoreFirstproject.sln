@@ -5,7 +5,7 @@ VisualStudioVersion = 17.2.32602.215
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotNetCoreFirstproject", "DotNetCoreFirstproject\DotNetCoreFirstproject.csproj", "{6A27A932-5E57-4A29-A409-FD9D3EE26477}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BusinessLayer", "BusinessLayer\BusinessLayer.csproj", "{C5F2B873-9F16-4AC8-AD16-A6A8FD268AE0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServiceLayer", "BusinessLayer\ServiceLayer.csproj", "{C5F2B873-9F16-4AC8-AD16-A6A8FD268AE0}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "APILayer", "APILayer\APILayer.csproj", "{361CF193-59FF-4B9D-A689-7CD2796C61D9}"
 EndProject

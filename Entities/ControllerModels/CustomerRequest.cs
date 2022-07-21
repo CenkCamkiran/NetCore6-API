@@ -2,32 +2,30 @@
 {
 	public class CustomerRequest
 	{
-		public string Username { get; set; }
+		public string username { get; set; }
 
-		public string Fullname { get; set; }
+		public string fullname { get; set; }
 
-		public string Address { get; set; }
+		public string address { get; set; }
 
-		public DateTime Birthdate { get; set; }
+		public string email { get; set; }
 
-		public string Email { get; set; }
+		public bool active { get; set; }
 
-		public bool Active { get; set; }
+		public int[] accounts { get; set; }
 
-		public int[] Accounts { get; set; }
-
-		public Dictionary<string, TierAndDetail>? TierAndDetails { get; set; }
+		public Dictionary<string, TierAndDetail>? tierAndDetails { get; set; }
 	}
 
 	public partial class TierAndDetail
 	{
 
-		public string Tier { get; set; }
+		public string tier { get; set; }
 
-		public string Id { get; set; }
+		public string id { get; set; }
 
-		public bool Active { get; set; }
+		public bool active { get; set; }
 
-		public string[] Benefits { get; set; }
+		public string[] benefits { get; set; }
 	}
 }

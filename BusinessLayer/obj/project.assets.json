@@ -1772,9 +1772,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ccamkiran\\source\\repos\\DotNetCoreFirstproject\\BusinessLayer\\BusinessLayer.csproj",
-      "projectName": "BusinessLayer",
-      "projectPath": "C:\\Users\\ccamkiran\\source\\repos\\DotNetCoreFirstproject\\BusinessLayer\\BusinessLayer.csproj",
+      "projectUniqueName": "C:\\Users\\ccamkiran\\source\\repos\\DotNetCoreFirstproject\\BusinessLayer\\ServiceLayer.csproj",
+      "projectName": "ServiceLayer",
+      "projectPath": "C:\\Users\\ccamkiran\\source\\repos\\DotNetCoreFirstproject\\BusinessLayer\\ServiceLayer.csproj",
       "packagesPath": "C:\\Users\\ccamkiran\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\ccamkiran\\source\\repos\\DotNetCoreFirstproject\\BusinessLayer\\obj\\",
       "projectStyle": "PackageReference",
