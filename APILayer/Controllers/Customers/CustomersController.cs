@@ -89,29 +89,35 @@ namespace APILayer.Controllers.Customers
 		public NoContentResult UpdateCustomer(string Id, [FromBody] CustomerRequest customerRequest) //Whole object or specific object?
 		{
 
-			//Customer customer = new Customer()
-			//{
-			//	Id = Id,
-			//	Accounts = customerRequest.Accounts,
-			//	Active = customerRequest.Active,
-			//	Address = customerRequest.Address,
-			//	Birthdate = customerRequest.Birthdate,
-			//	Email = customerRequest.Email,
-			//	Fullname = customerRequest.Fullname,
-			//	TierAndDetails = customerRequest.TierAndDetails,
-			//	Username = customerRequest.Username
-			//};
+			Id.ControlObjectID(Id);
 
-			//if (Id.Length != 24)
-			//{
-			//	CustomAppError errorModel = new CustomAppError();
-			//	errorModel.ErrorMessage = "Id must be 24 Character length";
-			//	errorModel.ErrorCode = ((int)HttpStatusCode.UnprocessableEntity).ToString();
+			Customer customer = new Customer()
+			{
+				id = Id,
+				accounts = customerRequest.accounts,
+				username = customerRequest.username,
+				active = customerRequest.active,
+				address = customerRequest.address,
+				birthdate = customerRequest.birthdate,
+				email = customerRequest.email,
+				fullname = customerRequest.fullname,
+				tierAndDetails = new Dictionary<string, Models.DataAccessLayerModels.TierAndDetail>()
+			};
 
-			//	throw new AppException(JsonConvert.SerializeObject(errorModel));
-			//}
+			foreach (var item in customerRequest.tierAndDetails)
+			{
+				Models.DataAccessLayerModels.TierAndDetail tierAndDetail = new Models.DataAccessLayerModels.TierAndDetail()
+				{
+					id = item.Value.id,
+					active = item.Value.active,
+					benefits = item.Value.benefits,
+					tier = item.Value.tier
+				};
 
-			//customersService.UpdateCustomer(Id, customer);
+				customer.tierAndDetails.Add(item.Key, tierAndDetail);
+			}
+
+			_customersService.UpdateCustomer(Id, customer);
 
 			return NoContent();
 
@@ -132,21 +138,7 @@ namespace APILayer.Controllers.Customers
 		//Query Param
 		//[HttpGet]
 		//public Customer GetCustomerByName([FromQuery] string Name)
-		//{
 
-		//	Customer customer = customersService.GetCustomerByName(Name);
-		//	if (customer == null)
-		//	{
-		//		CustomAppError errorModel = new CustomAppError();
-		//		errorModel.ErrorMessage = "Data not found";
-		//		errorModel.ErrorCode = ((int)HttpStatusCode.NotFound).ToString();
-
-		//		throw new DataNotFoundException(JsonConvert.SerializeObject(errorModel));
-		//	}
-
-		//	return customer;
-
-		//}
 
 	}
 }

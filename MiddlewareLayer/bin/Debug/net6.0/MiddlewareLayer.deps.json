@@ -8,9 +8,9 @@
     ".NETCoreApp,Version=v6.0": {
       "MiddlewareLayer/1.0.0": {
         "dependencies": {
-          "BusinessLayer": "1.0.0",
           "Microsoft.AspNetCore.Http.Abstractions": "2.2.0",
-          "Microsoft.IdentityModel": "7.0.0"
+          "Microsoft.IdentityModel": "7.0.0",
+          "ServiceLayer": "1.0.0"
         },
         "runtime": {
           "MiddlewareLayer.dll": {}
@@ -443,17 +443,6 @@
           }
         }
       },
-      "BusinessLayer/1.0.0": {
-        "dependencies": {
-          "DataAccessLayer": "1.0.0",
-          "Helpers": "1.0.0",
-          "Models": "1.0.0",
-          "Newtonsoft.Json": "13.0.1"
-        },
-        "runtime": {
-          "BusinessLayer.dll": {}
-        }
-      },
       "Configurations/1.0.0": {
         "dependencies": {
           "Newtonsoft.Json": "13.0.1"
@@ -494,6 +483,17 @@
         },
         "runtime": {
           "Models.dll": {}
+        }
+      },
+      "ServiceLayer/1.0.0": {
+        "dependencies": {
+          "DataAccessLayer": "1.0.0",
+          "Helpers": "1.0.0",
+          "Models": "1.0.0",
+          "Newtonsoft.Json": "13.0.1"
+        },
+        "runtime": {
+          "ServiceLayer.dll": {}
         }
       }
     }
@@ -777,11 +777,6 @@
       "path": "system.windows.extensions/5.0.0",
       "hashPath": "system.windows.extensions.5.0.0.nupkg.sha512"
     },
-    "BusinessLayer/1.0.0": {
-      "type": "project",
-      "serviceable": false,
-      "sha512": ""
-    },
     "Configurations/1.0.0": {
       "type": "project",
       "serviceable": false,
@@ -798,6 +793,11 @@
       "sha512": ""
     },
     "Models/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "ServiceLayer/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

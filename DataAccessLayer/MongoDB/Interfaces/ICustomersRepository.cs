@@ -9,7 +9,7 @@ namespace DataAccessLayer.MongoDB.Interfaces
 		public Customer GetCustomerByID(string id);
 		public Customer GetCustomerByName(string name);
 		public Customer GetCustomerByEmail(string email);
-		public void UpdateCustomer(string id, Customer customerRequest);
+		public void UpdateCustomer(string id, Customer customer);
 		public void InsertCustomer(CustomerRequest customerRequest);
 		public object GetCustomerByUsername(string username);
 		public object GetCustomerByBirthDates(string birthdate);

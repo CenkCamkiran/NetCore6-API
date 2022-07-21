@@ -30,28 +30,28 @@ namespace DataAccessLayer.MongoDB.Repository
 		{
 			MongoDBCommand<Customer> mongoDBCommand = new MongoDBCommand<Customer>(ANALYTICS_DB_NAME, ANALYTICS_COLLECTION_NAME, _mongoClient);
 
-			return mongoDBCommand.SearchDocument(customer => customer.Id == id).SingleOrDefault(); //Null check?
+			return mongoDBCommand.SearchDocument(customer => customer.id == id).SingleOrDefault(); //Null check?
 		}
 
 		public Customer GetCustomerByName(string name)
 		{
 			MongoDBCommand<Customer> mongoDBCommand = new MongoDBCommand<Customer>(ANALYTICS_DB_NAME, ANALYTICS_COLLECTION_NAME, _mongoClient);
 
-			return mongoDBCommand.SearchDocument(customer => customer.Fullname == name).SingleOrDefault(); //Null check?
+			return mongoDBCommand.SearchDocument(customer => customer.fullname == name).SingleOrDefault(); //Null check?
 		}
 
 		public Customer GetCustomerByEmail(string email)
 		{
 			MongoDBCommand<Customer> mongoDBCommand = new MongoDBCommand<Customer>(ANALYTICS_DB_NAME, ANALYTICS_COLLECTION_NAME, _mongoClient);
 
-			return mongoDBCommand.SearchDocument(customer => customer.Email == email).SingleOrDefault(); //Null check?
+			return mongoDBCommand.SearchDocument(customer => customer.email == email).SingleOrDefault(); //Null check?
 		}
 
-		public void UpdateCustomer(string id, Customer customerRequest)
+		public void UpdateCustomer(string id, Customer customer)
 		{
 			MongoDBCommand<Customer> mongoDBCommand = new MongoDBCommand<Customer>(ANALYTICS_DB_NAME, ANALYTICS_COLLECTION_NAME, _mongoClient);
 
-			mongoDBCommand.ReplaceDocument(customer => customer.Id == id, customerRequest); //Null check?
+			mongoDBCommand.ReplaceDocument(customer => customer.id == id, customer); //Null check?
 		}
 
 		public void InsertCustomer(CustomerRequest customerRequest)
