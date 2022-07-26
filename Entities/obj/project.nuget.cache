@@ -1,17 +1,17 @@
 {
   "version": 2,
-  "dgSpecHash": "sTo4UVC+Hms7V9xQYFoNtRvi4EzS377IrD/g3/CUtDl6LS+9ny6nLghOWHpI3y4cAXzKP3bIOx61MOXnw/W0ug==",
+  "dgSpecHash": "gnli9y4v4tBes2HnRub5izA1f131o39cZM2fMt/ao1Qky1vulaM7F3c63lAfamdCUPxxIF36jVZwyk6NatWBng==",
   "success": true,
-  "projectFilePath": "C:\\Users\\ccamkiran\\source\\repos\\DotNetCoreFirstproject\\Entities\\Models.csproj",
+  "projectFilePath": "C:\\Users\\camki\\Desktop\\Klasörler\\Google Cloud\\Projects\\NetCore6-API\\Entities\\Models.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\ccamkiran\\.nuget\\packages\\elasticsearch.net\\7.17.4\\elasticsearch.net.7.17.4.nupkg.sha512",
-    "C:\\Users\\ccamkiran\\.nuget\\packages\\microsoft.csharp\\4.6.0\\microsoft.csharp.4.6.0.nupkg.sha512",
-    "C:\\Users\\ccamkiran\\.nuget\\packages\\mongodb.bson\\2.16.1\\mongodb.bson.2.16.1.nupkg.sha512",
-    "C:\\Users\\ccamkiran\\.nuget\\packages\\nest\\7.17.4\\nest.7.17.4.nupkg.sha512",
-    "C:\\Users\\ccamkiran\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
-    "C:\\Users\\ccamkiran\\.nuget\\packages\\system.buffers\\4.5.1\\system.buffers.4.5.1.nupkg.sha512",
-    "C:\\Users\\ccamkiran\\.nuget\\packages\\system.diagnostics.diagnosticsource\\5.0.0\\system.diagnostics.diagnosticsource.5.0.0.nupkg.sha512",
-    "C:\\Users\\ccamkiran\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\5.0.0\\system.runtime.compilerservices.unsafe.5.0.0.nupkg.sha512"
+    "C:\\Users\\camki\\.nuget\\packages\\elasticsearch.net\\7.17.4\\elasticsearch.net.7.17.4.nupkg.sha512",
+    "C:\\Users\\camki\\.nuget\\packages\\microsoft.csharp\\4.6.0\\microsoft.csharp.4.6.0.nupkg.sha512",
+    "C:\\Users\\camki\\.nuget\\packages\\mongodb.bson\\2.16.1\\mongodb.bson.2.16.1.nupkg.sha512",
+    "C:\\Users\\camki\\.nuget\\packages\\nest\\7.17.4\\nest.7.17.4.nupkg.sha512",
+    "C:\\Users\\camki\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
+    "C:\\Users\\camki\\.nuget\\packages\\system.buffers\\4.5.1\\system.buffers.4.5.1.nupkg.sha512",
+    "C:\\Users\\camki\\.nuget\\packages\\system.diagnostics.diagnosticsource\\5.0.0\\system.diagnostics.diagnosticsource.5.0.0.nupkg.sha512",
+    "C:\\Users\\camki\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\5.0.0\\system.runtime.compilerservices.unsafe.5.0.0.nupkg.sha512"
   ],
   "logs": []
 }

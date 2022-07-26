@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "jqppuZhatD+ZA1XA5koPzA1INFulbcVJvSzhKhEAX1zSPwy7fkR/d35wGVIGf8XXb8btiLvNg090JbewVHK1sg==",
+  "dgSpecHash": "DFPP53cgxvAIkPJVG5E9QDAfSCeliZo0uKV5O/L5hPp5z5Dz9Q3cCbwP2msdMAS/G5ZOb/Q3fVJkqQwNRchWrA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\ccamkiran\\source\\repos\\DotNetCoreFirstproject\\Configurations\\Configurations.csproj",
+  "projectFilePath": "C:\\Users\\camki\\Desktop\\Klasörler\\Google Cloud\\Projects\\NetCore6-API\\Configurations\\Configurations.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\ccamkiran\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512"
+    "C:\\Users\\camki\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512"
   ],
   "logs": []
 }
