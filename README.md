@@ -49,7 +49,7 @@ Explanation of project
 > **Note** <br />
 > Currently I use **Docker version 20.10.17, build 100c701** and **Docker Compose version v2.6.0** <br />
 > Currently I use **Docker Compose version v2.6.0** <br />
-> Currently I use **Centos 7 Linux** machine on Google Cloud. Google Cloud is free for 3 Months every developer. Chech that out: https://cloud.google.com/ <br />
+> Currently I use **Centos 7 Linux** machine on Google Cloud. Check that out: https://cloud.google.com/ <br />
 
 ### Docker installation
 
