@@ -23,6 +23,7 @@ Explanation of project
   - [Requirements](#requirements)
     - [Docker installation](#docker-installation)
     - [ElasticSearch Installation](#elasticsearch-installation)
+      - [ElasticSearch Commands ???](#elasticsearch-commands-)
     - [Kibana Installation](#kibana-installation)
     - [MongoDB Installation](#mongodb-installation)
     - [Keycloak Installation](#keycloak-installation)
@@ -65,6 +66,10 @@ $ git clone https://github.com/deviantony/docker-elk #This repository contains a
 $ #Alter xpack.license.self_generated.type property to 'basic' inside of elasticsearch/config/elasticsearch.yml file in https://github.com/deviantony/docker-elk repository due to licence purposes.
 $ docker-compose up -d #This command must be executed in the same directory of docker-compose file #See more information on https://github.com/deviantony/docker-elk . You can change docker-compose.yml file for your preferences.
 ```
+
+#### ElasticSearch Commands ???
+
+Here, insert creation of index script.
 
 ### Kibana Installation
 
