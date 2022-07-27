@@ -1,6 +1,6 @@
 <div style="text-align: center">
 
-<img src="https://upload.wikimedia.org/wikipedia/commons/e/ee/.NET_Core_Logo.svg" width=15% height=15%>
+<img src="https://cdn.dribbble.com/users/42044/screenshots/3005802/media/e9d2cfc8f3ccdedebef7a8af171fbd08.jpg" width=15% height=15%>
 
 </div>
 
