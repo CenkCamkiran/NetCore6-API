@@ -97,7 +97,7 @@ namespace DataAccessLayer.MongoDB.Infrastructure
 
 		}
 
-		public object LookupLinqExample<Account>()
+		public object LookupLinqExample()
 		{
 			//return _mongoCollection.AsQueryable().Where(query).ToList();
 

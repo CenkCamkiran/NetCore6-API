@@ -1,68 +1,147 @@
-![](https://wallpapercave.com/wp/wp7718117.jpg)
+<img src="https://upload.wikimedia.org/wikipedia/commons/e/ee/.NET_Core_Logo.svg" width=15% height=15%>
 
 # API Project with .NET Core 6
+
+<!-- [![Elastic Stack version](https://img.shields.io/badge/Elastic%20Stack-8.3.2-00bfb3?style=flat&logo=elastic-stack)](https://www.elastic.co/blog/category/releases)
+[![Build Status](https://github.com/deviantony/docker-elk/workflows/CI/badge.svg?branch=main)](https://github.com/deviantony/docker-elk/actions?query=workflow%3ACI+branch%3Amain)
+[![Join the chat at https://gitter.im/deviantony/docker-elk](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/deviantony/docker-elk?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) -->
+
+## Philosophy
+
+Explanation of project
+
+## Contents
+
+- [API Project with .NET Core 6](#api-project-with-net-core-6)
+  - [Philosophy](#philosophy)
+  - [Contents](#contents)
+  - [Features](#features)
+  - [Requirements](#requirements)
+    - [Docker installation](#docker-installation)
+    - [ElasticSearch Installation](#elasticsearch-installation)
+    - [Kibana Installation](#kibana-installation)
+    - [MongoDB Installation](#mongodb-installation)
+    - [Keycloak Installation](#keycloak-installation)
+      - [Keycloak Realm Configuration](#keycloak-realm-configuration)
+    - [RabbitMQ Installation ????](#rabbitmq-installation-)
+    - [Postman Collection](#postman-collection)
+    - [Install project with Docker Container ???](#install-project-with-docker-container-)
+  - [Structure](#structure)
+  - [Contributing](#contributing)
+  - [Bug Reports & Feature Requests](#bug-reports--feature-requests)
+  - [Road Map](#road-map)
 
 ## Features
 
 - Developed via Npgsql and NewtonsoftJson Library
-- Uses PostgreSQL Database
+- Uses MongoDB Database
+- Uses ElasticSearch for logging request and responses
 - Easy to deploy
 - Can run on any platform (Mac, Linux ve Windows)
-- It is a Console Application. Simple!
+- It is API. Test on Postman!
 
-## Installation
+## Requirements
 
-#### ElasticSearch (Write Installation and Configurations)
+> **Note** <br />
+> Currently I use **Docker version 20.10.17, build 100c701** and **Docker Compose version v2.6.0** <br />
+> Currently I use **Docker Compose version v2.6.0** <br />
+> Currently I use **Centos 7 Linux** machine on Google Cloud. Google Cloud is free for 3 Months every developer. Chech that out: https://cloud.google.com/ <br />
 
-```bash
-$ export POSTGRE_PWD="..."
-$ export POSTGRE_USER="..."
-$ export POSTGRE_DB="..."
-$ echo $POSTGRE_PWD - $POSTGRE_USER - $POSTGRE_DB //check the contents of environment variables
-$ docker-compose up -d //This command must be executed in the same directory of docker-compose file
-```
+### Docker installation
 
-#### Kibana (Write Installation and Configurations)
+Docker Engine and Docker Compose must be installed. Check out on Docker's offical site.
 
-```bash
-$ export POSTGRE_PWD="..."
-$ export POSTGRE_USER="..."
-$ export POSTGRE_DB="..."
-$ echo $POSTGRE_PWD - $POSTGRE_USER - $POSTGRE_DB //check the contents of environment variables
-$ docker-compose up -d //This command must be executed in the same directory of docker-compose file
-```
+### ElasticSearch Installation
 
-#### MongoDB (Write Installation and Configurations)
+Follow the instructions below.
 
 ```bash
-$ export POSTGRE_PWD="..."
-$ export POSTGRE_USER="..."
-$ export POSTGRE_DB="..."
-$ echo $POSTGRE_PWD - $POSTGRE_USER - $POSTGRE_DB //check the contents of environment variables
-$ docker-compose up -d //This command must be executed in the same directory of docker-compose file
+$ export ELASTIC_VERSION="8.2.3" #This command must be executed due to installation of Logstash, ElasticSearch and Kibana properly. I used version 8.2.3
+$ git clone https://github.com/deviantony/docker-elk #This repository contains all information about installation of Logstash, ElasticSearch and Kibana.
+$ #Alter xpack.license.self_generated.type property to 'basic' inside of elasticsearch/config/elasticsearch.yml file in https://github.com/deviantony/docker-elk repository due to licence purposes.
+$ docker-compose up -d #This command must be executed in the same directory of docker-compose file #See more information on https://github.com/deviantony/docker-elk . You can change docker-compose.yml file for your preferences.
 ```
 
-#### Keycloak (Write Installation and Configurations. For example keycloak global settings json file)
+### Kibana Installation
+
+Follow the instructions below.
+
+1. After installation of Logstash, ElasticSearch and Kibana from https://github.com/deviantony/docker-elk repository, Kibana will occur errors. To fix that, stop and remove kibana docker container.
+
+   ```bash
+   $ docker stop kibana_container_id
+   $ docker container rm  kibana_container_id
+   ```
+
+2. Run commands below.
+
+   ```bash
+   $ docker-compose up -d #Run this command at the location of Kibana Folder (location of docker-compose.yml). Kibana Folder is in Docs folder. (Docs/Kibana/docker-compose.yml)
+   ```
+
+3. After installation of Kibana, you need to reset ceredentials of Kibana user in ElasticSearch. (Source: https://github.com/deviantony/docker-elk). This instruction have been written in README.
+
+   ```bash
+   $ docker-compose exec elasticsearch bin/elasticsearch-reset-password --batch --user kibana_system #Run this command and get credentials for kibana
+   ```
+
+### MongoDB Installation
+
+Follow the instructions below.
 
 ```bash
-$ export POSTGRE_PWD="..."
-$ export POSTGRE_USER="..."
-$ export POSTGRE_DB="..."
-$ echo $POSTGRE_PWD - $POSTGRE_USER - $POSTGRE_DB //check the contents of environment variables
-$ docker-compose up -d //This command must be executed in the same directory of docker-compose file
+$ docker-compose up -d #This command must be executed in the same directory of docker-compose file (inside of Docs/MongoDB/docker-compose.yml)
 ```
 
-#### RabbitMQ (Write Installation and Configurations)
+I recommend MongoDB Compass for UI of MongoDB. It is very useful tool. Check that out (https://www.mongodb.com/products/compass)
+
+### Keycloak Installation
+
+First install openssl library in your Linux machine. Make sure update your linux machine. I use Centos 7 Linux machine.
+Installation of openssl library for Centos 7: https://gist.github.com/fernandoaleman/5459173e24d59b45ae2cfc618e20fe06
+
+If you use Ubuntu Linux machine, you should do some research on google :)
+
+Follow the instructions below.
 
 ```bash
-$ export POSTGRE_PWD="..."
-$ export POSTGRE_USER="..."
-$ export POSTGRE_DB="..."
-$ echo $POSTGRE_PWD - $POSTGRE_USER - $POSTGRE_DB //check the contents of environment variables
-$ docker-compose up -d //This command must be executed in the same directory of docker-compose file
+$ openssl req -newkey rsa:2048 -nodes \
+  -keyout server.key.pem -x509 -days 3650 -out server.crt.pem #Used for generating ssl files.
+$ chmod 755 server.key.pem #Give all permissions on file.
+$ export KEYCLOAKPWD="*****" #Password for Keycloak Admin user
+$ docker run -d --name keycloak -p 8443:8443 \
+-e KEYCLOAK_ADMIN=admin \
+-e KEYCLOAK_ADMIN_PASSWORD=${KEYCLOAKPWD} \
+-e KC_HTTPS_CERTIFICATE_FILE=/root/keycloak/server.crt.pem \
+-e KC_HTTPS_CERTIFICATE_KEY_FILE=/root/keycloak/server.key.pem \
+-v $PWD/server.crt.pem:/root/keycloak/server.crt.pem \
+-v $PWD/server.key.pem:/root/keycloak/server.key.pem \
+-t quay.io/keycloak/keycloak:18.0.1 start-dev
 ```
 
-#### Install project with Docker Container (Dockerfile)
+There are other alternative installations of Keycloak. Source: https://stackoverflow.com/questions/49859066/keycloak-docker-https-required
+
+#### Keycloak Realm Configuration
+
+Import JSON file using Keycloak **Import** Menu
+
+### RabbitMQ Installation ????
+
+```bash
+$
+$
+$
+$
+$
+```
+
+### Postman Collection
+
+Collection file is in Docs/Postman Collection. Import and test API!
+
+### Install project with Docker Container ???
+
+Follow the instructions below.
 
 ```bash
 $ git clone https://github.com/CenkCamkiran/OpenWeather-DotNet-Docker-Project.git
@@ -71,11 +150,11 @@ $ docker run -d --name openweatherapp -t weatherapp --restart on-failure
 $ docker logs -t --since 1h //Watch the logs of container
 ```
 
-(Will be edited in the future. Delet dlls etc. only necessary files)
-
 ## Structure
 
-```
+(Will be edited in the future. Delete dlls etc. only necessary files) (FILE STRUCTURE)
+
+<!-- ```
 |   .dockerignore
 |   .gitignore
 |   cengo.txt
@@ -742,14 +821,19 @@ $ docker logs -t --since 1h //Watch the logs of container
                 |
                 \---refint
                         MiddlewareLayer.dll
-```
+``` -->
 
 ## Contributing
 
-#### Bug Reports & Feature Requests
+I am open every advice for my project. I am planning to improve myself on .NET Core 6. So don't hesitate comment on my project.
+
+## Bug Reports & Feature Requests
 
 Please use the Github issues.
 
-#### Developing
+## Road Map
 
-PRs are welcome.
+- I want to use some Software Design Patterns on my project.
+- RabbitMQ ????
+- Unit Testing
+- DevOps mechanism in the future. (Maybe Gitlab and Jenkins)
