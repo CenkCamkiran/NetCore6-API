@@ -1,14 +1,20 @@
-﻿using System.Linq.Expressions;
+﻿using MongoDB.Bson;
+using System.Linq.Expressions;
 
 namespace DataAccessLayer.MongoDB.Interfaces
 {
-	public interface IMongoDBCommand<CollectionModel>
+	public interface IMongoDBCommand<LocalCollectionModel, ForeignCollectionModel>
 	{
-		public IEnumerable<CollectionModel> SearchDocument(Expression<Func<CollectionModel, bool>> query);
+		public IEnumerable<LocalCollectionModel> SearchDocument(Expression<Func<LocalCollectionModel, bool>> query);
+		public string LookupClassicWithUnwind(Expression<Func<LocalCollectionModel, bool>> query, string localField, string foreignField, string resultField, BsonArray pipeline);
+		public string LookupClassicWithoutUnwind(Expression<Func<LocalCollectionModel, bool>> query, string localField, string foreignField, string resultField);
+		public string AggregationPipeline(Expression<Func<LocalCollectionModel, bool>> query, IEnumerable<BsonDocument> pipeline);
+		public IEnumerable<LocalCollectionModel> LookupLinq(object query);
+		public object LookupLinqExample();
 
-		public void UpdateDocument(string id, Expression<Func<CollectionModel, bool>> query);
-		public void ReplaceDocument(Expression<Func<CollectionModel, bool>> query, CollectionModel dataModel);
+		public void UpdateDocument(string id, Expression<Func<LocalCollectionModel, bool>> query);
+		public void ReplaceDocument(Expression<Func<LocalCollectionModel, bool>> query, LocalCollectionModel dataModel);
 
-		public void InsertDocument(CollectionModel document);
+		public void InsertDocument(LocalCollectionModel document);
 	}
 }

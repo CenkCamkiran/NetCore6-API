@@ -12,6 +12,8 @@ using Elasticsearch.Net;
 using MiddlewareLayer;
 using MongoDB.Driver;
 using Nest;
+using ServiceLayer;
+using ServiceLayer.Interfaces;
 using StackExchange.Redis;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -42,6 +44,10 @@ builder.Services.AddScoped<IPingService, PingService>();
 builder.Services.AddScoped<IElasticSearchCommand, ElasticSearchCommand>();
 builder.Services.AddScoped<IControllerLogRepository, ControllerLogRepository>();
 builder.Services.AddScoped<ILoggingService, LoggingService>();
+builder.Services.AddScoped<ICustomerAccountsService, CustomerAccountsService>();
+builder.Services.AddScoped<ICustomerAccountsRepository, CustomerAccountsRepository>();
+builder.Services.AddScoped<ICustomerAccountTransactionsService, CustomerAccountTransactionsService>();
+builder.Services.AddScoped<ICustomerAccountTransactionsRepository, CustomerAccountTransactionsRepository>();
 builder.Services.AddHealthChecks();
 
 

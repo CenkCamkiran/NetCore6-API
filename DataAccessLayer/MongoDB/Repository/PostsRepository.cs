@@ -19,7 +19,7 @@ namespace DataAccessLayer.MongoDB.Repository
 
 		public IEnumerable<Models.DataAccessLayerModels.Posts> GetTopPosts()
 		{
-			MongoDBCommand<Models.DataAccessLayerModels.Posts> mongoDBCommand = new MongoDBCommand<Models.DataAccessLayerModels.Posts>(ANALYTICS_DB_NAME, ANALYTICS_COLLECTION_NAME, _mongoClient);
+			MongoDBCommand<Models.DataAccessLayerModels.Posts, object> mongoDBCommand = new MongoDBCommand<Models.DataAccessLayerModels.Posts, object>(ANALYTICS_DB_NAME, ANALYTICS_COLLECTION_NAME, _mongoClient);
 
 			return mongoDBCommand.SearchDocument(_ => true);
 		}
