@@ -64,6 +64,7 @@ Follow the instructions below.
 $ export ELASTIC_VERSION="8.2.3" #This command must be executed due to installation of Logstash, ElasticSearch and Kibana properly. I used version 8.2.3
 $ git clone https://github.com/deviantony/docker-elk #This repository contains all information about installation of Logstash, ElasticSearch and Kibana.
 $ #Alter xpack.license.self_generated.type property to 'basic' inside of elasticsearch/config/elasticsearch.yml file in https://github.com/deviantony/docker-elk repository due to licence purposes.
+$ #If you encounter licence problems, go to License management menu on Kibana and change your licence to basic. (Or paid if you want to use all features of Kibana)
 $ docker-compose up -d #This command must be executed in the same directory of docker-compose file #See more information on https://github.com/deviantony/docker-elk . You can change docker-compose.yml file for your preferences.
 ```
 
