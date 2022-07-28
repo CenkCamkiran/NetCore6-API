@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Models.DataAccessLayerModels;
 
 namespace DataAccessLayer.MongoDB.Interfaces
 {
 	public interface ICustomerAccountTransactionsRepository
 	{
-		public object GetCustomerAccountTransactionsByAccountId(string id);
+		public List<CustomerAccountTransactions> GetCustomerAccountTransactionsByAccountId(string id);
 	}
 }

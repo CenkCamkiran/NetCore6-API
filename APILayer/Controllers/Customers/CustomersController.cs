@@ -106,7 +106,7 @@ namespace APILayer.Controllers.Customers
 
 			foreach (var item in customerRequest.tierAndDetails)
 			{
-				Models.DataAccessLayerModels.TierAndDetail tierAndDetail = new Models.DataAccessLayerModels.TierAndDetail()
+				TierAndDetail tierAndDetail = new TierAndDetail()
 				{
 					id = item.Value.id,
 					active = item.Value.active,

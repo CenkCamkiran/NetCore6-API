@@ -2,19 +2,16 @@
 using DataAccessLayer.MongoDB.Interfaces;
 using Models.DataAccessLayerModels;
 using MongoDB.Bson;
+using MongoDB.Bson.Serialization;
 using MongoDB.Driver;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace DataAccessLayer.MongoDB.Repository
 {
 	public class CustomerAccountsRepository : ICustomerAccountsRepository
 	{
 
-		private const string ANALYTICS_DB_NAME = "analytics"; 
+		private const string ANALYTICS_DB_NAME = "analytics";
 		private const string ANALYTICS_COLLECTION_NAME = "customers";
 		private const string ACCOUNTS_COLLECTION_NAME = "accounts";
 
@@ -25,13 +22,55 @@ namespace DataAccessLayer.MongoDB.Repository
 			_mongoClient = mongoClient;
 		}
 
-		public object GetCustomerAccountById(string Id)
+		public List<CustomerAccounts> GetCustomerAccountById(string id)
 		{
 			MongoDBCommand<Customer, Account> mongoDBCommand = new MongoDBCommand<Customer, Account>(ANALYTICS_DB_NAME, ANALYTICS_COLLECTION_NAME, ACCOUNTS_COLLECTION_NAME, _mongoClient);
 
-			var cenk = new BsonDocument()
+			var stages = new BsonDocument[]
+			{
+				new BsonDocument("$match",
+	            new BsonDocument("_id",
+	            new ObjectId(id))),
+	            new BsonDocument("$unwind",
+	            new BsonDocument("path", "$accounts")),
+	            new BsonDocument("$lookup",
+	            new BsonDocument
+	            	{
+	            		{ "from", "accounts" },
+	            		{ "localField", "accounts" },
+	            		{ "foreignField", "account_id" },
+	            		{ "as", "lookupresult" }
+	            	}),
+	            new BsonDocument("$group",
+	            new BsonDocument
+	            	{
+	            		{ "_id", "$_id" },
+	            		{ "root",
+	            new BsonDocument("$mergeObjects", "$$ROOT") },
+	            		{ "account_details",
+	            new BsonDocument("$push", "$lookupresult") }
+	            	}),
+	            new BsonDocument("$replaceRoot",
+	            new BsonDocument("newRoot",
+	            new BsonDocument("$mergeObjects",
+	            new BsonArray
+	            			{
+	            				"$root",
+	            				"$$ROOT"
+	            			}))),
+	            new BsonDocument("$project",
+	            new BsonDocument
+	            	{
+	            		{ "root", 0 },
+	            		{ "lookupresult", 0 },
+	            		{ "accounts", 0 }
+	            	})
+	        };
 
-			return mongoDBCommand.LookupClassicWithUnwind(customer => customer.id == Id, "accounts", "account_id", "result");
+			string jsonData = mongoDBCommand.AggregationPipeline(customer => customer.id == id, stages);
+			List<CustomerAccounts>? customerAccounts = BsonSerializer.Deserialize<List<CustomerAccounts>>(jsonData);
+
+			return customerAccounts;
 
 		}
 	}

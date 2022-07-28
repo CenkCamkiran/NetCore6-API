@@ -1,10 +1,6 @@
 ﻿using DataAccessLayer.MongoDB.Interfaces;
+using Models.DataAccessLayerModels;
 using ServiceLayer.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ServiceLayer
 {
@@ -18,7 +14,7 @@ namespace ServiceLayer
 			_customerAccountsRepository = customerAccountsRepository;
 		}
 
-		public object GetCustomerAccountById(string Id)
+		public List<CustomerAccounts> GetCustomerAccountById(string Id)
 		{
 			return _customerAccountsRepository.GetCustomerAccountById(Id);
 		}

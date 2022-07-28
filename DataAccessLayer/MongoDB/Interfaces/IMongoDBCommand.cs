@@ -8,7 +8,7 @@ namespace DataAccessLayer.MongoDB.Interfaces
 		public IEnumerable<LocalCollectionModel> SearchDocument(Expression<Func<LocalCollectionModel, bool>> query);
 		public string LookupClassicWithUnwind(Expression<Func<LocalCollectionModel, bool>> query, string localField, string foreignField, string resultField, BsonArray pipeline);
 		public string LookupClassicWithoutUnwind(Expression<Func<LocalCollectionModel, bool>> query, string localField, string foreignField, string resultField);
-		public string AggregationPipeline(Expression<Func<LocalCollectionModel, bool>> query, IEnumerable<BsonDocument> pipeline);
+		public string AggregationPipeline(Expression<Func<LocalCollectionModel, bool>> query, BsonDocument[] stages);
 		public IEnumerable<LocalCollectionModel> LookupLinq(object query);
 		public object LookupLinqExample();
 

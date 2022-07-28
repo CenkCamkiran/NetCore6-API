@@ -1,5 +1,4 @@
 ﻿using DataAccessLayer.MongoDB.Interfaces;
-using Models.DataAccessLayerModels;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using System.Linq.Expressions;
@@ -43,15 +42,17 @@ namespace DataAccessLayer.MongoDB.Infrastructure
 			}
 		}
 
-		public string AggregationPipeline(Expression<Func<LocalCollectionModel, bool>> query, IEnumerable<BsonDocument> pipeline)
-		{
+		public string AggregationPipeline(Expression<Func<LocalCollectionModel, bool>> query, BsonDocument[] stages)
+		{ //Query not used here but in the future it will be used with Match function.
 			try
 			{
-				var pipelineDefinition = PipelineDefinition<BsonArray, BsonDocument>.Create(pipeline);
+				var pipelineDefinition = PipelineDefinition<LocalCollectionModel, BsonDocument>.Create(stages);
 
-				//return _mongoCollectionLocal.Aggregate(pipelineDefinition)  //AppendStage<BsonArray>(pipelineDefinition)
+				return _mongoCollectionLocal.Aggregate(pipelineDefinition).ToList().ToJson();
 
-				return null;
+				//Give one by one to AppendStage method as BsonDocument variables. Example BsonDocument variable for unwind, BsonDocument variable for lookup etc.
+				//AppendStage<BsonArray>(pipelineDefinition)
+
 			}
 			catch (Exception ex)
 			{

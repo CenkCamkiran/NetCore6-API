@@ -1,6 +1,11 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Helpers.AppExceptionHelpers;
+using Helpers.StringHelpers;
 using Microsoft.AspNetCore.Mvc;
+using Models.DataAccessLayerModels;
+using Models.HelpersModels;
+using Newtonsoft.Json;
 using ServiceLayer.Interfaces;
+using System.Net;
 
 namespace APILayer.Controllers.Accounts
 {
@@ -17,12 +22,23 @@ namespace APILayer.Controllers.Accounts
 		}
 
 		[HttpGet("Id/{Id}")]
-		public object GetCustomerAccountById(string Id)
+		public CustomerAccounts GetCustomerAccountById(string Id)
 		{
 
-			object customerAccount = _customerAccountsService.GetCustomerAccountById(Id);
+			Id.ControlObjectID(Id);
 
-			return customerAccount;
+			List<CustomerAccounts> customerAccounts = _customerAccountsService.GetCustomerAccountById(Id);
+
+			if (customerAccounts == null)
+			{
+				CustomAppError errorModel = new CustomAppError();
+				errorModel.ErrorMessage = "Data not found";
+				errorModel.ErrorCode = ((int)HttpStatusCode.NotFound).ToString();
+
+				throw new DataNotFoundException(JsonConvert.SerializeObject(errorModel));
+			}
+
+			return customerAccounts.SingleOrDefault();
 		}
 	}
 }

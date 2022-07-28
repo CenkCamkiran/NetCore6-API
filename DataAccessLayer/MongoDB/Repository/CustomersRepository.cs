@@ -30,21 +30,28 @@ namespace DataAccessLayer.MongoDB.Repository
 		{
 			MongoDBCommand<Customer, object> mongoDBCommand = new MongoDBCommand<Customer, object>(ANALYTICS_DB_NAME, ANALYTICS_COLLECTION_NAME, _mongoClient);
 
-			return mongoDBCommand.SearchDocument(customer => customer.id == id).SingleOrDefault(); //Null check?
+			IEnumerable<Customer>? result = mongoDBCommand.SearchDocument(customer => customer.id == id);
+
+			return result.SingleOrDefault();
+
 		}
 
 		public Customer GetCustomerByName(string name)
 		{
 			MongoDBCommand<Customer, object> mongoDBCommand = new MongoDBCommand<Customer, object>(ANALYTICS_DB_NAME, ANALYTICS_COLLECTION_NAME, _mongoClient);
 
-			return mongoDBCommand.SearchDocument(customer => customer.fullname == name).SingleOrDefault(); //Null check?
+			IEnumerable<Customer> result = mongoDBCommand.SearchDocument(customer => customer.fullname == name);
+
+			return result.SingleOrDefault();
 		}
 
 		public Customer GetCustomerByEmail(string email)
 		{
 			MongoDBCommand<Customer, object> mongoDBCommand = new MongoDBCommand<Customer, object>(ANALYTICS_DB_NAME, ANALYTICS_COLLECTION_NAME, _mongoClient);
 
-			return mongoDBCommand.SearchDocument(customer => customer.email == email).SingleOrDefault(); //Null check?
+			IEnumerable<Customer> result = mongoDBCommand.SearchDocument(customer => customer.email == email);
+
+			return result.SingleOrDefault();
 		}
 
 		public void UpdateCustomer(string id, Customer customer)
