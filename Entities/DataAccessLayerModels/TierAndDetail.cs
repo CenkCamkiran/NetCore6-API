@@ -14,8 +14,8 @@ namespace Models.DataAccessLayerModels
 		[BsonRepresentation(BsonType.String)]
 		public string tier { get; set; }
 
-		//[BsonElement("id")]
-		//[BsonRepresentation(BsonType.String)]
+		[BsonElement("id")]
+		[BsonRepresentation(BsonType.String)]
 		public string id { get; set; }
 
 		[BsonElement("active")]
