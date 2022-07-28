@@ -23,7 +23,7 @@ Explanation of project
   - [Requirements](#requirements)
     - [Docker installation](#docker-installation)
     - [ElasticSearch Installation](#elasticsearch-installation)
-      - [ElasticSearch Commands ???](#elasticsearch-commands-)
+      - [Creation of Index on ElasticSearch-Kibana](#creation-of-index-on-elasticsearch-kibana)
     - [Kibana Installation](#kibana-installation)
     - [MongoDB Installation](#mongodb-installation)
     - [Keycloak Installation](#keycloak-installation)
@@ -67,9 +67,35 @@ $ #Alter xpack.license.self_generated.type property to 'basic' inside of elastic
 $ docker-compose up -d #This command must be executed in the same directory of docker-compose file #See more information on https://github.com/deviantony/docker-elk . You can change docker-compose.yml file for your preferences.
 ```
 
-#### ElasticSearch Commands ???
+#### Creation of Index on ElasticSearch-Kibana
 
-Here, insert creation of index script.
+1. Open Dev Console on Kibana.
+
+2. Run command below on Kibana Dev Console.
+
+   ```bash
+   $ PUT /controller-logs-index
+    {
+        "settings": {
+            "index": {
+                "number_of_shards": 3,
+                "number_of_replicas": 2
+            }
+        },
+        "mappings": {
+            "properties": {
+                "RequestJSONBody": {
+                    "type": "flattened"
+                },
+                "ResponseJSONBody": {
+                    "type": "flattened"
+                }
+            }
+        }
+    }
+   ```
+
+3. Go Index Management on Kibana. Make sure that index created.
 
 ### Kibana Installation
 
