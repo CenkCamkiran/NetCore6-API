@@ -74,6 +74,19 @@
 		},
 		{
 			"name": "UserLogin API",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);\r",
+							"postman.setEnvironmentVariable(\"accessToken\", jsonData.accessToken);\r",
+							"postman.setEnvironmentVariable(\"refreshToken\", jsonData.refreshToken);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -129,13 +142,24 @@
 		},
 		{
 			"name": "Get Customer By ID API",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"auth": {
 					"type": "bearer",
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJsYnlHZ2lFcVdRaUV6c0xIS25yQ0dLNkM5cUJmTEtHVU5uakZSdWlQaDdzIn0.eyJleHAiOjE2NTg0MDMyOTUsImlhdCI6MTY1ODQwMjk5NSwianRpIjoiNzhhNmRjZjAtZDM4NC00NzVjLWE2MmYtNWZmMDdlMDI1YzY5IiwiaXNzIjoiaHR0cHM6Ly8zNS4xOTguMTM4LjI0OTo4NDQzL3JlYWxtcy9jb3JlcHJvamVjdCIsInN1YiI6ImUwNzNhM2MwLTI2YmQtNDRmNy04NzM5LTc4Y2QxMWE2OGVmOSIsInR5cCI6IkJlYXJlciIsImF6cCI6InVzZXJjb3JlY2xpZW50Iiwic2Vzc2lvbl9zdGF0ZSI6ImZlNzBlMTkyLTBlYjMtNDUyYi1iYzNmLTY5ZTA5NWUyZWFjNCIsImFjciI6IjEiLCJhbGxvd2VkLW9yaWdpbnMiOlsiaHR0cDovL2xvY2FsaG9zdDo3ODAwIl0sInNjb3BlIjoiZW1haWwgcHJvZmlsZSIsInNpZCI6ImZlNzBlMTkyLTBlYjMtNDUyYi1iYzNmLTY5ZTA5NWUyZWFjNCIsImVtYWlsX3ZlcmlmaWVkIjpmYWxzZSwiZ2VuZGVyIjoiTWFsZSIsIm5hbWUiOiJFeGFtcGxlIFVzZXIiLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiJleGFtcGxlLnVzZXIiLCJnaXZlbl9uYW1lIjoiRXhhbXBsZSIsImZhbWlseV9uYW1lIjoiVXNlciIsImVtYWlsIjoiZXhhbXBsZV91c2VyQGdtYWlsLmNvbSJ9.pi29WWX2QCzOYXXDVr5tzjhs0qtnF3Ye8yKRijPAT0Kku0mprEKzMf_aUEY56SwIi5rz-JhVrj56z9a60wh5ai_Is5fIg-q6H6IYB4xZe_ot9HVVkCRDD4jout04fX7dvPLDQeebzfK8alhvPkNxB6dghFOZOYgsA7QP4SGjuixB2sDAcfNe49vYMESm2543xVZ4tnd3AuEBLDd1rt6xoY-wX-bj1dqV0jiJ_mlu-JsauUaRFy7RwjzahSCDGjhsizfbDlis_ymKk63TVJ4sWDpc9MGvWqLuBM0u9EGuXspq7kvGdho46ZAP1_zg75E85hekZeYfoe5zdfLOxRNqWg",
+							"value": "{{accessToken}}",
 							"type": "string"
 						}
 					]
@@ -144,17 +168,17 @@
 				"header": [
 					{
 						"key": "RefreshToken",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICI2NzgzNjJiMi03ZjdjLTRhZjctYTgyMS1hY2Y0NGYwNjJlMDIifQ.eyJleHAiOjE2NTg0MDQ3OTUsImlhdCI6MTY1ODQwMjk5NSwianRpIjoiZWQ5ZTIwZDktY2YwZC00YjdmLTkzYWEtNjdhOTE0YjNlZmY1IiwiaXNzIjoiaHR0cHM6Ly8zNS4xOTguMTM4LjI0OTo4NDQzL3JlYWxtcy9jb3JlcHJvamVjdCIsImF1ZCI6Imh0dHBzOi8vMzUuMTk4LjEzOC4yNDk6ODQ0My9yZWFsbXMvY29yZXByb2plY3QiLCJzdWIiOiJlMDczYTNjMC0yNmJkLTQ0ZjctODczOS03OGNkMTFhNjhlZjkiLCJ0eXAiOiJSZWZyZXNoIiwiYXpwIjoidXNlcmNvcmVjbGllbnQiLCJzZXNzaW9uX3N0YXRlIjoiZmU3MGUxOTItMGViMy00NTJiLWJjM2YtNjllMDk1ZTJlYWM0Iiwic2NvcGUiOiJlbWFpbCBwcm9maWxlIiwic2lkIjoiZmU3MGUxOTItMGViMy00NTJiLWJjM2YtNjllMDk1ZTJlYWM0In0.CGYPsS_YIOENTaMJmaczT3VpomFOQ5YqCki2CVjFpWM",
+						"value": "{{refreshToken}}",
 						"type": "text"
 					}
 				],
 				"url": {
-					"raw": "https://localhost:44354/rest/api/v1/main/Customers/Id/62d939fd632b2c7a3c32b1a4",
+					"raw": "https://localhost:7443/rest/api/v1/main/Customers/Id/62d939fd632b2c7a3c32b1a4",
 					"protocol": "https",
 					"host": [
 						"localhost"
 					],
-					"port": "44354",
+					"port": "7443",
 					"path": [
 						"rest",
 						"api",
@@ -419,13 +443,24 @@
 		},
 		{
 			"name": "Get Customer Accounts API",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"auth": {
 					"type": "bearer",
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJsYnlHZ2lFcVdRaUV6c0xIS25yQ0dLNkM5cUJmTEtHVU5uakZSdWlQaDdzIn0.eyJleHAiOjE2NTg5MjM3ODcsImlhdCI6MTY1ODkyMzQ4NywianRpIjoiZTkyZjJhMTUtMzg3NC00NTJkLWJmYmEtMWExYTU1MTdjYmM3IiwiaXNzIjoiaHR0cHM6Ly8zNS4xOTguMTM4LjI0OTo4NDQzL3JlYWxtcy9jb3JlcHJvamVjdCIsInN1YiI6ImUwNzNhM2MwLTI2YmQtNDRmNy04NzM5LTc4Y2QxMWE2OGVmOSIsInR5cCI6IkJlYXJlciIsImF6cCI6InVzZXJjb3JlY2xpZW50Iiwic2Vzc2lvbl9zdGF0ZSI6ImJhNDUzMzMwLWYyMTAtNDU0ZS04MTI1LTU1ZjExMDQ1YTc5MyIsImFjciI6IjEiLCJhbGxvd2VkLW9yaWdpbnMiOlsiaHR0cDovL2xvY2FsaG9zdDo3ODAwIl0sInNjb3BlIjoiZW1haWwgcHJvZmlsZSIsInNpZCI6ImJhNDUzMzMwLWYyMTAtNDU0ZS04MTI1LTU1ZjExMDQ1YTc5MyIsImVtYWlsX3ZlcmlmaWVkIjpmYWxzZSwiZ2VuZGVyIjoiTWFsZSIsIm5hbWUiOiJFeGFtcGxlIFVzZXIiLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiJleGFtcGxlLnVzZXIiLCJnaXZlbl9uYW1lIjoiRXhhbXBsZSIsImZhbWlseV9uYW1lIjoiVXNlciIsImVtYWlsIjoiZXhhbXBsZV91c2VyQGdtYWlsLmNvbSJ9.lJqLMoSlQ35meNCOczOycnb7FTxXZZJSGFd8fbICoSa4pQ2qrHdSps4efoLkqgqKBZwKkJKeWRCMAZp88gTqkUIzMPs45A0KT-znpRoWI95Xs0ghzroJRirCzzx9TNjepgfBAcGLIw6H_JeglUGe0DQZFAVPkazhmM_Sk5i_YUM4oY0cF6Z_k5Y_aOO0ez_mnBea51oHyBn1WQXg9a1Lrwf9kZD-34WhLiDrv_S2c-sMOsPnBX3iedgHqI4v-tM48RZDqk_Pckur686Y-QCBYt5c-S1uEqLZgOsBybhvUq9qdbfNIiIBP24brRlrhO153D7XBhPQK-h7RpFAP7yFdA",
+							"value": "{{accessToken}}",
 							"type": "string"
 						}
 					]
@@ -434,7 +469,7 @@
 				"header": [
 					{
 						"key": "RefreshToken",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICI2NzgzNjJiMi03ZjdjLTRhZjctYTgyMS1hY2Y0NGYwNjJlMDIifQ.eyJleHAiOjE2NTg5MjUyODcsImlhdCI6MTY1ODkyMzQ4NywianRpIjoiZjdkODE2NTMtNmI3ZC00ZGNlLThiOTItN2VjYzY3M2U4YzZlIiwiaXNzIjoiaHR0cHM6Ly8zNS4xOTguMTM4LjI0OTo4NDQzL3JlYWxtcy9jb3JlcHJvamVjdCIsImF1ZCI6Imh0dHBzOi8vMzUuMTk4LjEzOC4yNDk6ODQ0My9yZWFsbXMvY29yZXByb2plY3QiLCJzdWIiOiJlMDczYTNjMC0yNmJkLTQ0ZjctODczOS03OGNkMTFhNjhlZjkiLCJ0eXAiOiJSZWZyZXNoIiwiYXpwIjoidXNlcmNvcmVjbGllbnQiLCJzZXNzaW9uX3N0YXRlIjoiYmE0NTMzMzAtZjIxMC00NTRlLTgxMjUtNTVmMTEwNDVhNzkzIiwic2NvcGUiOiJlbWFpbCBwcm9maWxlIiwic2lkIjoiYmE0NTMzMzAtZjIxMC00NTRlLTgxMjUtNTVmMTEwNDVhNzkzIn0.T3ESlXJuYFcdnsckt_WKiTV93YB9h6DYGNOZ6r1Nfsw",
+						"value": "{{refreshToken}}",
 						"type": "text"
 					}
 				],
@@ -451,6 +486,60 @@
 						"v1",
 						"main",
 						"CustomerAccounts",
+						"Id",
+						"5ca4bbcea2dd94ee58162a68"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Customer Accounts Transaction",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);\r",
+							"postman.setEnvironmentVariable(\"accessToken\", jsonData.accessToken);\r",
+							"postman.setEnvironmentVariable(\"refreshToken\", jsonData.refreshToken);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{accessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "RefreshToken",
+						"value": "{{refreshToken}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:7443/rest/api/v1/main/CustomerAccountTransactions/Id/5ca4bbcea2dd94ee58162a68",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7443",
+					"path": [
+						"rest",
+						"api",
+						"v1",
+						"main",
+						"CustomerAccountTransactions",
 						"Id",
 						"5ca4bbcea2dd94ee58162a68"
 					]
