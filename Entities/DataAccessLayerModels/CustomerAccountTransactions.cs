@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-
-using System.Globalization;
+﻿
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using System.Globalization;
 
 namespace Models.DataAccessLayerModels
 {

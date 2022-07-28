@@ -101,7 +101,7 @@ namespace APILayer.Controllers.Customers
 				birthdate = customerRequest.birthdate,
 				email = customerRequest.email,
 				fullname = customerRequest.fullname,
-				tierAndDetails = new Dictionary<string, Models.DataAccessLayerModels.TierAndDetail>()
+				tierAndDetails = new Dictionary<string, TierAndDetail>()
 			};
 
 			foreach (var item in customerRequest.tierAndDetails)
