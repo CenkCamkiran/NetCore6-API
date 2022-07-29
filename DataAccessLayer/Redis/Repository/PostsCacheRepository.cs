@@ -25,9 +25,7 @@ namespace DataAccessLayer.Redis.Repository
 			string dataByteArray = "";
 
 			if (!cacheResult.IsNullOrEmpty)
-			{
 				dataByteArray = Encoding.UTF8.GetString(cacheResult);
-			}
 
 			IEnumerable<Posts>? Postslist = JsonConvert.DeserializeObject<IEnumerable<Posts>>(dataByteArray);
 

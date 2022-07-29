@@ -20,7 +20,7 @@ namespace APILayer.Controllers.Posts
 		public object GetTopPosts()
 		{
 
-			var cacheKey = "topPosts";
+			string cacheKey = "topPosts";
 			List<Models.ControllerModels.Posts>? topPosts;
 			topPosts = _postsService.GetTopPostsCache(cacheKey)?.ToList();
 

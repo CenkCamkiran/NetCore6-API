@@ -33,9 +33,9 @@ namespace DataAccessLayer.Redis.Infrastructure
 			return redisDatabase.StringGet(key);
 		}
 
-		public void Remove(string key)
+		public bool Remove(string key)
 		{
-			redisDatabase.KeyDelete(key);
+			return redisDatabase.KeyDelete(key);
 		}
 	}
 }

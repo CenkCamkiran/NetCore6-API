@@ -48,6 +48,7 @@ builder.Services.AddScoped<ICustomerAccountsService, CustomerAccountsService>();
 builder.Services.AddScoped<ICustomerAccountsRepository, CustomerAccountsRepository>();
 builder.Services.AddScoped<ICustomerAccountTransactionsService, CustomerAccountTransactionsService>();
 builder.Services.AddScoped<ICustomerAccountTransactionsRepository, CustomerAccountTransactionsRepository>();
+builder.Services.AddScoped<ICustomerCacheRepository, CustomerCacheRepository>();
 builder.Services.AddHealthChecks();
 
 

@@ -6,6 +6,7 @@ namespace Models.ControllerModels
 {
 	public class CustomerRequest
 	{
+
 		[BsonElement("username")]
 		[BsonRepresentation(BsonType.String)]
 		public string username { get; set; }

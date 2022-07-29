@@ -10,6 +10,7 @@ using System.Net;
 
 namespace APILayer.Controllers.Customers
 {
+
 	[ApiController]
 	[Route("rest/api/v1/main/[controller]")]
 	public class CustomersController : ControllerBase
@@ -25,7 +26,21 @@ namespace APILayer.Controllers.Customers
 		public IEnumerable<Customer> GetAllCustomers()
 		{
 
-			return _customersService.GetAllCustomers();
+			string cacheKey = "customers";
+			List<Customer>? customerList = _customersService.GetCustomersCache(cacheKey);
+
+			if (customerList == null)
+			{
+				customerList = _customersService.GetAllCustomers().ToList();
+				string jsonData = JsonConvert.SerializeObject(customerList);
+
+				TimeSpan ttl = TimeSpan.FromMinutes(5);
+				_customersService.SetCustomersCache(cacheKey, jsonData, ttl);
+
+				return customerList;
+			}
+
+			return customerList;
 
 		}
 
@@ -35,17 +50,33 @@ namespace APILayer.Controllers.Customers
 
 			Id.ControlObjectID(Id);
 
-			Customer customer = _customersService.GetCustomerByID(Id);
-			if (customer == null)
-			{
-				CustomAppError errorModel = new CustomAppError();
-				errorModel.ErrorMessage = "Data not found";
-				errorModel.ErrorCode = ((int)HttpStatusCode.NotFound).ToString();
+			string cacheKey = "customers";
+			Customer customerCache = _customersService.GetCustomerByIdCache(cacheKey, Id);
 
-				throw new DataNotFoundException(JsonConvert.SerializeObject(errorModel));
+			if (customerCache == null)
+			{
+				customerCache = _customersService.GetCustomerByID(Id);
+
+				if (customerCache == null)
+				{
+					CustomAppError errorModel = new CustomAppError();
+					errorModel.ErrorMessage = "Data not found";
+					errorModel.ErrorCode = ((int)HttpStatusCode.NotFound).ToString();
+
+					throw new DataNotFoundException(JsonConvert.SerializeObject(errorModel));
+				}
+
+				List<Customer> customersCache = _customersService.GetAllCustomers().ToList();
+
+				string jsonData = JsonConvert.SerializeObject(customersCache);
+				TimeSpan ttl = TimeSpan.FromMinutes(5);
+
+				_customersService.ClearCustomersCache(cacheKey);
+				_customersService.SetCustomersCache(cacheKey, jsonData, ttl);
+
 			}
 
-			return customer;
+			return customerCache;
 
 		}
 
@@ -119,18 +150,34 @@ namespace APILayer.Controllers.Customers
 
 			_customersService.UpdateCustomer(Id, customer);
 
+			string cacheKey = "customers";
+			_customersService.ClearCustomersCache(cacheKey);
+
+			List<Customer> customers = _customersService.GetAllCustomers().ToList();
+			string jsonData = JsonConvert.SerializeObject(customers);
+			TimeSpan ttl = TimeSpan.FromMinutes(5);
+
+			_customersService.SetCustomersCache(cacheKey, jsonData, ttl);
+
 			return NoContent();
 
 		}
 
-		[HttpPost]
+		[HttpPut]
 		public NoContentResult InsertCustomer([FromBody] CustomerRequest customerRequest) //Whole object or specific object?
 		{
 
+			string cacheKey = "customers";
 			_customersService.InsertCustomer(customerRequest);
+			_customersService.ClearCustomersCache(cacheKey);
+
+			List<Customer> customers = _customersService.GetAllCustomers().ToList();
+			string jsonData = JsonConvert.SerializeObject(customers);
+			TimeSpan ttl = TimeSpan.FromMinutes(5);
+
+			_customersService.SetCustomersCache(cacheKey, jsonData, ttl);
 
 			return NoContent();
-
 		}
 
 		//[ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Product))]

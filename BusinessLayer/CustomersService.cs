@@ -1,5 +1,6 @@
 ﻿using BusinessLayer.Interfaces;
 using DataAccessLayer.MongoDB.Interfaces;
+using DataAccessLayer.Redis.Interfaces;
 using Models.ControllerModels;
 using Models.DataAccessLayerModels;
 
@@ -9,10 +10,12 @@ namespace BusinessLayer
 	{
 
 		private ICustomersRepository _customersRepository;
+		private ICustomerCacheRepository _customerCacheRepository;
 
-		public CustomersService(ICustomersRepository customersRepository)
+		public CustomersService(ICustomersRepository customersRepository, ICustomerCacheRepository customerCacheRepository)
 		{
 			_customersRepository = customersRepository;
+			_customerCacheRepository = customerCacheRepository;
 		}
 
 		public Customer GetCustomerByEmail(string email)
@@ -43,6 +46,26 @@ namespace BusinessLayer
 		public IEnumerable<Customer> GetAllCustomers()
 		{
 			return _customersRepository.GetAllCustomers();
+		}
+
+		public Customer GetCustomerByIdCache(string key, string id)
+		{
+			return _customerCacheRepository.GetCustomerByIdCache(key, id);
+		}
+
+		public List<Customer> GetCustomersCache(string key)
+		{
+			return _customerCacheRepository.GetCustomersCache(key);
+		}
+
+		public void SetCustomersCache(string key, string jsonData, TimeSpan ttl)
+		{
+			_customerCacheRepository.SetCustomersCache(key, jsonData, ttl);
+		}
+
+		public bool ClearCustomersCache(string key)
+		{
+			return _customerCacheRepository.ClearCustomerCache(key);
 		}
 	}
 }
