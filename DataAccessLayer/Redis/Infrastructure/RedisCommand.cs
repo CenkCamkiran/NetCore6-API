@@ -3,7 +3,7 @@ using StackExchange.Redis;
 
 namespace DataAccessLayer.Redis.Infrastructure
 {
-	public class RedisCommand<TModel> : IRedisCommand<TModel>
+	public class RedisCommand : IRedisCommand
 	{
 
 		private readonly IDatabase redisDatabase;

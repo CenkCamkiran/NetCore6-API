@@ -19,7 +19,7 @@ namespace DataAccessLayer.Redis.Repository
 		public IEnumerable<Posts> GetTopPostsCache(string key)
 		{
 
-			RedisCommand<Posts> redisCommand = new RedisCommand<Posts>(_redisConnection);
+			RedisCommand redisCommand = new RedisCommand(_redisConnection);
 
 			RedisValue cacheResult = redisCommand.Get(key);
 			string dataByteArray = "";
@@ -39,7 +39,7 @@ namespace DataAccessLayer.Redis.Repository
 		{
 
 			byte[]? dataByteArray = Encoding.UTF8.GetBytes(data);
-			RedisCommand<string> redisCommand = new RedisCommand<string>(_redisConnection);
+			RedisCommand redisCommand = new RedisCommand(_redisConnection);
 
 			redisCommand.Add(key, dataByteArray, ttl);
 		}

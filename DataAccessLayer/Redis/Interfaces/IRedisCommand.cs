@@ -2,7 +2,7 @@
 
 namespace DataAccessLayer.Redis.Interfaces
 {
-	public interface IRedisCommand<TModel>
+	public interface IRedisCommand
 	{
 		public void Add(string key, byte[]? data, TimeSpan ttl);
 		public RedisValue Get(string key);
