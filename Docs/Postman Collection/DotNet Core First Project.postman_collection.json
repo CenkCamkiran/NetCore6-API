@@ -173,7 +173,7 @@
 					}
 				],
 				"url": {
-					"raw": "https://localhost:7443/rest/api/v1/main/Customers/Id/62d939fd632b2c7a3c32b1a4",
+					"raw": "https://localhost:7443/rest/api/v1/main/Customers/Id/62e3e52e632b2c7a3c336b24",
 					"protocol": "https",
 					"host": [
 						"localhost"
@@ -186,7 +186,7 @@
 						"main",
 						"Customers",
 						"Id",
-						"62d939fd632b2c7a3c32b1a4"
+						"62e3e52e632b2c7a3c336b24"
 					]
 				}
 			},
@@ -256,7 +256,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"username\": \"cenkcamkiran\",\r\n    \"fullname\": \"Cenk Camkiran\",\r\n    \"address\": \"Istanbul Turkey\",\r\n    \"birthdate\": \"1996-12-21T23:46:27Z\",\r\n    \"email\": \"cenkcamkiran@gmail.com\",\r\n    \"active\": true,\r\n    \"accounts\": [\r\n        116508\r\n    ],\r\n    \"tierAndDetails\": {\r\n        \"c06d340a4bad42c59e3b6665571d2907\": {\r\n            \"tier\": \"Platinum\",\r\n            \"benefits\": [\r\n                \"dedicated account representative\"\r\n            ],\r\n            \"active\": true,\r\n            \"id\": \"c06d340a4bad42c59e3b6665571d2907\"\r\n        },\r\n        \"5d6a79083c26402bbef823a55d2f4208\": {\r\n            \"tier\": \"Bronze\",\r\n            \"benefits\": [\r\n                \"car rental insurance\",\r\n                \"concierge services\"\r\n            ],\r\n            \"active\": true,\r\n            \"id\": \"5d6a79083c26402bbef823a55d2f4208\"\r\n        },\r\n        \"b754ec2d455143bcb0f0d7bd46de6e06\": {\r\n            \"tier\": \"Gold\",\r\n            \"benefits\": [\r\n                \"airline lounge access\"\r\n            ],\r\n            \"active\": true,\r\n            \"id\": \"b754ec2d455143bcb0f0d7bd46de6e06\"\r\n        }\r\n    }\r\n}",
+					"raw": "{\r\n    \"username\": \"cenkcamkiran\",\r\n    \"fullname\": \"Cenk Camkiran\",\r\n    \"address\": \"Test Location\",\r\n    \"birthdate\": \"1996-12-21T23:46:27Z\",\r\n    \"email\": \"cenkcamkiran@gmail.com\",\r\n    \"active\": true,\r\n    \"accounts\": [\r\n        116508\r\n    ],\r\n    \"tierAndDetails\": {\r\n        \"c06d340a4bad42c59e3b6665571d2907\": {\r\n            \"tier\": \"Platinum\",\r\n            \"benefits\": [\r\n                \"dedicated account representative\"\r\n            ],\r\n            \"active\": true,\r\n            \"id\": \"c06d340a4bad42c59e3b6665571d2907\"\r\n        },\r\n        \"5d6a79083c26402bbef823a55d2f4208\": {\r\n            \"tier\": \"Bronze\",\r\n            \"benefits\": [\r\n                \"car rental insurance\",\r\n                \"concierge services\"\r\n            ],\r\n            \"active\": true,\r\n            \"id\": \"5d6a79083c26402bbef823a55d2f4208\"\r\n        },\r\n        \"b754ec2d455143bcb0f0d7bd46de6e06\": {\r\n            \"tier\": \"Gold\",\r\n            \"benefits\": [\r\n                \"airline lounge access\"\r\n            ],\r\n            \"active\": true,\r\n            \"id\": \"b754ec2d455143bcb0f0d7bd46de6e06\"\r\n        }\r\n    }\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -264,7 +264,7 @@
 					}
 				},
 				"url": {
-					"raw": "https://localhost:7443/rest/api/v1/main/Customers/Id/62e2ce67632b2c7a3c334f6d",
+					"raw": "https://localhost:7443/rest/api/v1/main/Customers/Id/62e3e52e632b2c7a3c336b24",
 					"protocol": "https",
 					"host": [
 						"localhost"
@@ -277,7 +277,7 @@
 						"main",
 						"Customers",
 						"Id",
-						"62e2ce67632b2c7a3c334f6d"
+						"62e3e52e632b2c7a3c336b24"
 					]
 				}
 			},
@@ -296,7 +296,7 @@
 						}
 					]
 				},
-				"method": "POST",
+				"method": "PUT",
 				"header": [
 					{
 						"key": "RefreshToken",
@@ -306,7 +306,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"username\": \"testrecord\",\r\n    \"fullname\": \"Test Record\",\r\n    \"address\": \"Test Location Record Data\",\r\n    \"birthdate\": \"2000-01-01T14:00:00Z\",\r\n    \"email\": \"testrecorddata@gmail.com\",\r\n    \"active\": true,\r\n    \"accounts\": [\r\n        116508\r\n    ],\r\n    \"tierAndDetails\": {\r\n        \"c06d340a4bad42c59e3b6665571d2907\": {\r\n            \"tier\": \"Platinum\",\r\n            \"benefits\": [\r\n                \"dedicated account representative\"\r\n            ],\r\n            \"active\": true,\r\n            \"id\": \"c06d340a4bad42c59e3b6665571d2907\"\r\n        },\r\n        \"5d6a79083c26402bbef823a55d2f4208\": {\r\n            \"tier\": \"Bronze\",\r\n            \"benefits\": [\r\n                \"car rental insurance\",\r\n                \"concierge services\"\r\n            ],\r\n            \"active\": true,\r\n            \"id\": \"5d6a79083c26402bbef823a55d2f4208\"\r\n        },\r\n        \"b754ec2d455143bcb0f0d7bd46de6e06\": {\r\n            \"tier\": \"Gold\",\r\n            \"benefits\": [\r\n                \"airline lounge access\"\r\n            ],\r\n            \"active\": true,\r\n            \"id\": \"b754ec2d455143bcb0f0d7bd46de6e06\"\r\n        }\r\n    }\r\n}",
+					"raw": "{\r\n    \"username\": \"cenkcamkiran\",\r\n    \"fullname\": \"Cenk Camkiran\",\r\n    \"address\": \"Istanbul Turkey\",\r\n    \"birthdate\": \"1996-12-21T23:46:27Z\",\r\n    \"email\": \"cenkcamkiran@gmail.com\",\r\n    \"active\": true,\r\n    \"accounts\": [\r\n        116508\r\n    ],\r\n    \"tierAndDetails\": {\r\n        \"c06d340a4bad42c59e3b6665571d2907\": {\r\n            \"tier\": \"Platinum\",\r\n            \"id\": \"c06d340a4bad42c59e3b6665571d2907\",\r\n            \"benefits\": [\r\n                \"dedicated account representative\"\r\n            ],\r\n            \"active\": true\r\n        },\r\n        \"5d6a79083c26402bbef823a55d2f4208\": {\r\n            \"tier\": \"Bronze\",\r\n            \"id\": \"5d6a79083c26402bbef823a55d2f4208\",\r\n            \"benefits\": [\r\n                \"car rental insurance\",\r\n                \"concierge services\"\r\n            ],\r\n            \"active\": true\r\n        },\r\n        \"b754ec2d455143bcb0f0d7bd46de6e06\": {\r\n            \"tier\": \"Gold\",\r\n            \"id\": \"b754ec2d455143bcb0f0d7bd46de6e06\",\r\n            \"benefits\": [\r\n                \"airline lounge access\"\r\n            ],\r\n            \"active\": true\r\n        }\r\n    }\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -339,7 +339,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJsYnlHZ2lFcVdRaUV6c0xIS25yQ0dLNkM5cUJmTEtHVU5uakZSdWlQaDdzIn0.eyJleHAiOjE2NTgzOTMzNTEsImlhdCI6MTY1ODM5MzA1MSwianRpIjoiNTg1NGJhYTMtNjExZi00NDM1LWIyYTktMzA1ZjY4Y2MyMDMyIiwiaXNzIjoiaHR0cHM6Ly8zNS4xOTguMTM4LjI0OTo4NDQzL3JlYWxtcy9jb3JlcHJvamVjdCIsInN1YiI6ImUwNzNhM2MwLTI2YmQtNDRmNy04NzM5LTc4Y2QxMWE2OGVmOSIsInR5cCI6IkJlYXJlciIsImF6cCI6InVzZXJjb3JlY2xpZW50Iiwic2Vzc2lvbl9zdGF0ZSI6ImJhNDAwYzMyLTFkYzgtNDdiNi04OWUwLTFjMDUyM2VjZGIyOSIsImFjciI6IjEiLCJhbGxvd2VkLW9yaWdpbnMiOlsiaHR0cDovL2xvY2FsaG9zdDo3ODAwIl0sInNjb3BlIjoiZW1haWwgcHJvZmlsZSIsInNpZCI6ImJhNDAwYzMyLTFkYzgtNDdiNi04OWUwLTFjMDUyM2VjZGIyOSIsImVtYWlsX3ZlcmlmaWVkIjpmYWxzZSwiZ2VuZGVyIjoiTWFsZSIsIm5hbWUiOiJFeGFtcGxlIFVzZXIiLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiJleGFtcGxlLnVzZXIiLCJnaXZlbl9uYW1lIjoiRXhhbXBsZSIsImZhbWlseV9uYW1lIjoiVXNlciIsImVtYWlsIjoiZXhhbXBsZV91c2VyQGdtYWlsLmNvbSJ9.H3KqqZhoOTcrVaGY8pQLjc9wkCp5E6Q06B1Gfkkfr-oki0ZGCVdUnJ0z4IiNwUdsyIe00KIz89heGEhSwWrngT-VZphKB7cL_mgLvtxD_E1r95bfGGd9T_6gWuOaGCKGzMSjZ3VOEtKe2PJw-1Wx0tr-PIWdweEimm0MZAOG0qzwofxqqyjmYsqjhQXxKiddpHXPkVTYRYU20K8f0-02NifjVBHlSsrbrrvPbo-Itx6mqUwXp3mBoKJmKEKWIeVpbwrJhl8IFN4LgrK0IFHgJYSauSqfH4EoxESqKakpIbkM9OJcKQgmIWTH-RNVGhakEaUECTDKIiRRQxlihAkqjg",
+							"value": "{{accessToken}}",
 							"type": "string"
 						}
 					]
@@ -348,17 +348,17 @@
 				"header": [
 					{
 						"key": "RefreshToken",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICI2NzgzNjJiMi03ZjdjLTRhZjctYTgyMS1hY2Y0NGYwNjJlMDIifQ.eyJleHAiOjE2NTgzOTQ4NTEsImlhdCI6MTY1ODM5MzA1MSwianRpIjoiMTcyYWI5NDgtNjYxZC00MWM3LThkNjctOWY0M2QyMzU5MTUwIiwiaXNzIjoiaHR0cHM6Ly8zNS4xOTguMTM4LjI0OTo4NDQzL3JlYWxtcy9jb3JlcHJvamVjdCIsImF1ZCI6Imh0dHBzOi8vMzUuMTk4LjEzOC4yNDk6ODQ0My9yZWFsbXMvY29yZXByb2plY3QiLCJzdWIiOiJlMDczYTNjMC0yNmJkLTQ0ZjctODczOS03OGNkMTFhNjhlZjkiLCJ0eXAiOiJSZWZyZXNoIiwiYXpwIjoidXNlcmNvcmVjbGllbnQiLCJzZXNzaW9uX3N0YXRlIjoiYmE0MDBjMzItMWRjOC00N2I2LTg5ZTAtMWMwNTIzZWNkYjI5Iiwic2NvcGUiOiJlbWFpbCBwcm9maWxlIiwic2lkIjoiYmE0MDBjMzItMWRjOC00N2I2LTg5ZTAtMWMwNTIzZWNkYjI5In0.-i7Eys1v9oEzuXR__m0gMs2fIyweTd4vgvjkKlHAkrs",
+						"value": "{{refreshToken}}",
 						"type": "text"
 					}
 				],
 				"url": {
-					"raw": "https://localhost:44354/rest/api/v1/main/Customers",
+					"raw": "https://localhost:7443/rest/api/v1/main/Customers",
 					"protocol": "https",
 					"host": [
 						"localhost"
 					],
-					"port": "44354",
+					"port": "7443",
 					"path": [
 						"rest",
 						"api",
