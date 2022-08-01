@@ -181,7 +181,6 @@ db.runCommand({
         }
     }
 })
-
 ```
 
 ### Keycloak Installation
