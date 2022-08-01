@@ -18,7 +18,7 @@ namespace Models.DataAccessLayerModels
 		[BsonRepresentation(BsonType.Boolean)]
 		public bool active { get; set; }
 
-		[BsonElement("id")]
+		[BsonElement("_id")]
 		[BsonRepresentation(BsonType.String)]
 		public string id { get; set; }
 	}

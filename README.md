@@ -26,6 +26,7 @@ Explanation of project
       - [Creation of Index on ElasticSearch-Kibana](#creation-of-index-on-elasticsearch-kibana)
     - [Kibana Installation](#kibana-installation)
     - [MongoDB Installation](#mongodb-installation)
+      - [MongoDB Schema Validation Command](#mongodb-schema-validation-command)
     - [Keycloak Installation](#keycloak-installation)
       - [Keycloak Realm Configuration](#keycloak-realm-configuration)
     - [RabbitMQ Installation ????](#rabbitmq-installation-)
@@ -130,6 +131,58 @@ $ docker-compose up -d #This command must be executed in the same directory of d
 ```
 
 I recommend MongoDB Compass for UI of MongoDB. It is very useful tool. Check that out (https://www.mongodb.com/products/compass)
+
+#### MongoDB Schema Validation Command
+
+Run Mongosh bash command below.
+
+```bash
+db.runCommand({
+    "collMod": "customers",
+    "validator": {
+        $jsonSchema: {
+            "bsonType": "object",
+            "description": "A document that defines customer",
+            "required": ["username", "name", "address", "birthdate", "email"],
+            "properties": {
+                "username": {
+                    "bsonType": "string",
+                    "description": "Username field must be a string and is required"
+                },
+                "name": {
+                    "bsonType": "string",
+                    "description": "Name field must be a string and it is required"
+                },
+                "address": {
+                    "bsonType": "string",
+                    "description": "Address field must be a string and it is required"
+                },
+                "birthdate": {
+                    "bsonType": "date",
+                    "description": "Birthdate must be a string and it is required"
+                },
+                "email": {
+                    "bsonType": "string",
+                    "description": "Email field must be a string and it is required"
+                },
+                "active": {
+                    "bsonType": "bool",
+                    "description": "Active field must be a boolean"
+                },
+                "tier_and_details": {
+                    "bsonType": "object",
+                    "description": "TierAndDetails field must be a object"
+                },
+                "accounts": {
+                    "bsonType": "array",
+                    "description": "Accounts field must be a array"
+                }
+            },
+        }
+    }
+})
+
+```
 
 ### Keycloak Installation
 
