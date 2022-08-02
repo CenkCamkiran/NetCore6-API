@@ -1,11 +1,11 @@
-﻿using BusinessLayer.Interfaces;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using ServiceLayer.Interfaces;
 
 namespace APILayer.Controllers.Posts
 {
-	[ApiController]
 	[Route("rest/api/v1/main/[controller]")]
+	[ApiController]
 	public class PostsController : ControllerBase
 	{
 

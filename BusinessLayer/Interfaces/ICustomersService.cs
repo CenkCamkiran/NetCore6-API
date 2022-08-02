@@ -1,7 +1,7 @@
 ﻿using Models.ControllerModels;
 using Models.DataAccessLayerModels;
 
-namespace BusinessLayer.Interfaces
+namespace ServiceLayer.Interfaces
 {
 	public interface ICustomersService
 	{

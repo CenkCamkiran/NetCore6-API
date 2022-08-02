@@ -1,16 +1,16 @@
-﻿using BusinessLayer.Interfaces;
-using Helpers.CryptoHelpers;
+﻿using Helpers.CryptoHelpers;
 using Helpers.LoginHelpers;
 using Microsoft.AspNetCore.Mvc;
 using Models.ControllerModels;
 using Models.HelpersModels;
+using ServiceLayer.Interfaces;
 using System.Net.Mime;
 
 namespace APILayer.Controllers.User
 {
-	[ApiController]
 	[Consumes(MediaTypeNames.Application.Json)]
 	[Route("rest/api/v1/user/[controller]")]
+	[ApiController]
 	public class LoginController : ControllerBase
 	{
 

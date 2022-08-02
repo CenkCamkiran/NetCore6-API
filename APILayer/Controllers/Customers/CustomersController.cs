@@ -1,18 +1,19 @@
-﻿using BusinessLayer.Interfaces;
-using Helpers.AppExceptionHelpers;
+﻿using Helpers.AppExceptionHelpers;
 using Helpers.StringHelpers;
 using Microsoft.AspNetCore.Mvc;
 using Models.ControllerModels;
 using Models.DataAccessLayerModels;
 using Models.HelpersModels;
 using Newtonsoft.Json;
+using ServiceLayer.Interfaces;
 using System.Net;
+using System.Net.Mime;
 
 namespace APILayer.Controllers.Customers
 {
 
-	[ApiController]
 	[Route("rest/api/v1/main/[controller]")]
+	[ApiController]
 	public class CustomersController : ControllerBase
 	{
 		private ICustomersService _customersService;
@@ -116,6 +117,7 @@ namespace APILayer.Controllers.Customers
 
 		}
 
+		[Consumes(MediaTypeNames.Application.Json)]
 		[HttpPost("Id/{Id}")]
 		public NoContentResult UpdateCustomer(string Id, [FromBody] CustomerRequest customerRequest) //Whole object or specific object?
 		{
@@ -163,6 +165,7 @@ namespace APILayer.Controllers.Customers
 
 		}
 
+		[Consumes(MediaTypeNames.Application.Json)]
 		[HttpPut]
 		public NoContentResult InsertCustomer([FromBody] CustomerRequest customerRequest) //Whole object or specific object?
 		{

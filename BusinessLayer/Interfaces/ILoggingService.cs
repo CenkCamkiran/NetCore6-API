@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 
-namespace BusinessLayer.Interfaces
+namespace ServiceLayer.Interfaces
 {
 	public interface ILoggingService
 	{

@@ -1,4 +1,4 @@
-﻿namespace BusinessLayer.Interfaces
+﻿namespace ServiceLayer.Interfaces
 {
 	public interface ICachingService
 	{

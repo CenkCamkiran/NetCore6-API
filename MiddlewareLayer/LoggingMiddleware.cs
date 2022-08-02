@@ -1,6 +1,6 @@
-﻿using BusinessLayer.Interfaces;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
+using ServiceLayer.Interfaces;
 
 namespace MiddlewareLayer
 {

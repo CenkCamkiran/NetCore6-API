@@ -1,14 +1,14 @@
-﻿using BusinessLayer.Interfaces;
-using Configurations;
+﻿using Configurations;
 using Helpers.AppExceptionHelpers;
 using Helpers.HttpClientHelpers;
 using Models.ControllerModels;
 using Models.HelpersModels;
 using Newtonsoft.Json;
+using ServiceLayer.Interfaces;
 using System.Net;
 using System.Net.Mime;
 
-namespace BusinessLayer
+namespace ServiceLayer
 {
 	public class KeycloakService : AppConfiguration, IKeycloakService
 	{

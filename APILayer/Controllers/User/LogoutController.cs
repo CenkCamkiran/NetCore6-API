@@ -1,19 +1,19 @@
-﻿using BusinessLayer.Interfaces;
-using Helpers.AppExceptionHelpers;
+﻿using Helpers.AppExceptionHelpers;
 using Helpers.TokenHelpers;
 using Microsoft.AspNetCore.Mvc;
 using Models.ControllerModels;
 using Models.HelpersModels;
 using Newtonsoft.Json;
+using ServiceLayer.Interfaces;
 using System.IdentityModel.Tokens.Jwt;
 using System.Net;
 using System.Net.Mime;
 
 namespace APILayer.Controllers.User
 {
-	[ApiController]
 	[Consumes(MediaTypeNames.Application.Json)]
 	[Route("rest/api/v1/user/[controller]")]
+	[ApiController]
 	public class LogoutController : ControllerBase
 	{
 

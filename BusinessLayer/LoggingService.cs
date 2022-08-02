@@ -1,8 +1,8 @@
-﻿using BusinessLayer.Interfaces;
-using DataAccessLayer.ElasticSearch.Interfaces;
+﻿using DataAccessLayer.ElasticSearch.Interfaces;
 using Microsoft.AspNetCore.Http;
+using ServiceLayer.Interfaces;
 
-namespace BusinessLayer
+namespace ServiceLayer
 {
 	public class LoggingService : ILoggingService
 	{

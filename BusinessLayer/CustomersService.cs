@@ -1,10 +1,10 @@
-﻿using BusinessLayer.Interfaces;
-using DataAccessLayer.MongoDB.Interfaces;
+﻿using DataAccessLayer.MongoDB.Interfaces;
 using DataAccessLayer.Redis.Interfaces;
 using Models.ControllerModels;
 using Models.DataAccessLayerModels;
+using ServiceLayer.Interfaces;
 
-namespace BusinessLayer
+namespace ServiceLayer
 {
 	public class CustomersService : ICustomersService
 	{

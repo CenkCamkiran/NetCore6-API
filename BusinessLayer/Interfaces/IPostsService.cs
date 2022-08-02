@@ -1,6 +1,6 @@
 ﻿using Models.ControllerModels;
 
-namespace BusinessLayer.Interfaces
+namespace ServiceLayer.Interfaces
 {
 	public interface IPostsService
 	{

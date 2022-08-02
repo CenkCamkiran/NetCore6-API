@@ -1,5 +1,3 @@
-using BusinessLayer;
-using BusinessLayer.Interfaces;
 using Configurations;
 using DataAccessLayer.ElasticSearch.Infrastructure;
 using DataAccessLayer.ElasticSearch.Interfaces;

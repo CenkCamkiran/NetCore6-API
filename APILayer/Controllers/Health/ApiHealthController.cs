@@ -1,13 +1,13 @@
-﻿using BusinessLayer.Interfaces;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Models.ControllerModels;
+using ServiceLayer.Interfaces;
 using System.Net;
 using System.Net.NetworkInformation;
 
 namespace APILayer.Controllers.Health
 {
-	[ApiController]
 	[Route("rest/api/v1/status/[controller]")]
+	[ApiController]
 	public class ApiHealthController : ControllerBase
 	{
 

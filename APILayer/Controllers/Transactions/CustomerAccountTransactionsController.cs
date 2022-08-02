@@ -9,8 +9,8 @@ using System.Net;
 
 namespace APILayer.Controllers.Transactions
 {
-	[ApiController]
 	[Route("rest/api/v1/main/[controller]")]
+	[ApiController]
 	public class CustomerAccountTransactionsController : ControllerBase
 	{
 

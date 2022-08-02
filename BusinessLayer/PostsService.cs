@@ -1,9 +1,9 @@
-﻿using BusinessLayer.Interfaces;
-using DataAccessLayer.MongoDB.Interfaces;
+﻿using DataAccessLayer.MongoDB.Interfaces;
 using DataAccessLayer.Redis.Interfaces;
 using Models.ControllerModels;
+using ServiceLayer.Interfaces;
 
-namespace BusinessLayer
+namespace ServiceLayer
 {
 	public class PostsService : IPostsService
 	{

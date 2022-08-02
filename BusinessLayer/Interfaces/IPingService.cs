@@ -1,6 +1,6 @@
 ﻿using System.Net.NetworkInformation;
 
-namespace BusinessLayer.Interfaces
+namespace ServiceLayer.Interfaces
 {
 	public interface IPingService
 	{

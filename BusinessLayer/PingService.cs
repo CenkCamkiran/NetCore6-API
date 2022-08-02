@@ -1,9 +1,9 @@
-﻿using BusinessLayer.Interfaces;
-using Configurations;
+﻿using Configurations;
 using Helpers.HttpClientHelpers;
+using ServiceLayer.Interfaces;
 using System.Net.NetworkInformation;
 
-namespace BusinessLayer
+namespace ServiceLayer
 {
 	public class PingService : IPingService
 	{

@@ -1,7 +1,7 @@
 ﻿using Models.ControllerModels;
 using Models.HelpersModels;
 
-namespace BusinessLayer.Interfaces
+namespace ServiceLayer.Interfaces
 {
 	public interface IKeycloakService
 	{
