@@ -1,16 +1,70 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Helpers.AppExceptionHelpers;
+using Microsoft.AspNetCore.Mvc;
+using Models.HelpersModels;
+using Newtonsoft.Json;
+using ServiceLayer.Interfaces;
+using System.Net;
+using Models.DataAccessLayerModels;
 
 namespace APILayer.Controllers.Movies
 {
-	[Route("api/[controller]")]
+	[Route("rest/api/v1/main/[controller]")]
 	[ApiController]
 	public class MoviesController : ControllerBase
 	{
-		[HttpGet]
-		public object GetAllMovies()
+		private IMovieService _movieService;
+
+		public MoviesController(IMovieService movieService)
 		{
-			""
-			return null;
+			_movieService = movieService;
+		}
+
+		[HttpGet]
+		public List<Movie> GetAllMovies()
+		{
+			string cacheKey = "movies";
+			List<Movie> movieList = _movieService.GetAllMoviesCache(cacheKey);
+
+			if (movieList == null)
+			{
+				movieList = _movieService.GetAllMovies();
+
+				if (movieList == null)
+				{
+					CustomAppError errorModel = new CustomAppError();
+					errorModel.ErrorMessage = "Data not found";
+					errorModel.ErrorCode = ((int)HttpStatusCode.NotFound).ToString();
+
+					throw new DataNotFoundException(JsonConvert.SerializeObject(errorModel));
+				}
+
+				string jsonData = JsonConvert.SerializeObject(movieList);
+				TimeSpan ttl = TimeSpan.FromMinutes(5);
+
+				_movieService.SetAllMoviesCache(cacheKey, jsonData, ttl);
+
+				return movieList;
+
+			}
+
+			return movieList;
+		}
+
+		[HttpGet("Id/{Id}")]
+		public List<Movie> GetAllMovies(string id)
+		{
+			var cenk = _movieService.GetAllMovies();
+
+			if (cenk == null)
+			{
+				CustomAppError errorModel = new CustomAppError();
+				errorModel.ErrorMessage = "Data not found";
+				errorModel.ErrorCode = ((int)HttpStatusCode.NotFound).ToString();
+
+				throw new DataNotFoundException(JsonConvert.SerializeObject(errorModel));
+			}
+
+			return cenk;
 		}
 	}
 }
