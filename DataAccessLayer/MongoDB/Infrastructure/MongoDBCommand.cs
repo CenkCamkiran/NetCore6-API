@@ -30,11 +30,21 @@ namespace DataAccessLayer.MongoDB.Infrastructure
 
 		public IEnumerable<LocalCollectionModel> SearchDocument(Expression<Func<LocalCollectionModel, bool>> query)
 		{
-			//return _mongoCollection.AsQueryable().Where(query).ToList();
-
 			try
 			{
 				return _mongoCollectionLocal.Find(query).ToList();
+			}
+			catch (Exception ex)
+			{
+				throw new Exception();
+			}
+		}
+
+		public IEnumerable<LocalCollectionModel> SearchLimitedDocument(Expression<Func<LocalCollectionModel, bool>> query, int limit)
+		{
+			try
+			{
+				return _mongoCollectionLocal.Find(query).Limit(limit).ToList();
 			}
 			catch (Exception ex)
 			{

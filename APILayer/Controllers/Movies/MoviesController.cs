@@ -1,10 +1,10 @@
 ﻿using Helpers.AppExceptionHelpers;
 using Microsoft.AspNetCore.Mvc;
+using Models.DataAccessLayerModels;
 using Models.HelpersModels;
 using Newtonsoft.Json;
 using ServiceLayer.Interfaces;
 using System.Net;
-using Models.DataAccessLayerModels;
 
 namespace APILayer.Controllers.Movies
 {
@@ -48,23 +48,6 @@ namespace APILayer.Controllers.Movies
 			}
 
 			return movieList;
-		}
-
-		[HttpGet("Id/{Id}")]
-		public List<Movie> GetAllMovies(string id)
-		{
-			var cenk = _movieService.GetAllMovies();
-
-			if (cenk == null)
-			{
-				CustomAppError errorModel = new CustomAppError();
-				errorModel.ErrorMessage = "Data not found";
-				errorModel.ErrorCode = ((int)HttpStatusCode.NotFound).ToString();
-
-				throw new DataNotFoundException(JsonConvert.SerializeObject(errorModel));
-			}
-
-			return cenk;
 		}
 	}
 }

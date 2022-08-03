@@ -3,11 +3,7 @@ using DataAccessLayer.Redis.Interfaces;
 using Models.DataAccessLayerModels;
 using Newtonsoft.Json;
 using StackExchange.Redis;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace DataAccessLayer.Redis.Repository
 {
@@ -19,6 +15,13 @@ namespace DataAccessLayer.Redis.Repository
 		public MoviesCacheRepository(IConnectionMultiplexer connectionMultiplexer)
 		{
 			_connectionMultiplexer = connectionMultiplexer;
+		}
+
+		public bool ClearMoviesCache(string key)
+		{
+			RedisCommand redisCommand = new RedisCommand(_connectionMultiplexer);
+
+			return redisCommand.Remove(key);
 		}
 
 		public List<Movie> GetAllMoviesCache(string key)
@@ -35,18 +38,22 @@ namespace DataAccessLayer.Redis.Repository
 			return movieList;
 		}
 
-		public Movie GetMovieCommentsByMovieIdCache(string key, string id)
+		public MovieComments GetMovieCommentsByMovieIdCache(string key, string id)
 		{
 			RedisCommand redisCommand = new RedisCommand(_connectionMultiplexer);
 			RedisValue redisValue = redisCommand.Get(key);
 			string dataByteArray = "";
 
 			if (!redisValue.IsNullOrEmpty)
+				dataByteArray = Encoding.UTF8.GetString(redisValue);
 
-				return null;
+			MovieComments? movie = null;
+			List<MovieComments>? movieList = JsonConvert.DeserializeObject<List<MovieComments>>(dataByteArray);
 
-			return null;
+			if (movieList != null)
+				movie = movieList.Where(movie => movie._id == id).SingleOrDefault();
 
+			return movie;
 		}
 
 		public void SetAllMoviesCache(string key, string jsonData, TimeSpan ttl)

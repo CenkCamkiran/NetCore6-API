@@ -53,9 +53,7 @@ namespace DataAccessLayer.Redis.Repository
 			Customer? customerData = null;
 
 			if (customer != null)
-			{
 				customerData = customer.Where(customer => customer.id == id).SingleOrDefault();
-			}
 
 			return customerData;
 		}

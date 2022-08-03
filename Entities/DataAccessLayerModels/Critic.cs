@@ -1,15 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
 
 namespace Models.DataAccessLayerModels
 {
-    public class Critic
-    {
-        public double rating { get; set; }
-        public int numReviews { get; set; }
-        public int meter { get; set; }
-    }
+	public class Critic
+	{
+		[BsonElement("rating")]
+		[BsonRepresentation(BsonType.Double)]
+		public double rating { get; set; }
+
+		[BsonElement("numReviews")]
+		[BsonRepresentation(BsonType.Int32)]
+		public int numReviews { get; set; }
+
+		[BsonElement("meter")]
+		[BsonRepresentation(BsonType.Int32)]
+		public int meter { get; set; }
+	}
 }

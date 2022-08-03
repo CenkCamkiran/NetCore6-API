@@ -2,11 +2,6 @@
 using DataAccessLayer.Redis.Interfaces;
 using Models.DataAccessLayerModels;
 using ServiceLayer.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ServiceLayer
 {
@@ -21,6 +16,11 @@ namespace ServiceLayer
 			_moviesCacheRepository = moviesCacheRepository;
 		}
 
+		public bool ClearMoviesCache(string key)
+		{
+			return _moviesCacheRepository.ClearMoviesCache(key);
+		}
+
 		public List<Movie> GetAllMovies()
 		{
 			return _moviesRepository.GetAllMovies();
@@ -31,14 +31,19 @@ namespace ServiceLayer
 			return _moviesCacheRepository.GetAllMoviesCache(key);
 		}
 
-		public Movie GetMovieCommentsByMovieId(string id)
+		public List<MovieComments> GetAllMoviesWithComment()
+		{
+			return _moviesRepository.GetAllMoviesWithComment();
+		}
+
+		public MovieComments GetMovieCommentsByMovieId(string id)
 		{
 			return _moviesRepository.GetMovieCommentsByMovieId(id);
 		}
 
-		public Movie GetMovieCommentsByMovieIdCache(string id)
+		public MovieComments GetMovieCommentsByMovieIdCache(string key, string id)
 		{
-			return _moviesRepository.GetMovieCommentsByMovieId(id);
+			return _moviesCacheRepository.GetMovieCommentsByMovieIdCache(key, id);
 		}
 
 		public void SetAllMoviesCache(string key, string jsonData, TimeSpan ttl)
