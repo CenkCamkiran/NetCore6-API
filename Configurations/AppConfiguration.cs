@@ -98,5 +98,23 @@
 
 		}
 
+		public Dictionary<string, string> GetRabbitMQConfig()
+		{
+			RabbitMQHost = ApplicationSettingsModel.ExternalTools.RabbitMQ.Host.ToString();
+			RabbitMQPort = ApplicationSettingsModel.ExternalTools.RabbitMQ.Port.ToString();
+			RabbitMQUsername = ApplicationSettingsModel.ExternalTools.RabbitMQ.Username.ToString();
+			RabbitMQPassword = ApplicationSettingsModel.ExternalTools.RabbitMQ.Password.ToString();
+
+			Dictionary<string, string> ConfigList = new Dictionary<string, string>()
+			{
+				{ "RabbitMQHost", RabbitMQHost },
+				{ "RabbitMQPort", RabbitMQPort },
+				{ "RabbitMQUsername", RabbitMQUsername },
+				{ "RabbitMQPassword", RabbitMQPassword }
+			};
+
+			return ConfigList;
+		}
+
 	}
 }

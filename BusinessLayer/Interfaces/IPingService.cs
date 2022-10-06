@@ -8,5 +8,6 @@ namespace ServiceLayer.Interfaces
 		public PingReply PingElasticSearch();
 		public PingReply PingMongoDB();
 		public PingReply PingRedis();
+		public PingReply PingRabbitMQ();
 	}
 }

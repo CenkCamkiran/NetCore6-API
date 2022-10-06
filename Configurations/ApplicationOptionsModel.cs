@@ -16,6 +16,9 @@ namespace Configurations
 
 		[JsonProperty("Redis")]
 		public Redis Redis { get; set; }
+
+		[JsonProperty("RabbitMQ")]
+		public RabbitMQ RabbitMQ { get; set; }
 	}
 
 	public partial class MongoDB
@@ -38,6 +41,21 @@ namespace Configurations
 		[JsonProperty("Password")]
 		public string Password { get; set; }
 
+	}
+
+	public partial class RabbitMQ
+	{
+		[JsonProperty("Host")]
+		public string Host { get; set; }
+
+		[JsonProperty("Port")]
+		public string Port { get; set; }
+
+		[JsonProperty("Username")]
+		public string Username { get; set; }
+
+		[JsonProperty("Password")]
+		public string Password { get; set; }	
 	}
 
 	public partial class ElasticSearch

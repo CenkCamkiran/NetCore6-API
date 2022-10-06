@@ -4,15 +4,20 @@ using DataAccessLayer.ElasticSearch.Interfaces;
 using DataAccessLayer.ElasticSearch.Repository;
 using DataAccessLayer.MongoDB.Interfaces;
 using DataAccessLayer.MongoDB.Repository;
+using DataAccessLayer.RabbitMQ.Infrastructure;
+using DataAccessLayer.RabbitMQ.Interfaces;
+using DataAccessLayer.RabbitMQ.Repository;
 using DataAccessLayer.Redis.Interfaces;
 using DataAccessLayer.Redis.Repository;
 using Elasticsearch.Net;
 using MiddlewareLayer;
 using MongoDB.Driver;
 using Nest;
+using RabbitMQ.Client;
 using ServiceLayer;
 using ServiceLayer.Interfaces;
 using StackExchange.Redis;
+using IConnection = RabbitMQ.Client.IConnection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,6 +31,7 @@ AppConfiguration appConfiguration = new AppConfiguration();
 Dictionary<string, string> redisConfig = appConfiguration.GetRedisConfig();
 Dictionary<string, string> mongodbConfig = appConfiguration.GetMongoDBConfig();
 Dictionary<string, string> elasticConfig = appConfiguration.GetElasticSearchConfig();
+Dictionary<string, string> rabbitConfig = appConfiguration.GetRabbitMQConfig();
 
 
 var options = ConfigurationOptions.Parse(redisConfig["RedisHost"]);
@@ -50,6 +56,9 @@ builder.Services.AddScoped<ICustomerAccountsRepository, CustomerAccountsReposito
 builder.Services.AddScoped<ICustomerAccountTransactionsService, CustomerAccountTransactionsService>();
 builder.Services.AddScoped<ICustomerAccountTransactionsRepository, CustomerAccountTransactionsRepository>();
 builder.Services.AddScoped<ICustomerCacheRepository, CustomerCacheRepository>();
+builder.Services.AddScoped<ITestQueueService, TestQueueService>();
+builder.Services.AddScoped<ITestQueueRepository, TestQueueRepository>();
+builder.Services.AddScoped<IRabbitMQCommand, RabbitMQCommand>();
 builder.Services.AddHealthChecks();
 
 
@@ -68,6 +77,18 @@ ConnectionSettings? connection = new ConnectionSettings(new Uri(elasticConfig["E
 
 ElasticClient? elasticClient = new ElasticClient(connection);
 builder.Services.AddSingleton<IElasticClient>(elasticClient);
+
+
+var connectionFactory = new ConnectionFactory
+{
+	HostName = rabbitConfig["RabbitMQHost"],
+	Port = Convert.ToInt32(rabbitConfig["RabbitMQPort"]),
+	UserName = rabbitConfig["RabbitMQUsername"],
+	Password = rabbitConfig["RabbitMQPassword"]
+};
+
+var rabbitConnection = connectionFactory.CreateConnection();
+builder.Services.AddSingleton<IConnection>(rabbitConnection);
 
 // ***************************************************************************************************
 

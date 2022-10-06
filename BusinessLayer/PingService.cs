@@ -45,5 +45,13 @@ namespace ServiceLayer
 			return pingHelper.PingRedis(new Uri(config["RedisHost"]).Host);
 		}
 
+		public PingReply PingRabbitMQ()
+		{
+			Dictionary<string, string> config = appConfiguration.GetRabbitMQConfig();
+			string RabbitMQHost = config["RabbitMQHost"] + ":" + config["RabbitMQPort"];
+			return pingHelper.PingRabbitMQ(new Uri(RabbitMQHost).Host);
+		}
+
 	}
+
 }

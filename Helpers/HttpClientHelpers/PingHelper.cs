@@ -39,6 +39,16 @@ namespace Helpers.HttpClientHelpers
 			return pingResult.Result;
 		}
 
+		public PingReply PingRabbitMQ(string RabbitMQHost)
+		{
+
+			Ping ping = new Ping();
+
+			Task<PingReply> pingResult = ping.SendPingAsync(RabbitMQHost, 15);
+
+			return pingResult.Result;
+		}
+
 		//......
 
 	}
