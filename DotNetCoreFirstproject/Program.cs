@@ -4,15 +4,21 @@ using DataAccessLayer.ElasticSearch.Interfaces;
 using DataAccessLayer.ElasticSearch.Repository;
 using DataAccessLayer.MongoDB.Interfaces;
 using DataAccessLayer.MongoDB.Repository;
+using DataAccessLayer.MSSQL.Interfaces;
+using DataAccessLayer.MSSQL.Repository;
 using DataAccessLayer.Redis.Interfaces;
 using DataAccessLayer.Redis.Repository;
 using Elasticsearch.Net;
+using Microsoft.Extensions.DependencyInjection;
 using MiddlewareLayer;
 using MongoDB.Driver;
 using Nest;
 using ServiceLayer;
 using ServiceLayer.Interfaces;
 using StackExchange.Redis;
+using System.Data;
+using System.Data.SqlClient;
+using System.Xml.Linq;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,6 +32,7 @@ AppConfiguration appConfiguration = new AppConfiguration();
 Dictionary<string, string> redisConfig = appConfiguration.GetRedisConfig();
 Dictionary<string, string> mongodbConfig = appConfiguration.GetMongoDBConfig();
 Dictionary<string, string> elasticConfig = appConfiguration.GetElasticSearchConfig();
+Dictionary<string, string> mssqlConfig = appConfiguration.GetMSSQLConfig();
 
 
 var options = ConfigurationOptions.Parse(redisConfig["RedisHost"]);
@@ -50,6 +57,8 @@ builder.Services.AddScoped<ICustomerAccountsRepository, CustomerAccountsReposito
 builder.Services.AddScoped<ICustomerAccountTransactionsService, CustomerAccountTransactionsService>();
 builder.Services.AddScoped<ICustomerAccountTransactionsRepository, CustomerAccountTransactionsRepository>();
 builder.Services.AddScoped<ICustomerCacheRepository, CustomerCacheRepository>();
+builder.Services.AddScoped<IPersonService, PersonService>();
+builder.Services.AddScoped<IPersonRepository, PersonRepository>();
 builder.Services.AddHealthChecks();
 
 
@@ -68,6 +77,15 @@ ConnectionSettings? connection = new ConnectionSettings(new Uri(elasticConfig["E
 
 ElasticClient? elasticClient = new ElasticClient(connection);
 builder.Services.AddSingleton<IElasticClient>(elasticClient);
+
+
+SqlConnectionStringBuilder mssqlConnBuilder = new SqlConnectionStringBuilder();
+mssqlConnBuilder.DataSource = mssqlConfig["Host"];
+mssqlConnBuilder.UserID = mssqlConfig["Username"];
+mssqlConnBuilder.Password = mssqlConfig["MSSQLPassword"];
+mssqlConnBuilder.InitialCatalog = mssqlConfig["DBName"];
+SqlConnection sqlConnection = new SqlConnection(mssqlConnBuilder.ConnectionString);
+builder.Services.AddSingleton<IDbConnection>(sqlConnection);
 
 // ***************************************************************************************************
 

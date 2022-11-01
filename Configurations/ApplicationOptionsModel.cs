@@ -16,6 +16,10 @@ namespace Configurations
 
 		[JsonProperty("Redis")]
 		public Redis Redis { get; set; }
+
+
+		[JsonProperty("MSSQL")]
+		public MSSQL Mssql { get; set; }
 	}
 
 	public partial class MongoDB
@@ -114,6 +118,23 @@ namespace Configurations
 
 		[JsonProperty("IntrospectRoute")]
 		public string IntrospectRoute { get; set; }
+
+	}
+
+
+	public partial class MSSQL
+	{
+		[JsonProperty("Host")]
+		public string Host { get; set; }
+
+		[JsonProperty("Username")]
+		public string Username { get; set; }
+
+		[JsonProperty("MSSQLPassword")]
+		public string MSSQLPassword { get; set; }
+
+		[JsonProperty("DBName")]
+		public string DBName { get; set; }
 
 	}
 

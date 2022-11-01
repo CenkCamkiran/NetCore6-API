@@ -98,5 +98,24 @@
 
 		}
 
+
+		public Dictionary<string, string> GetMSSQLConfig()
+		{
+			Host = ApplicationSettingsModel.ExternalTools.Mssql.Host.ToString();
+			Username = ApplicationSettingsModel.ExternalTools.Mssql.Username.ToString();
+			MSSQLPassword = ApplicationSettingsModel.ExternalTools.Mssql.MSSQLPassword.ToString();
+
+			Dictionary<string, string> ConfigList = new Dictionary<string, string>()
+			{
+				{ "Host", Host },
+				{ "Username", Username },
+				{ "MSSQLPassword", MSSQLPassword },
+				{ "DBName", DBName }
+			};
+
+			return ConfigList;
+
+		}
+
 	}
 }

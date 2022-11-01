@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "/a4wFj9D/nGL0J6lN3i/xuuhNe4r/ptGbNFMkIa2Q5nM8hpwCGVTMTiqK+DZuDDSk1mjBQIV4wjqvXxqNowT7w==",
+  "dgSpecHash": "/T5VVZ8jRQg9FTnd7WUR//+SvyxuXkqLh4AaJBU0cW7qIO00CdFCm+c5vN8hIVfC4hm+ilh6TOU+PJ33cn4fQw==",
   "success": true,
   "projectFilePath": "C:\\Users\\ccamkiran\\Desktop\\Cenk Camkıran\\NOTLAR\\Google Cloud\\Projeler\\NetCore6-API\\APILayer\\APILayer.csproj",
   "expectedPackageFiles": [
@@ -56,6 +56,10 @@
     "C:\\Users\\ccamkiran\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
     "C:\\Users\\ccamkiran\\.nuget\\packages\\pipelines.sockets.unofficial\\2.2.2\\pipelines.sockets.unofficial.2.2.2.nupkg.sha512",
     "C:\\Users\\ccamkiran\\.nuget\\packages\\runtime.native.system\\4.0.0\\runtime.native.system.4.0.0.nupkg.sha512",
+    "C:\\Users\\ccamkiran\\.nuget\\packages\\runtime.native.system.data.sqlclient.sni\\4.7.0\\runtime.native.system.data.sqlclient.sni.4.7.0.nupkg.sha512",
+    "C:\\Users\\ccamkiran\\.nuget\\packages\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
+    "C:\\Users\\ccamkiran\\.nuget\\packages\\runtime.win-x64.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-x64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
+    "C:\\Users\\ccamkiran\\.nuget\\packages\\runtime.win-x86.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-x86.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
     "C:\\Users\\ccamkiran\\.nuget\\packages\\sharpcompress\\0.30.1\\sharpcompress.0.30.1.nupkg.sha512",
     "C:\\Users\\ccamkiran\\.nuget\\packages\\stackexchange.redis\\2.6.48\\stackexchange.redis.2.6.48.nupkg.sha512",
     "C:\\Users\\ccamkiran\\.nuget\\packages\\system.appcontext\\4.1.0\\system.appcontext.4.1.0.nupkg.sha512",
@@ -63,6 +67,7 @@
     "C:\\Users\\ccamkiran\\.nuget\\packages\\system.collections\\4.0.11\\system.collections.4.0.11.nupkg.sha512",
     "C:\\Users\\ccamkiran\\.nuget\\packages\\system.componentmodel.annotations\\4.5.0\\system.componentmodel.annotations.4.5.0.nupkg.sha512",
     "C:\\Users\\ccamkiran\\.nuget\\packages\\system.configuration.configurationmanager\\5.0.0\\system.configuration.configurationmanager.5.0.0.nupkg.sha512",
+    "C:\\Users\\ccamkiran\\.nuget\\packages\\system.data.sqlclient\\4.8.4\\system.data.sqlclient.4.8.4.nupkg.sha512",
     "C:\\Users\\ccamkiran\\.nuget\\packages\\system.diagnostics.debug\\4.0.11\\system.diagnostics.debug.4.0.11.nupkg.sha512",
     "C:\\Users\\ccamkiran\\.nuget\\packages\\system.diagnostics.diagnosticsource\\5.0.0\\system.diagnostics.diagnosticsource.5.0.0.nupkg.sha512",
     "C:\\Users\\ccamkiran\\.nuget\\packages\\system.diagnostics.performancecounter\\5.0.0\\system.diagnostics.performancecounter.5.0.0.nupkg.sha512",
