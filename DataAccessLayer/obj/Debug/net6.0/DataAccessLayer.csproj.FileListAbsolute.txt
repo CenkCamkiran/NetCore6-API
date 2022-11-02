@@ -74,3 +74,22 @@ C:\Users\ccamkiran\Desktop\Cenk Camkıran\NOTLAR\Google Cloud\Projeler\NetCore6-
 C:\Users\ccamkiran\Desktop\Cenk Camkıran\NOTLAR\Google Cloud\Projeler\NetCore6-API\DataAccessLayer\obj\Debug\net6.0\refint\DataAccessLayer.dll
 C:\Users\ccamkiran\Desktop\Cenk Camkıran\NOTLAR\Google Cloud\Projeler\NetCore6-API\DataAccessLayer\obj\Debug\net6.0\DataAccessLayer.pdb
 C:\Users\ccamkiran\Desktop\Cenk Camkıran\NOTLAR\Google Cloud\Projeler\NetCore6-API\DataAccessLayer\obj\Debug\net6.0\ref\DataAccessLayer.dll
+C:\Users\camki\Desktop\Kişisel\Google Cloud\Projects\NetCore6-API\DataAccessLayer\bin\Debug\net6.0\DataAccessLayer.deps.json
+C:\Users\camki\Desktop\Kişisel\Google Cloud\Projects\NetCore6-API\DataAccessLayer\bin\Debug\net6.0\DataAccessLayer.dll
+C:\Users\camki\Desktop\Kişisel\Google Cloud\Projects\NetCore6-API\DataAccessLayer\bin\Debug\net6.0\DataAccessLayer.pdb
+C:\Users\camki\Desktop\Kişisel\Google Cloud\Projects\NetCore6-API\DataAccessLayer\bin\Debug\net6.0\Configurations.dll
+C:\Users\camki\Desktop\Kişisel\Google Cloud\Projects\NetCore6-API\DataAccessLayer\bin\Debug\net6.0\Helpers.dll
+C:\Users\camki\Desktop\Kişisel\Google Cloud\Projects\NetCore6-API\DataAccessLayer\bin\Debug\net6.0\Models.dll
+C:\Users\camki\Desktop\Kişisel\Google Cloud\Projects\NetCore6-API\DataAccessLayer\bin\Debug\net6.0\Configurations.pdb
+C:\Users\camki\Desktop\Kişisel\Google Cloud\Projects\NetCore6-API\DataAccessLayer\bin\Debug\net6.0\Models.pdb
+C:\Users\camki\Desktop\Kişisel\Google Cloud\Projects\NetCore6-API\DataAccessLayer\bin\Debug\net6.0\Helpers.pdb
+C:\Users\camki\Desktop\Kişisel\Google Cloud\Projects\NetCore6-API\DataAccessLayer\obj\Debug\net6.0\DataAccessLayer.csproj.AssemblyReference.cache
+C:\Users\camki\Desktop\Kişisel\Google Cloud\Projects\NetCore6-API\DataAccessLayer\obj\Debug\net6.0\DataAccessLayer.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\camki\Desktop\Kişisel\Google Cloud\Projects\NetCore6-API\DataAccessLayer\obj\Debug\net6.0\DataAccessLayer.AssemblyInfoInputs.cache
+C:\Users\camki\Desktop\Kişisel\Google Cloud\Projects\NetCore6-API\DataAccessLayer\obj\Debug\net6.0\DataAccessLayer.AssemblyInfo.cs
+C:\Users\camki\Desktop\Kişisel\Google Cloud\Projects\NetCore6-API\DataAccessLayer\obj\Debug\net6.0\DataAccessLayer.csproj.CoreCompileInputs.cache
+C:\Users\camki\Desktop\Kişisel\Google Cloud\Projects\NetCore6-API\DataAccessLayer\obj\Debug\net6.0\DataAccessLayer.csproj.CopyComplete
+C:\Users\camki\Desktop\Kişisel\Google Cloud\Projects\NetCore6-API\DataAccessLayer\obj\Debug\net6.0\DataAccessLayer.dll
+C:\Users\camki\Desktop\Kişisel\Google Cloud\Projects\NetCore6-API\DataAccessLayer\obj\Debug\net6.0\refint\DataAccessLayer.dll
+C:\Users\camki\Desktop\Kişisel\Google Cloud\Projects\NetCore6-API\DataAccessLayer\obj\Debug\net6.0\DataAccessLayer.pdb
+C:\Users\camki\Desktop\Kişisel\Google Cloud\Projects\NetCore6-API\DataAccessLayer\obj\Debug\net6.0\ref\DataAccessLayer.dll

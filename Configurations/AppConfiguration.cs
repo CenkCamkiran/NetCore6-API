@@ -98,6 +98,7 @@
 
 		}
 
+<<<<<<< HEAD
 
 		public Dictionary<string, string> GetMSSQLConfig()
 		{
@@ -116,6 +117,24 @@
 
 			return ConfigList;
 
+=======
+		public Dictionary<string, string> GetRabbitMQConfig()
+		{
+			RabbitMQHost = ApplicationSettingsModel.ExternalTools.RabbitMQ.Host.ToString();
+			RabbitMQPort = ApplicationSettingsModel.ExternalTools.RabbitMQ.Port.ToString();
+			RabbitMQUsername = ApplicationSettingsModel.ExternalTools.RabbitMQ.Username.ToString();
+			RabbitMQPassword = ApplicationSettingsModel.ExternalTools.RabbitMQ.Password.ToString();
+
+			Dictionary<string, string> ConfigList = new Dictionary<string, string>()
+			{
+				{ "RabbitMQHost", RabbitMQHost },
+				{ "RabbitMQPort", RabbitMQPort },
+				{ "RabbitMQUsername", RabbitMQUsername },
+				{ "RabbitMQPassword", RabbitMQPassword }
+			};
+
+			return ConfigList;
+>>>>>>> 4cd4252768ea24edc42ac648886a746cd2e6fddd
 		}
 
 	}
