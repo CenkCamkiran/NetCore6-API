@@ -24,9 +24,9 @@ namespace ServiceLayer
 			return _personRepository.GetPersonById(Id);
 		}
 
-		public void InsertNewPerson()
+		public void InsertNewPerson(PersonRequest personData)
 		{
-			throw new NotImplementedException();
+			_personRepository.InsertNewPerson(personData);
 		}
 	}
 }

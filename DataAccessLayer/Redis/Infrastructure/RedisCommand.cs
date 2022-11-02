@@ -5,12 +5,13 @@ namespace DataAccessLayer.Redis.Infrastructure
 {
 	public class RedisCommand : IRedisCommand
 	{
-
+		private readonly IConnectionMultiplexer _connectionMultiplexer;
 		private readonly IDatabase redisDatabase;
 
-		public RedisCommand(IConnectionMultiplexer _redisConnection)
+		public RedisCommand(IConnectionMultiplexer connectionMultiplexer)
 		{
-			redisDatabase = _redisConnection.GetDatabase();
+			_connectionMultiplexer = connectionMultiplexer;	
+			redisDatabase = _connectionMultiplexer.GetDatabase();
 		}
 
 		public void Add(string key, byte[]? data, TimeSpan ttl)

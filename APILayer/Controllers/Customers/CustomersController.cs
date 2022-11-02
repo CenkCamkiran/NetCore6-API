@@ -189,6 +189,5 @@ namespace APILayer.Controllers.Customers
 		//[HttpGet]
 		//public Customer GetCustomerByName([FromQuery] string Name)
 
-
 	}
 }

@@ -9,7 +9,7 @@ namespace DataAccessLayer.MSSQL.Interfaces
 {
 	public interface IPersonRepository
 	{
-		void InsertNewPerson();
+		void InsertNewPerson(PersonRequest personData);
 		PersonRequest GetPersonById(string Id);
 	}
 }

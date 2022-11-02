@@ -9,7 +9,7 @@ namespace ServiceLayer.Interfaces
 {
 	public interface IPersonService
 	{
-		void InsertNewPerson();
+		void InsertNewPerson(PersonRequest personData);
 		PersonRequest GetPersonById(string Id);
 	}
 }

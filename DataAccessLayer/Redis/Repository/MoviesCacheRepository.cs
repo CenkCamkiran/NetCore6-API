@@ -10,24 +10,22 @@ namespace DataAccessLayer.Redis.Repository
 	public class MoviesCacheRepository : IMoviesCacheRepository
 	{
 
-		private IConnectionMultiplexer _connectionMultiplexer;
+		private IRedisCommand _redisCommand;
 
-		public MoviesCacheRepository(IConnectionMultiplexer connectionMultiplexer)
+		public MoviesCacheRepository(IRedisCommand redisCommand)
 		{
-			_connectionMultiplexer = connectionMultiplexer;
+			_redisCommand = redisCommand;
 		}
 
 		public bool ClearMoviesCache(string key)
 		{
-			RedisCommand redisCommand = new RedisCommand(_connectionMultiplexer);
 
-			return redisCommand.Remove(key);
+			return _redisCommand.Remove(key);
 		}
 
 		public List<Movie> GetAllMoviesCache(string key)
 		{
-			RedisCommand redisCommand = new RedisCommand(_connectionMultiplexer);
-			RedisValue redisValue = redisCommand.Get(key);
+			RedisValue redisValue = _redisCommand.Get(key);
 			string dataByteArray = "";
 
 			if (!redisValue.IsNullOrEmpty)
@@ -40,8 +38,7 @@ namespace DataAccessLayer.Redis.Repository
 
 		public MovieComments GetMovieCommentsByMovieIdCache(string key, string id)
 		{
-			RedisCommand redisCommand = new RedisCommand(_connectionMultiplexer);
-			RedisValue redisValue = redisCommand.Get(key);
+			RedisValue redisValue = _redisCommand.Get(key);
 			string dataByteArray = "";
 
 			if (!redisValue.IsNullOrEmpty)
@@ -58,11 +55,10 @@ namespace DataAccessLayer.Redis.Repository
 
 		public void SetAllMoviesCache(string key, string jsonData, TimeSpan ttl)
 		{
-			RedisCommand redisCommand = new RedisCommand(_connectionMultiplexer);
 
 			byte[]? dataByteArray = Encoding.UTF8.GetBytes(jsonData);
 
-			redisCommand.Add(key, dataByteArray, ttl);
+			_redisCommand.Add(key, dataByteArray, ttl);
 		}
 	}
 }

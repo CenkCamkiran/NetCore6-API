@@ -104,6 +104,7 @@
 			Host = ApplicationSettingsModel.ExternalTools.Mssql.Host.ToString();
 			Username = ApplicationSettingsModel.ExternalTools.Mssql.Username.ToString();
 			MSSQLPassword = ApplicationSettingsModel.ExternalTools.Mssql.MSSQLPassword.ToString();
+			DBName = ApplicationSettingsModel.ExternalTools.Mssql.DBName.ToString();
 
 			Dictionary<string, string> ConfigList = new Dictionary<string, string>()
 			{

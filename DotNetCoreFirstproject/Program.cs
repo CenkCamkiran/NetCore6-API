@@ -6,6 +6,7 @@ using DataAccessLayer.MongoDB.Interfaces;
 using DataAccessLayer.MongoDB.Repository;
 using DataAccessLayer.MSSQL.Interfaces;
 using DataAccessLayer.MSSQL.Repository;
+using DataAccessLayer.Redis.Infrastructure;
 using DataAccessLayer.Redis.Interfaces;
 using DataAccessLayer.Redis.Repository;
 using Elasticsearch.Net;
@@ -59,6 +60,7 @@ builder.Services.AddScoped<ICustomerAccountTransactionsRepository, CustomerAccou
 builder.Services.AddScoped<ICustomerCacheRepository, CustomerCacheRepository>();
 builder.Services.AddScoped<IPersonService, PersonService>();
 builder.Services.AddScoped<IPersonRepository, PersonRepository>();
+builder.Services.AddScoped<IRedisCommand, RedisCommand>();
 builder.Services.AddHealthChecks();
 
 

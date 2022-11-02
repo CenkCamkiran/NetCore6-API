@@ -27,9 +27,9 @@ namespace APILayer.Controllers.User
 
 			LoginHelper.CheckLoginFields(requestBody.username, requestBody.password);
 
-			CryptoHelper cryptoHelper = new CryptoHelper();
-			string hash = cryptoHelper.ComputeSha256Hash(String.Concat(requestBody.username, requestBody.password));
-			cryptoHelper.CheckHash(requestBody.hash, hash);
+			//CryptoHelper cryptoHelper = new CryptoHelper();
+			//string hash = cryptoHelper.ComputeSha256Hash(String.Concat(requestBody.username, requestBody.password));
+			//cryptoHelper.CheckHash(requestBody.hash, hash);
 
 			TokenResponse? token = _keycloakService.UserAuth(requestBody);
 

@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Models.ControllerModels;
 using ServiceLayer.Interfaces;
+using System.Net.Mime;
 
 namespace APILayer.Controllers.Persons
 {
@@ -16,12 +17,19 @@ namespace APILayer.Controllers.Persons
 			_personService = personService;
 		}
 
-		[HttpGet("/Id/{Id}")]
+		[HttpGet("Id/{Id}")]
 		public PersonRequest GetPersonById(string Id)
 		{
-			_personService.GetPersonById(Id);
+			return _personService.GetPersonById(Id);
+		}
 
-			return topPosts;
+		[Consumes(MediaTypeNames.Application.Json)]
+		[HttpPut]
+		public NoContentResult GetPersonById(PersonRequest personRequest)
+		{
+			_personService.InsertNewPerson(personRequest);
+
+			return NoContent();
 		}
 
 	}
