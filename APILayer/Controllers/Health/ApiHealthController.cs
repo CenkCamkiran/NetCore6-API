@@ -4,6 +4,7 @@ using ServiceLayer.Interfaces;
 using System.Net;
 using System.Net.NetworkInformation;
 
+//
 namespace APILayer.Controllers.Health
 {
 	[Route("rest/api/v1/status/[controller]")]
