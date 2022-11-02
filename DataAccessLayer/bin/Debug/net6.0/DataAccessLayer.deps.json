@@ -15,13 +15,9 @@
           "MongoDB.Driver": "2.16.1",
           "NEST": "7.17.4",
           "Newtonsoft.Json": "13.0.1",
-<<<<<<< HEAD
+          "RabbitMQ.Client": "6.4.0",
           "StackExchange.Redis": "2.6.48",
           "System.Data.SqlClient": "4.8.4"
-=======
-          "RabbitMQ.Client": "6.4.0",
-          "StackExchange.Redis": "2.6.48"
->>>>>>> 4cd4252768ea24edc42ac648886a746cd2e6fddd
         },
         "runtime": {
           "DataAccessLayer.dll": {}
@@ -287,7 +283,18 @@
           }
         }
       },
-<<<<<<< HEAD
+      "RabbitMQ.Client/6.4.0": {
+        "dependencies": {
+          "System.Memory": "4.5.4",
+          "System.Threading.Channels": "4.7.1"
+        },
+        "runtime": {
+          "lib/netstandard2.0/RabbitMQ.Client.dll": {
+            "assemblyVersion": "6.0.0.0",
+            "fileVersion": "6.4.0.0"
+          }
+        }
+      },
       "runtime.native.System.Data.SqlClient.sni/4.7.0": {
         "dependencies": {
           "runtime.win-arm64.runtime.native.System.Data.SqlClient.sni": "4.4.0",
@@ -319,17 +326,6 @@
             "rid": "win-x86",
             "assetType": "native",
             "fileVersion": "4.6.25512.1"
-=======
-      "RabbitMQ.Client/6.4.0": {
-        "dependencies": {
-          "System.Memory": "4.5.4",
-          "System.Threading.Channels": "4.7.1"
-        },
-        "runtime": {
-          "lib/netstandard2.0/RabbitMQ.Client.dll": {
-            "assemblyVersion": "6.0.0.0",
-            "fileVersion": "6.4.0.0"
->>>>>>> 4cd4252768ea24edc42ac648886a746cd2e6fddd
           }
         }
       },
@@ -695,7 +691,13 @@
       "path": "pipelines.sockets.unofficial/2.2.2",
       "hashPath": "pipelines.sockets.unofficial.2.2.2.nupkg.sha512"
     },
-<<<<<<< HEAD
+    "RabbitMQ.Client/6.4.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-1znR1gGU+xYVSpO5z8nQolcUKA/yydnxQn7Ug9+RUXxTSLMm/eE58VKGwahPBjELXvDnX0k/kBrAitFLRjx9LA==",
+      "path": "rabbitmq.client/6.4.0",
+      "hashPath": "rabbitmq.client.6.4.0.nupkg.sha512"
+    },
     "runtime.native.System.Data.SqlClient.sni/4.7.0": {
       "type": "package",
       "serviceable": true,
@@ -723,14 +725,6 @@
       "sha512": "sha512-YhEdSQUsTx+C8m8Bw7ar5/VesXvCFMItyZF7G1AUY+OM0VPZUOeAVpJ4Wl6fydBGUYZxojTDR3I6Bj/+BPkJNA==",
       "path": "runtime.win-x86.runtime.native.system.data.sqlclient.sni/4.4.0",
       "hashPath": "runtime.win-x86.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512"
-=======
-    "RabbitMQ.Client/6.4.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-1znR1gGU+xYVSpO5z8nQolcUKA/yydnxQn7Ug9+RUXxTSLMm/eE58VKGwahPBjELXvDnX0k/kBrAitFLRjx9LA==",
-      "path": "rabbitmq.client/6.4.0",
-      "hashPath": "rabbitmq.client.6.4.0.nupkg.sha512"
->>>>>>> 4cd4252768ea24edc42ac648886a746cd2e6fddd
     },
     "SharpCompress/0.30.1": {
       "type": "package",

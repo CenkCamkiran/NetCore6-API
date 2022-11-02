@@ -98,8 +98,6 @@
 
 		}
 
-<<<<<<< HEAD
-
 		public Dictionary<string, string> GetMSSQLConfig()
 		{
 			Host = ApplicationSettingsModel.ExternalTools.Mssql.Host.ToString();
@@ -117,7 +115,7 @@
 
 			return ConfigList;
 
-=======
+		}
 		public Dictionary<string, string> GetRabbitMQConfig()
 		{
 			RabbitMQHost = ApplicationSettingsModel.ExternalTools.RabbitMQ.Host.ToString();
@@ -134,7 +132,7 @@
 			};
 
 			return ConfigList;
->>>>>>> 4cd4252768ea24edc42ac648886a746cd2e6fddd
+
 		}
 
 	}

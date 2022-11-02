@@ -17,14 +17,12 @@ namespace Configurations
 		[JsonProperty("Redis")]
 		public Redis Redis { get; set; }
 
-<<<<<<< HEAD
-
 		[JsonProperty("MSSQL")]
 		public MSSQL Mssql { get; set; }
-=======
+
 		[JsonProperty("RabbitMQ")]
 		public RabbitMQ RabbitMQ { get; set; }
->>>>>>> 4cd4252768ea24edc42ac648886a746cd2e6fddd
+
 	}
 
 	public partial class MongoDB

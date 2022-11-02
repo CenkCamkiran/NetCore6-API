@@ -4,15 +4,12 @@ using DataAccessLayer.ElasticSearch.Interfaces;
 using DataAccessLayer.ElasticSearch.Repository;
 using DataAccessLayer.MongoDB.Interfaces;
 using DataAccessLayer.MongoDB.Repository;
-<<<<<<< HEAD
 using DataAccessLayer.MSSQL.Interfaces;
 using DataAccessLayer.MSSQL.Repository;
 using DataAccessLayer.Redis.Infrastructure;
-=======
 using DataAccessLayer.RabbitMQ.Infrastructure;
 using DataAccessLayer.RabbitMQ.Interfaces;
 using DataAccessLayer.RabbitMQ.Repository;
->>>>>>> 4cd4252768ea24edc42ac648886a746cd2e6fddd
 using DataAccessLayer.Redis.Interfaces;
 using DataAccessLayer.Redis.Repository;
 using Elasticsearch.Net;
@@ -24,13 +21,10 @@ using RabbitMQ.Client;
 using ServiceLayer;
 using ServiceLayer.Interfaces;
 using StackExchange.Redis;
-<<<<<<< HEAD
 using System.Data;
 using System.Data.SqlClient;
 using System.Xml.Linq;
-=======
 using IConnection = RabbitMQ.Client.IConnection;
->>>>>>> 4cd4252768ea24edc42ac648886a746cd2e6fddd
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -44,11 +38,8 @@ AppConfiguration appConfiguration = new AppConfiguration();
 Dictionary<string, string> redisConfig = appConfiguration.GetRedisConfig();
 Dictionary<string, string> mongodbConfig = appConfiguration.GetMongoDBConfig();
 Dictionary<string, string> elasticConfig = appConfiguration.GetElasticSearchConfig();
-<<<<<<< HEAD
 Dictionary<string, string> mssqlConfig = appConfiguration.GetMSSQLConfig();
-=======
 Dictionary<string, string> rabbitConfig = appConfiguration.GetRabbitMQConfig();
->>>>>>> 4cd4252768ea24edc42ac648886a746cd2e6fddd
 
 
 var options = ConfigurationOptions.Parse(redisConfig["RedisHost"]);
@@ -73,15 +64,12 @@ builder.Services.AddScoped<ICustomerAccountsRepository, CustomerAccountsReposito
 builder.Services.AddScoped<ICustomerAccountTransactionsService, CustomerAccountTransactionsService>();
 builder.Services.AddScoped<ICustomerAccountTransactionsRepository, CustomerAccountTransactionsRepository>();
 builder.Services.AddScoped<ICustomerCacheRepository, CustomerCacheRepository>();
-<<<<<<< HEAD
 builder.Services.AddScoped<IPersonService, PersonService>();
 builder.Services.AddScoped<IPersonRepository, PersonRepository>();
 builder.Services.AddScoped<IRedisCommand, RedisCommand>();
-=======
 builder.Services.AddScoped<ITestQueueService, TestQueueService>();
 builder.Services.AddScoped<ITestQueueRepository, TestQueueRepository>();
 builder.Services.AddScoped<IRabbitMQCommand, RabbitMQCommand>();
->>>>>>> 4cd4252768ea24edc42ac648886a746cd2e6fddd
 builder.Services.AddHealthChecks();
 
 
@@ -101,8 +89,6 @@ ConnectionSettings? connection = new ConnectionSettings(new Uri(elasticConfig["E
 ElasticClient? elasticClient = new ElasticClient(connection);
 builder.Services.AddSingleton<IElasticClient>(elasticClient);
 
-
-<<<<<<< HEAD
 SqlConnectionStringBuilder mssqlConnBuilder = new SqlConnectionStringBuilder();
 mssqlConnBuilder.DataSource = mssqlConfig["Host"];
 mssqlConnBuilder.UserID = mssqlConfig["Username"];
@@ -110,7 +96,7 @@ mssqlConnBuilder.Password = mssqlConfig["MSSQLPassword"];
 mssqlConnBuilder.InitialCatalog = mssqlConfig["DBName"];
 SqlConnection sqlConnection = new SqlConnection(mssqlConnBuilder.ConnectionString);
 builder.Services.AddSingleton<IDbConnection>(sqlConnection);
-=======
+
 var connectionFactory = new ConnectionFactory
 {
 	HostName = rabbitConfig["RabbitMQHost"],
@@ -121,7 +107,6 @@ var connectionFactory = new ConnectionFactory
 
 var rabbitConnection = connectionFactory.CreateConnection();
 builder.Services.AddSingleton<IConnection>(rabbitConnection);
->>>>>>> 4cd4252768ea24edc42ac648886a746cd2e6fddd
 
 // ***************************************************************************************************
 

@@ -1114,13 +1114,9 @@
           "MongoDB.Driver": "2.16.1",
           "NEST": "7.17.4",
           "Newtonsoft.Json": "13.0.1",
-<<<<<<< HEAD
+          "RabbitMQ.Client": "6.4.0",
           "StackExchange.Redis": "2.6.48",
           "System.Data.SqlClient": "4.8.4"
-=======
-          "RabbitMQ.Client": "6.4.0",
-          "StackExchange.Redis": "2.6.48"
->>>>>>> 4cd4252768ea24edc42ac648886a746cd2e6fddd
         },
         "runtime": {
           "DataAccessLayer.dll": {}
