@@ -34,79 +34,79 @@ configuration.GetSection(ApplicationSettingsModel.RootOption).Bind(ApplicationSe
 // ***************************************************************************************************
 // Add services to the container.
 
-AppConfiguration appConfiguration = new AppConfiguration();
-Dictionary<string, string> redisConfig = appConfiguration.GetRedisConfig();
-Dictionary<string, string> mongodbConfig = appConfiguration.GetMongoDBConfig();
-Dictionary<string, string> elasticConfig = appConfiguration.GetElasticSearchConfig();
-Dictionary<string, string> mssqlConfig = appConfiguration.GetMSSQLConfig();
-Dictionary<string, string> rabbitConfig = appConfiguration.GetRabbitMQConfig();
+//AppConfiguration appConfiguration = new AppConfiguration();
+//Dictionary<string, string> redisConfig = appConfiguration.GetRedisConfig();
+//Dictionary<string, string> mongodbConfig = appConfiguration.GetMongoDBConfig();
+//Dictionary<string, string> elasticConfig = appConfiguration.GetElasticSearchConfig();
+//Dictionary<string, string> mssqlConfig = appConfiguration.GetMSSQLConfig();
+//Dictionary<string, string> rabbitConfig = appConfiguration.GetRabbitMQConfig();
 
 
-var options = ConfigurationOptions.Parse(redisConfig["RedisHost"]);
-options.Password = redisConfig["Password"];
-var redisConnection = ConnectionMultiplexer.Connect(options);
-builder.Services.AddSingleton<IConnectionMultiplexer>(redisConnection);
-builder.Services.AddScoped<IPostsCacheRepository, PostsCacheRepository>();
-builder.Services.AddScoped<IPostsRepository, PostsRepository>();
-builder.Services.AddScoped<IPostsService, PostsService>();
-builder.Services.AddScoped<ICustomersService, CustomersService>();
-builder.Services.AddScoped<ICustomersRepository, CustomersRepository>();
-builder.Services.AddScoped<IKeycloakService, KeycloakService>();
-builder.Services.AddScoped<IPingService, PingService>();
-builder.Services.AddScoped<IMovieService, MoviesService>();
-builder.Services.AddScoped<IMoviesRepository, MoviesRepository>();
-builder.Services.AddScoped<IMoviesCacheRepository, MoviesCacheRepository>();
-builder.Services.AddScoped<IElasticSearchCommand, ElasticSearchCommand>();
-builder.Services.AddScoped<IControllerLogRepository, ControllerLogRepository>();
-builder.Services.AddScoped<ILoggingService, LoggingService>();
-builder.Services.AddScoped<ICustomerAccountsService, CustomerAccountsService>();
-builder.Services.AddScoped<ICustomerAccountsRepository, CustomerAccountsRepository>();
-builder.Services.AddScoped<ICustomerAccountTransactionsService, CustomerAccountTransactionsService>();
-builder.Services.AddScoped<ICustomerAccountTransactionsRepository, CustomerAccountTransactionsRepository>();
-builder.Services.AddScoped<ICustomerCacheRepository, CustomerCacheRepository>();
-builder.Services.AddScoped<IPersonService, PersonService>();
-builder.Services.AddScoped<IPersonRepository, PersonRepository>();
-builder.Services.AddScoped<IRedisCommand, RedisCommand>();
-builder.Services.AddScoped<ITestQueueService, TestQueueService>();
-builder.Services.AddScoped<ITestQueueRepository, TestQueueRepository>();
-builder.Services.AddScoped<IRabbitMQCommand, RabbitMQCommand>();
-builder.Services.AddHealthChecks();
+//var options = ConfigurationOptions.Parse(redisConfig["RedisHost"]);
+//options.Password = redisConfig["Password"];
+//var redisConnection = ConnectionMultiplexer.Connect(options);
+//builder.Services.AddSingleton<IConnectionMultiplexer>(redisConnection);
+//builder.Services.AddScoped<IPostsCacheRepository, PostsCacheRepository>();
+//builder.Services.AddScoped<IPostsRepository, PostsRepository>();
+//builder.Services.AddScoped<IPostsService, PostsService>();
+//builder.Services.AddScoped<ICustomersService, CustomersService>();
+//builder.Services.AddScoped<ICustomersRepository, CustomersRepository>();
+//builder.Services.AddScoped<IKeycloakService, KeycloakService>();
+//builder.Services.AddScoped<IPingService, PingService>();
+//builder.Services.AddScoped<IMovieService, MoviesService>();
+//builder.Services.AddScoped<IMoviesRepository, MoviesRepository>();
+//builder.Services.AddScoped<IMoviesCacheRepository, MoviesCacheRepository>();
+//builder.Services.AddScoped<IElasticSearchCommand, ElasticSearchCommand>();
+//builder.Services.AddScoped<IControllerLogRepository, ControllerLogRepository>();
+//builder.Services.AddScoped<ILoggingService, LoggingService>();
+//builder.Services.AddScoped<ICustomerAccountsService, CustomerAccountsService>();
+//builder.Services.AddScoped<ICustomerAccountsRepository, CustomerAccountsRepository>();
+//builder.Services.AddScoped<ICustomerAccountTransactionsService, CustomerAccountTransactionsService>();
+//builder.Services.AddScoped<ICustomerAccountTransactionsRepository, CustomerAccountTransactionsRepository>();
+//builder.Services.AddScoped<ICustomerCacheRepository, CustomerCacheRepository>();
+//builder.Services.AddScoped<IPersonService, PersonService>();
+//builder.Services.AddScoped<IPersonRepository, PersonRepository>();
+//builder.Services.AddScoped<IRedisCommand, RedisCommand>();
+//builder.Services.AddScoped<ITestQueueService, TestQueueService>();
+//builder.Services.AddScoped<ITestQueueRepository, TestQueueRepository>();
+//builder.Services.AddScoped<IRabbitMQCommand, RabbitMQCommand>();
+//builder.Services.AddHealthChecks();
 
 
-MongoClient mongoClient = new MongoClient(mongodbConfig["MongoDBConnectionString"]);
-builder.Services.AddSingleton<IMongoClient>(mongoClient);
-builder.Services.AddControllers();
+//MongoClient mongoClient = new MongoClient(mongodbConfig["MongoDBConnectionString"]);
+//builder.Services.AddSingleton<IMongoClient>(mongoClient);
+//builder.Services.AddControllers();
 
 
-ConnectionSettings? connection = new ConnectionSettings(new Uri(elasticConfig["ElasticHost"])).
-   DefaultIndex(elasticConfig["DefaultIndexName"]).
-   ServerCertificateValidationCallback(CertificateValidations.AllowAll).
-   ThrowExceptions(true).
-   PrettyJson().
-   RequestTimeout(TimeSpan.FromSeconds(300)).
-   BasicAuthentication(elasticConfig["ElasticRootUsername"], elasticConfig["ElasticRootPassword"]); //.ApiKeyAuthentication("<id>", "<api key>"); 
+//ConnectionSettings? connection = new ConnectionSettings(new Uri(elasticConfig["ElasticHost"])).
+//   DefaultIndex(elasticConfig["DefaultIndexName"]).
+//   ServerCertificateValidationCallback(CertificateValidations.AllowAll).
+//   ThrowExceptions(true).
+//   PrettyJson().
+//   RequestTimeout(TimeSpan.FromSeconds(300)).
+//   BasicAuthentication(elasticConfig["ElasticRootUsername"], elasticConfig["ElasticRootPassword"]); //.ApiKeyAuthentication("<id>", "<api key>"); 
 
-ElasticClient? elasticClient = new ElasticClient(connection);
-builder.Services.AddSingleton<IElasticClient>(elasticClient);
+//ElasticClient? elasticClient = new ElasticClient(connection);
+//builder.Services.AddSingleton<IElasticClient>(elasticClient);
 
-SqlConnectionStringBuilder mssqlConnBuilder = new SqlConnectionStringBuilder();
-mssqlConnBuilder.DataSource = mssqlConfig["Host"];
-mssqlConnBuilder.UserID = mssqlConfig["Username"];
-mssqlConnBuilder.Password = mssqlConfig["MSSQLPassword"];
-mssqlConnBuilder.InitialCatalog = mssqlConfig["DBName"];
-SqlConnection sqlConnection = new SqlConnection(mssqlConnBuilder.ConnectionString);
-builder.Services.AddSingleton<IDbConnection>(sqlConnection);
+//SqlConnectionStringBuilder mssqlConnBuilder = new SqlConnectionStringBuilder();
+//mssqlConnBuilder.DataSource = mssqlConfig["Host"];
+//mssqlConnBuilder.UserID = mssqlConfig["Username"];
+//mssqlConnBuilder.Password = mssqlConfig["MSSQLPassword"];
+//mssqlConnBuilder.InitialCatalog = mssqlConfig["DBName"];
+//SqlConnection sqlConnection = new SqlConnection(mssqlConnBuilder.ConnectionString);
+//builder.Services.AddSingleton<IDbConnection>(sqlConnection);
 
-var connectionFactory = new ConnectionFactory
-{
-	HostName = rabbitConfig["RabbitMQHost"],
-	Port = Convert.ToInt32(rabbitConfig["RabbitMQPort"]),
-	UserName = rabbitConfig["RabbitMQUsername"],
-	Password = rabbitConfig["RabbitMQPassword"]
-};
+//var connectionFactory = new ConnectionFactory
+//{
+//	HostName = rabbitConfig["RabbitMQHost"],
+//	Port = Convert.ToInt32(rabbitConfig["RabbitMQPort"]),
+//	UserName = rabbitConfig["RabbitMQUsername"],
+//	Password = rabbitConfig["RabbitMQPassword"]
+//};
 
-var rabbitConnection = connectionFactory.CreateConnection();
-builder.Services.AddSingleton<IConnection>(rabbitConnection);
+//var rabbitConnection = connectionFactory.CreateConnection();
+//builder.Services.AddSingleton<IConnection>(rabbitConnection);
 
 // ***************************************************************************************************
 
