@@ -40,27 +40,6 @@ C:\Users\camki\Desktop\Klasörler\Google Cloud\Projects\NetCore6-API\BusinessLay
 C:\Users\camki\Desktop\Klasörler\Google Cloud\Projects\NetCore6-API\BusinessLayer\obj\Debug\net6.0\refint\ServiceLayer.dll
 C:\Users\camki\Desktop\Klasörler\Google Cloud\Projects\NetCore6-API\BusinessLayer\obj\Debug\net6.0\ServiceLayer.pdb
 C:\Users\camki\Desktop\Klasörler\Google Cloud\Projects\NetCore6-API\BusinessLayer\obj\Debug\net6.0\ref\ServiceLayer.dll
-C:\Users\ccamkiran\Desktop\Cenk Camkıran\NOTLAR\Google Cloud\Projeler\NetCore6-API\BusinessLayer\bin\Debug\net6.0\ServiceLayer.deps.json
-C:\Users\ccamkiran\Desktop\Cenk Camkıran\NOTLAR\Google Cloud\Projeler\NetCore6-API\BusinessLayer\bin\Debug\net6.0\ServiceLayer.dll
-C:\Users\ccamkiran\Desktop\Cenk Camkıran\NOTLAR\Google Cloud\Projeler\NetCore6-API\BusinessLayer\bin\Debug\net6.0\ServiceLayer.pdb
-C:\Users\ccamkiran\Desktop\Cenk Camkıran\NOTLAR\Google Cloud\Projeler\NetCore6-API\BusinessLayer\bin\Debug\net6.0\Configurations.dll
-C:\Users\ccamkiran\Desktop\Cenk Camkıran\NOTLAR\Google Cloud\Projeler\NetCore6-API\BusinessLayer\bin\Debug\net6.0\DataAccessLayer.dll
-C:\Users\ccamkiran\Desktop\Cenk Camkıran\NOTLAR\Google Cloud\Projeler\NetCore6-API\BusinessLayer\bin\Debug\net6.0\Helpers.dll
-C:\Users\ccamkiran\Desktop\Cenk Camkıran\NOTLAR\Google Cloud\Projeler\NetCore6-API\BusinessLayer\bin\Debug\net6.0\Models.dll
-C:\Users\ccamkiran\Desktop\Cenk Camkıran\NOTLAR\Google Cloud\Projeler\NetCore6-API\BusinessLayer\bin\Debug\net6.0\DataAccessLayer.pdb
-C:\Users\ccamkiran\Desktop\Cenk Camkıran\NOTLAR\Google Cloud\Projeler\NetCore6-API\BusinessLayer\bin\Debug\net6.0\Models.pdb
-C:\Users\ccamkiran\Desktop\Cenk Camkıran\NOTLAR\Google Cloud\Projeler\NetCore6-API\BusinessLayer\bin\Debug\net6.0\Helpers.pdb
-C:\Users\ccamkiran\Desktop\Cenk Camkıran\NOTLAR\Google Cloud\Projeler\NetCore6-API\BusinessLayer\bin\Debug\net6.0\Configurations.pdb
-C:\Users\ccamkiran\Desktop\Cenk Camkıran\NOTLAR\Google Cloud\Projeler\NetCore6-API\BusinessLayer\obj\Debug\net6.0\ServiceLayer.csproj.AssemblyReference.cache
-C:\Users\ccamkiran\Desktop\Cenk Camkıran\NOTLAR\Google Cloud\Projeler\NetCore6-API\BusinessLayer\obj\Debug\net6.0\ServiceLayer.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\ccamkiran\Desktop\Cenk Camkıran\NOTLAR\Google Cloud\Projeler\NetCore6-API\BusinessLayer\obj\Debug\net6.0\ServiceLayer.AssemblyInfoInputs.cache
-C:\Users\ccamkiran\Desktop\Cenk Camkıran\NOTLAR\Google Cloud\Projeler\NetCore6-API\BusinessLayer\obj\Debug\net6.0\ServiceLayer.AssemblyInfo.cs
-C:\Users\ccamkiran\Desktop\Cenk Camkıran\NOTLAR\Google Cloud\Projeler\NetCore6-API\BusinessLayer\obj\Debug\net6.0\ServiceLayer.csproj.CoreCompileInputs.cache
-C:\Users\ccamkiran\Desktop\Cenk Camkıran\NOTLAR\Google Cloud\Projeler\NetCore6-API\BusinessLayer\obj\Debug\net6.0\ServiceLayer.csproj.CopyComplete
-C:\Users\ccamkiran\Desktop\Cenk Camkıran\NOTLAR\Google Cloud\Projeler\NetCore6-API\BusinessLayer\obj\Debug\net6.0\ServiceLayer.dll
-C:\Users\ccamkiran\Desktop\Cenk Camkıran\NOTLAR\Google Cloud\Projeler\NetCore6-API\BusinessLayer\obj\Debug\net6.0\refint\ServiceLayer.dll
-C:\Users\ccamkiran\Desktop\Cenk Camkıran\NOTLAR\Google Cloud\Projeler\NetCore6-API\BusinessLayer\obj\Debug\net6.0\ServiceLayer.pdb
-C:\Users\ccamkiran\Desktop\Cenk Camkıran\NOTLAR\Google Cloud\Projeler\NetCore6-API\BusinessLayer\obj\Debug\net6.0\ref\ServiceLayer.dll
 C:\Users\camki\Desktop\Kişisel\Google Cloud\Projects\NetCore6-API\BusinessLayer\bin\Debug\net6.0\ServiceLayer.deps.json
 C:\Users\camki\Desktop\Kişisel\Google Cloud\Projects\NetCore6-API\BusinessLayer\bin\Debug\net6.0\ServiceLayer.dll
 C:\Users\camki\Desktop\Kişisel\Google Cloud\Projects\NetCore6-API\BusinessLayer\bin\Debug\net6.0\ServiceLayer.pdb
@@ -82,3 +61,24 @@ C:\Users\camki\Desktop\Kişisel\Google Cloud\Projects\NetCore6-API\BusinessLayer
 C:\Users\camki\Desktop\Kişisel\Google Cloud\Projects\NetCore6-API\BusinessLayer\obj\Debug\net6.0\refint\ServiceLayer.dll
 C:\Users\camki\Desktop\Kişisel\Google Cloud\Projects\NetCore6-API\BusinessLayer\obj\Debug\net6.0\ServiceLayer.pdb
 C:\Users\camki\Desktop\Kişisel\Google Cloud\Projects\NetCore6-API\BusinessLayer\obj\Debug\net6.0\ref\ServiceLayer.dll
+C:\Users\ccamkiran\Desktop\Cenk Camkıran\NOTLAR\Google Cloud\Projeler\NetCore6-API\BusinessLayer\bin\Debug\net6.0\ServiceLayer.deps.json
+C:\Users\ccamkiran\Desktop\Cenk Camkıran\NOTLAR\Google Cloud\Projeler\NetCore6-API\BusinessLayer\bin\Debug\net6.0\ServiceLayer.dll
+C:\Users\ccamkiran\Desktop\Cenk Camkıran\NOTLAR\Google Cloud\Projeler\NetCore6-API\BusinessLayer\bin\Debug\net6.0\ServiceLayer.pdb
+C:\Users\ccamkiran\Desktop\Cenk Camkıran\NOTLAR\Google Cloud\Projeler\NetCore6-API\BusinessLayer\bin\Debug\net6.0\Configurations.dll
+C:\Users\ccamkiran\Desktop\Cenk Camkıran\NOTLAR\Google Cloud\Projeler\NetCore6-API\BusinessLayer\bin\Debug\net6.0\DataAccessLayer.dll
+C:\Users\ccamkiran\Desktop\Cenk Camkıran\NOTLAR\Google Cloud\Projeler\NetCore6-API\BusinessLayer\bin\Debug\net6.0\Helpers.dll
+C:\Users\ccamkiran\Desktop\Cenk Camkıran\NOTLAR\Google Cloud\Projeler\NetCore6-API\BusinessLayer\bin\Debug\net6.0\Models.dll
+C:\Users\ccamkiran\Desktop\Cenk Camkıran\NOTLAR\Google Cloud\Projeler\NetCore6-API\BusinessLayer\bin\Debug\net6.0\DataAccessLayer.pdb
+C:\Users\ccamkiran\Desktop\Cenk Camkıran\NOTLAR\Google Cloud\Projeler\NetCore6-API\BusinessLayer\bin\Debug\net6.0\Models.pdb
+C:\Users\ccamkiran\Desktop\Cenk Camkıran\NOTLAR\Google Cloud\Projeler\NetCore6-API\BusinessLayer\bin\Debug\net6.0\Helpers.pdb
+C:\Users\ccamkiran\Desktop\Cenk Camkıran\NOTLAR\Google Cloud\Projeler\NetCore6-API\BusinessLayer\bin\Debug\net6.0\Configurations.pdb
+C:\Users\ccamkiran\Desktop\Cenk Camkıran\NOTLAR\Google Cloud\Projeler\NetCore6-API\BusinessLayer\obj\Debug\net6.0\ServiceLayer.csproj.AssemblyReference.cache
+C:\Users\ccamkiran\Desktop\Cenk Camkıran\NOTLAR\Google Cloud\Projeler\NetCore6-API\BusinessLayer\obj\Debug\net6.0\ServiceLayer.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ccamkiran\Desktop\Cenk Camkıran\NOTLAR\Google Cloud\Projeler\NetCore6-API\BusinessLayer\obj\Debug\net6.0\ServiceLayer.AssemblyInfoInputs.cache
+C:\Users\ccamkiran\Desktop\Cenk Camkıran\NOTLAR\Google Cloud\Projeler\NetCore6-API\BusinessLayer\obj\Debug\net6.0\ServiceLayer.AssemblyInfo.cs
+C:\Users\ccamkiran\Desktop\Cenk Camkıran\NOTLAR\Google Cloud\Projeler\NetCore6-API\BusinessLayer\obj\Debug\net6.0\ServiceLayer.csproj.CoreCompileInputs.cache
+C:\Users\ccamkiran\Desktop\Cenk Camkıran\NOTLAR\Google Cloud\Projeler\NetCore6-API\BusinessLayer\obj\Debug\net6.0\ServiceLayer.csproj.CopyComplete
+C:\Users\ccamkiran\Desktop\Cenk Camkıran\NOTLAR\Google Cloud\Projeler\NetCore6-API\BusinessLayer\obj\Debug\net6.0\ServiceLayer.dll
+C:\Users\ccamkiran\Desktop\Cenk Camkıran\NOTLAR\Google Cloud\Projeler\NetCore6-API\BusinessLayer\obj\Debug\net6.0\refint\ServiceLayer.dll
+C:\Users\ccamkiran\Desktop\Cenk Camkıran\NOTLAR\Google Cloud\Projeler\NetCore6-API\BusinessLayer\obj\Debug\net6.0\ServiceLayer.pdb
+C:\Users\ccamkiran\Desktop\Cenk Camkıran\NOTLAR\Google Cloud\Projeler\NetCore6-API\BusinessLayer\obj\Debug\net6.0\ref\ServiceLayer.dll

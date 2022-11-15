@@ -15,8 +15,11 @@ namespace MiddlewareLayer
 
 		public async Task Invoke(HttpContext httpContext, ITesting _testing)
 		{
-			await _next(httpContext);
-			_testing.DoSomethingSync();
+			List<Task> tasks = new List<Task>();
+
+			//await _next(httpContext);
+			var result = await Task.Run(() => _testing.DoSomethingSync());
+			//_testing.DoSomethingSync();
 			//await _testing.DoSomethingAsync();
 		}
 	}

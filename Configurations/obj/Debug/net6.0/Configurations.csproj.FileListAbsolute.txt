@@ -34,18 +34,6 @@ C:\Users\camki\Desktop\Klasörler\Google Cloud\Projects\NetCore6-API\Configurati
 C:\Users\camki\Desktop\Klasörler\Google Cloud\Projects\NetCore6-API\Configurations\obj\Debug\net6.0\refint\Configurations.dll
 C:\Users\camki\Desktop\Klasörler\Google Cloud\Projects\NetCore6-API\Configurations\obj\Debug\net6.0\Configurations.pdb
 C:\Users\camki\Desktop\Klasörler\Google Cloud\Projects\NetCore6-API\Configurations\obj\Debug\net6.0\ref\Configurations.dll
-C:\Users\ccamkiran\Desktop\Cenk Camkıran\NOTLAR\Google Cloud\Projeler\NetCore6-API\Configurations\bin\Debug\net6.0\Configurations.deps.json
-C:\Users\ccamkiran\Desktop\Cenk Camkıran\NOTLAR\Google Cloud\Projeler\NetCore6-API\Configurations\bin\Debug\net6.0\Configurations.dll
-C:\Users\ccamkiran\Desktop\Cenk Camkıran\NOTLAR\Google Cloud\Projeler\NetCore6-API\Configurations\bin\Debug\net6.0\Configurations.pdb
-C:\Users\ccamkiran\Desktop\Cenk Camkıran\NOTLAR\Google Cloud\Projeler\NetCore6-API\Configurations\obj\Debug\net6.0\Configurations.csproj.AssemblyReference.cache
-C:\Users\ccamkiran\Desktop\Cenk Camkıran\NOTLAR\Google Cloud\Projeler\NetCore6-API\Configurations\obj\Debug\net6.0\Configurations.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\ccamkiran\Desktop\Cenk Camkıran\NOTLAR\Google Cloud\Projeler\NetCore6-API\Configurations\obj\Debug\net6.0\Configurations.AssemblyInfoInputs.cache
-C:\Users\ccamkiran\Desktop\Cenk Camkıran\NOTLAR\Google Cloud\Projeler\NetCore6-API\Configurations\obj\Debug\net6.0\Configurations.AssemblyInfo.cs
-C:\Users\ccamkiran\Desktop\Cenk Camkıran\NOTLAR\Google Cloud\Projeler\NetCore6-API\Configurations\obj\Debug\net6.0\Configurations.csproj.CoreCompileInputs.cache
-C:\Users\ccamkiran\Desktop\Cenk Camkıran\NOTLAR\Google Cloud\Projeler\NetCore6-API\Configurations\obj\Debug\net6.0\Configurations.dll
-C:\Users\ccamkiran\Desktop\Cenk Camkıran\NOTLAR\Google Cloud\Projeler\NetCore6-API\Configurations\obj\Debug\net6.0\refint\Configurations.dll
-C:\Users\ccamkiran\Desktop\Cenk Camkıran\NOTLAR\Google Cloud\Projeler\NetCore6-API\Configurations\obj\Debug\net6.0\Configurations.pdb
-C:\Users\ccamkiran\Desktop\Cenk Camkıran\NOTLAR\Google Cloud\Projeler\NetCore6-API\Configurations\obj\Debug\net6.0\ref\Configurations.dll
 C:\Users\camki\Desktop\Kişisel\Google Cloud\Projects\NetCore6-API\Configurations\bin\Debug\net6.0\Configurations.deps.json
 C:\Users\camki\Desktop\Kişisel\Google Cloud\Projects\NetCore6-API\Configurations\bin\Debug\net6.0\Configurations.dll
 C:\Users\camki\Desktop\Kişisel\Google Cloud\Projects\NetCore6-API\Configurations\bin\Debug\net6.0\Configurations.pdb
@@ -58,3 +46,15 @@ C:\Users\camki\Desktop\Kişisel\Google Cloud\Projects\NetCore6-API\Configuration
 C:\Users\camki\Desktop\Kişisel\Google Cloud\Projects\NetCore6-API\Configurations\obj\Debug\net6.0\refint\Configurations.dll
 C:\Users\camki\Desktop\Kişisel\Google Cloud\Projects\NetCore6-API\Configurations\obj\Debug\net6.0\Configurations.pdb
 C:\Users\camki\Desktop\Kişisel\Google Cloud\Projects\NetCore6-API\Configurations\obj\Debug\net6.0\ref\Configurations.dll
+C:\Users\ccamkiran\Desktop\Cenk Camkıran\NOTLAR\Google Cloud\Projeler\NetCore6-API\Configurations\bin\Debug\net6.0\Configurations.deps.json
+C:\Users\ccamkiran\Desktop\Cenk Camkıran\NOTLAR\Google Cloud\Projeler\NetCore6-API\Configurations\bin\Debug\net6.0\Configurations.dll
+C:\Users\ccamkiran\Desktop\Cenk Camkıran\NOTLAR\Google Cloud\Projeler\NetCore6-API\Configurations\bin\Debug\net6.0\Configurations.pdb
+C:\Users\ccamkiran\Desktop\Cenk Camkıran\NOTLAR\Google Cloud\Projeler\NetCore6-API\Configurations\obj\Debug\net6.0\Configurations.csproj.AssemblyReference.cache
+C:\Users\ccamkiran\Desktop\Cenk Camkıran\NOTLAR\Google Cloud\Projeler\NetCore6-API\Configurations\obj\Debug\net6.0\Configurations.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ccamkiran\Desktop\Cenk Camkıran\NOTLAR\Google Cloud\Projeler\NetCore6-API\Configurations\obj\Debug\net6.0\Configurations.AssemblyInfoInputs.cache
+C:\Users\ccamkiran\Desktop\Cenk Camkıran\NOTLAR\Google Cloud\Projeler\NetCore6-API\Configurations\obj\Debug\net6.0\Configurations.AssemblyInfo.cs
+C:\Users\ccamkiran\Desktop\Cenk Camkıran\NOTLAR\Google Cloud\Projeler\NetCore6-API\Configurations\obj\Debug\net6.0\Configurations.csproj.CoreCompileInputs.cache
+C:\Users\ccamkiran\Desktop\Cenk Camkıran\NOTLAR\Google Cloud\Projeler\NetCore6-API\Configurations\obj\Debug\net6.0\Configurations.dll
+C:\Users\ccamkiran\Desktop\Cenk Camkıran\NOTLAR\Google Cloud\Projeler\NetCore6-API\Configurations\obj\Debug\net6.0\refint\Configurations.dll
+C:\Users\ccamkiran\Desktop\Cenk Camkıran\NOTLAR\Google Cloud\Projeler\NetCore6-API\Configurations\obj\Debug\net6.0\Configurations.pdb
+C:\Users\ccamkiran\Desktop\Cenk Camkıran\NOTLAR\Google Cloud\Projeler\NetCore6-API\Configurations\obj\Debug\net6.0\ref\Configurations.dll

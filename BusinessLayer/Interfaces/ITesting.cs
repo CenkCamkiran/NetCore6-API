@@ -8,7 +8,7 @@ namespace ServiceLayer.Interfaces
 {
 	public interface ITesting
 	{
-		Task DoSomethingAsync();
+		Task<string> DoSomethingAsync();
 		string DoSomethingSync();
 	}
 }

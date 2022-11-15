@@ -9,9 +9,10 @@ namespace ServiceLayer
 {
 	public class TestingService : ITesting
 	{
-		public Task DoSomethingAsync()
+		public async Task<string> DoSomethingAsync()
 		{
-			return Task.FromResult("Async completed");
+			await Task.Delay(5000);
+			return "Async completed";
 		}
 
 		public string DoSomethingSync()
