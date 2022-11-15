@@ -13,12 +13,11 @@ namespace MiddlewareLayer
 			_next = next;
 		}
 
-		public async Task Invoke(HttpContext httpContext, ILoggingService loggingService)
+		public async Task Invoke(HttpContext httpContext, ITesting _testing)
 		{
 			await _next(httpContext);
-
-			await loggingService.InsertControllerRequestResponseLog(httpContext.Request, httpContext.Response);
-
+			_testing.DoSomethingSync();
+			//await _testing.DoSomethingAsync();
 		}
 	}
 
@@ -27,7 +26,7 @@ namespace MiddlewareLayer
 	{
 		public static IApplicationBuilder UseTestingMiddleware(this IApplicationBuilder builder)
 		{
-			return builder.UseMiddleware<LoggingMiddleware>();
+			return builder.UseMiddleware<TestingMiddleware>();
 		}
 	}
 }

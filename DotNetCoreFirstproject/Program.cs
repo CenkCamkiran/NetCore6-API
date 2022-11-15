@@ -70,12 +70,13 @@ configuration.GetSection(ApplicationSettingsModel.RootOption).Bind(ApplicationSe
 //builder.Services.AddScoped<ITestQueueService, TestQueueService>();
 //builder.Services.AddScoped<ITestQueueRepository, TestQueueRepository>();
 //builder.Services.AddScoped<IRabbitMQCommand, RabbitMQCommand>();
+builder.Services.AddScoped<ITesting, TestingService>();
 //builder.Services.AddHealthChecks();
+builder.Services.AddControllers();
 
 
 //MongoClient mongoClient = new MongoClient(mongodbConfig["MongoDBConnectionString"]);
 //builder.Services.AddSingleton<IMongoClient>(mongoClient);
-//builder.Services.AddControllers();
 
 
 //ConnectionSettings? connection = new ConnectionSettings(new Uri(elasticConfig["ElasticHost"])).
@@ -129,43 +130,54 @@ if (app.Environment.IsDevelopment())
 
 //app.UsePathBase(new PathString("/rest/api/v1")); //Value must start with '/' //This is not working
 
-app.Use(async (context, next) =>
-{
-	context.Request.EnableBuffering();
+/* ************************************************************************************ */
+//app.Use(async (context, next) =>
+//{
+//	context.Request.EnableBuffering();
 
-	context.Request.Headers.Date = DateTime.Now.ToString();
-	//This line of code can be used to seeking or reading stream second or multiple times.
-	//Old C# code is EnableRewind(). This code does the same job of EnableBuffering. EnableBuffering => ASP.NET Core 2.1
-	//Ideally do this early in the middleware before anything needs to read the body
+//	context.Request.Headers.Date = DateTime.Now.ToString();
+//	//This line of code can be used to seeking or reading stream second or multiple times.
+//	//Old C# code is EnableRewind(). This code does the same job of EnableBuffering. EnableBuffering => ASP.NET Core 2.1
+//	//Ideally do this early in the middleware before anything needs to read the body
 
-	try
-	{
-		await next();
-	}
-	catch (Exception exception)
-	{
-		Console.WriteLine(exception.Message.ToString());
-	}
-});
+//	try
+//	{
+//		await next();
+//	}
+//	catch (Exception exception)
+//	{
+//		Console.WriteLine(exception.Message.ToString());
+//	}
+//});
+/* ************************************************************************************ */
 
 //app.UseErrorHandlerMiddleware(); enters ErrorMiddleware but not LoggingMiddleware. Why?
 
-app.UseResponseReadableStreamMiddleware();
+/* ************************************************************************************ */
 
-app.UseLoggingMiddleware(); //If exception will happen, it wont enter ErrorHandlerMiddleware.
-
-app.UseErrorHandlerMiddleware();
-
-app.UseWhen(context => context.Request.Path.StartsWithSegments("/rest/api/v1/main"), appBuilder =>  // The path must be started with '/'
+app.UseWhen(context => context.Request.Path.StartsWithSegments("/rest/api/v1"), appBuilder =>  // The path must be started with '/'
 {
-	appBuilder.UseTokenControlMiddleware();
+	appBuilder.UseTestingMiddleware();
 });
 
-app.UseWhen(context => context.Request.Path.StartsWithSegments("/rest/api/v1/main"), appBuilder =>  // The path must be started with '/'
-{
-	appBuilder.UseSessionControlMiddleware();
-	//appBuilder.UseMiddleware<AuthenticationMiddleware>(); //Same thing //
-});
+//app.UseResponseReadableStreamMiddleware();
+
+//app.UseLoggingMiddleware(); //If exception will happen, it wont enter ErrorHandlerMiddleware.
+
+//app.UseErrorHandlerMiddleware();
+
+//app.UseWhen(context => context.Request.Path.StartsWithSegments("/rest/api/v1/main"), appBuilder =>  // The path must be started with '/'
+//{
+//	appBuilder.UseTokenControlMiddleware();
+//});
+
+//app.UseWhen(context => context.Request.Path.StartsWithSegments("/rest/api/v1/main"), appBuilder =>  // The path must be started with '/'
+//{
+//	appBuilder.UseSessionControlMiddleware();
+//	//appBuilder.UseMiddleware<AuthenticationMiddleware>(); //Same thing //
+//});
+
+/* ************************************************************************************ */
 
 app.UseHttpsRedirection();
 
